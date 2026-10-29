@@ -1,4 +1,4 @@
-recipe bswt:primative/flint/flint_sword {
+recipe bswt:primative/sword {
     "type": "minecraft:crafting_shaped",
     "category": "equipment",
     "key": {
@@ -35,7 +35,7 @@ recipe bswt:primative/flint/flint_sword {
         }
     }
 }
-recipe bswt:primative/flint/flint_spear {
+recipe bswt:primative/spear {
     "type": "minecraft:crafting_shaped",
     "category": "equipment",
     "key": {
@@ -86,7 +86,7 @@ recipe bswt:primative/flint/flint_spear {
         }
     }
 }
-recipe bswt:primative/flint/flint_axe {
+recipe bswt:primative/axe {
     "type": "minecraft:crafting_shaped",
     "category": "equipment",
     "key": {
@@ -129,7 +129,7 @@ recipe bswt:primative/flint/flint_axe {
         }
     }
 }
-recipe bswt:primative/flint/flint_pickaxe {
+recipe bswt:primative/pickaxe {
         "type": "minecraft:crafting_shaped",
         "category": "equipment",
         "key": {
@@ -162,7 +162,7 @@ recipe bswt:primative/flint/flint_pickaxe {
         }
     }
 }
-recipe bswt:primative/flint/wooden_shovel {
+recipe bswt:primative/shovel {
         "type": "minecraft:crafting_shaped",
         "category": "equipment",
         "key": {
@@ -194,7 +194,7 @@ recipe bswt:primative/flint/wooden_shovel {
         }
     }
 }
-recipe bswt:primative/flint/wooden_hoe {
+recipe bswt:primative/hoe {
         "type": "minecraft:crafting_shaped",
         "category": "equipment",
         "key": {

@@ -1,4 +1,4 @@
-recipe bswt:primative/leather/leather_helmet {
+recipe bswt:armor/leather/helmet {
     "type": "minecraft:crafting_shaped",
     "category": "equipment",
     "key": {
@@ -42,7 +42,7 @@ recipe bswt:primative/leather/leather_helmet {
         }
     }
 }
-recipe bswt:primative/leather/leather_chestplate {
+recipe bswt:armor/leather/chestplate {
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
@@ -87,7 +87,7 @@ recipe bswt:primative/leather/leather_chestplate {
 		}
 	}
 }
-recipe bswt:primative/leather/leather_leggings {
+recipe bswt:armor/leather/leggings {
 	"type": "minecraft:crafting_shaped",
 	"category": "equipment",
 	"key": {
@@ -132,7 +132,7 @@ recipe bswt:primative/leather/leather_leggings {
 		}
 	}
 }
-recipe bswt:primative/leather/leather_boots {
+recipe bswt:armor/leather/boots {
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
@@ -175,4 +175,187 @@ recipe bswt:primative/leather/leather_boots {
 			]
     }
   }
+}
+
+recipe bswt:armor/copper/helmet {
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "X": "minecraft:copper_ingot"
+  },
+  "pattern": [
+    "XXX",
+    "X X"
+  ],
+  "result": {
+    "id": "minecraft:copper_helmet",
+      "components": {
+      "minecraft:max_damage": 400,
+      "minecraft:damage": 0,
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:armor",
+					"id": "bittersweet:copper_helmet",
+					"amount": 1,
+					"operation": "add_value",
+					"slot": "head"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "+1⛨",
+					"color": "blue",
+					"italic": false
+				},
+        		{
+					"text": "4/4 = +2⛨",
+					"color": "yellow",
+					"italic": false
+				}
+			],
+      		"minecraft:equippable": {
+				"slot": "head",
+				"equip_sound": "minecraft:item.armor.equip_copper"
+      }
+    }
+  }
+}
+recipe bswt:armor/copper/chestplate {
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "X": "minecraft:copper_ingot"
+  },
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "result": {
+    "id": "minecraft:copper_chestplate",
+      "components": {
+      "minecraft:max_damage": 400,
+      "minecraft:damage": 0,
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:armor",
+					"id": "bittersweet:copper_chestplate",
+					"amount": 2,
+					"operation": "add_value",
+					"slot": "chest"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "+2⛨",
+					"color": "blue",
+					"italic": false
+				},
+        		{
+					"text": "4/4 = +2⛨",
+					"color": "yellow",
+					"italic": false
+				}
+			]
+		}
+	}
+}
+recipe bswt:armor/copper/leggings {
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "X": "minecraft:copper_ingot"
+  },
+  "pattern": [
+    "XXX",
+    "X X",
+    "X X"
+  ],
+  "result": {
+    "id": "minecraft:copper_leggings",
+      "components": {
+      "minecraft:max_damage": 400,
+      "minecraft:damage": 0,
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:armor",
+					"id": "bittersweet:copper_leggings",
+					"amount": 2,
+					"operation": "add_value",
+					"slot": "legs"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "+2⛨",
+					"color": "blue",
+					"italic": false
+				},
+        		{
+					"text": "4/4 = +2⛨",
+					"color": "yellow",
+					"italic": false
+				}
+			]
+		}
+	}
+}
+recipe bswt:armor/copper/boots {
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "X": "minecraft:copper_ingot"
+  },
+  "pattern": [
+    "X X",
+    "X X"
+  ],
+  "result": {
+    "id": "minecraft:copper_boots",
+      "components": {
+      "minecraft:max_damage": 400,
+      "minecraft:damage": 0,
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:armor",
+					"id": "bittersweet:copper_boots",
+					"amount": 1,
+					"operation": "add_value",
+					"slot": "feet"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "+1⛨",
+					"color": "blue",
+					"italic": false
+				},
+        		{
+					"text": "4/4 = +2⛨",
+					"color": "yellow",
+					"italic": false
+				}
+			]
+		}
+	}
 }
