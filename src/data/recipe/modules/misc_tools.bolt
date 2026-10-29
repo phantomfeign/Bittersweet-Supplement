@@ -1,0 +1,43 @@
+recipe bswt:misc_tools/copper_shears {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"#": "minecraft:copper_ingot"
+	},
+	"pattern": [
+		" #",
+		"# "
+	],
+	"result": {
+		"id": "minecraft:shears",
+		"components": {
+			"minecraft:item_name": {
+				"text": "Copper Shears",
+				"italic": false
+			},
+			"minecraft:item_model": "bittersweet_textures:copper_shears",
+			"minecraft:max_damage":200
+		}
+	}
+}
+recipe bswt:misc_tools/iron_shears {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"#": "minecraft:iron_ingot"
+	},
+	"pattern": [
+		" #",
+		"# "
+	],
+	"result": {
+		"id": "minecraft:shears",
+		"components": {
+            "minecraft:item_name": {
+				"text": "Iron Shears",
+				"italic": false
+			},
+			"minecraft:max_damage":500
+		}
+	}
+}
