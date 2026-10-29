@@ -1,0 +1,26 @@
+function tick:call:
+    schedule function tick:call 1t replace
+    execute as @e at @s:
+        execute if entity @s[type=player]:
+            function tick:players
+        function tick:universal
+
+function tick:players:
+    pass
+
+function tick:universal:
+    pass
+
+function tick_1s:call:
+    schedule function tick_1s:call 1s replace
+    execute as @e at @s:
+        execute if entity @s[type=player]:
+            function tick_1s:players
+        function tick_1s:universal
+
+function tick_1s:players:
+    pass
+
+function tick_1s:universal:
+    execute as @s[tag=bswt.lacerated]:
+        function enchantment_function:laceration/tick

@@ -1,0 +1,228 @@
+recipe bswt:primative/flint/flint_sword {
+    "type": "minecraft:crafting_shaped",
+    "category": "equipment",
+    "key": {
+        "#": "minecraft:stick",
+        "X": "minecraft:flint"
+    },
+    "pattern": [
+        " X",
+        " X",
+        " #"
+    ],
+    "result": {
+        "id": "minecraft:wooden_sword",
+        "components": {
+            "minecraft:max_damage": 100,
+            "minecraft:damage": 0,
+            "minecraft:tooltip_display": {
+                "hidden_components": [
+                    "minecraft:attribute_modifiers"
+                ]
+            },
+            "minecraft:lore": [
+                {
+                    "text": "4🗡",
+                    "color": "red",
+                    "italic": false
+                },
+                {
+                    "text": "1.6⌚",
+                    "color": "yellow",
+                    "italic": false
+                }
+            ]
+        }
+    }
+}
+recipe bswt:primative/flint/flint_spear {
+    "type": "minecraft:crafting_shaped",
+    "category": "equipment",
+    "key": {
+        "#": "minecraft:stick",
+        "X": "#minecraft:planks"
+    },
+    "pattern": [
+        "  X",
+        " # ",
+        "#  "
+    ],
+    "result": {
+        "count": 1,
+        "id": "minecraft:wooden_spear",
+        "components": {
+        "minecraft:max_damage": 100,
+        "minecraft:damage": 0,
+            "minecraft:tooltip_display": {
+                "hidden_components": [
+                    "minecraft:attribute_modifiers"
+                ]
+                },
+                "minecraft:lore": [
+                    {
+                        "text": "1🗡",
+                        "color": "red",
+                        "italic": false
+                    },
+                    {
+                        "text": "1.54⌚",
+                        "color": "yellow",
+                        "italic": false
+                    },
+                    {
+                        "text": "1-4.5→",
+                        "color": "green",
+                        "italic": false
+                    }
+                ],
+                "minecraft:attack_range": {
+                "min_reach": 1.0,
+                "max_reach": 4.5,
+                "min_creative_reach": 2.0,
+                "max_creative_reach": 6.5,
+                "hitbox_margin": 0.125,
+                "mob_factor": 0.5
+            }
+        }
+    }
+}
+recipe bswt:primative/flint/flint_axe {
+    "type": "minecraft:crafting_shaped",
+    "category": "equipment",
+    "key": {
+    "#": "minecraft:stick",
+    "X": "minecraft:flint"
+    },
+    "pattern": [
+    "XX",
+    "#X",
+    "# "
+    ],
+    "result": {
+    "count": 1,
+    "id": "minecraft:wooden_axe",
+      "components": {
+      "minecraft:max_damage": 100,
+      "minecraft:damage": 0,
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "2⛏",
+					"color": "gold",
+					"italic": false
+				},
+				{
+					"text": "7🗡",
+					"color": "red",
+					"italic": false
+				},
+				{
+					"text": "0.8⌚",
+					"color": "yellow",
+					"italic": false
+				}
+			]
+        }
+    }
+}
+recipe bswt:primative/flint/flint_pickaxe {
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "key": {
+        "#": "minecraft:stick",
+        "X": "minecraft:flint"
+        },
+        "pattern": [
+        "XXX",
+        " # ",
+        " # "
+        ],
+        "result": {
+        "count": 1,
+        "id": "minecraft:wooden_pickaxe",
+        "components": {
+            "minecraft:max_damage": 100,
+            "minecraft:damage": 0,
+            "minecraft:tooltip_display": {
+                "hidden_components": [
+                    "minecraft:attribute_modifiers"
+                ]
+            },
+            "minecraft:lore": [
+                {
+                    "text": "2⛏",
+                    "color": "gold",
+                    "italic": false
+                }
+            ]
+        }
+    }
+}
+recipe bswt:primative/flint/wooden_shovel {
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "key": {
+        "#": "minecraft:stick",
+        "X": "#minecraft:planks"
+        },
+        "pattern": [
+        " X",
+        " #",
+        " #"
+        ],
+        "result": {
+        "id": "minecraft:wooden_shovel",
+        "components": {
+            "minecraft:max_damage": 100,
+            "minecraft:damage": 0,
+            "minecraft:tooltip_display": {
+                "hidden_components": [
+                    "minecraft:attribute_modifiers"
+                ]
+            },
+            "minecraft:lore": [
+                {
+                    "text": "2⛏",
+                    "color": "gold",
+                    "italic": false
+                }
+            ]
+        }
+    }
+}
+recipe bswt:primative/flint/wooden_hoe {
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "key": {
+        "#": "minecraft:stick",
+        "X": "#minecraft:planks"
+        },
+        "pattern": [
+        " XX",
+        " # ",
+        " # "
+        ],
+        "result": {
+        "id": "minecraft:wooden_hoe",
+        "components": {
+            "minecraft:max_damage": 100,
+            "minecraft:damage": 0,
+            "minecraft:tooltip_display": {
+                "hidden_components": [
+                    "minecraft:attribute_modifiers"
+                ]
+            },
+            "minecraft:lore": [
+                {
+                    "text": "2⛏",
+                    "color": "gold",
+                    "italic": false
+                }
+            ]
+        }
+    }
+}

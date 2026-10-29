@@ -1,0 +1,17 @@
+function enchantment_function:laceration/apply:
+    tag @s add bswt.lacerated
+    execute unless score @s bswt.lacerationStacks matches 1.. run scoreboard players add @s bswt.lacerationStacks 1
+    scoreboard players add @s bswt.lacerationStacks 1
+
+function enchantment_function:laceration/tick:
+    execute store result storage bswt.laceration Severity int 1 run scoreboard players get @s bswt.lacerationStacks
+    function enchantment_function:laceration/damage with storage bswt.laceration
+    scoreboard players remove @s bswt.lacerationStacks 1
+    execute if score @s bswt.lacerationStacks matches ..0:
+        scoreboard players reset @s bswt.lacerationStacks
+        tag @s remove bswt.lacerated
+
+function enchantment_function:laceration/damage:
+    $damage @s $(Severity) minecraft:magic
+    particle minecraft:dust{color:[0.8,0,0],scale:1} ~ ~1 ~ 0.5 0.5 0.5 0 2
+    $particle minecraft:dust{color:[0.8,0,0],scale:1} ~ ~1 ~ 0.5 0.5 0.5 0 $(Severity)

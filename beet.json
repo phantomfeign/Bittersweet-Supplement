@@ -1,0 +1,32 @@
+{
+    "minecraft": "26.2",
+    "name": "Bittersweet Supplement",
+    "description": "Bittersweet Supplement for Java 26.2",
+    "require":[
+        "bolt"
+    ],
+    "data_pack": {
+        "name": "Bittersweet Supplement",
+        "load": ["src"]
+    },
+    "pipeline": [
+        "mecha",
+        "block_filter"
+    ],
+    "output": "build",
+    "meta": {
+        "bolt": {
+            "entrypoint": [
+                "bswt:load",
+                "bswt:tick",
+                "bswt:utility",
+
+                "bswt:enchantment",
+                "bswt:enchantment_function",
+
+                "recipe:primative",
+                "recipe:armor"
+            ]
+        }
+    }
+}
