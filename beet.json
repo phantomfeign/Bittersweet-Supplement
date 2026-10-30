@@ -20,11 +20,14 @@
                 "bswt:load",
                 "bswt:tick",
                 "bswt:utility",
+                "utils/tiering",
 
                 "bswt:enchantment",
                 "bswt:enchantment_function",
 
-                "recipe:primative",
+                "recipe:block_variant",
+                "recipe:multitool",
+                "recipe:tool",
                 "recipe:armor"
             ]
         }

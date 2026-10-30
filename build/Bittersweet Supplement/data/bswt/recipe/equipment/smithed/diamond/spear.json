@@ -1,0 +1,58 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "minecraft:diamond",
+  "base": "minecraft:golden_spear",
+  "template": "minecraft:chicken_spawn_egg",
+  "result": {
+    "id": "minecraft:diamond_spear",
+    "components": {
+      "minecraft:max_damage": 2000,
+      "minecraft:tooltip_display": {
+        "hidden_components": [
+          "minecraft:attribute_modifiers"
+        ]
+      },
+      "minecraft:attribute_modifiers": [
+        {
+          "type": "minecraft:attack_damage",
+          "id": "bswt:diamond_spear",
+          "amount": 3,
+          "operation": "add_value",
+          "slot": "mainhand"
+        },
+        {
+          "type": "minecraft:attack_speed",
+          "id": "bswt:diamond_spear",
+          "amount": -2.5,
+          "operation": "add_value",
+          "slot": "mainhand"
+        }
+      ],
+      "minecraft:lore": [
+        {
+          "text": "4\ud83d\udde1",
+          "color": "red",
+          "italic": false
+        },
+        {
+          "text": "1.5\u231a",
+          "color": "yellow",
+          "italic": false
+        },
+        {
+          "text": "1-4.5\u2192",
+          "color": "green",
+          "italic": false
+        }
+      ],
+      "minecraft:attack_range": {
+        "min_reach": 1.0,
+        "max_reach": 4.5,
+        "min_creative_reach": 2.0,
+        "max_creative_reach": 6.5,
+        "hitbox_margin": 0.125,
+        "mob_factor": 0.5
+      }
+    }
+  }
+}

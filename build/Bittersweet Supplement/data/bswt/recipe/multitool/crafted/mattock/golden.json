@@ -1,0 +1,56 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "XXP",
+    " #X",
+    "# X"
+  ],
+  "key": {
+    "#": "minecraft:stick",
+    "X": "minecraft:gold_ingot",
+    "P": "minecraft:amethyst_shard"
+  },
+  "result": {
+    "id": "minecraft:golden_hoe",
+    "components": {
+      "minecraft:item_name": {
+        "translate": "item.bswt.golden_mattock",
+        "italic": false
+      },
+      "minecraft:item_model": "bswt_texture:golden_mattock",
+      "minecraft:custom_data": {
+        "bswt:multitool": "mattock"
+      },
+      "minecraft:tooltip_display": {
+        "hidden_components": [
+          "minecraft:attribute_modifiers"
+        ]
+      },
+      "minecraft:lore": [
+        {
+          "text": "10\u26cf",
+          "color": "gold",
+          "italic": false
+        }
+      ],
+      "minecraft:max_damage": 375,
+      "minecraft:tool": {
+        "rules": [
+          {
+            "blocks": "#minecraft:mineable/pickaxe",
+            "speed": 10,
+            "correct_for_drops": true
+          },
+          {
+            "blocks": "#minecraft:mineable/hoe",
+            "speed": 10,
+            "correct_for_drops": true
+          }
+        ],
+        "default_mining_speed": 1,
+        "damage_per_block": 1
+      }
+    }
+  }
+}

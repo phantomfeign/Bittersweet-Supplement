@@ -1,0 +1,300 @@
+from beet import Recipe
+from utils:tiers import TIERS, TIER_LOOKUP,NUMBER_LOOKUP
+
+MULTITOOL_CRAFTING = [
+    {
+        "base_tier": "golden",
+        "base_item": "gold_ingot",
+        "added_item": "amethyst_shard",
+    },
+    {
+        "base_tier": "iron",
+        "base_item": "iron_ingot",
+        "added_item": "gold_ingot",
+    },
+    {
+        "base_tier": "copper",
+        "base_item": "copper_ingot",
+        "added_item": "iron_ingot",
+    }
+]
+
+#MATTOCK_CRAFTING
+for tool in MULTITOOL_CRAFTING:
+    current_tier = TIER_LOOKUP[tool["base_tier"]]
+    mining_speed = current_tier["mining_speed"]
+    max_durability = int(current_tier["durability"]*1.5)
+    ctx.data.recipes[f"bswt:multitool/crafted/mattock/{tool['base_tier']}"] = Recipe({
+
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "pattern": [
+            "XXP",
+            " #X",
+            "# X"
+        ],
+        "key": {
+            "#": "minecraft:stick",
+            "X": f"minecraft:{tool["base_item"]}",
+            "P": f"minecraft:{tool['added_item']}"
+        },
+        "result": {
+            "id": f"minecraft:{tool['base_tier']}_hoe",
+            "components": {
+                "minecraft:item_name": {"translate": f"item.bswt.{tool['base_tier']}_mattock", "italic": False},
+                "minecraft:item_model": f"bswt_texture:{tool['base_tier']}_mattock",
+                "minecraft:custom_data": {"bswt:multitool":"mattock"},
+                "minecraft:tooltip_display": {"hidden_components": ["minecraft:attribute_modifiers"]},
+                "minecraft:lore": [{"text": f"{mining_speed}⛏", "color": "gold", "italic": False}],
+                "minecraft:max_damage": max_durability,
+                "minecraft:tool": {
+                    "rules": [
+                        {
+                            "blocks": "#minecraft:mineable/pickaxe",
+                            "speed": mining_speed,
+                            "correct_for_drops": True
+                        },
+                        {
+                            "blocks": "#minecraft:mineable/hoe",
+                            "speed": mining_speed,
+                            "correct_for_drops": True
+                        }
+                    ],
+                    "default_mining_speed": 1,
+                    "damage_per_block": 1
+                }
+            }
+        }
+    })
+
+#PULASKI CRAFTING
+for tool in MULTITOOL_CRAFTING:
+    current_tier = TIER_LOOKUP[tool["base_tier"]]
+    mining_speed = current_tier["mining_speed"]
+    max_durability = int(current_tier["durability"]*1.5)
+    ctx.data.recipes[f"bswt:multitool/crafted/pulaski/{tool['base_tier']}"] = Recipe({
+
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "pattern": [
+            "XPX",
+            "X# ",
+            " # "
+        ],
+        "key": {
+            "#": "minecraft:stick",
+            "X": f"minecraft:{tool["base_item"]}",
+            "P": f"minecraft:{tool['added_item']}"
+        },
+        "result": {
+            "id": f"minecraft:{tool['base_tier']}_axe",
+            "components": {
+                "minecraft:item_name": {"translate": f"item.bswt.{tool['base_tier']}_pulaski", "italic": False},
+                "minecraft:item_model": f"bswt_texture:{tool['base_tier']}_pulaski",
+                "minecraft:custom_data": {"bswt:multitool":"pulaski"},
+                "minecraft:tooltip_display": {"hidden_components": ["minecraft:attribute_modifiers"]},
+                "minecraft:lore": [{"text": f"{mining_speed}⛏", "color": "gold", "italic": False}],
+                "minecraft:max_damage": max_durability,
+                "minecraft:tool": {
+                    "rules": [
+                        {
+                            "blocks": "#minecraft:mineable/axe",
+                            "speed": mining_speed,
+                            "correct_for_drops": True
+                        },
+                        {
+                            "blocks": "#minecraft:mineable/shovel",
+                            "speed": mining_speed,
+                            "correct_for_drops": True
+                        }
+                    ],
+                    "default_mining_speed": 1,
+                    "damage_per_block": 1
+                }
+            }
+        }
+    })
+
+MULTITOOL_SMITHING = [
+    {
+        "base_tier": "diamond",
+        "addition": "emerald",
+    },
+    {
+        "base_tier": "netherite",
+        "addition": "emerald",
+    },
+    {
+        "base_tier": "golden",
+        "addition": "amethyst_shard",
+    },
+    {
+        "base_tier": "iron",
+        "addition": "gold_ingot",
+    },
+    {
+        "base_tier": "copper",
+        "addition": "iron_ingot",
+    }
+]
+
+#MATTOCK SMITHING
+for tool in MULTITOOL_SMITHING:
+    current_tier = TIER_LOOKUP[tool["base_tier"]]
+    mining_speed = current_tier["mining_speed"]
+    max_durability = int(current_tier["durability"]*1.5)
+
+    ctx.data.recipes[f"bswt:multitool/smithed/mattock/{tool['base_tier']}"] = Recipe({
+        "type": "minecraft:smithing_transform",
+        "addition": f"minecraft:{tool['addition']}",
+        "base": f"minecraft:{tool['base_tier']}_hoe",
+        "template": f"minecraft:{tool['base_tier']}_pickaxe",
+        "result": {
+            "id": f"minecraft:{tool['base_tier']}_hoe",
+            "components": {
+                "minecraft:item_name": {"translate": f"item.bswt.{tool['base_tier']}_mattock", "italic": False},
+                "minecraft:item_model": f"bswt_texture:{tool['base_tier']}_mattock",
+                "minecraft:custom_data": {"bswt:multitool":"mattock"},
+                "minecraft:tooltip_display": {"hidden_components": ["minecraft:attribute_modifiers"]},
+                "minecraft:lore": [{"text": f"{mining_speed}⛏", "color": "gold", "italic": False}],
+                "minecraft:max_damage": max_durability,
+                "minecraft:tool": {
+                    "rules": [
+                        {
+                            "blocks": "#minecraft:mineable/pickaxe",
+                            "speed": mining_speed,
+                            "correct_for_drops": True
+                        },
+                        {
+                            "blocks": "#minecraft:mineable/hoe",
+                            "speed": mining_speed,
+                            "correct_for_drops": True
+                        }
+                    ],
+                    "default_mining_speed": 1,
+                    "damage_per_block": 1
+                }
+            }
+        }
+    })
+
+#MATTOCK SMITHING ALT
+for tool in MULTITOOL_SMITHING:
+    current_tier = TIER_LOOKUP[tool["base_tier"]]
+    mining_speed = current_tier["mining_speed"]
+    max_durability = int(current_tier["durability"]*1.5)
+
+    ctx.data.recipes[f"bswt:multitool/smithed/mattock/{tool['base_tier']}_alt"] = Recipe({
+        "type": "minecraft:smithing_transform",
+        "addition": f"minecraft:{tool['addition']}",
+        "base": f"minecraft:{tool['base_tier']}_pickaxe",
+        "template": f"minecraft:{tool['base_tier']}_hoe",
+        "result": {
+            "id": f"minecraft:{tool['base_tier']}_hoe",
+            "components": {
+                "minecraft:item_name": {"translate": f"item.bswt.{tool['base_tier']}_mattock", "italic": False},
+                "minecraft:item_model": f"bswt_texture:{tool['base_tier']}_mattock",
+                "minecraft:custom_data": {"bswt:multitool":"mattock"},
+                "minecraft:tooltip_display": {"hidden_components": ["minecraft:attribute_modifiers"]},
+                "minecraft:lore": [{"text": f"{mining_speed}⛏", "color": "gold", "italic": False}],
+                "minecraft:max_damage": max_durability,
+                "minecraft:tool": {
+                    "rules": [
+                        {
+                            "blocks": "#minecraft:mineable/pickaxe",
+                            "speed": mining_speed,
+                            "correct_for_drops": True
+                        },
+                        {
+                            "blocks": "#minecraft:mineable/hoe",
+                            "speed": mining_speed,
+                            "correct_for_drops": True
+                        }
+                    ],
+                    "default_mining_speed": 1,
+                    "damage_per_block": 1
+                }
+            }
+        }
+    })
+
+#PULASKI SMITHING
+for tool in MULTITOOL_SMITHING:
+    current_tier = TIER_LOOKUP[tool["base_tier"]]
+    mining_speed = current_tier["mining_speed"]
+    max_durability = int(current_tier["durability"]*1.5)
+
+    ctx.data.recipes[f"bswt:multitool/smithed/pulaski/{tool['base_tier']}"] = Recipe({
+        "type": "minecraft:smithing_transform",
+        "addition": f"minecraft:{tool['addition']}",
+        "base": f"minecraft:{tool['base_tier']}_axe",
+        "template": f"minecraft:{tool['base_tier']}_shovel",
+        "result": {
+            "id": f"minecraft:{tool['base_tier']}_axe",
+            "components": {
+                "minecraft:item_name": {"translate": f"item.bswt.{tool['base_tier']}_pulaski", "italic": False},
+                "minecraft:item_model": f"bswt_texture:{tool['base_tier']}_pulaski",
+                "minecraft:custom_data": {"bswt:multitool":"pulaski"},
+                "minecraft:tooltip_display": {"hidden_components": ["minecraft:attribute_modifiers"]},
+                "minecraft:lore": [{"text": f"{mining_speed}⛏", "color": "gold", "italic": False}],
+                "minecraft:max_damage": max_durability,
+                "minecraft:tool": {
+                    "rules": [
+                        {
+                            "blocks": "#minecraft:mineable/axe",
+                            "speed": mining_speed,
+                            "correct_for_drops": True
+                        },
+                        {
+                            "blocks": "#minecraft:mineable/shovel",
+                            "speed": mining_speed,
+                            "correct_for_drops": True
+                        }
+                    ],
+                    "default_mining_speed": 1,
+                    "damage_per_block": 1
+                }
+            }
+        }
+    })
+
+#PULASKI SMITHING ALT
+for tool in MULTITOOL_SMITHING:
+    current_tier = TIER_LOOKUP[tool["base_tier"]]
+    mining_speed = current_tier["mining_speed"]
+    max_durability = int(current_tier["durability"]*1.5)
+
+    ctx.data.recipes[f"bswt:multitool/smithed/pulaski/{tool['base_tier']}_alt"] = Recipe({
+        "type": "minecraft:smithing_transform",
+        "addition": f"minecraft:{tool['addition']}",
+        "base": f"minecraft:{tool['base_tier']}_shovel",
+        "template": f"minecraft:{tool['base_tier']}_axe",
+        "result": {
+            "id": f"minecraft:{tool['base_tier']}_axe",
+            "components": {
+                "minecraft:item_name": {"translate": f"item.bswt.{tool['base_tier']}_pulaski", "italic": False},
+                "minecraft:item_model": f"bswt_texture:{tool['base_tier']}_pulaski",
+                "minecraft:custom_data": {"bswt:multitool":"pulaski"},
+                "minecraft:tooltip_display": {"hidden_components": ["minecraft:attribute_modifiers"]},
+                "minecraft:lore": [{"text": f"{mining_speed}⛏", "color": "gold", "italic": False}],
+                "minecraft:max_damage": max_durability,
+                "minecraft:tool": {
+                    "rules": [
+                        {
+                            "blocks": "#minecraft:mineable/axe",
+                            "speed": mining_speed,
+                            "correct_for_drops": True
+                        },
+                        {
+                            "blocks": "#minecraft:mineable/shovel",
+                            "speed": mining_speed,
+                            "correct_for_drops": True
+                        }
+                    ],
+                    "default_mining_speed": 1,
+                    "damage_per_block": 1
+                }
+            }
+        }
+    })
+

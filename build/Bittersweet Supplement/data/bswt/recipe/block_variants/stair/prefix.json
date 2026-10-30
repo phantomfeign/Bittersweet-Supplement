@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "# ",
+    "##"
+  ],
+  "key": {
+    "#": "minecraft:block"
+  },
+  "result": {
+    "id": "minecraft:prefix_stair"
+  }
+}

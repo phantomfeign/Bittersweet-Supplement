@@ -15,7 +15,7 @@ recipe bswt:misc_tools/copper_shears {
 				"text": "Copper Shears",
 				"italic": false
 			},
-			"minecraft:item_model": "bittersweet_textures:copper_shears",
+			"minecraft:item_model": "bswt_texture:copper_shears",
 			"minecraft:max_damage":200
 		}
 	}

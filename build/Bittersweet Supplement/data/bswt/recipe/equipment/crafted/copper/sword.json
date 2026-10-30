@@ -1,0 +1,52 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    " X",
+    " X",
+    " #"
+  ],
+  "key": {
+    "#": "minecraft:stick",
+    "X": "minecraft:copper_ingot"
+  },
+  "result": {
+    "id": "minecraft:copper_sword",
+    "components": {
+      "minecraft:tooltip_display": {
+        "hidden_components": [
+          "minecraft:attribute_modifiers"
+        ]
+      },
+      "minecraft:attribute_modifiers": [
+        {
+          "type": "minecraft:attack_damage",
+          "id": "bswt:copper_sword",
+          "amount": 4,
+          "operation": "add_value",
+          "slot": "mainhand"
+        },
+        {
+          "type": "minecraft:attack_speed",
+          "id": "bswt:copper_sword",
+          "amount": -2.4,
+          "operation": "add_value",
+          "slot": "mainhand"
+        }
+      ],
+      "minecraft:lore": [
+        {
+          "text": "5\ud83d\udde1",
+          "color": "red",
+          "italic": false
+        },
+        {
+          "text": "1.6\u231a",
+          "color": "yellow",
+          "italic": false
+        }
+      ],
+      "minecraft:max_damage": 250
+    }
+  }
+}

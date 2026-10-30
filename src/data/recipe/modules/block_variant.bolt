@@ -1,0 +1,22 @@
+from beet import Recipe
+
+BLOCK_VARIANTS = [
+    {prefix:"cobblestone",block:"cobblestone"}
+]
+#STAIRS
+for tool in BLOCK_VARIANTS:
+    ctx.data.recipes[f"bswt:block_variants/stair/{prefix}"] = Recipe({
+
+        "type": "minecraft:crafting_shaped",
+        "category": "building",
+        "pattern": [
+            "# ",
+            "##"
+        ],
+        "key": {
+            "#": f"minecraft:{block}",
+        },
+        "result": {
+            "id": f"minecraft:{prefix}_stair",
+        }
+    })

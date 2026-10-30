@@ -1,0 +1,45 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "X": "minecraft:iron_chain"
+  },
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "result": {
+    "id": "minecraft:chainmail_chestplate",
+    "components": {
+      "minecraft:max_damage": 320,
+      "minecraft:damage": 0,
+      "minecraft:attribute_modifiers": [
+        {
+          "type": "minecraft:armor",
+          "id": "bittersweet:chainmail_chestplate",
+          "amount": 3,
+          "operation": "add_value",
+          "slot": "chest"
+        }
+      ],
+      "minecraft:tooltip_display": {
+        "hidden_components": [
+          "minecraft:attribute_modifiers"
+        ]
+      },
+      "minecraft:lore": [
+        {
+          "text": "+3\u26e8",
+          "color": "blue",
+          "italic": false
+        },
+        {
+          "text": "4/4 = +2\u26e8",
+          "color": "yellow",
+          "italic": false
+        }
+      ]
+    }
+  }
+}

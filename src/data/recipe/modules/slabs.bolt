@@ -1,9 +1,0 @@
-blocksLiteral=[stone,cobblestone]
-for i in (blocksLiteral):
-	{
-		"type":"minecraft:crafting_shaped"
-		"key": {
-		"X":blocksLiteral(i)
-		}
-		"
-	}

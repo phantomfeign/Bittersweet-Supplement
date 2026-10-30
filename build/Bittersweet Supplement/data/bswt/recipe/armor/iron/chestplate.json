@@ -1,0 +1,45 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "X": "minecraft:iron_ingot"
+  },
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "result": {
+    "id": "minecraft:iron_chestplate",
+    "components": {
+      "minecraft:max_damage": 500,
+      "minecraft:damage": 0,
+      "minecraft:attribute_modifiers": [
+        {
+          "type": "minecraft:armor",
+          "id": "bittersweet:iron_chestplate",
+          "amount": 5,
+          "operation": "add_value",
+          "slot": "chest"
+        }
+      ],
+      "minecraft:tooltip_display": {
+        "hidden_components": [
+          "minecraft:attribute_modifiers"
+        ]
+      },
+      "minecraft:lore": [
+        {
+          "text": "+5\u26e8",
+          "color": "blue",
+          "italic": false
+        },
+        {
+          "text": "4/4 = +1\u26e8",
+          "color": "yellow",
+          "italic": false
+        }
+      ]
+    }
+  }
+}

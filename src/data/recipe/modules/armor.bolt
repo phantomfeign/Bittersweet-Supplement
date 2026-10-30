@@ -359,3 +359,360 @@ recipe bswt:armor/copper/boots {
 		}
 	}
 }
+recipe bswt:armor/chainmail/helmet {
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "X": "minecraft:iron_chain"
+  },
+  "pattern": [
+    "XXX",
+    "X X"
+  ],
+  "result": {
+    "id": "minecraft:chainmail_helmet",
+      "components": {
+      "minecraft:max_damage": 320,
+      "minecraft:damage": 0,
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:armor",
+					"id": "bittersweet:chainmail_helmet",
+					"amount": 2,
+					"operation": "add_value",
+					"slot": "head"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "+2⛨",
+					"color": "blue",
+					"italic": false
+				},
+        		{
+					"text": "4/4 = +2⛨",
+					"color": "yellow",
+					"italic": false
+				}
+			]
+		}
+	}
+}
+recipe bswt:armor/chainmail/chestplate {
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "X": "minecraft:iron_chain"
+  },
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "result": {
+    "id": "minecraft:chainmail_chestplate",
+      "components": {
+      "minecraft:max_damage": 320,
+      "minecraft:damage": 0,
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:armor",
+					"id": "bittersweet:chainmail_chestplate",
+					"amount": 3,
+					"operation": "add_value",
+					"slot": "chest"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "+3⛨",
+					"color": "blue",
+					"italic": false
+				},
+        		{
+					"text": "4/4 = +2⛨",
+					"color": "yellow",
+					"italic": false
+				}
+			]
+		}
+	}
+}
+recipe bswt:armor/chainmail/leggings {
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "X": "minecraft:iron_chain"
+  },
+  "pattern": [
+    "XXX",
+    "X X",
+    "X X"
+  ],
+  "result": {
+    "id": "minecraft:chainmail_leggings",
+      "components": {
+      "minecraft:max_damage": 320,
+      "minecraft:damage": 0,
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:armor",
+					"id": "bittersweet:chainmail_leggings",
+					"amount": 3,
+					"operation": "add_value",
+					"slot": "legs"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "+3⛨",
+					"color": "blue",
+					"italic": false
+				},
+        		{
+					"text": "4/4 = +2⛨",
+					"color": "yellow",
+					"italic": false
+				}
+			]
+		}
+	}
+}
+recipe bswt:armor/chainmail/boots {
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "X": "minecraft:iron_chain"
+  },
+  "pattern": [
+    "X X",
+    "X X"
+  ],
+  "result": {
+    "id": "minecraft:chainmail_boots",
+      "components": {
+      "minecraft:max_damage": 320,
+      "minecraft:damage": 0,
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:armor",
+					"id": "bittersweet:chainmail_boots",
+					"amount": 2,
+					"operation": "add_value",
+					"slot": "feet"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "+2⛨",
+					"color": "blue",
+					"italic": false
+				},
+        		{
+					"text": "4/4 = +2⛨",
+					"color": "yellow",
+					"italic": false
+				}
+			]
+		}
+	}
+}
+recipe bswt:armor/iron/helmet {
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "X": "minecraft:iron_ingot"
+  },
+  "pattern": [
+    "XXX",
+    "X X"
+  ],
+  "result": {
+    "id": "minecraft:iron_helmet",
+      "components": {
+      "minecraft:max_damage": 500,
+      "minecraft:damage": 0,
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:armor",
+					"id": "bittersweet:iron_helmet",
+					"amount": 3,
+					"operation": "add_value",
+					"slot": "head"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "+3⛨",
+					"color": "blue",
+					"italic": false
+				},
+        		{
+					"text": "4/4 = +1⛨",
+					"color": "yellow",
+					"italic": false
+				}
+			]
+    }
+  }
+}
+recipe bswt:armor/iron/chestplate {
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "X": "minecraft:iron_ingot"
+  },
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "result": {
+    "id": "minecraft:iron_chestplate",
+      "components": {
+      "minecraft:max_damage": 500,
+      "minecraft:damage": 0,
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:armor",
+					"id": "bittersweet:iron_chestplate",
+					"amount": 5,
+					"operation": "add_value",
+					"slot": "chest"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "+5⛨",
+					"color": "blue",
+					"italic": false
+				},
+        		{
+					"text": "4/4 = +1⛨",
+					"color": "yellow",
+					"italic": false
+				}
+			]
+    }
+  }
+}
+recipe bswt:armor/iron/leggings {
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "X": "minecraft:iron_ingot"
+  },
+  "pattern": [
+    "XXX",
+    "X X",
+    "X X"
+
+  ],
+  "result": {
+    "id": "minecraft:iron_leggings",
+      "components": {
+      "minecraft:max_damage": 500,
+      "minecraft:damage": 0,
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:armor",
+					"id": "bittersweet:iron_leggings",
+					"amount": 4,
+					"operation": "add_value",
+					"slot": "legs"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "+4⛨",
+					"color": "blue",
+					"italic": false
+				},
+        		{
+					"text": "4/4 = +1⛨",
+					"color": "yellow",
+					"italic": false
+				}
+			]
+    }
+  }
+}
+recipe bswt:armor/iron/boots {
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "X": "minecraft:iron_ingot"
+  },
+  "pattern": [
+    "X X",
+    "X X"
+  ],
+  "result": {
+    "id": "minecraft:iron_boots",
+      "components": {
+      "minecraft:max_damage": 500,
+      "minecraft:damage": 0,
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:armor",
+					"id": "bittersweet:iron_boots",
+					"amount": 3,
+					"operation": "add_value",
+					"slot": "feet"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "+3⛨",
+					"color": "blue",
+					"italic": false
+				},
+        		{
+					"text": "4/4 = +1⛨",
+					"color": "yellow",
+					"italic": false
+				}
+			]
+		}
+	}
+}

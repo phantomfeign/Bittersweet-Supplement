@@ -1,0 +1,26 @@
+TIERS = [
+    {"number": 1,"name": "flint","weapon_damage":4,"attack_speed":1.6,"mining_speed": 4,"durability": 100},
+    {"number": 2,"name": "copper","weapon_damage":5,"attack_speed":1.6,"mining_speed": 5,"durability": 250},
+    {"number": 3,"name": "iron","weapon_damage":6,"attack_speed":1.6,"mining_speed": 6,"durability": 500},
+    {"number": 4,"name": "golden","weapon_damage":6,"attack_speed":2,"mining_speed": 10,"durability": 250},
+    {"number": 5,"name": "diamond","weapon_damage":7,"attack_speed":2,"mining_speed": 11,"durability": 2000},
+    {"number": 6,"name": "netherite","weapon_damage":9,"attack_speed":1.6,"mining_speed": 10,"durability": 4000}
+]
+EQUIPMENT_PATTERNS = [
+    {"name": "sword","pattern": [" X"," X"," #"]},
+    {"name": "spear","pattern": ["  X"," # ","#. "]},
+    {"name": "axe","pattern": ["XX","X#"," #"]},
+    {"name": "pickaxe","pattern": ["XXX"," # "," # "]},
+    {"name": "shovel","pattern": [" X"," #"," #"]},
+    {"name": "hoe","pattern": ["XX"," #"," #"]},
+]
+
+EQUIPMENT_PATTERNS_LOOKUP = {}
+for t in EQUIPMENT_PATTERNS:
+    EQUIPMENT_PATTERNS_LOOKUP[t["name"]] = t
+    
+TIER_LOOKUP = {}
+NUMBER_LOOKUP = {}
+for t in TIERS:
+    TIER_LOOKUP[t["name"]] = t
+    NUMBER_LOOKUP[t["number"]] = t

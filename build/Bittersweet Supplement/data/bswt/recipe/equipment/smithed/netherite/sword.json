@@ -1,0 +1,45 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "minecraft:netherite_ingot",
+  "base": "minecraft:golden_sword",
+  "template": "minecraft:hoglin_spawn_egg",
+  "result": {
+    "id": "minecraft:netherite_sword",
+    "components": {
+      "minecraft:tooltip_display": {
+        "hidden_components": [
+          "minecraft:attribute_modifiers"
+        ]
+      },
+      "minecraft:attribute_modifiers": [
+        {
+          "type": "minecraft:attack_damage",
+          "id": "bswt:netherite_sword",
+          "amount": 8,
+          "operation": "add_value",
+          "slot": "mainhand"
+        },
+        {
+          "type": "minecraft:attack_speed",
+          "id": "bswt:netherite_sword",
+          "amount": -2.4,
+          "operation": "add_value",
+          "slot": "mainhand"
+        }
+      ],
+      "minecraft:lore": [
+        {
+          "text": "9\ud83d\udde1",
+          "color": "red",
+          "italic": false
+        },
+        {
+          "text": "1.6\u231a",
+          "color": "yellow",
+          "italic": false
+        }
+      ],
+      "minecraft:max_damage": 4000
+    }
+  }
+}

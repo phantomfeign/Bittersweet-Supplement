@@ -1,0 +1,65 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "  X",
+    " # ",
+    "#. "
+  ],
+  "key": {
+    "#": "minecraft:stick",
+    "X": "minecraft:copper_ingot"
+  },
+  "result": {
+    "id": "minecraft:copper_spear",
+    "components": {
+      "minecraft:max_damage": 250,
+      "minecraft:tooltip_display": {
+        "hidden_components": [
+          "minecraft:attribute_modifiers"
+        ]
+      },
+      "minecraft:attribute_modifiers": [
+        {
+          "type": "minecraft:attack_damage",
+          "id": "bswt:copper_spear",
+          "amount": 2,
+          "operation": "add_value",
+          "slot": "mainhand"
+        },
+        {
+          "type": "minecraft:attack_speed",
+          "id": "bswt:copper_spear",
+          "amount": -2.8,
+          "operation": "add_value",
+          "slot": "mainhand"
+        }
+      ],
+      "minecraft:lore": [
+        {
+          "text": "3\ud83d\udde1",
+          "color": "red",
+          "italic": false
+        },
+        {
+          "text": "1.2\u231a",
+          "color": "yellow",
+          "italic": false
+        },
+        {
+          "text": "1-4.5\u2192",
+          "color": "green",
+          "italic": false
+        }
+      ],
+      "minecraft:attack_range": {
+        "min_reach": 1.0,
+        "max_reach": 4.5,
+        "min_creative_reach": 2.0,
+        "max_creative_reach": 6.5,
+        "hitbox_margin": 0.125,
+        "mob_factor": 0.5
+      }
+    }
+  }
+}
