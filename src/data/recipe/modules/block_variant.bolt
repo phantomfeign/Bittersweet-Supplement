@@ -1,10 +1,97 @@
 from beet import Recipe
 
-BLOCK_VARIANTS = [
-    {prefix:"cobblestone",block:"cobblestone"}
+WOOD_PREFIXES = [
+    "acacia","birch","spruce",
+    "cherry","jungle","mangrove",
+    "oak","dark_oak","pale_oak",
+    "bamboo","crimson","warped",
 ]
-#STAIRS
-for tool in BLOCK_VARIANTS:
+
+WOOD_VARIANTS = [{"prefix": p, "block": f"{p}_planks"} for p in WOOD_PREFIXES]
+
+BLOCK_VARIANTS = [
+    # stone
+    {"prefix": "cobblestone", "block": "cobblestone"}, 
+    {"prefix": "mossy_cobblestone", "block": "mossy_cobblestone"}, 
+    {"prefix": "stone", "block": "stone"}, 
+    {"prefix": "stone_brick", "block": "stone_bricks"},
+    {"prefix": "mossy_stone_brick", "block": "mossy_stone_bricks"},
+    {"prefix": "granite", "block": "granite"},
+    {"prefix": "polished_granite", "block": "polished_granite"},
+    {"prefix": "diorite", "block": "diorite"},
+    {"prefix": "polished_diorite", "block": "polished_diorite"},
+    {"prefix": "andesite", "block": "andesite"},
+    {"prefix": "polished_andesite", "block": "polished_andesite"},
+    
+    # deepslate
+    {"prefix": "cobbled_deepslate", "block": "cobbled_deepslate"}, 
+    {"prefix": "polished_deepslate", "block": "polished_deepslate"}, 
+    {"prefix": "deepslate_brick", "block": "deepslate_bricks"}, 
+    {"prefix": "deepslate_tile", "block": "deepslate_tiles"}, 
+    
+    # blackstone
+    {"prefix": "blackstone", "block": "blackstone"},
+    {"prefix": "polished_blackstone", "block": "polished_blackstone"},
+    {"prefix": "polished_blackstone_brick", "block": "polished_blackstone_bricks"},
+    
+    # tuff
+    {"prefix": "tuff", "block": "tuff"},
+    {"prefix": "polished_tuff", "block": "polished_tuff"},
+    {"prefix": "tuff_brick", "block": "tuff_bricks"},
+    
+    # bricks
+    {"prefix": "brick", "block": "bricks"},
+    {"prefix": "mud_brick", "block": "mud_bricks"},
+    {"prefix": "resin_brick", "block": "resin_bricks"},
+    
+    # sandstone
+    {"prefix": "sandstone", "block": "sandstone"},
+    {"prefix": "smooth_sandstone", "block": "smooth_sandstone"},
+    {"prefix": "red_sandstone", "block": "red_sandstone"},
+    {"prefix": "smooth_red_sandstone", "block": "smooth_red_sandstone"},
+    
+    # end/nether
+    {"prefix": "nether_brick", "block": "nether_bricks"},
+    {"prefix": "red_nether_brick", "block": "red_nether_bricks"},
+    {"prefix": "end_stone_brick", "block": "end_stone_bricks"},
+    {"prefix": "purpur", "block": "purpur_block"},
+    {"prefix": "quartz", "block": "quartz_block"},
+    {"prefix": "smooth_quartz", "block": "smooth_quartz"},
+    
+    # prismarine
+    {"prefix": "prismarine", "block": "prismarine"},
+    {"prefix": "prismarine_brick", "block": "prismarine_bricks"},
+    {"prefix": "dark_prismarine", "block": "dark_prismarine"}
+]
+BLOCK_VARIANTS += WOOD_VARIANTS
+
+PRESSURE_PLATES = [
+    {"prefix": "stone", "block": "stone"}, 
+    {"prefix": "polished_blackstone", "block": "polished_blackstone"}, 
+    {"prefix": "iron", "block": "iron_ingot"}, 
+    {"prefix": "gold", "block": "gold_ingot"}, 
+]
+PRESSURE_PLATES += WOOD_VARIANTS
+
+#PRESSURE_PLATES
+for block in PRESSURE_PLATES:
+    ctx.data.recipes[f"bswt:block_variants/pressure_plate/{prefix}"] = Recipe({
+
+        "type": "minecraft:crafting_shaped",
+        "category": "building",
+        "pattern": [
+            "###"
+        ],
+        "key": {
+            "#": f"minecraft:{block}",
+        },
+        "result": {
+            "id": f"minecraft:{prefix}_pressure_plate"
+        }
+    })
+
+#BLOCK_TO_STAIRS
+for block in BLOCK_VARIANTS:
     ctx.data.recipes[f"bswt:block_variants/stair/{prefix}"] = Recipe({
 
         "type": "minecraft:crafting_shaped",
@@ -18,5 +105,61 @@ for tool in BLOCK_VARIANTS:
         },
         "result": {
             "id": f"minecraft:{prefix}_stair",
+            "count":4
+        }
+    })
+
+#STAIRS_TO_BLOCK
+for block in BLOCK_VARIANTS:
+    ctx.data.recipes[f"bswt:block_variants/stair_to_block/{prefix}"] = Recipe({
+
+        "type": "minecraft:crafting_shaped",
+        "category": "building",
+        "pattern": [
+            "##",
+            "##"
+        ],
+        "key": {
+            "#": f"minecraft:{prefix}_stair",
+        },
+        "result": {
+            "id": f"minecraft:{block}",
+            "count":3
+        }
+    })
+
+#BLOCK_TO_SLABS
+for block in BLOCK_VARIANTS:
+    ctx.data.recipes[f"bswt:block_variants/slab/{prefix}"] = Recipe({
+
+        "type": "minecraft:crafting_shaped",
+        "category": "building",
+        "pattern": [
+            "##"
+        ],
+        "key": {
+            "#": f"minecraft:{block}",
+        },
+        "result": {
+            "id": f"minecraft:{prefix}_slab",
+            "count":4
+        }
+    })
+
+#SLABS_TO_BLOCK
+for block in BLOCK_VARIANTS:
+    ctx.data.recipes[f"bswt:block_variants/slab_to_block/{prefix}"] = Recipe({
+
+        "type": "minecraft:crafting_shaped",
+        "category": "building",
+        "pattern": [
+            "#",
+            "#"
+        ],
+        "key": {
+            "#": f"minecraft:{prefix}_slab",
+        },
+        "result": {
+            "id": f"minecraft:{block}"
         }
     })
