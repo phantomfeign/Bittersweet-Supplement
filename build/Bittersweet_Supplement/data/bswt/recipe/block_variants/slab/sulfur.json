@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": "minecraft:sulfur"
+  },
+  "result": {
+    "id": "minecraft:sulfur_slab",
+    "count": 4
+  }
+}

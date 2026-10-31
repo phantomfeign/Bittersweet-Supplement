@@ -1,0 +1,9 @@
+scoreboard players operation #speed.x bswt.Math = #projectileX bswt.Math
+scoreboard players operation #speed.x bswt.Math /= #motion.unit.x bswt.Math
+scoreboard players operation #speed.y bswt.Math = #projectileY bswt.Math
+scoreboard players operation #speed.y bswt.Math /= #motion.unit.y bswt.Math
+scoreboard players operation #speed.z bswt.Math = #projectileZ bswt.Math
+scoreboard players operation #speed.z bswt.Math /= #motion.unit.z bswt.Math
+scoreboard players operation #speed bswt.Math = #speed.x bswt.Math
+scoreboard players operation #speed bswt.Math > #speed.y bswt.Math
+scoreboard players operation #speed bswt.Math > #speed.z bswt.Math

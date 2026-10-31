@@ -1,0 +1,113 @@
+recipe bswt:misc_blocks/cobweb {
+    "type": "minecraft:crafting_shaped",
+    "category": "building",
+    "key": {
+    "#": "minecraft:string"
+    },
+    "pattern": [
+        "# #",
+        " # ",
+        "# #"
+    ],
+    "result": {
+        "id": "minecraft:cobweb"
+    }
+}
+
+recipe bswt:misc_blocks/lodestone {
+	"type": "minecraft:crafting_shaped",
+    "category": "building",
+	"key": {
+		"#": "minecraft:iron_ingot",
+		"C": "minecraft:chiseled_stone_bricks",
+		"B": "minecraft:stone_bricks"
+	},
+	"pattern": [
+		"BCB",
+		"C#C",
+		"BCB"
+	],
+	"result": {
+		"id": "minecraft:lodestone",
+		"components": {
+			"minecraft:lore": [
+				{
+					"text": "Compasses can be calibrated to track its location.",
+					"color": "gray"
+				}
+			]
+		}
+	}
+}
+
+recipe bswt:misc_blocks/melon_block {
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": "minecraft:melon_slice"
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "id": "minecraft:melon"
+  }
+}
+
+recipe bswt:misc_blocks/lockbox {
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "C": "#minecraft:copper_chests",
+    "I": "minecraft:iron_block",
+    "G": "minecraft:gold_block",
+    "S": "minecraft:pig_spawn_egg",
+    "E": "minecraft:emerald"
+  },
+  "pattern": [
+    "ISI",
+    "ECE",
+    "IGI"
+  ],
+  "result": {
+    "id": "minecraft:light_gray_shulker_box",
+    "components": {
+      "minecraft:item_name": "Lockbox"
+    },
+    "count": 1
+  }
+}
+
+recipe bswt:misc_blocks/iron_chain {
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "N": "minecraft:iron_nugget"
+  },
+  "pattern": [
+    "N",
+    "N",
+    "N"
+  ],
+  "result": {
+    "id": "minecraft:iron_chain",
+    "count": 2
+
+  }
+}
+
+recipe bswt:misc_blocks/copper_chain {
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "N": "minecraft:copper_nugget"
+  },
+  "pattern": [
+    "N",
+    "N",
+    "N"
+  ],
+  "result": {
+    "id": "minecraft:copper_chain",
+    "count": 2
+
+  }
+}

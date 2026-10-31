@@ -1,0 +1,33 @@
+#——————————————————1 TICK
+function ticking_functions:tick_1t/call:
+    schedule function ticking_functions:tick_1t/call 1t replace
+    as @e at @s:
+        function ticking_functions:tick_1t/universal
+        if entity @s[type=player] run function ticking_functions:tick_1t/players
+        
+function ticking_functions:tick_1t/players:
+    if predicate bswt:enchantment/infinity unless items entity @s saddle minecraft:arrow run function utility:ghost_arrow/check_infinity
+    if predicate bswt:enchantment/overload unless items entity @s saddle minecraft:arrow run function utility:ghost_arrow/check_overload
+    unless predicate bswt:enchantment/infinity unless predicate bswt:enchantment/overload if items entity @s saddle minecraft:arrow run function utility:ghost_arrow/remove
+
+    execute if predicate bswt:enchantment/hefty run function utility:swap_hands
+
+function ticking_functions:tick_1t/universal:
+    as @s[type=arrow,tag=bswt.FastArrow] run function bswt:enchantment/sharpshooter/arrow_tick
+    as @s[tag=bswt.cannotAttack] run function utility:weakness_tick
+
+#——————————————————1 SECOND
+function ticking_functions:tick_1s/call:
+    schedule function ticking_functions:tick_1s/call 1s replace
+    as @e at @s:
+        function ticking_functions:tick_1s/universal
+        if entity @s[type=player] run function ticking_functions:tick_1s/players
+        
+
+function ticking_functions:tick_1s/players:
+    pass
+
+function ticking_functions:tick_1s/universal:
+    as @s[tag=bswt.lacerated] run function bswt:enchantment/laceration/tick
+    as @s[tag=bswt.timed_projectile] run function utility:projectile_tick
+

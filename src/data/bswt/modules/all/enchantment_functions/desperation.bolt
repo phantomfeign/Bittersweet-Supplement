@@ -1,0 +1,14 @@
+function bswt:enchantment/desperation/tick:
+    attribute @s minecraft:attack_speed modifier remove bswt:desperation
+    execute as @s[scores={bswt.myHealth=11..}] run return fail 
+    for i in range(5):
+        max_hp = 10 - (i * 2)
+        min_hp = max_hp - 1
+        modifier_value = round(0.2 + (i * 0.2), 1)
+        
+        if score @s bswt.myHealth matches f"{min_hp}..{max_hp}" run return run attribute @s minecraft:attack_speed modifier add bswt:desperation f"{modifier_value}" add_value
+
+function bswt:enchantment/desperation/heal:
+    execute as @s[scores={bswt.myHealth=11..}] if predicate bswt:chance/25 run return run effect give @s minecraft:regeneration 2 1 true
+    execute as @s[scores={bswt.myHealth=5..10}] if predicate bswt:chance/50 run return run effect give @s minecraft:regeneration 2 1 true
+    execute as @s[scores={bswt.myHealth=..5}] run return run effect give @s minecraft:regeneration 2 1 true

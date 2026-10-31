@@ -1,0 +1,59 @@
+append function_tag load {
+    "values": [
+        "load:load"
+    ]
+} 
+advancement bswt:temp/root {
+	"criteria": {
+        "impossible": {
+			"trigger": "minecraft:impossible"
+		}
+    }
+}
+function load:load:
+    tellraw @a {"text":"Thank you for taking your Bittersweet Supplement!","color":"#c6b3c8"}
+    tellraw @a {"text":"Lost? Check the Advancement Menu!","color":"#a990a9"}
+    tellraw @a {"text":"Bittersweet Supplement for Java 26.2 by phantomfeign","color":"#87658a"}
+    forceload add -1 -1 1 1
+    advancement revoke @a through bswt:temp/root
+    function load:scoreboard
+    function load:gamerule
+    schedule function ticking_functions:tick_1t/call 1t
+    schedule function ticking_functions:tick_1s/call 2t
+
+function load:scoreboard:
+    scoreboard objectives add bswt.timer dummy
+
+    scoreboard objectives add bswt.Math dummy
+    scoreboard players set #70 bswt.Math 70
+    scoreboard players set #90 bswt.Math 90
+    scoreboard players set #100 bswt.Math 100 
+    scoreboard players set #150 bswt.Math 150 
+    
+    scoreboard objectives add bswt.projectileLifeSpan dummy
+    
+    scoreboard objectives add bswt.myHealth health
+
+#ENCHANTS
+    #LACERATION
+    scoreboard objectives add bswt.lacerationStacks dummy
+    #BOUNDING
+    scoreboard objectives add bswt.boundingJumps dummy
+    scoreboard objectives add bswt.playerJumps minecraft.custom:minecraft.jump
+    #SHARPSHOOTER
+    scoreboard objectives add bswt.arrowAge dummy
+    #OVERLOAD
+    scoreboard objectives add bswt.arrowCount dummy
+    #HOOKING
+    scoreboard objectives add bswt.weaknessTimer dummy
+
+function load:gamerule:
+    gamerule natural_health_regeneration false
+    gamerule keep_inventory true
+    gamerule advance_time true
+    gamerule spawn_phantoms false
+    gamerule block_explosion_drop_decay false
+    gamerule mob_explosion_drop_decay false
+    gamerule ender_pearls_vanish_on_death false
+    gamerule command_block_output false
+

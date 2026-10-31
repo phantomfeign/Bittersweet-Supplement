@@ -1,0 +1,19 @@
+function bswt:enchantment/dashing/check:
+    if predicate bswt:flag/on_ground:
+        tag @s add dashEligible
+        tag @s remove sneaked
+        tag @s remove releasedSneak
+        tag @s remove canDash
+    execute as @s[tag=dashEligible] unless predicate bswt:player/input/sneak run tag @s add releasedSneak
+    execute as @s[tag=releasedSneak] if predicate bswt:player/input/sneak: 
+        tag @s add canDash
+        tag @s remove releasedSneak
+
+function bswt:enchantment/dashing/dash:
+    execute unless score @s dashingDashTimer matches 2.. run return fail
+    tag @s remove canDash
+    tag @s remove dashEligible
+    scoreboard players set @s dashingDashTimer 0
+    particle minecraft:cloud ~ ~ ~ 0 0 0 0.05 3 force @a
+    playsound minecraft:entity.phantom.flap player @s ~ ~ ~ 4 2
+    playsound minecraft:entity.player.attack.nodamage player @s ~ ~ ~ 4 0.3

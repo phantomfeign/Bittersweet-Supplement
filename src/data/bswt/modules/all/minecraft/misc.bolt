@@ -1,0 +1,1488 @@
+timeline day {
+	"period_ticks": 72000,
+	"clock": "minecraft:overworld",
+	"time_markers": {
+		"minecraft:day": {
+			"show_in_commands": true,
+			"ticks": 3000
+		},
+		"minecraft:midnight": {
+			"show_in_commands": true,
+			"ticks": 54000
+		},
+		"minecraft:night": {
+			"show_in_commands": true,
+			"ticks": 39000
+		},
+		"minecraft:noon": {
+			"show_in_commands": true,
+			"ticks": 18000
+		},
+		"minecraft:roll_village_siege": 54000
+	},
+	"tracks": {
+		"minecraft:audio/firefly_bush_sounds": {
+			"keyframes": [
+				{
+					"ticks": 37800,
+					"value": true
+				},
+				{
+					"ticks": 70203,
+					"value": false
+				}
+			],
+			"modifier": "or"
+		},
+		"minecraft:gameplay/bees_stay_in_hive": {
+			"keyframes": [
+				{
+					"ticks": 37626,
+					"value": true
+				},
+				{
+					"ticks": 70380,
+					"value": false
+				}
+			],
+			"modifier": "or"
+		},
+		"minecraft:gameplay/cat_waking_up_gift_chance": {
+			"ease": "constant",
+			"keyframes": [
+				{
+					"ticks": 1086,
+					"value": 0
+				},
+				{
+					"ticks": 71001,
+					"value": 0.7
+				}
+			],
+			"modifier": "maximum"
+		},
+		"minecraft:gameplay/creaking_active": {
+			"keyframes": [
+				{
+					"ticks": 37800,
+					"value": true
+				},
+				{
+					"ticks": 70203,
+					"value": false
+				}
+			],
+			"modifier": "or"
+		},
+		"minecraft:gameplay/eyeblossom_open": {
+			"keyframes": [
+				{
+					"ticks": 37800,
+					"value": true
+				},
+				{
+					"ticks": 70203,
+					"value": false
+				}
+			]
+		},
+		"minecraft:gameplay/monsters_burn": {
+			"keyframes": [
+				{
+					"ticks": 37626,
+					"value": false
+				},
+				{
+					"ticks": 70380,
+					"value": true
+				}
+			],
+			"modifier": "or"
+		},
+		"minecraft:gameplay/sky_light_level": {
+			"keyframes": [
+				{
+					"ticks": 399,
+					"value": 1
+				},
+				{
+					"ticks": 35601,
+					"value": 1
+				},
+				{
+					"ticks": 41010,
+					"value": 0.26666668
+				},
+				{
+					"ticks": 66990,
+					"value": 0.26666668
+				}
+			],
+			"modifier": "multiply"
+		},
+		"minecraft:gameplay/turtle_egg_hatch_chance": {
+			"ease": "constant",
+			"keyframes": [
+				{
+					"ticks": 63186,
+					"value": 1
+				},
+				{
+					"ticks": 65715,
+					"value": 0.002
+				}
+			],
+			"modifier": "maximum"
+		},
+		"minecraft:visual/cloud_color": {
+			"keyframes": [
+				{
+					"ticks": 399,
+					"value": -1
+				},
+				{
+					"ticks": 35601,
+					"value": -1
+				},
+				{
+					"ticks": 41010,
+					"value": -15132378
+				},
+				{
+					"ticks": 66990,
+					"value": -15132378
+				}
+			],
+			"modifier": "multiply"
+		},
+		"minecraft:visual/fog_color": {
+			"keyframes": [
+				{
+					"ticks": 399,
+					"value": "#ffffff"
+				},
+				{
+					"ticks": 35601,
+					"value": "#ffffff"
+				},
+				{
+					"ticks": 41010,
+					"value": "#0f0f16"
+				},
+				{
+					"ticks": 66990,
+					"value": "#0f0f16"
+				}
+			],
+			"modifier": "multiply"
+		},
+		"minecraft:visual/sky_color": {
+			"keyframes": [
+				{
+					"ticks": 399,
+					"value": "#ffffff"
+				},
+				{
+					"ticks": 35601,
+					"value": "#ffffff"
+				},
+				{
+					"ticks": 41010,
+					"value": "#000000"
+				},
+				{
+					"ticks": 66990,
+					"value": "#000000"
+				}
+			],
+			"modifier": "multiply"
+		},
+		"minecraft:visual/sky_light_color": {
+			"keyframes": [
+				{
+					"ticks": 2190,
+					"value": "#ffffff"
+				},
+				{
+					"ticks": 33810,
+					"value": "#ffffff"
+				},
+				{
+					"ticks": 39420,
+					"value": "#7a7aff"
+				},
+				{
+					"ticks": 68580,
+					"value": "#7a7aff"
+				}
+			],
+			"modifier": "multiply"
+		},
+		"minecraft:visual/sky_light_factor": {
+			"keyframes": [
+				{
+					"ticks": 2190,
+					"value": 1
+				},
+				{
+					"ticks": 33810,
+					"value": 1
+				},
+				{
+					"ticks": 39420,
+					"value": 0.24
+				},
+				{
+					"ticks": 68580,
+					"value": 0.24
+				}
+			],
+			"modifier": "multiply"
+		},
+		"minecraft:visual/star_angle": {
+			"ease": {
+				"cubic_bezier": [
+					0.362,
+					0.241,
+					0.638,
+					0.759
+				]
+			},
+			"keyframes": [
+				{
+					"ticks": 18000,
+					"value": 360
+				},
+				{
+					"ticks": 18000,
+					"value": 0
+				}
+			]
+		},
+		"minecraft:visual/star_brightness": {
+			"keyframes": [
+				{
+					"ticks": 276,
+					"value": 0.037
+				},
+				{
+					"ticks": 1881,
+					"value": 0
+				},
+				{
+					"ticks": 34119,
+					"value": 0
+				},
+				{
+					"ticks": 35196,
+					"value": 0.016
+				},
+				{
+					"ticks": 35877,
+					"value": 0.044
+				},
+				{
+					"ticks": 37197,
+					"value": 0.143
+				},
+				{
+					"ticks": 38187,
+					"value": 0.258
+				},
+				{
+					"ticks": 39684,
+					"value": 0.5
+				},
+				{
+					"ticks": 68316,
+					"value": 0.5
+				},
+				{
+					"ticks": 69096,
+					"value": 0.364
+				},
+				{
+					"ticks": 70068,
+					"value": 0.225
+				},
+				{
+					"ticks": 71274,
+					"value": 0.101
+				}
+			],
+			"modifier": "maximum"
+		},
+		"minecraft:visual/sun_angle": {
+			"ease": "linear",
+			"modifier": "override",
+			"keyframes": [
+				{
+					"ticks": 0,
+					"value": 270
+				},
+				{
+					"ticks": 72000,
+					"value": 630
+				}
+			]
+		},
+		"minecraft:visual/sunrise_sunset_color": {
+			"keyframes": [
+				{
+					"ticks": 213,
+					"value": "#5fefa333"
+				},
+				{
+					"ticks": 930,
+					"value": "#29f5ba33"
+				},
+				{
+					"ticks": 1695,
+					"value": "#06fbd433"
+				},
+				{
+					"ticks": 2190,
+					"value": "#00ffe533"
+				},
+				{
+					"ticks": 33810,
+					"value": "#00ffe533"
+				},
+				{
+					"ticks": 34191,
+					"value": "#04fcd833"
+				},
+				{
+					"ticks": 34566,
+					"value": "#0ff9cb33"
+				},
+				{
+					"ticks": 35070,
+					"value": "#29f5ba33"
+				},
+				{
+					"ticks": 35787,
+					"value": "#5fefa333"
+				},
+				{
+					"ticks": 36729,
+					"value": "#b1e78733"
+				},
+				{
+					"ticks": 37074,
+					"value": "#cce47e33"
+				},
+				{
+					"ticks": 37536,
+					"value": "#e9e07233"
+				},
+				{
+					"ticks": 37839,
+					"value": "#f6dd6b33"
+				},
+				{
+					"ticks": 38196,
+					"value": "#feda6333"
+				},
+				{
+					"ticks": 38523,
+					"value": "#fed75c33"
+				},
+				{
+					"ticks": 39105,
+					"value": "#ecd25133"
+				},
+				{
+					"ticks": 39756,
+					"value": "#c1cc4733"
+				},
+				{
+					"ticks": 41325,
+					"value": "#36be3733"
+				},
+				{
+					"ticks": 41664,
+					"value": "#1fbb3533"
+				},
+				{
+					"ticks": 42117,
+					"value": "#09b73333"
+				},
+				{
+					"ticks": 42576,
+					"value": "#00b33333"
+				},
+				{
+					"ticks": 65421,
+					"value": "#00b23333"
+				},
+				{
+					"ticks": 65883,
+					"value": "#09b73333"
+				},
+				{
+					"ticks": 66336,
+					"value": "#1fbb3533"
+				},
+				{
+					"ticks": 66675,
+					"value": "#36be3733"
+				},
+				{
+					"ticks": 68244,
+					"value": "#c1cc4733"
+				},
+				{
+					"ticks": 68895,
+					"value": "#ecd25133"
+				},
+				{
+					"ticks": 69477,
+					"value": "#fed75c33"
+				},
+				{
+					"ticks": 69816,
+					"value": "#feda6333"
+				},
+				{
+					"ticks": 70464,
+					"value": "#e9e07233"
+				},
+				{
+					"ticks": 70926,
+					"value": "#cce47e33"
+				},
+				{
+					"ticks": 71271,
+					"value": "#b1e78733"
+				}
+			]
+		}
+	}
+}
+timeline early_game {
+  "clock": "minecraft:overworld",
+  "tracks": {
+    "minecraft:gameplay/can_pillager_patrol_spawn": {
+      "keyframes": [
+        {
+          "ticks": 0,
+          "value": false
+        },
+        {
+          "ticks": 360000,
+          "value": true
+        }
+      ],
+      "modifier": "and"
+    }
+  }
+}
+timeline moon {
+	"period_ticks": 576000,
+	"clock": "minecraft:overworld",
+	"tracks": {
+		"minecraft:gameplay/surface_slime_spawn_chance": {
+			"ease": "constant",
+			"keyframes": [
+				{
+					"ticks": 0,
+					"value": 0.5
+				},
+				{
+					"ticks": 72000,
+					"value": 0.375
+				},
+				{
+					"ticks": 144000,
+					"value": 0.25
+				},
+				{
+					"ticks": 216000,
+					"value": 0.125
+				},
+				{
+					"ticks": 288000,
+					"value": 0
+				},
+				{
+					"ticks": 360000,
+					"value": 0.125
+				},
+				{
+					"ticks": 432000,
+					"value": 0.25
+				},
+				{
+					"ticks": 504000,
+					"value": 0.375
+				}
+			],
+			"modifier": "maximum"
+		},
+		"minecraft:visual/moon_phase": {
+			"keyframes": [
+				{
+					"ticks": 0,
+					"value": "full_moon"
+				},
+				{
+					"ticks": 36000,
+					"value": "waning_gibbous"
+				},
+				{
+					"ticks": 108000,
+					"value": "first_quarter"
+				},
+				{
+					"ticks": 180000,
+					"value": "waning_crescent"
+				},
+				{
+					"ticks": 252000,
+					"value": "new_moon"
+				},
+				{
+					"ticks": 324000,
+					"value": "waxing_crescent"
+				},
+				{
+					"ticks": 396000,
+					"value": "third_quarter"
+				},
+				{
+					"ticks": 468000,
+					"value": "waxing_gibbous"
+				},
+				{
+					"ticks": 540000,
+					"value": "full_moon"
+				}
+			]
+		},
+		"minecraft:visual/moon_angle": {
+			"ease": "linear",
+			"modifier": "override",
+			"keyframes": [
+				{
+					"ticks": 0,
+					"value": 90
+				},
+				{
+					"ticks": 576000,
+					"value": 2610
+				}
+			]
+		}
+	}
+}
+timeline villager_schedule {
+  "clock": "minecraft:overworld",
+  "period_ticks": 72000,
+  "tracks": {
+    "minecraft:gameplay/baby_villager_activity": {
+      "keyframes": [
+        {
+          "ticks": 30,
+          "value": "minecraft:idle"
+        },
+        {
+          "ticks": 9000,
+          "value": "minecraft:play"
+        },
+        {
+          "ticks": 18000,
+          "value": "minecraft:idle"
+        },
+        {
+          "ticks": 30000,
+          "value": "minecraft:play"
+        },
+        {
+          "ticks": 36000,
+          "value": "minecraft:rest"
+        }
+      ]
+    },
+    "minecraft:gameplay/villager_activity": {
+      "keyframes": [
+        {
+          "ticks": 30,
+          "value": "minecraft:idle"
+        },
+        {
+          "ticks": 6000,
+          "value": "minecraft:work"
+        },
+        {
+          "ticks": 27000,
+          "value": "minecraft:meet"
+        },
+        {
+          "ticks": 33000,
+          "value": "minecraft:idle"
+        },
+        {
+          "ticks": 36000,
+          "value": "minecraft:rest"
+        }
+      ]
+    }
+  }
+}
+#—MELEE
+trial_spawner trial_chamber/melee/husk/normal {
+  "simultaneous_mobs": 3.0,
+  "simultaneous_mobs_added_per_player": 0.5,
+  "spawn_potentials": [
+    {
+      "data": {
+        "entity": {
+          "id": "minecraft:husk",
+          "DeathLootTable": "bswt:empty",
+          "Tags": ["bswt.trialChamberSpawn"],
+          "Health": 28.0,
+          "attributes": [
+            {
+              "id": "minecraft:max_health",
+              "base": 28
+            },
+            {
+              "id": "minecraft:follow_range",
+              "base": 50
+            },
+            {
+              "id": "minecraft:scale",
+              "base": 1.1
+            },
+            {
+              "id": "minecraft:movement_speed",
+              "base": 0.25
+            },
+            {
+              "id": "minecraft:water_movement_efficiency",
+              "base": 1
+            },
+            {
+              "id": "minecraft:attack_damage",
+              "base": 4
+            },
+            {
+              "id": "minecraft:knockback_resistance",
+              "base": 0.8
+            },
+            {
+              "id": "minecraft:step_height",
+              "base": 2
+            }
+          ]
+        }
+      },
+      "weight": 1
+    }
+  ],
+  "ticks_between_spawn": 20
+}
+trial_spawner trial_chamber/melee/husk/ominous {
+  "loot_tables_to_eject": [
+    {
+      "data": "minecraft:spawners/ominous/trial_chamber/key",
+      "weight": 3
+    },
+    {
+      "data": "minecraft:spawners/ominous/trial_chamber/consumables",
+      "weight": 7
+    }
+  ],
+  "simultaneous_mobs": 3.0,
+  "simultaneous_mobs_added_per_player": 0.5,
+  "spawn_potentials": [
+    {
+      "data": {
+        "entity": {
+          "id": "minecraft:husk",
+          "DeathLootTable": "bswt:empty",
+          "Tags": ["bswt.trialChamberSpawn"],
+          "Health": 28.0,
+          "attributes": [
+            {
+              "id": "minecraft:max_health",
+              "base": 28
+            },
+            {
+              "id": "minecraft:follow_range",
+              "base": 50
+            },
+            {
+              "id": "minecraft:scale",
+              "base": 1.1
+            },
+            {
+              "id": "minecraft:movement_speed",
+              "base": 0.25
+            },
+            {
+              "id": "minecraft:water_movement_efficiency",
+              "base": 1
+            },
+            {
+              "id": "minecraft:attack_damage",
+              "base": 4
+            },
+            {
+              "id": "minecraft:knockback_resistance",
+              "base": 0.8
+            },
+            {
+              "id": "minecraft:step_height",
+              "base": 2
+            }
+          ]
+        },
+        "equipment": {
+          "loot_table": "minecraft:equipment/trial_chamber_melee",
+          "slot_drop_chances": 0.0
+        }
+      },
+      "weight": 1
+    }
+  ],
+  "ticks_between_spawn": 20
+}
+trial_spawner trial_chamber/melee/spider/normal {
+  "simultaneous_mobs": 3.0,
+  "simultaneous_mobs_added_per_player": 0.5,
+  "spawn_potentials": [
+    {
+      "data": {
+        "entity": {
+          "id": "minecraft:spider",
+          "DeathLootTable": "bswt:empty",
+          "Tags": ["bswt.trialChamberSpawn"],
+          "Health": 10.0,
+          "attributes": [
+            {
+              "id": "minecraft:max_health",
+              "base": 10
+            },
+            {
+              "id": "minecraft:movement_speed",
+              "base": 0.35
+            },
+            {
+              "id": "minecraft:fall_damage_multiplier",
+              "base": 0
+            },
+            {
+              "id": "minecraft:jump_strength",
+              "base": 0.5
+            }
+          ]
+        }
+      },
+      "weight": 1
+    }
+  ],
+  "ticks_between_spawn": 20
+}
+trial_spawner trial_chamber/melee/spider/ominous {
+  "loot_tables_to_eject": [
+    {
+      "data": "minecraft:spawners/ominous/trial_chamber/key",
+      "weight": 3
+    },
+    {
+      "data": "minecraft:spawners/ominous/trial_chamber/consumables",
+      "weight": 7
+    }
+  ],
+  "simultaneous_mobs": 4.0,
+  "simultaneous_mobs_added_per_player": 0.5,
+  "spawn_potentials": [
+    {
+      "data": {
+        "entity": {
+          "id": "minecraft:spider",
+          "DeathLootTable": "bswt:empty",
+          "Tags": ["bswt.trialChamberSpawn"],
+          "Health": 10.0,
+          "attributes": [
+            {
+              "id": "minecraft:max_health",
+              "base": 10
+            },
+            {
+              "id": "minecraft:movement_speed",
+              "base": 0.35
+            },
+            {
+              "id": "minecraft:fall_damage_multiplier",
+              "base": 0
+            },
+            {
+              "id": "minecraft:jump_strength",
+              "base": 0.5
+            }
+          ]
+        }
+      },
+      "weight": 1
+    }
+  ],
+  "ticks_between_spawn": 20,
+  "total_mobs": 12.0
+}
+trial_spawner trial_chamber/melee/zombie/normal{
+  "simultaneous_mobs": 3.0,
+  "simultaneous_mobs_added_per_player": 0.5,
+  "spawn_potentials": [
+    {
+      "data": {
+        "entity": {
+          "id": "minecraft:zombie",
+          "DeathLootTable": "bswt:empty",
+          "Tags": ["bswt.trialChamberSpawn"],
+          "Health": 20.0,
+          "attributes": [
+            {
+              "id": "minecraft:attack_damage",
+              "base": 3
+            },
+            {
+              "id": "minecraft:knockback_resistance",
+              "base": 0.5
+            },
+            {
+              "id": "minecraft:follow_range",
+              "base": 25
+            },
+            {
+              "id": "minecraft:step_height",
+              "base": 1
+            },
+            {
+              "id": "minecraft:max_health",
+              "base": 20
+            }
+          ]
+        }
+      },
+      "weight": 1
+    }
+  ],
+  "ticks_between_spawn": 20
+}
+trial_spawner trial_chamber/melee/zombie/ominous {
+  "loot_tables_to_eject": [
+    {
+      "data": "minecraft:spawners/ominous/trial_chamber/key",
+      "weight": 3
+    },
+    {
+      "data": "minecraft:spawners/ominous/trial_chamber/consumables",
+      "weight": 7
+    }
+  ],
+  "simultaneous_mobs": 3.0,
+  "simultaneous_mobs_added_per_player": 0.5,
+  "spawn_potentials": [
+    {
+      "data": {
+        "entity": {
+          "id": "minecraft:zombie",
+          "DeathLootTable": "bswt:empty",
+          "Tags": ["bswt.trialChamberSpawn"],
+          "Health": 20.0,
+          "attributes": [
+            {
+              "id": "minecraft:attack_damage",
+              "base": 3
+            },
+            {
+              "id": "minecraft:knockback_resistance",
+              "base": 0.5
+            },
+            {
+              "id": "minecraft:follow_range",
+              "base": 25
+            },
+            {
+              "id": "minecraft:step_height",
+              "base": 1
+            },
+            {
+              "id": "minecraft:max_health",
+              "base": 20
+            }
+          ]
+        },
+        "equipment": {
+          "loot_table": "minecraft:equipment/trial_chamber_melee",
+          "slot_drop_chances": 0.0
+        }
+      },
+      "weight": 1
+    }
+  ],
+  "ticks_between_spawn": 20
+}
+#—SMALL_MELEE
+trial_spawner trial_chamber/small_melee/cave_spider/normal {
+  "simultaneous_mobs": 3.0,
+  "simultaneous_mobs_added_per_player": 0.5,
+  "spawn_potentials": [
+    {
+      "data": {
+        "entity": {
+          "id": "minecraft:cave_spider",
+          "DeathLootTable": "bswt:empty",
+          "Tags": ["bswt.trialChamberSpawn"],
+          "Health": 8.0,
+          "attributes": [
+            {
+              "id": "minecraft:max_health",
+              "base": 8
+            },
+            {
+              "id": "minecraft:movement_speed",
+              "base": 0.35
+            },
+            {
+              "id": "minecraft:attack_damage",
+              "base": 1
+            },
+            {
+              "id": "minecraft:fall_damage_multiplier",
+              "base": 0
+            },
+            {
+              "id": "minecraft:jump_strength",
+              "base": 0.5
+            }
+          ]
+        }
+      },
+      "weight": 1
+    }
+  ],
+  "ticks_between_spawn": 20
+}
+trial_spawner trial_chamber/small_melee/cave_spider/ominous {
+  "loot_tables_to_eject": [
+    {
+      "data": "minecraft:spawners/ominous/trial_chamber/key",
+      "weight": 3
+    },
+    {
+      "data": "minecraft:spawners/ominous/trial_chamber/consumables",
+      "weight": 7
+    }
+  ],
+  "simultaneous_mobs": 4.0,
+  "simultaneous_mobs_added_per_player": 0.5,
+  "spawn_potentials": [
+    {
+      "data": {
+        "entity": {
+          "id": "minecraft:cave_spider",
+          "DeathLootTable": "bswt:empty",
+          "Tags": ["bswt.trialChamberSpawn"],
+          "Health": 8.0,
+          "attributes": [
+            {
+              "id": "minecraft:max_health",
+              "base": 8
+            },
+            {
+              "id": "minecraft:movement_speed",
+              "base": 0.35
+            },
+            {
+              "id": "minecraft:attack_damage",
+              "base": 1
+            },
+            {
+              "id": "minecraft:fall_damage_multiplier",
+              "base": 0
+            },
+            {
+              "id": "minecraft:jump_strength",
+              "base": 0.5
+            }
+          ]
+        }
+      },
+      "weight": 1
+    }
+  ],
+  "ticks_between_spawn": 20,
+  "total_mobs": 12.0
+}
+trial_spawner trial_chamber/small_melee/baby_zombie/normal{
+  "simultaneous_mobs": 3.0,
+  "simultaneous_mobs_added_per_player": 0.5,
+  "spawn_potentials": [
+    {
+      "data": {
+        "entity": {
+          "id": "minecraft:zombie",
+          "DeathLootTable": "bswt:empty",
+          "Tags": ["bswt.trialChamberSpawn"],
+          "Health": 20.0,
+          "attributes": [
+            {
+              "id": "minecraft:attack_damage",
+              "base": 3
+            },
+            {
+              "id": "minecraft:knockback_resistance",
+              "base": 0.5
+            },
+            {
+              "id": "minecraft:follow_range",
+              "base": 25
+            },
+            {
+              "id": "minecraft:step_height",
+              "base": 1
+            },
+            {
+              "id": "minecraft:max_health",
+              "base": 20
+            }
+          ]
+        }
+      },
+      "weight": 1
+    }
+  ],
+  "ticks_between_spawn": 20
+}
+trial_spawner trial_chamber/small_melee/baby_zombie/ominous {
+  "loot_tables_to_eject": [
+    {
+      "data": "minecraft:spawners/ominous/trial_chamber/key",
+      "weight": 3
+    },
+    {
+      "data": "minecraft:spawners/ominous/trial_chamber/consumables",
+      "weight": 7
+    }
+  ],
+  "simultaneous_mobs": 3.0,
+  "simultaneous_mobs_added_per_player": 0.5,
+  "spawn_potentials": [
+    {
+      "data": {
+        "entity": {
+          "id": "minecraft:zombie",
+          "DeathLootTable": "bswt:empty",
+          "Tags": ["bswt.trialChamberSpawn"],
+          "Health": 20.0,
+          "attributes": [
+            {
+              "id": "minecraft:attack_damage",
+              "base": 3
+            },
+            {
+              "id": "minecraft:knockback_resistance",
+              "base": 0.5
+            },
+            {
+              "id": "minecraft:follow_range",
+              "base": 25
+            },
+            {
+              "id": "minecraft:step_height",
+              "base": 1
+            },
+            {
+              "id": "minecraft:max_health",
+              "base": 20
+            }
+          ]
+        },
+        "equipment": {
+          "loot_table": "minecraft:equipment/trial_chamber_melee",
+          "slot_drop_chances": 0.0
+        }
+      },
+      "weight": 1
+    }
+  ],
+  "ticks_between_spawn": 20
+}
+#—RANGED
+trial_spawner trial_chamber/ranged/poison_skeleton/normal{
+  "simultaneous_mobs": 3.0,
+  "simultaneous_mobs_added_per_player": 0.5,
+  "spawn_potentials": [
+    {
+      "data": {
+        "entity": {
+          "id": "minecraft:bogged",
+          "DeathLootTable": "bswt:empty",
+          "Tags": ["bswt.trialChamberSpawn"],
+          "Health": 15.0,
+          "attributes": [
+            {
+              "id": "minecraft:max_health",
+              "base": 15
+            }
+          ]
+        }
+      },
+      "weight": 1
+    }
+  ],
+  "ticks_between_spawn": 20
+}
+trial_spawner trial_chamber/ranged/poison_skeleton/ominous {
+  "loot_tables_to_eject": [
+    {
+      "data": "minecraft:spawners/ominous/trial_chamber/key",
+      "weight": 3
+    },
+    {
+      "data": "minecraft:spawners/ominous/trial_chamber/consumables",
+      "weight": 7
+    }
+  ],
+  "simultaneous_mobs": 3.0,
+  "simultaneous_mobs_added_per_player": 0.5,
+  "spawn_potentials": [
+    {
+      "data": {
+        "entity": {
+          "id": "minecraft:bogged",
+          "DeathLootTable": "bswt:empty",
+          "Tags": ["bswt.trialChamberSpawn"],
+          "Health": 15.0,
+          "attributes": [
+            {
+              "id": "minecraft:max_health",
+              "base": 15
+            }
+          ]
+        },
+        "equipment": {
+          "loot_table": "minecraft:equipment/trial_chamber_ranged",
+          "slot_drop_chances": 0.0
+        }
+      },
+      "weight": 1
+    }
+  ],
+  "ticks_between_spawn": 20
+}
+trial_spawner trial_chamber/ranged/stray/normal{
+  "simultaneous_mobs": 3.0,
+  "simultaneous_mobs_added_per_player": 0.5,
+  "spawn_potentials": [
+    {
+      "data": {
+        "entity": {
+          "id": "minecraft:stray",
+          "DeathLootTable": "bswt:empty",
+          "Tags": ["bswt.trialChamberSpawn"],
+          "Health": 15.0,
+          "attributes": [
+            {
+              "id": "minecraft:max_health",
+              "base": 15
+            }
+          ]
+        }
+      },
+      "weight": 1
+    }
+  ],
+  "ticks_between_spawn": 20
+}
+trial_spawner trial_chamber/ranged/stray/ominous {
+  "loot_tables_to_eject": [
+    {
+      "data": "minecraft:spawners/ominous/trial_chamber/key",
+      "weight": 3
+    },
+    {
+      "data": "minecraft:spawners/ominous/trial_chamber/consumables",
+      "weight": 7
+    }
+  ],
+  "simultaneous_mobs": 3.0,
+  "simultaneous_mobs_added_per_player": 0.5,
+  "spawn_potentials": [
+    {
+      "data": {
+        "entity": {
+          "id": "minecraft:stray",
+          "DeathLootTable": "bswt:empty",
+          "Tags": ["bswt.trialChamberSpawn"],
+          "Health": 15.0,
+          "attributes": [
+            {
+              "id": "minecraft:max_health",
+              "base": 15
+            }
+          ]
+        },
+        "equipment": {
+          "loot_table": "minecraft:equipment/trial_chamber_ranged",
+          "slot_drop_chances": 0.0
+        }
+      },
+      "weight": 1
+    }
+  ],
+  "ticks_between_spawn": 20
+}
+trial_spawner trial_chamber/ranged/skeleton/normal{
+  "simultaneous_mobs": 3.0,
+  "simultaneous_mobs_added_per_player": 0.5,
+  "spawn_potentials": [
+    {
+      "data": {
+        "entity": {
+          "id": "minecraft:skeleton",
+          "DeathLootTable": "bswt:empty",
+          "Tags": ["bswt.trialChamberSpawn"],
+          "Health": 16.0,
+          "attributes": [
+            {
+              "id": "minecraft:max_health",
+              "base": 16
+            }
+          ]
+        }
+      },
+      "weight": 1
+    }
+  ],
+  "ticks_between_spawn": 20
+}
+trial_spawner trial_chamber/ranged/skeleton/ominous {
+  "loot_tables_to_eject": [
+    {
+      "data": "minecraft:spawners/ominous/trial_chamber/key",
+      "weight": 3
+    },
+    {
+      "data": "minecraft:spawners/ominous/trial_chamber/consumables",
+      "weight": 7
+    }
+  ],
+  "simultaneous_mobs": 3.0,
+  "simultaneous_mobs_added_per_player": 0.5,
+  "spawn_potentials": [
+    {
+      "data": {
+        "entity": {
+          "id": "minecraft:skeleton",
+          "DeathLootTable": "bswt:empty",
+          "Tags": ["bswt.trialChamberSpawn"],
+          "Health": 16.0,
+          "attributes": [
+            {
+              "id": "minecraft:max_health",
+              "base": 16
+            }
+          ]
+        },
+        "equipment": {
+          "loot_table": "minecraft:equipment/trial_chamber_ranged",
+          "slot_drop_chances": 0.0
+        }
+      },
+      "weight": 1
+    }
+  ],
+  "ticks_between_spawn": 20
+}
+#—SLOW RANGED
+trial_spawner trial_chamber/slow_ranged/poison_skeleton/normal{
+  "simultaneous_mobs": 3.0,
+  "simultaneous_mobs_added_per_player": 0.5,
+  "spawn_potentials": [
+    {
+      "data": {
+        "entity": {
+          "id": "minecraft:bogged",
+          "DeathLootTable": "bswt:empty",
+          "Tags": ["bswt.trialChamberSpawn"],
+          "Health": 15.0,
+          "attributes": [
+            {
+              "id": "minecraft:max_health",
+              "base": 15
+            }
+          ]
+        }
+      },
+      "weight": 1
+    }
+  ],
+  "ticks_between_spawn": 100
+}
+trial_spawner trial_chamber/slow_ranged/poison_skeleton/ominous {
+  "loot_tables_to_eject": [
+    {
+      "data": "minecraft:spawners/ominous/trial_chamber/key",
+      "weight": 3
+    },
+    {
+      "data": "minecraft:spawners/ominous/trial_chamber/consumables",
+      "weight": 7
+    }
+  ],
+  "simultaneous_mobs": 3.0,
+  "simultaneous_mobs_added_per_player": 0.5,
+  "spawn_potentials": [
+    {
+      "data": {
+        "entity": {
+          "id": "minecraft:bogged",
+          "DeathLootTable": "bswt:empty",
+          "Tags": ["bswt.trialChamberSpawn"],
+          "Health": 15.0,
+          "attributes": [
+            {
+              "id": "minecraft:max_health",
+              "base": 15
+            }
+          ]
+        },
+        "equipment": {
+          "loot_table": "minecraft:equipment/trial_chamber_ranged",
+          "slot_drop_chances": 0.0
+        }
+      },
+      "weight": 1
+    }
+  ],
+  "ticks_between_spawn": 100
+}
+trial_spawner trial_chamber/slow_ranged/skeleton/normal{
+  "simultaneous_mobs": 3.0,
+  "simultaneous_mobs_added_per_player": 0.5,
+  "spawn_potentials": [
+    {
+      "data": {
+        "entity": {
+          "id": "minecraft:skeleton",
+          "DeathLootTable": "bswt:empty",
+          "Tags": ["bswt.trialChamberSpawn"],
+          "Health": 16.0,
+          "attributes": [
+            {
+              "id": "minecraft:max_health",
+              "base": 16
+            }
+          ]
+        }
+      },
+      "weight": 1
+    }
+  ],
+  "ticks_between_spawn": 100
+}
+trial_spawner trial_chamber/slow_ranged/skeleton/ominous {
+  "loot_tables_to_eject": [
+    {
+      "data": "minecraft:spawners/ominous/trial_chamber/key",
+      "weight": 3
+    },
+    {
+      "data": "minecraft:spawners/ominous/trial_chamber/consumables",
+      "weight": 7
+    }
+  ],
+  "simultaneous_mobs": 3.0,
+  "simultaneous_mobs_added_per_player": 0.5,
+  "spawn_potentials": [
+    {
+      "data": {
+        "entity": {
+          "id": "minecraft:skeleton",
+          "DeathLootTable": "bswt:empty",
+          "Tags": ["bswt.trialChamberSpawn"],
+          "Health": 16.0,
+          "attributes": [
+            {
+              "id": "minecraft:max_health",
+              "base": 16
+            }
+          ]
+        },
+        "equipment": {
+          "loot_table": "minecraft:equipment/trial_chamber_ranged",
+          "slot_drop_chances": 0.0
+        }
+      },
+      "weight": 1
+    }
+  ],
+  "ticks_between_spawn": 100
+}
+trial_spawner trial_chamber/slow_ranged/stray/normal{
+  "simultaneous_mobs": 3.0,
+  "simultaneous_mobs_added_per_player": 0.5,
+  "spawn_potentials": [
+    {
+      "data": {
+        "entity": {
+          "id": "minecraft:stray",
+          "DeathLootTable": "bswt:empty",
+          "Tags": ["bswt.trialChamberSpawn"],
+          "Health": 15.0,
+          "attributes": [
+            {
+              "id": "minecraft:max_health",
+              "base": 15
+            }
+          ]
+        }
+      },
+      "weight": 1
+    }
+  ],
+  "ticks_between_spawn": 100
+}
+trial_spawner trial_chamber/slow_ranged/stray/ominous {
+  "loot_tables_to_eject": [
+    {
+      "data": "minecraft:spawners/ominous/trial_chamber/key",
+      "weight": 3
+    },
+    {
+      "data": "minecraft:spawners/ominous/trial_chamber/consumables",
+      "weight": 7
+    }
+  ],
+  "simultaneous_mobs": 3.0,
+  "simultaneous_mobs_added_per_player": 0.5,
+  "spawn_potentials": [
+    {
+      "data": {
+        "entity": {
+          "id": "minecraft:stray",
+          "DeathLootTable": "bswt:empty",
+          "Tags": ["bswt.trialChamberSpawn"],
+          "Health": 15.0,
+          "attributes": [
+            {
+              "id": "minecraft:max_health",
+              "base": 15
+            }
+          ]
+        },
+        "equipment": {
+          "loot_table": "minecraft:equipment/trial_chamber_ranged",
+          "slot_drop_chances": 0.0
+        }
+      },
+      "weight": 1
+    }
+  ],
+  "ticks_between_spawn": 100
+}

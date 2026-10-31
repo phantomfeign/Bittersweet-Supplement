@@ -1,0 +1,99 @@
+function bswt:enchantment/sharpshooter/call:
+    data merge entity @s {NoGravity:1b}
+    tag @s add bswt.FastArrow
+    tag @s add bswt.timed_projectile
+    scoreboard players add @s bswt.projectileLifeSpan 15
+    # get initial velocity
+    execute store result score #projectileX bswt.Math run data get entity @s Motion[0] 1000
+    execute store result score #projectileY bswt.Math run data get entity @s Motion[1] 1000
+    execute store result score #projectileZ bswt.Math run data get entity @s Motion[2] 1000
+
+    scoreboard players operation #projectileX bswt.Math *= #150 bswt.Math
+    scoreboard players operation #projectileX bswt.Math /= #100 bswt.Math
+
+    scoreboard players operation #projectileY bswt.Math *= #150 bswt.Math
+    scoreboard players operation #projectileY bswt.Math /= #100 bswt.Math
+
+    scoreboard players operation #projectileZ bswt.Math *= #150 bswt.Math
+    scoreboard players operation #projectileZ bswt.Math /= #100 bswt.Math
+
+    # write velocity back
+    execute store result entity @s Motion[0] double 0.001 run scoreboard players get #projectileX bswt.Math
+    execute store result entity @s Motion[1] double 0.001 run scoreboard players get #projectileY bswt.Math
+    execute store result entity @s Motion[2] double 0.001 run scoreboard players get #projectileZ bswt.Math
+
+function bswt:enchantment/sharpshooter/arrow_tick:
+    scoreboard players add @s bswt.arrowAge 1
+
+    execute store result score #projectileX bswt.Math run data get entity @s Motion[0] 8192
+    execute store result score #projectileY bswt.Math run data get entity @s Motion[1] 8192
+    execute store result score #projectileZ bswt.Math run data get entity @s Motion[2] 8192
+
+    #Get unit vector
+    summon marker 0.0 0.0 0.0 {Tags:["bswt.UnitVector"]}
+    execute as @e[type=marker,tag=bswt.UnitVector] run function bswt:enchantment/sharpshooter/get_unit_vector
+
+    if score @s bswt.arrowAge matches 1 run function bswt:enchantment/sharpshooter/get_speed
+
+    if score @s bswt.arrowAge matches 2 positioned 0.0 0.0 0.0 facing entity \
+    @e[limit=1,type=marker,tag=bswt.UnitVector] feet positioned as @s run function bswt:enchantment/sharpshooter/ring/1
+    if score @s bswt.arrowAge matches 3 positioned 0.0 0.0 0.0 facing entity \
+    @e[limit=1,type=marker,tag=bswt.UnitVector] feet positioned as @s run function bswt:enchantment/sharpshooter/ring/2
+    if score @s bswt.arrowAge matches 3 run tag @s remove bswt.FastArrow
+    kill @e[type=marker,tag=bswt.UnitVector]
+
+function bswt:enchantment/sharpshooter/get_speed:
+    scoreboard players operation #speed.x bswt.Math = #projectileX bswt.Math
+    scoreboard players operation #speed.x bswt.Math /= #motion.unit.x bswt.Math
+    scoreboard players operation #speed.y bswt.Math = #projectileY bswt.Math
+    scoreboard players operation #speed.y bswt.Math /= #motion.unit.y bswt.Math
+    scoreboard players operation #speed.z bswt.Math = #projectileZ bswt.Math
+    scoreboard players operation #speed.z bswt.Math /= #motion.unit.z bswt.Math
+
+    scoreboard players operation #speed bswt.Math = #speed.x bswt.Math
+    scoreboard players operation #speed bswt.Math > #speed.y bswt.Math
+    scoreboard players operation #speed bswt.Math > #speed.z bswt.Math 
+
+function bswt:enchantment/sharpshooter/get_unit_vector:
+    execute store result entity @s Pos[0] double 0.00012207031 run scoreboard players get #projectileX bswt.Math
+    execute store result entity @s Pos[1] double 0.00012207031 run scoreboard players get #projectileY bswt.Math
+    execute store result entity @s Pos[2] double 0.00012207031 run scoreboard players get #projectileZ bswt.Math
+
+    execute positioned 0.0 0.0 0.0 facing entity @s feet run tp @s ^ ^ ^0.5
+
+    execute store result score #motion.unit.x bswt.Math run data get entity @s Pos[0] 256
+    execute store result score #motion.unit.y bswt.Math run data get entity @s Pos[1] 256
+    execute store result score #motion.unit.z bswt.Math run data get entity @s Pos[2] 256
+
+
+function bswt:enchantment/sharpshooter/ring/1:
+    particle cloud ^ ^0.0 ^ ^ ^3000000.0 ^ 0.0000001 0
+    particle cloud ^0.0 ^0.0 ^ ^1148050.2970952694 ^2771638.5975338602 ^ 0.0000001 0
+    particle cloud ^0.0 ^0.0 ^ ^2121320.3435596423 ^2121320.343559643 ^ 0.0000001 0
+    particle cloud ^0.0 ^0.0 ^ ^2771638.5975338602 ^1148050.2970952694 ^ 0.0000001 0
+    particle cloud ^0.0 ^ ^ ^3000000.0 ^ ^ 0.0000001 0
+    particle cloud ^0.0 ^-0.0 ^ ^2771638.5975338602 ^-1148050.2970952692 ^ 0.0000001 0
+    particle cloud ^0.0 ^-0.0 ^ ^2121320.343559643 ^-2121320.3435596423 ^ 0.0000001 0
+    particle cloud ^0.0 ^-0.0 ^ ^1148050.2970952694 ^-2771638.5975338602 ^ 0.0000001 0
+    particle cloud ^ ^-0.0 ^ ^ ^-3000000.0 ^ 0.0000001 0
+    particle cloud ^-0.0 ^-0.0 ^ ^-1148050.297095269 ^-2771638.5975338602 ^ 0.0000001 0
+    particle cloud ^-0.0 ^-0.0 ^ ^-2121320.3435596423 ^-2121320.3435596433 ^ 0.0000001 0
+    particle cloud ^-0.0 ^-0.0 ^ ^-2771638.5975338607 ^-1148050.2970952685 ^ 0.0000001 0
+    particle cloud ^-0.0 ^ ^ ^-3000000.0 ^ ^ 0.0000001 0
+    particle cloud ^-0.0 ^0.0 ^ ^-2771638.59753386 ^1148050.29709527 ^ 0.0000001 0
+    particle cloud ^-0.0 ^0.0 ^ ^-2121320.3435596433 ^2121320.3435596423 ^ 0.0000001 0
+    particle cloud ^-0.0 ^0.0 ^ ^-1148050.2970952687 ^2771638.5975338607 ^ 0.0000001 0
+
+function bswt:enchantment/sharpshooter/ring/2:
+    particle cloud ^ ^0.0 ^ ^ ^2000000.0 ^ 0.0000001 0
+    particle cloud ^0.0 ^0.0 ^ ^999999.9999999999 ^1732050.8075688775 ^ 0.0000001 0
+    particle cloud ^0.0 ^0.0 ^ ^1732050.8075688772 ^1000000.0000000002 ^ 0.0000001 0
+    particle cloud ^0.0 ^ ^ ^2000000.0 ^ ^ 0.0000001 0
+    particle cloud ^0.0 ^-0.0 ^ ^1732050.8075688777 ^-999999.9999999995 ^ 0.0000001 0
+    particle cloud ^0.0 ^-0.0 ^ ^999999.9999999999 ^-1732050.8075688775 ^ 0.0000001 0
+    particle cloud ^ ^-0.0 ^ ^ ^-2000000.0 ^ 0.0000001 0
+    particle cloud ^-0.0 ^-0.0 ^ ^-1000000.0000000002 ^-1732050.8075688772 ^ 0.0000001 0
+    particle cloud ^-0.0 ^-0.0 ^ ^-1732050.8075688768 ^-1000000.0000000009 ^ 0.0000001 0
+    particle cloud ^-0.0 ^ ^ ^-2000000.0 ^ ^ 0.0000001 0
+    particle cloud ^-0.0 ^0.0 ^ ^-1732050.8075688772 ^1000000.0 ^ 0.0000001 0
+    particle cloud ^-0.0 ^0.0 ^ ^-1000000.0000000009 ^1732050.8075688768 ^ 0.0000001 0

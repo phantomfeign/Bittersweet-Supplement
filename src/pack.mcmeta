@@ -23,9 +23,7 @@
         "namespace": "minecraft",
         "path": "^advancement/.*\\.json$"
 
-    }
-    ,
-    {
+    },{
     
 			"namespace": "minecraft",
 			"path": "recipe/ender_eye.json$"
@@ -131,9 +129,7 @@
       "path": "^recipe/dried_kelp_from_campfire_cooking\\.json$"
 
 
-    }
-    ,
-    {
+    },{
   
       "namespace": "minecraft",
       "path": "^recipe/copper_torch\\.json$"
@@ -160,9 +156,7 @@
       "path": "^recipe/firework_star\\.json$"
 
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/nether_brick\\.json$"
@@ -176,9 +170,7 @@
       "namespace": "minecraft",
       "path": "^recipe/bamboo_planks\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/turtle_helmet\\.json$"
@@ -201,9 +193,7 @@
       "namespace": "minecraft",
       "path": "^recipe/leather_boots\\.json$"
     
-    }
-    ,
-    {
+    },{
       
       "namespace": "minecraft",
       "path": "^recipe/crossbow\\.json$"
@@ -211,9 +201,7 @@
       "namespace": "minecraft",
       "path": "^recipe/bow\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/wooden_spear\\.json$"
@@ -239,9 +227,7 @@
       "namespace": "minecraft",
       "path": "^recipe/arrow\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/copper_chest\\.json$"
@@ -279,9 +265,7 @@
       "namespace": "minecraft",
       "path": "^recipe/spyglass\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/netherite_upgrade_smithing_template\\.json$"
@@ -319,9 +303,7 @@
       "namespace": "minecraft",
       "path": "^recipe/netherite_boots_smithing\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/golden_spear\\.json$"
@@ -353,9 +335,7 @@
       "namespace": "minecraft",
       "path": "^recipe/golden_boots\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/flint_and_steel\\.json$"
@@ -402,9 +382,7 @@
       "namespace": "minecraft",
       "path": "^recipe/iron_ingot_from_smelting_raw_iron\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/gold_ingot_from_smelting_raw_gold\\.json$"
@@ -430,9 +408,7 @@
       "namespace": "minecraft",
       "path": "recipes/dried_kelp\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/stone_spear\\.json$"
@@ -452,9 +428,7 @@
       "namespace": "minecraft",
       "path": "^recipe/stone_hoe\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/diamond_spear\\.json$"
@@ -489,14 +463,10 @@
       "namespace": "minecraft",
       "path": "^recipe/mace\\.json$"
 
-    }
-    ,
-    {    
+    },{    
       "namespace": "minecraft",
       "path":"^recipe/smoker\\.json$"
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/mossy_cobblestone_from_moss_block\\.json$"
@@ -504,9 +474,7 @@
       "namespace": "minecraft",
       "path": "^recipe/mossy_stone_bricks_from_moss_block\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/copper_chain\\.json$"
@@ -517,9 +485,7 @@
       "namespace": "minecraft",
       "path": "^recipe/melon\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/oak_stairs\\.json$"
@@ -529,22 +495,19 @@
     },{
       "namespace": "minecraft",
       "path": "^recipe/oak_pressure_plate\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/oak_trapdoor\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/oak_door\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/oak_fence\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/oak_fence_gate\\.json$"
 
-    }
-    ,
-    {
+    },{
+
+      "namespace": "minecraft",
+      "path": "^recipe/pale_oak_stairs\\.json$"
+    },{
+      "namespace": "minecraft",
+      "path": "^recipe/pale_oak_slab\\.json$"
+    },{
+      "namespace": "minecraft",
+      "path": "^recipe/pale_oak_pressure_plate\\.json$"
+
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/spruce_stairs\\.json$"
@@ -554,22 +517,8 @@
     },{
       "namespace": "minecraft",
       "path": "^recipe/spruce_pressure_plate\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/spruce_trapdoor\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/spruce_door\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/spruce_fence\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/spruce_fence_gate\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/birch_stairs\\.json$"
@@ -579,22 +528,8 @@
     },{
       "namespace": "minecraft",
       "path": "^recipe/birch_pressure_plate\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/birch_trapdoor\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/birch_door\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/birch_fence\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/birch_fence_gate\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/jungle_stairs\\.json$"
@@ -604,22 +539,8 @@
     },{
       "namespace": "minecraft",
       "path": "^recipe/jungle_pressure_plate\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/jungle_trapdoor\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/jungle_door\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/jungle_fence\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/jungle_fence_gate\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/acacia_stairs\\.json$"
@@ -629,22 +550,8 @@
     },{
       "namespace": "minecraft",
       "path": "^recipe/acacia_pressure_plate\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/acacia_trapdoor\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/acacia_door\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/acacia_fence\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/acacia_fence_gate\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/dark_oak_stairs\\.json$"
@@ -654,22 +561,8 @@
     },{
       "namespace": "minecraft",
       "path": "^recipe/dark_oak_pressure_plate\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/dark_oak_trapdoor\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/dark_oak_door\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/dark_oak_fence\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/dark_oak_fence_gate\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/mangrove_stairs\\.json$"
@@ -679,22 +572,8 @@
     },{
       "namespace": "minecraft",
       "path": "^recipe/mangrove_pressure_plate\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/mangrove_trapdoor\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/mangrove_door\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/mangrove_fence\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/mangrove_fence_gate\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/cherry_stairs\\.json$"
@@ -704,22 +583,8 @@
     },{
       "namespace": "minecraft",
       "path": "^recipe/cherry_pressure_plate\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/cherry_trapdoor\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/cherry_door\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/cherry_fence\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/cherry_fence_gate\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/bamboo_stairs\\.json$"
@@ -729,22 +594,9 @@
     },{
       "namespace": "minecraft",
       "path": "^recipe/bamboo_pressure_plate\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/bamboo_trapdoor\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/bamboo_door\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/bamboo_fence\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/bamboo_fence_gate\\.json$"
 
-    }
-    ,
-    {
+    },{
+
 
       "namespace": "minecraft",
       "path": "^recipe/crimson_stairs\\.json$"
@@ -753,20 +605,9 @@
       "path": "^recipe/crimson_slab\\.json$"
     },{
       "namespace": "minecraft",
-      "path": "^recipe/crimson_trapdoor\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/crimson_door\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/crimson_fence\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/crimson_fence_gate\\.json$"
+      "path": "^recipe/crimson_pressure_plate\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/warped_stairs\\.json$"
@@ -775,20 +616,9 @@
       "path": "^recipe/warped_slab\\.json$"
     },{
       "namespace": "minecraft",
-      "path": "^recipe/warped_trapdoor\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/warped_door\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/warped_fence\\.json$"
-    },{
-      "namespace": "minecraft",
-      "path": "^recipe/warped_fence_gate\\.json$"
+      "path": "^recipe/warped_pressure_plate\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/stone_stairs\\.json$"
@@ -808,9 +638,7 @@
       "namespace": "minecraft",
       "path": "^recipe/mossy_cobblestone_slab\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/stone_brick_stairs\\.json$"
@@ -860,9 +688,7 @@
       "namespace": "minecraft",
       "path": "^recipe/prismarine_brick_slab\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/granite_stairs\\.json$"
@@ -882,9 +708,7 @@
       "namespace": "minecraft",
       "path": "^recipe/andesite_slab\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/cobbled_deepslate_stairs\\.json$"
@@ -892,9 +716,7 @@
       "namespace": "minecraft",
       "path": "^recipe/cobbled_deepslate_slab\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/polished_granite_stairs\\.json$"
@@ -926,9 +748,7 @@
       "namespace": "minecraft",
       "path": "^recipe/polished_blackstone_slab\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/blackstone_stairs\\.json$"
@@ -942,9 +762,7 @@
       "namespace": "minecraft",
       "path": "^recipe/blackstone_brick_slab"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/purpur_stairs\\.json$"
@@ -976,9 +794,7 @@
       "namespace": "minecraft",
       "path": "^recipe/dark_prismarine_slab\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/stone_stairs_from_stone_stonecutting\\.json$"
@@ -992,9 +808,7 @@
       "namespace": "minecraft",
       "path": "^recipe/stone_brick_slab_from_stone_stonecutting\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/cobblestone_stairs_from_cobblestone_stonecutting\\.json$"
@@ -1008,9 +822,7 @@
       "namespace": "minecraft",
       "path": "^recipe/mossy_cobblestone_slab_from_mossy_cobblestone_stonecutting\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/granite_stairs_from_granite_stonecutting\\.json$"
@@ -1024,9 +836,7 @@
       "namespace": "minecraft",
       "path": "^recipe/polished_granite_slab_from_polished_granite_stonecutting\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/diorite_stairs_from_diorite_stonecutting\\.json$"
@@ -1040,9 +850,7 @@
       "namespace": "minecraft",
       "path": "^recipe/polished_diorite_slab_from_polished_diorite_stonecutting\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/andesite_stairs_from_andesite_stonecutting\\.json$"
@@ -1056,9 +864,7 @@
       "namespace": "minecraft",
       "path": "^recipe/polished_andesite_slab_from_polished_andesite_stonecutting\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/cobbled_deepslate_stairs_from_cobbled_deepslate_stonecutting\\.json$"
@@ -1072,9 +878,7 @@
       "namespace": "minecraft",
       "path": "^recipe/polished_deepslate_slab_from_polished_deepslate_stonecutting\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/deepslate_brick_stairs_from_deepslate_bricks_stonecutting\\.json$"
@@ -1088,9 +892,7 @@
       "namespace": "minecraft",
       "path": "^recipe/deepslate_tile_slab_from_deepslate_tiles_stonecutting\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/nether_brick_stairs_from_nether_bricks_stonecutting\\.json$"
@@ -1104,9 +906,7 @@
       "namespace": "minecraft",
       "path": "^recipe/red_nether_brick_slab_from_red_nether_bricks_stonecutting\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/blackstone_stairs_from_blackstone_stonecutting\\.json$"
@@ -1126,9 +926,7 @@
       "namespace": "minecraft",
       "path": "^recipe/polished_blackstone_brick_slab_from_polished_blackstone_bricks_stonecutting\\.json$"
 
-    }
-    ,
-    {
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/purpur_stairs_from_purpur_block_stonecutting\\.json$"

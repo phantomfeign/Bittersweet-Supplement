@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": "minecraft:cinnabar"
+  },
+  "result": {
+    "id": "minecraft:cinnabar_slab",
+    "count": 4
+  }
+}
