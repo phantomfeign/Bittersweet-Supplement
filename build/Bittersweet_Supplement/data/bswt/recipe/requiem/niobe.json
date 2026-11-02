@@ -19,9 +19,16 @@
         "color": "#87658a"
       },
       "minecraft:item_model": "bswt_texture:requiem_niobe",
+      "minecraft:lore": [
+        {
+          "text": "Damned for her arrogance, her 14 children were shot down one by one.",
+          "color": "#73537c"
+        }
+      ],
       "minecraft:stored_enchantments": {
         "minecraft:infinity": 1,
-        "minecraft:multishot": 1
+        "minecraft:multishot": 1,
+        "minecraft:density": 1
       }
     }
   }

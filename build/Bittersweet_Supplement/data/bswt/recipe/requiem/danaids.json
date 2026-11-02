@@ -18,10 +18,21 @@
         "translate": "requiem.bswt.danaids",
         "color": "#87658a"
       },
+      "minecraft:lore": [
+        {
+          "text": "Damned for stabbing their husbands,",
+          "color": "#73537c"
+        },
+        {
+          "text": "they were forced to fill a bottomless vessel.",
+          "color": "#73537c"
+        }
+      ],
       "minecraft:item_model": "bswt_texture:requiem_danaids",
       "minecraft:stored_enchantments": {
         "minecraft:sweeping_edge": 1,
-        "minecraft:breach": 1
+        "minecraft:aqua_affinity": 1,
+        "minecraft:depth_strider": 1
       }
     }
   }

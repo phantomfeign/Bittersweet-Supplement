@@ -18,6 +18,12 @@
         "color": "#87658a"
       },
       "minecraft:item_model": "bswt_texture:requiem_agdistis",
+      "minecraft:lore": [
+        {
+          "text": "Damned to lose half of themselves.",
+          "color": "#73537c"
+        }
+      ],
       "minecraft:stored_enchantments": {
         "minecraft:sharpness": 1
       }

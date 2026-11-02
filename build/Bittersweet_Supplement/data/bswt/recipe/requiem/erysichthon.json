@@ -18,6 +18,12 @@
         "color": "#87658a"
       },
       "minecraft:item_model": "bswt_texture:requiem_erysichthon",
+      "minecraft:lore": [
+        {
+          "text": "Damned with insatiable hunger, he consumed his own flesh.",
+          "color": "#73537c"
+        }
+      ],
       "minecraft:stored_enchantments": {
         "bswt:bloodthirsty": 1,
         "minecraft:thorns": 1

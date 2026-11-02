@@ -21,6 +21,12 @@
         "color": "#87658a"
       },
       "minecraft:item_model": "bswt_texture:requiem_midas",
+      "minecraft:lore": [
+        {
+          "text": "A king granted the curse of a golden touch.",
+          "color": "#73537c"
+        }
+      ],
       "minecraft:stored_enchantments": {
         "minecraft:looting": 1,
         "minecraft:fortune": 1,

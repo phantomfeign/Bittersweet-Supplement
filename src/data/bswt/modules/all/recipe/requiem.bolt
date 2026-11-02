@@ -55,6 +55,12 @@ recipe bswt:requiem/prometheus {
 				"color": "#87658a"
 			},
 			"minecraft:item_model": "bswt_texture:requiem_prometheus",
+			"minecraft:lore": [
+				{
+					"text": "Damned for stealing fire from the gods for us.",
+					"color": "#73537c"
+				}
+			],
 			"minecraft:stored_enchantments": {
 				"minecraft:fire_aspect": 1,
 				"minecraft:flame": 1,
@@ -81,15 +87,21 @@ recipe bswt:requiem/midas {
   "result": {
     "id": "minecraft:enchanted_book",
     "components": {
-      "minecraft:item_name": {
-        "translate": "requiem.bswt.midas",
-        "color": "#87658a"
-      },
-      "minecraft:item_model": "bswt_texture:requiem_midas",
-      "minecraft:stored_enchantments": {
-        "minecraft:looting": 1,
-        "minecraft:fortune": 1,
-        "minecraft:luck_of_the_sea": 1
+		"minecraft:item_name": {
+			"translate": "requiem.bswt.midas",
+			"color": "#87658a"
+		},
+		"minecraft:item_model": "bswt_texture:requiem_midas",
+		"minecraft:lore": [
+				{
+					"text": "A king granted the curse of a golden touch.",
+					"color": "#73537c"
+				}
+			],
+		"minecraft:stored_enchantments": {
+			"minecraft:looting": 1,
+			"minecraft:fortune": 1,
+			"minecraft:luck_of_the_sea": 1
       }
     }
   }
@@ -114,6 +126,12 @@ recipe bswt:requiem/erysichthon {
 				"color": "#87658a"
 			},
 			"minecraft:item_model": "bswt_texture:requiem_erysichthon",
+			"minecraft:lore": [
+				{
+					"text": "Damned with insatiable hunger, he consumed his own flesh.",
+					"color": "#73537c"
+				}
+			],
 			"minecraft:stored_enchantments": {
 				"bswt:bloodthirsty": 1,
                 "minecraft:thorns": 1
@@ -144,9 +162,16 @@ recipe bswt:requiem/actaeon {
 				"color": "#87658a"
 			},
 			"minecraft:item_model": "bswt_texture:requiem_actaeon",
+			"minecraft:lore": [
+				{
+					"text": "Transformed into a stag, he was hunted by his own hounds.",
+					"color": "#73537c"
+				}
+			],
 			"minecraft:stored_enchantments": {
 				"minecraft:bane_of_arthropods": 1,
-				"minecraft:piercing": 1
+				"minecraft:piercing": 1,
+				"minecraft:swift_sneak": 1
 			}
 		}
 	}
@@ -172,9 +197,16 @@ recipe bswt:requiem/niobe {
 				"color": "#87658a"
 			},
 			"minecraft:item_model": "bswt_texture:requiem_niobe",
+			"minecraft:lore": [
+				{
+					"text": "Damned for her arrogance, her 14 children were shot down one by one.",
+					"color": "#73537c"
+				}
+			],
 			"minecraft:stored_enchantments": {
 				"minecraft:infinity": 1,
-				"minecraft:multishot": 1
+				"minecraft:multishot": 1,
+				"minecraft:density":1
 			}
 		}
 	}
@@ -202,9 +234,15 @@ recipe bswt:requiem/bellerophon {
 				"translate": "requiem.bswt.bellerophon",
 				"color": "#87658a"
 			},
+			"minecraft:lore": [
+				{
+					"text": "Damned for his hubris, he was cast down from the sky.",
+					"color": "#73537c"
+				}
+			],
 			"minecraft:item_model": "bswt_texture:requiem_bellerophon",
 			"minecraft:stored_enchantments": {
-				"bswt:feather_falling": 1,
+				"minecraft:feather_falling": 1,
 				"bswt:dashing": 1
 			}
 		}
@@ -230,10 +268,21 @@ recipe bswt:requiem/danaids {
 				"translate": "requiem.bswt.danaids",
 				"color": "#87658a"
 			},
+			"minecraft:lore": [
+				{
+					"text": "Damned for stabbing their husbands,",
+					"color": "#73537c"
+				},
+				{
+					"text": "they were forced to fill a bottomless vessel.",
+					"color": "#73537c"
+				}
+			],
 			"minecraft:item_model": "bswt_texture:requiem_danaids",
 			"minecraft:stored_enchantments": {
 				"minecraft:sweeping_edge": 1,
-				"minecraft:breach": 1
+				"minecraft:aqua_affinity": 1,
+				"minecraft:depth_strider": 1
 			}
 		}
 	}
@@ -260,6 +309,12 @@ recipe bswt:requiem/sisyphus {
 				"color": "#87658a"
 			},
 			"minecraft:item_model": "bswt_texture:requiem_sisyphus",
+			"minecraft:lore": [
+				{
+					"text": "Damned to forever push a tumbling boulder.",
+					"color": "#73537c"
+				}
+			],
 			"minecraft:stored_enchantments": {
 				"minecraft:blast_protection": 1,
 				"minecraft:efficiency": 1
@@ -289,7 +344,12 @@ recipe bswt:requiem/arachne {
 				"color": "#87658a"
 			},
 			"minecraft:item_model": "bswt_texture:requiem_arachne",
-			"minecraft:stored_enchantments": {
+			"minecraft:lore": [
+				{
+					"text": "Damned to weave a web for eternity.",
+					"color": "#73537c"
+				}
+			],"minecraft:stored_enchantments": {
 				"minecraft:projectile_protection": 1,
 				"minecraft:silk_touch": 1
 			}
@@ -316,6 +376,12 @@ recipe bswt:requiem/agdistis {
 				"color": "#87658a"
 			},
 			"minecraft:item_model": "bswt_texture:requiem_agdistis",
+			"minecraft:lore": [
+				{
+					"text": "Damned to lose half of themselves.",
+					"color": "#73537c"
+				}
+			],
 			"minecraft:stored_enchantments": {
 				"minecraft:sharpness": 1
 			}
@@ -345,6 +411,12 @@ recipe bswt:requiem/salmoneus {
 				"color": "#87658a"
 			},
 			"minecraft:item_model": "bswt_texture:requiem_salmoneus",
+			"minecraft:lore": [
+				{
+					"text": "Struck down by lightning after imitating its power.",
+					"color": "#73537c"
+				}
+			],
 			"minecraft:stored_enchantments": {
 				"minecraft:channeling": 1
 			}
@@ -372,8 +444,147 @@ recipe bswt:requiem/pentheus {
 				"color": "#87658a"
 			},
 			"minecraft:item_model": "bswt_texture:requiem_pentheus",
+			"minecraft:lore": [
+				{
+					"text": "Damned to be apart limb-by-limb by his family.",
+					"color": "#73537c"
+				}
+			],
 			"minecraft:stored_enchantments": {
 				"minecraft:protection": 1
+			}
+		}
+	}
+}
+recipe bswt:requiem/asklepios {
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"key": {
+		"#": "minecraft:villager_spawn_egg",
+		"X": "minecraft:zombie_head",
+		"L": "minecraft:leather",
+		"A": "minecraft:lapis_lazuli"
+	},
+	"pattern": [
+		"LXL",
+		"A#A",
+		"LLL"
+	],
+	"result": {
+		"id": "minecraft:enchanted_book",
+		"components": {
+			"minecraft:item_name": {
+				"translate": "requiem.bswt.asklepios",
+				"color": "#87658a"
+			},
+			"minecraft:item_model": "bswt_texture:requiem_asklepios",
+			"minecraft:lore": [
+				{
+					"text": "Struck down for threatening the circle of life.",
+					"color": "#73537c"
+				}
+			],
+			"minecraft:stored_enchantments": {
+				"minecraft:smite": 1
+			}
+		}
+	}
+}
+recipe bswt:requiem/orpheus {
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"key": {
+		"#": "minecraft:villager_spawn_egg",
+		"X": "minecraft:iron_ingot",
+		"L": "minecraft:leather"
+	},
+	"pattern": [
+		" X ",
+		"L#L",
+		" X "
+	],
+	"result": {
+		"id": "minecraft:enchanted_book",
+		"components": {
+			"minecraft:item_name": {
+				"translate": "requiem.bswt.orpheus",
+				"color": "#87658a"
+			},
+			"minecraft:item_model": "bswt_texture:requiem_orpheus",
+			"minecraft:lore": [
+				{
+					"text": "Walked through the underworld blindly for his love.",
+					"color": "#73537c"
+				}
+			],
+			"minecraft:stored_enchantments": {
+				"minecraft:soul_speed": 1
+			}
+		}
+	}
+}
+recipe bswt:requiem/capaneus {
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"key": {
+		"#": "minecraft:villager_spawn_egg",
+		"X": "minecraft:iron_ingot",
+		"L": "minecraft:leather"
+	},
+	"pattern": [
+		" X ",
+		"L#L",
+		" X "
+	],
+	"result": {
+		"id": "minecraft:enchanted_book",
+		"components": {
+			"minecraft:item_name": {
+				"translate": "requiem.bswt.capaneus",
+				"color": "#87658a"
+			},
+			"minecraft:item_model": "bswt_texture:requiem_capaneus",
+			"minecraft:lore": [
+				{
+					"text": "Struck down for his cockiness in siege.",
+					"color": "#73537c"
+				}
+			],
+			"minecraft:stored_enchantments": {
+				"minecraft:breach": 1
+			}
+		}
+	}
+}
+recipe bswt:requiem/orithyia {
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"key": {
+		"#": "minecraft:villager_spawn_egg",
+		"X": "minecraft:iron_ingot",
+		"L": "minecraft:leather"
+	},
+	"pattern": [
+		" X ",
+		"L#L",
+		" X "
+	],
+	"result": {
+		"id": "minecraft:enchanted_book",
+		"components": {
+			"minecraft:item_name": {
+				"translate": "requiem.bswt.orithyia",
+				"color": "#87658a"
+			},
+			"minecraft:item_model": "bswt_texture:requiem_orithyia",
+			"minecraft:lore": [
+				{
+					"text": "Damned to a palace of ice for her beauty.",
+					"color": "#73537c"
+				}
+			],
+			"minecraft:stored_enchantments": {
+				"minecraft:frost_walker": 1
 			}
 		}
 	}

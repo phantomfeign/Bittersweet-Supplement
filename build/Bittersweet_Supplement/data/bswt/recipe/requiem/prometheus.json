@@ -28,6 +28,12 @@
         "color": "#87658a"
       },
       "minecraft:item_model": "bswt_texture:requiem_prometheus",
+      "minecraft:lore": [
+        {
+          "text": "Damned for stealing fire from the gods for us.",
+          "color": "#73537c"
+        }
+      ],
       "minecraft:stored_enchantments": {
         "minecraft:fire_aspect": 1,
         "minecraft:flame": 1,

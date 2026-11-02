@@ -20,6 +20,12 @@
         "color": "#87658a"
       },
       "minecraft:item_model": "bswt_texture:requiem_sisyphus",
+      "minecraft:lore": [
+        {
+          "text": "Damned to forever push a tumbling boulder.",
+          "color": "#73537c"
+        }
+      ],
       "minecraft:stored_enchantments": {
         "minecraft:blast_protection": 1,
         "minecraft:efficiency": 1

@@ -21,9 +21,15 @@
         "translate": "requiem.bswt.bellerophon",
         "color": "#87658a"
       },
+      "minecraft:lore": [
+        {
+          "text": "Damned for his hubris, he was cast down from the sky.",
+          "color": "#73537c"
+        }
+      ],
       "minecraft:item_model": "bswt_texture:requiem_bellerophon",
       "minecraft:stored_enchantments": {
-        "bswt:feather_falling": 1,
+        "minecraft:feather_falling": 1,
         "bswt:dashing": 1
       }
     }

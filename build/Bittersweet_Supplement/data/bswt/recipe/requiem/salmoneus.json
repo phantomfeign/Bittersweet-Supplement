@@ -21,6 +21,12 @@
         "color": "#87658a"
       },
       "minecraft:item_model": "bswt_texture:requiem_salmoneus",
+      "minecraft:lore": [
+        {
+          "text": "Struck down by lightning after imitating its power.",
+          "color": "#73537c"
+        }
+      ],
       "minecraft:stored_enchantments": {
         "minecraft:channeling": 1
       }

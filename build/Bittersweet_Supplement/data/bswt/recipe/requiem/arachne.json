@@ -20,6 +20,12 @@
         "color": "#87658a"
       },
       "minecraft:item_model": "bswt_texture:requiem_arachne",
+      "minecraft:lore": [
+        {
+          "text": "Damned to weave a web for eternity.",
+          "color": "#73537c"
+        }
+      ],
       "minecraft:stored_enchantments": {
         "minecraft:projectile_protection": 1,
         "minecraft:silk_touch": 1

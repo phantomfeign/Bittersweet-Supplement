@@ -21,9 +21,16 @@
         "color": "#87658a"
       },
       "minecraft:item_model": "bswt_texture:requiem_actaeon",
+      "minecraft:lore": [
+        {
+          "text": "Transformed into a stag, he was hunted by his own hounds.",
+          "color": "#73537c"
+        }
+      ],
       "minecraft:stored_enchantments": {
         "minecraft:bane_of_arthropods": 1,
-        "minecraft:piercing": 1
+        "minecraft:piercing": 1,
+        "minecraft:swift_sneak": 1
       }
     }
   }

@@ -19,6 +19,12 @@
         "color": "#87658a"
       },
       "minecraft:item_model": "bswt_texture:requiem_pentheus",
+      "minecraft:lore": [
+        {
+          "text": "Damned to be apart limb-by-limb by his family.",
+          "color": "#73537c"
+        }
+      ],
       "minecraft:stored_enchantments": {
         "minecraft:protection": 1
       }
