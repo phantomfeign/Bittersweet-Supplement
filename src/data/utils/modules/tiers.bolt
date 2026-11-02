@@ -1,0 +1,30 @@
+TIERS = [
+    {"number": 1,"name": "leather","weapon_damage":4,"attack_speed":1.6,"mining_speed": 4,"armor_major":3,"armor_minor":2,"set_bonus":"","durability": 100},
+    {"number": 2,"name": "copper","weapon_damage":5,"attack_speed":1.6,"mining_speed": 5,"armor_major":4,"armor_minor":3,"set_bonus":"","durability": 250},
+    {"number": 3,"name": "iron","weapon_damage":6,"attack_speed":1.6,"mining_speed": 6,"armor_major":5,"armor_minor":4,"set_bonus":"","durability": 500},
+    {"number": 4,"name": "golden","weapon_damage":6,"attack_speed":2,"mining_speed": 10,"armor_major":4,"armor_minor":3,"set_bonus":"","durability": 250},
+    {"number": 5,"name": "diamond","weapon_damage":7,"attack_speed":2,"mining_speed": 11,"armor_major":4,"armor_minor":4,"set_bonus":"","durability": 2000},
+    {"number": 6,"name": "netherite","weapon_damage":9,"attack_speed":1.6,"mining_speed": 10,"armor_major":5,"armor_minor":5,"set_bonus":"","durability": 4000}
+]
+EQUIPMENT_PATTERNS = [
+    {"name": "sword","pattern": [" X"," X"," #"]},
+    {"name": "spear","pattern": ["  X"," # ","#. "]},
+    {"name": "axe","pattern": ["XX","X#"," #"]},
+    {"name": "pickaxe","pattern": ["XXX"," # "," # "]},
+    {"name": "shovel","pattern": [" X"," #"," #"]},
+    {"name": "hoe","pattern": ["XX"," #"," #"]},
+    {"name": "helmet","pattern": ["XXX","X X"]},
+    {"name": "chestplate","pattern": ["X X","XXX","XXX"]},
+    {"name": "leggings","pattern": ["XXX","X X","X X"]},
+    {"name": "boots","pattern": ["X X","X X"]},    
+]
+
+EQUIPMENT_PATTERNS_LOOKUP = {}
+for t in EQUIPMENT_PATTERNS:
+    EQUIPMENT_PATTERNS_LOOKUP[t["name"]] = t
+    
+TIER_LOOKUP = {}
+NUMBER_LOOKUP = {}
+for t in TIERS:
+    TIER_LOOKUP[t["name"]] = t
+    NUMBER_LOOKUP[t["number"]] = t

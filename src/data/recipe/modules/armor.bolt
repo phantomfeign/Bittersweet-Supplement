@@ -1,0 +1,57 @@
+from beet import Recipe
+from utils:tiers import TIERS,TIER_LOOKUP,EQUIPMENT_PATTERNS_LOOKUP
+
+MAJOR_ARMOR_CRAFTING = [
+    {"base_tier": "golden","base_item": "gold_ingot","item_type": "helmet","slot": "head"},
+    {"base_tier": "golden","base_item": "gold_ingot","item_type": "chestplate","slot": "chest"},
+    {"base_tier": "golden","base_item": "gold_ingot","item_type": "leggings","slot": "legs"},
+    {"base_tier": "golden","base_item": "gold_ingot","item_type": "boots","slot": "feet"}
+]
+#TOOL_CRAFTNG
+for armor in MAJOR_ARMOR_CRAFTING:
+    current_tier = TIER_LOOKUP[armor["base_tier"]]
+    if armor["item_type"] == "helmet" || if armor["item_type"] == "boots":
+        armor_points = current_tier["armor_minor"]
+    else:
+        armor_points = current_tier["armor_major"]
+    set_bonus = current_tier["set_bonus"]
+    max_durability = current_tier["durability"]
+    ctx.data.recipes[f"bswt:equipment/crafted/{armor['base_tier']}/{armor['item_type']}"] = Recipe({
+
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "pattern": EQUIPMENT_PATTERNS_LOOKUP[armor["item_type"]]["pattern"],
+        "key": {
+            "#": f"minecraft:{armor["base_item"]}"
+        },
+        "result": {
+            "id": f"minecraft:{armor['base_tier']}_{armor['item_type']}",
+            "components": {
+                "minecraft:max_damage": max_durability,
+                "minecraft:tooltip_display": {"hidden_components": ["minecraft:attribute_modifiers"]},
+                "minecraft:attribute_modifiers": [
+                    {
+                        "type": "minecraft:armor",
+                        "id": f"bswt:{armor['base_tier']}_{armor['item_type']}",
+                        "amount": armor_points,
+                        "operation": "add_value",
+                        "slot": armor["slot"]
+                    }
+			    ],
+                "minecraft:lore": [
+                    {
+                        "text": f"{armor_points}⛨", 
+                        "color": "blue", "italic": False
+                    },
+                    {
+                        "text": set_bonus, 
+                        "color": "yellow", "italic": False
+                    }
+                ],
+                "minecraft:equippable": {
+                    "slot": "head",
+                    "equip_sound": f"minecraft:item.armor.equip_{armor['base_tier']}"
+                }
+            }
+        }
+    })
