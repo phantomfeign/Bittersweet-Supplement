@@ -317,7 +317,8 @@ recipe bswt:requiem/sisyphus {
 			],
 			"minecraft:stored_enchantments": {
 				"minecraft:blast_protection": 1,
-				"minecraft:efficiency": 1
+				"minecraft:efficiency": 1,
+				"minecraft:knockback": 1
 			}
 		}
 	}
