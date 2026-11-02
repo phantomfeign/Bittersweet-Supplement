@@ -1,6 +1,6 @@
 from beet import ItemModifier
-advancement bswt:temp/enchantment/overload/shot {
-	"parent": "bswt:temp/root",
+advancement temp:enchantment/overload/shot {
+	"parent": "temp:root",
 	"criteria": {
 		"shoot": {
 			"trigger": "minecraft:shot_crossbow",
@@ -11,8 +11,8 @@ advancement bswt:temp/enchantment/overload/shot {
 		"function": "bswt:enchantment/overload/shot"
 	}
 }
-advancement bswt:temp/enchantment/overload/use {
-	"parent": "bswt:temp/root",
+advancement temp:enchantment/overload/use {
+	"parent": "temp:root",
 	"criteria": {
 		"shoot": {
 			"trigger": "minecraft:using_item",
@@ -54,11 +54,11 @@ function bswt:enchantment/overload/load_detection/revoke:
 
     #end and revoke advancement if loaded
     if items entity @s weapon.mainhand crossbow[custom_data~{bswt.overloadLoaded:true}] \
-    run return run advancement revoke @s only bswt:temp/enchantment/overload/use
+    run return run advancement revoke @s only temp:enchantment/overload/use
 
     #set loaded to false and revoke adv
     item modify entity @s weapon.mainhand bswt:enchantment/overload/loaded/false
-    advancement revoke @s only bswt:temp/enchantment/overload/use
+    advancement revoke @s only temp:enchantment/overload/use
 
     #un-saddleify loaded arrows
     if items entity @s weapon.mainhand crossbow[minecraft:charged_projectiles=[{id:"minecraft:arrow",components:{"equippable":{slot:"saddle","equip_sound":"minecraft:intentionally_empty"}}}]] \
@@ -72,7 +72,7 @@ function bswt:enchantment/overload/load_detection/revoke:
     if predicate bswt:enchantment/overload run return run function bswt:enchantment/overload/load_crossbow/call
 
 function bswt:enchantment/overload/load_detection/schedule:
-    execute as @a[advancements={bswt:temp/enchantment/overload/use=true}] run function bswt:enchantment/overload/load_detection/revoke
+    execute as @a[advancements={temp:enchantment/overload/use=true}] run function bswt:enchantment/overload/load_detection/revoke
 
 function bswt:enchantment/overload/load_detection/tick:
     schedule function bswt:enchantment/overload/load_detection/schedule 1t
@@ -107,7 +107,7 @@ function bswt:enchantment/overload/load_crossbow/cartridge:
     if items entity @s hotbar.* minecraft:arrow run return run give @s minecraft:arrow
 
 function bswt:enchantment/overload/shot:
-    advancement revoke @s only bswt:temp/enchantment/overload/shot
+    advancement revoke @s only temp:enchantment/overload/shot
     execute unless predicate bswt:enchantment/overload run return run say fail
     item modify entity @s weapon.mainhand bswt:enchantment/overload/loaded/false
     for i in range (4):

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "minecraft:villager_spawn_egg",
+    "X": "minecraft:iron_chain",
+    "L": "minecraft:lead"
+  },
+  "pattern": [
+    " X ",
+    "L#L",
+    " X "
+  ],
+  "result": {
+    "id": "minecraft:enchanted_book",
+    "components": {
+      "minecraft:item_name": {
+        "translate": "requiem.bswt.pentheus",
+        "color": "#87658a"
+      },
+      "minecraft:item_model": "bswt_texture:requiem_pentheus",
+      "minecraft:stored_enchantments": {
+        "minecraft:protection": 1
+      }
+    }
+  }
+}

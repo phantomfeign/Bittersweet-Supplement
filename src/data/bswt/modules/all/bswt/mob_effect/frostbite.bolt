@@ -1,0 +1,188 @@
+function bswt:mob_effect/frostbite/apply:
+    execute if entity @s[type=#bswt:nonliving_entity] run return fail
+    tag @s add bswt.frostbitten
+    data merge entity @s {TicksFrozen:9999s}
+    effect give @s minecraft:slowness infinite 0 true
+    execute as @s[type=!player] run scoreboard players set @s bswt.frostbiteTimer 10
+    execute as @s[type=player] run scoreboard players set @s bswt.frostbiteTimer 6
+    function bswt:mob_effect/fire/remove
+
+function bswt:mob_effect/frostbite/tick:
+    particle minecraft:snowflake ~ ~1 ~ 0.5 0.5 0.5 0 3
+    particle minecraft:block{block_state:"minecraft:blue_ice"} ~ ~1 ~ 0 0 0 0 10
+    playsound minecraft:entity.player.hurt_freeze hostile @a ~ ~ ~ 3 2
+    
+    execute store result score @s bswt.frostbiteHealth run data get entity @s Health
+    execute if entity @s[type=!#bswt:cant_ice_statue] if score @s bswt.frostbiteHealth matches 0..6 run function bswt:mob_effect/frostbite/ice_statue/become
+
+    execute if entity @s[type=!player,type=!#bswt:is_passive] run damage @s 1.5 minecraft:freeze
+    execute if entity @s[type=player] run damage @s 0.5 minecraft:freeze
+    damage @s 0.5 minecraft:freeze
+    scoreboard players remove @s bswt.frostbiteTimer 1
+    execute if score @s bswt.frostbiteTimer matches ..0 run function bswt:mob_effect/frostbite/remove
+
+function bswt:mob_effect/frostbite/remove:
+    tag @s remove bswt.frostbitten
+    data merge entity @s {TicksFrozen:0s}
+    effect clear @s minecraft:slowness
+
+function bswt:mob_effect/frostbite/ice_statue/become:
+    function utility:round_position
+    function bswt:mob_effect/frostbite/remove
+    playsound minecraft:entity.player.hurt_freeze hostile @a ~ ~ ~ 3 1
+    playsound minecraft:entity.player.hurt_freeze hostile @a ~ ~ ~ 3 0.5
+    playsound minecraft:entity.player.hurt_freeze hostile @a ~ ~ ~ 3 0.1
+    effect clear @s
+    effect give @s minecraft:resistance 1 255 true
+
+    execute as @s[type=enderman] run tp @s @p
+    tp @s ~ ~ ~ 0 0
+
+    attribute @s minecraft:max_health base set 100
+    data merge entity @s {Health:100.0f,NoAI:1b,Silent:1b}
+    tag @s add bswt.iceStatue
+    scoreboard players set @s IceStatueTimer 15
+
+    execute if entity @s[nbt={IsBaby:1b}] run return run function bswt:mob_effect/frostbite/ice_statue/ice_block/small
+    execute if entity @s[type=#bswt:small_animal] run return run function bswt:mob_effect/frostbite/ice_statue/ice_block/small
+    execute if entity @s[type=#bswt:big_animal] run return run function bswt:mob_effect/frostbite/ice_statue/ice_block/big_animal
+    execute if entity @s[type=minecraft:enderman] run return run function bswt:mob_effect/frostbite/ice_statue/ice_block/enderman
+    execute if entity @s[type=minecraft:iron_golem] run return run function bswt:mob_effect/frostbite/ice_statue/ice_block/iron_golem
+    execute if entity @s[type=minecraft:ghast] run return run function bswt:mob_effect/frostbite/ice_statue/ice_block/ghast
+    execute if entity @s[type=minecraft:ravager] run return run function bswt:mob_effect/frostbite/ice_statue/ice_block/ravager
+    function bswt:mob_effect/frostbite/ice_statue/ice_block/basic
+
+function bswt:mob_effect/frostbite/ice_statue/shatter:
+    playsound minecraft:entity.player.hurt_freeze hostile @a ~ ~ ~ 3 1
+    playsound minecraft:entity.player.hurt_freeze hostile @a ~ ~ ~ 3 0.5
+    playsound minecraft:entity.player.hurt_freeze hostile @a ~ ~ ~ 3 0.1
+
+    playsound minecraft:block.glass.break hostile @a ~ ~ ~ 3 1
+    playsound minecraft:block.glass.break hostile @a ~ ~ ~ 3 0.5
+
+    particle minecraft:snowflake ~ ~ ~ 1 2 1 0.1 10
+    particle minecraft:dust_pillar{block_state:"minecraft:blue_ice"} ~ ~ ~ 0 0 0 0.5 10
+
+    tag @s remove bswt.iceStatue
+
+    execute as @e[type=!#bswt:nonliving_entity,tag=bswt.iceStatue,distance=..4] at @s run damage @s 1 minecraft:freeze
+    execute as @e[type=!#bswt:nonliving_entity,distance=..4] at @s run function bswt:mob_effect/frostbite/apply
+    execute as @e[type=!#bswt:nonliving_entity,distance=..2] at @s run damage @s 2 minecraft:freeze
+
+    execute as @s[type=player] run return fail
+    execute on passengers run kill @s
+    kill @s
+
+function bswt:mob_effect/frostbite/ice_statue/ice_block/basic:
+    execute at @s run summon minecraft:block_display ~ ~ ~ \
+    {Tags:["bswt.frostbiteIceBlock"],\
+    block_state:{Name:"minecraft:ice"}}
+
+    data modify entity @e[type=minecraft:block_display,tag=bswt.frostbiteIceBlock,tag=!bswt.modifiedFrostbiteIceBlock,limit=1,sort=nearest] \
+    transformation set value \
+    {translation:[-0.55f,-2.0f,-0.55f],\
+    scale:[1.1f,2.2f,1.1f],\
+    left_rotation:[0.0f,0.0f,0.0f,1.0f],\
+    right_rotation:[0.0f,0.0f,0.0f,1.0f]}
+
+    tag @e[type=minecraft:block_display,tag=bswt.frostbiteIceBlock,tag=!bswt.modifiedFrostbiteIceBlock,limit=1,sort=nearest] add bswt.modifiedFrostbiteIceBlock
+
+    execute as @e[limit=1,sort=nearest,tag=bswt.frostbiteIceBlock,tag=bswt.modifiedFrostbiteIceBlock] run ride @s mount @e[limit=1,sort=nearest,tag=bswt.iceStatue]
+
+function bswt:mob_effect/frostbite/ice_statue/ice_block/big_animal:
+    execute at @s run summon minecraft:block_display ~ ~ ~ \
+    {Tags:["bswt.frostbiteIceBlock"],\
+    block_state:{Name:"minecraft:ice"}}
+
+    data modify entity @e[type=minecraft:block_display,tag=bswt.frostbiteIceBlock,tag=!bswt.modifiedFrostbiteIceBlock,limit=1,sort=nearest] \
+    transformation set value \
+    {translation:[-0.5f,-1.5f,-1f],\
+    scale:[1f,1.7f,2f],\
+    left_rotation:[0.0f,0.0f,0.0f,1.0f],\
+    right_rotation:[0.0f,0.0f,0.0f,1.0f]}
+
+    tag @e[type=minecraft:block_display,tag=bswt.frostbiteIceBlock,tag=!bswt.modifiedFrostbiteIceBlock,limit=1,sort=nearest] add bswt.modifiedFrostbiteIceBlock
+
+    execute as @e[limit=1,sort=nearest,tag=bswt.frostbiteIceBlock,tag=bswt.modifiedFrostbiteIceBlock] run ride @s mount @e[limit=1,sort=nearest,tag=bswt.iceStatue]
+
+function bswt:mob_effect/frostbite/ice_statue/ice_block/small:
+    execute at @s run summon minecraft:block_display ~ ~ ~ \
+    {Tags:["bswt.frostbiteIceBlock"],\
+    block_state:{Name:"minecraft:ice"}}
+
+    data modify entity @e[type=minecraft:block_display,tag=bswt.frostbiteIceBlock,tag=!bswt.modifiedFrostbiteIceBlock,limit=1,sort=nearest] \
+    transformation set value \
+    {translation:[-0.5f,-0.7f,-0.7f],\
+    scale:[1f,1.4f,1.4f],\
+    left_rotation:[0.0f,0.0f,0.0f,1.0f],\
+    right_rotation:[0.0f,0.0f,0.0f,1.0f]}
+
+    tag @e[type=minecraft:block_display,tag=bswt.frostbiteIceBlock,tag=!bswt.modifiedFrostbiteIceBlock,limit=1,sort=nearest] add bswt.modifiedFrostbiteIceBlock
+
+    execute as @e[limit=1,sort=nearest,tag=bswt.frostbiteIceBlock,tag=bswt.modifiedFrostbiteIceBlock] run ride @s mount @e[limit=1,sort=nearest,tag=bswt.iceStatue]
+
+function bswt:mob_effect/frostbite/ice_statue/ice_block/enderman:
+    execute at @s run summon minecraft:block_display ~ ~ ~ \
+    {Tags:["bswt.frostbiteIceBlock"],\
+    block_state:{Name:"minecraft:ice"}}
+
+    data modify entity @e[type=minecraft:block_display,tag=bswt.frostbiteIceBlock,tag=!bswt.modifiedFrostbiteIceBlock,limit=1,sort=nearest] \
+    transformation set value \
+    {translation:[-0.55f,-2.9f,-0.55f],\
+    scale:[1.1f,3.1f,1.1f],\
+    left_rotation:[0.0f,0.0f,0.0f,1.0f],\
+    right_rotation:[0.0f,0.0f,0.0f,1.0f]}
+
+    tag @e[type=minecraft:block_display,tag=bswt.frostbiteIceBlock,tag=!bswt.modifiedFrostbiteIceBlock,limit=1,sort=nearest] add bswt.modifiedFrostbiteIceBlock
+
+    execute as @e[limit=1,sort=nearest,tag=bswt.frostbiteIceBlock,tag=bswt.modifiedFrostbiteIceBlock] run ride @s mount @e[limit=1,sort=nearest,tag=bswt.iceStatue]
+
+
+function bswt:mob_effect/frostbite/ice_statue/ice_block/iron_golem:
+    execute at @s run summon minecraft:block_display ~ ~ ~ \
+    {Tags:["bswt.frostbiteIceBlock"],\
+    block_state:{Name:"minecraft:ice"}}
+
+    data modify entity @e[type=minecraft:block_display,tag=bswt.frostbiteIceBlock,tag=!bswt.modifiedFrostbiteIceBlock,limit=1,sort=nearest] \
+    transformation set value \
+    {translation:[-0.9f,-2.9f,-0.65f],\
+    scale:[1.8f,3.1f,1.3f],\
+    left_rotation:[0.0f,0.0f,0.0f,1.0f],\
+    right_rotation:[0.0f,0.0f,0.0f,1.0f]}
+
+    tag @e[type=minecraft:block_display,tag=bswt.frostbiteIceBlock,tag=!bswt.modifiedFrostbiteIceBlock,limit=1,sort=nearest] add bswt.modifiedFrostbiteIceBlock
+
+    execute as @e[limit=1,sort=nearest,tag=bswt.frostbiteIceBlock,tag=bswt.modifiedFrostbiteIceBlock] run ride @s mount @e[limit=1,sort=nearest,tag=bswt.iceStatue]
+
+function bswt:mob_effect/frostbite/ice_statue/ice_block/ghast:
+    execute at @s run summon minecraft:block_display ~ ~ ~ \
+    {Tags:["bswt.frostbiteIceBlock"],\
+    block_state:{Name:"minecraft:ice"}}
+
+    data modify entity @e[type=minecraft:block_display,tag=bswt.frostbiteIceBlock,tag=!bswt.modifiedFrostbiteIceBlock,limit=1,sort=nearest] \
+    transformation set value \
+    {translation:[-2.5f,-4.7f,-2.5f],\
+    scale:[5.0f,5.0f,5.0f],\
+    left_rotation:[0.0f,0.0f,0.0f,1.0f],\
+    right_rotation:[0.0f,0.0f,0.0f,1.0f]}
+
+    tag @e[type=minecraft:block_display,tag=bswt.frostbiteIceBlock,tag=!bswt.modifiedFrostbiteIceBlock,limit=1,sort=nearest] add bswt.modifiedFrostbiteIceBlock
+
+    execute as @e[limit=1,sort=nearest,tag=bswt.frostbiteIceBlock,tag=bswt.modifiedFrostbiteIceBlock] run ride @s mount @e[limit=1,sort=nearest,tag=bswt.iceStatue]
+
+function bswt:mob_effect/frostbite/ice_statue/ice_block/ravager:
+    execute at @s run summon minecraft:block_display ~ ~ ~ \
+    {Tags:["bswt.frostbiteIceBlock"],\
+    block_state:{Name:"minecraft:ice"}}
+
+    data modify entity @e[type=minecraft:block_display,tag=bswt.frostbiteIceBlock,tag=!bswt.modifiedFrostbiteIceBlock,limit=1,sort=nearest] \
+    transformation set value \
+    {translation:[-1f,-2.7f,-1.8f],\
+    scale:[2.0f,3.0f,4.0f],\
+    left_rotation:[0.0f,0.0f,0.0f,1.0f],\
+    right_rotation:[0.0f,0.0f,0.0f,1.0f]}
+
+    tag @e[type=minecraft:block_display,tag=bswt.frostbiteIceBlock,tag=!bswt.modifiedFrostbiteIceBlock,limit=1,sort=nearest] add bswt.modifiedFrostbiteIceBlock
+
+    execute as @e[limit=1,sort=nearest,tag=bswt.frostbiteIceBlock,tag=bswt.modifiedFrostbiteIceBlock] run ride @s mount @e[limit=1,sort=nearest,tag=bswt.iceStatue]
+

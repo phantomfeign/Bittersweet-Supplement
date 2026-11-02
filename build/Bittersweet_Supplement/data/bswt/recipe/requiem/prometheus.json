@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": "minecraft:gold_block",
+    "N": "minecraft:magma_block",
+    "#": "minecraft:villager_spawn_egg",
+    "M": [
+      "minecraft:magma_cream",
+      "minecraft:blaze_powder"
+    ],
+    "R": "minecraft:ghast_tear",
+    "C": [
+      "minecraft:fire_charge",
+      "minecraft:blaze_powder"
+    ]
+  },
+  "pattern": [
+    "MRC",
+    "M#C",
+    "GNG"
+  ],
+  "result": {
+    "id": "minecraft:enchanted_book",
+    "components": {
+      "minecraft:item_name": {
+        "translate": "requiem.bswt.prometheus",
+        "color": "#87658a"
+      },
+      "minecraft:item_model": "bswt_texture:requiem_prometheus",
+      "minecraft:stored_enchantments": {
+        "minecraft:fire_aspect": 1,
+        "minecraft:flame": 1,
+        "minecraft:fire_protection": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "minecraft:villager_spawn_egg",
+    "X": "minecraft:feather",
+    "S": "minecraft:saddle",
+    "W": "minecraft:white_wool",
+    "C": "minecraft:wind_charge",
+    "B": "minecraft:leather_boots"
+  },
+  "pattern": [
+    "XSX",
+    "C#C",
+    "WBW"
+  ],
+  "result": {
+    "id": "minecraft:enchanted_book",
+    "components": {
+      "minecraft:item_name": {
+        "translate": "requiem.bswt.bellerophon",
+        "color": "#87658a"
+      },
+      "minecraft:item_model": "bswt_texture:requiem_bellerophon",
+      "minecraft:stored_enchantments": {
+        "bswt:feather_falling": 1,
+        "bswt:dashing": 1
+      }
+    }
+  }
+}

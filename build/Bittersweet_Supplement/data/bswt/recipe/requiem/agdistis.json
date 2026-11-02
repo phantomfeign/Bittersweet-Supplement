@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "minecraft:villager_spawn_egg",
+    "X": "minecraft:shears",
+    "P": "minecraft:paper"
+  },
+  "pattern": [
+    " X ",
+    "P#P"
+  ],
+  "result": {
+    "id": "minecraft:enchanted_book",
+    "components": {
+      "minecraft:item_name": {
+        "translate": "requiem.bswt.agdistis",
+        "color": "#87658a"
+      },
+      "minecraft:item_model": "bswt_texture:requiem_agdistis",
+      "minecraft:stored_enchantments": {
+        "minecraft:sharpness": 1
+      }
+    }
+  }
+}

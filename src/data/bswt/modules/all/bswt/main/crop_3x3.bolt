@@ -1,0 +1,52 @@
+CROPS = {
+    "beetroot": {"crop_block":"beetroots", "seed_item":"beetroot_seeds"},
+    "wheat": {"crop_block":"wheat", "seed_item":"wheat_seeds"},
+    "carrot": {"crop_block":"carrots", "seed_item":"carrot"},
+    "potato": {"crop_block":"potatoes", "seed_item":"potato"}
+}
+
+for crop_name, crop in CROPS.items():
+    crop_block, seed_item = crop.values()
+
+    ADVANCEMENT_PATH = "temp:crop_3x3/" + crop_name + "_place"
+    FUNCTION_PATH = "bswt:main/crop_3x3/" + crop_name + "_place"
+    advancement ADVANCEMENT_PATH {
+        "parent": "temp:root",
+        "criteria": {
+            "place": {
+                "trigger": "placed_block",
+                "conditions": {
+                    "player": {
+                        "flags": {
+                            "is_sneaking": true,
+                            "is_on_ground": true
+                        }
+                    },
+                    "location": [
+                        {
+                            "condition": "block_state_property",
+                            "block": crop_block
+                        }
+                    ]
+                }
+            }
+        },
+        "rewards": {
+            "function": FUNCTION_PATH
+        },
+        "sends_telemetry_event": false
+    }
+
+    function FUNCTION_PATH:
+        advancement revoke @s only ADVANCEMENT_PATH
+
+        for x in range(-1, 2):
+            for z in range(-1, 2):
+                execute positioned ~x ~ ~z run function (FUNCTION_PATH + "/try")
+
+    function (FUNCTION_PATH + "/try"):
+        execute if block ~ ~ ~ farmland if block ~ ~1 ~ air run function (FUNCTION_PATH + "/plant")
+
+    function (FUNCTION_PATH + "/plant"):
+        execute store success score #planted bswt.Math run clear @s seed_item 1
+        execute if score #planted bswt.Math matches 1 run setblock ~ ~1 ~ crop_block

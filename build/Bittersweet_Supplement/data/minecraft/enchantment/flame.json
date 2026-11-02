@@ -29,6 +29,6 @@
     "minecraft:bow",
     "minecraft:crossbow"
   ],
-  "exclusive_set": "#bswt:exclusive_set/punch",
+  "exclusive_set": "#bswt:exclusive_set/knockback",
   "weight": 2
 }

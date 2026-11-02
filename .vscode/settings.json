@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.bolt": "mcfunction"
+    },
+    "python-envs.defaultEnvManager": "ms-python.python:system"
+}

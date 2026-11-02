@@ -1,0 +1,18 @@
+{
+  "criteria": {
+    "kill": {
+      "conditions": {
+        "killing_blow": {
+          "is_direct": true
+        },
+        "entity": {
+          "entity_type": "#bswt.hostiles"
+        }
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "rewards": {
+    "function": "bswt:main/adrenaline/kill"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "minecraft:villager_spawn_egg",
+    "X": "minecraft:bow",
+    "B": "minecraft:skeleton_spawn_egg"
+  },
+  "pattern": [
+    "BXB",
+    "B#B",
+    "BBB"
+  ],
+  "result": {
+    "id": "minecraft:enchanted_book",
+    "components": {
+      "minecraft:item_name": {
+        "translate": "requiem.bswt.niobe",
+        "color": "#87658a"
+      },
+      "minecraft:item_model": "bswt_texture:requiem_niobe",
+      "minecraft:stored_enchantments": {
+        "minecraft:infinity": 1,
+        "minecraft:multishot": 1
+      }
+    }
+  }
+}

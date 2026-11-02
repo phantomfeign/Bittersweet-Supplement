@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "minecraft:villager_spawn_egg",
+    "E": "minecraft:spider_eye",
+    "C": "minecraft:cobweb",
+    "S": "minecraft:string"
+  },
+  "pattern": [
+    "CEC",
+    "S#S",
+    "CEC"
+  ],
+  "result": {
+    "id": "minecraft:enchanted_book",
+    "components": {
+      "minecraft:item_name": {
+        "translate": "requiem.bswt.arachne",
+        "color": "#87658a"
+      },
+      "minecraft:item_model": "bswt_texture:requiem_arachne",
+      "minecraft:stored_enchantments": {
+        "minecraft:projectile_protection": 1,
+        "minecraft:silk_touch": 1
+      }
+    }
+  }
+}

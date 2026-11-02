@@ -1,0 +1,17 @@
+{
+  "parent": "temp:root",
+  "criteria": {
+    "inventory_changed": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "inventory_changed"
+    ]
+  ],
+  "rewards": {
+    "function": "utility:anvil/use"
+  }
+}

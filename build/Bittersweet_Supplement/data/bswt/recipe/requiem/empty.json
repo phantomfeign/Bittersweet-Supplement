@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "L": "minecraft:lapis_block",
+    "#": "minecraft:book",
+    "G": "minecraft:gold_block",
+    "g": "minecraft:gold_ingot",
+    "E": "minecraft:emerald"
+  },
+  "pattern": [
+    "gEg",
+    "L#L",
+    "gGg"
+  ],
+  "result": {
+    "id": "minecraft:villager_spawn_egg",
+    "components": {
+      "!minecraft:entity_data": {},
+      "minecraft:item_name": {
+        "translate": "item.minecraft.villager_spawn_egg",
+        "color": "#e4c116"
+      }
+    }
+  }
+}

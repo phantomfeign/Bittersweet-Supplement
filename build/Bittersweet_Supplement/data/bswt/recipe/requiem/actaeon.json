@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "minecraft:villager_spawn_egg",
+    "C": "minecraft:cactus",
+    "S": "minecraft:iron_spear",
+    "X": "minecraft:spider_eye",
+    "A": "minecraft:pointed_dripstone"
+  },
+  "pattern": [
+    "CSC",
+    "X#X",
+    "ACA"
+  ],
+  "result": {
+    "id": "minecraft:enchanted_book",
+    "components": {
+      "minecraft:item_name": {
+        "translate": "requiem.bswt.actaeon",
+        "color": "#87658a"
+      },
+      "minecraft:item_model": "bswt_texture:requiem_actaeon",
+      "minecraft:stored_enchantments": {
+        "minecraft:bane_of_arthropods": 1,
+        "minecraft:piercing": 1
+      }
+    }
+  }
+}

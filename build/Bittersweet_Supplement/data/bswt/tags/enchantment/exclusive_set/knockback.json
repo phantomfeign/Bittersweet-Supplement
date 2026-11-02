@@ -1,6 +1,7 @@
 {
   "values": [
     "minecraft:knockback",
+    "minecraft:flame",
     "bswt:hooking"
   ]
 }

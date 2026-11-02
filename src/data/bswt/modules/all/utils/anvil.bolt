@@ -1,0 +1,82 @@
+function utility:anvil/tick:
+    execute unless stopwatch bswt_anvil_timer ..20 run tag @a[tag=bswt.usingAnvil] remove bswt.usingAnvil
+    execute as @s[tag=bswt.usingAnvil] run experience set @s 100 levels
+    execute as @s[tag=!bswt.usingAnvil]:
+        experience set @s 0 levels
+        experience set @s 0 points
+
+item_modifier utility:anvil/reset_repair_cost {
+  "function": "set_components",
+  "components": {
+    "repair_cost": 0
+  }
+}
+advancement temp:anvil/interact {
+	"parent": "temp:root",
+	"criteria": {
+		"open_anvil": {
+			"trigger": "minecraft:any_block_use",
+			"conditions": {
+				"location": [
+					{
+						"condition": "minecraft:location_check",
+						"predicate": {
+							"block": {
+								"blocks": "#minecraft:anvil"
+							}
+						}
+					}
+				]
+			}
+		}
+	},
+	"rewards": {
+		"function": "utility:anvil/interact"
+	}
+}
+advancement temp:anvil/use {
+	"parent": "temp:root",
+	"criteria": {
+		"inventory_changed": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {}
+		}
+	},
+	"requirements": [
+		[
+			"inventory_changed"
+		]
+	],
+	"rewards": {
+		"function": "utility:anvil/use"
+	}
+}
+function utility:anvil/interact:
+    advancement revoke @s only temp:anvil/interact
+    stopwatch restart bswt_anvil_timer
+    experience set @s 100 levels
+    tag @s add bswt.usingAnvil
+    scoreboard players set @s bswt.anvilUse 0
+    function utility:anvil/prior_work
+    fill ~-2 ~-1 ~-2 ~2 ~2 ~2 minecraft:anvil replace minecraft:chipped_anvil
+    fill ~-2 ~-1 ~-2 ~2 ~2 ~2 minecraft:anvil replace minecraft:damaged_anvil
+
+function utility:anvil/use:
+    execute at @s[tag=bswt.usingAnvil] as @s run function utility:anvil/interact
+    advancement revoke @s only temp:anvil/use
+
+function utility:anvil/prior_work:
+    for i in range (26):
+        INVENTORY = f"inventory.{i}"
+        item modify entity @s (INVENTORY) utility:anvil/reset_repair_cost
+
+    for i in range (9):
+        HOTBAR = f"hotbar.{i}"
+        item modify entity @s (HOTBAR) utility:anvil/reset_repair_cost
+
+    item modify entity @s weapon.offhand utility:anvil/reset_repair_cost
+    item modify entity @s player.cursor utility:anvil/reset_repair_cost
+
+    fill ~-2 ~-1 ~-2 ~2 ~2 ~2 minecraft:anvil replace minecraft:chipped_anvil
+    fill ~-2 ~-1 ~-2 ~2 ~2 ~2 minecraft:anvil replace minecraft:damaged_anvil
+

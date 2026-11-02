@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "minecraft:villager_spawn_egg",
+    "X": "#minecraft:lightning_rods",
+    "T": "minecraft:torch",
+    "C": "minecraft:cauldron",
+    "L": "minecraft:leather"
+  },
+  "pattern": [
+    "TXT",
+    "L#L",
+    " C "
+  ],
+  "result": {
+    "id": "minecraft:enchanted_book",
+    "components": {
+      "minecraft:item_name": {
+        "translate": "requiem.bswt.salmoneus",
+        "color": "#87658a"
+      },
+      "minecraft:item_model": "bswt_texture:requiem_salmoneus",
+      "minecraft:stored_enchantments": {
+        "minecraft:channeling": 1
+      }
+    }
+  }
+}

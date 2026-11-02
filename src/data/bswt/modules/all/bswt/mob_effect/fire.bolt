@@ -1,0 +1,22 @@
+function bswt:mob_effect/fire/apply:
+    data modify entity @s Fire set value 0
+    if block ~ ~ ~ minecraft:water run return run function bswt:mob_effect/fire/end
+    as @s unless score @s bswt.fireTimer matches ..0 run scoreboard players add @s bswt.fireTimer 2
+    as @s unless score @s bswt.fireTimer matches 1.. run scoreboard players set @s bswt.fireTimer 8
+    tag @s add bswt.OnFire
+    data modify entity @s HasVisualFire set value 1b
+    #frostbite
+    if score @s bswt.frostbiteTimer matches 1.. run function bswt:mob_effect/frostbite/remove
+    
+function bswt:mob_effect/fire/tick:
+    scoreboard players remove @s bswt.fireTimer 1
+    damage @s 1 minecraft:on_fire
+    if block ~ ~ ~ minecraft:water run function bswt:mob_effect/fire/remove
+    if score @s bswt.fireTimer matches ..0 run function bswt:mob_effect/fire/remove
+
+function bswt:mob_effect/fire/remove:
+    if block ~ ~ ~ minecraft:water run playsound block.fire.extinguish player @a ~ ~ ~ 3 1
+    scoreboard players set @s bswt.fireTimer 0
+    data modify entity @s HasVisualFire set value 0b
+    tag @s remove bswt.OnFire
+

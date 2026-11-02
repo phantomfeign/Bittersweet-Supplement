@@ -1,0 +1,380 @@
+recipe bswt:requiem/empty {
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "L": "minecraft:lapis_block",
+    "#": "minecraft:book",
+    "G": "minecraft:gold_block",
+    "g": "minecraft:gold_ingot",
+    "E": "minecraft:emerald"
+
+  },
+  "pattern": [
+    "gEg",
+    "L#L",
+    "gGg"
+  ],
+  "result": {
+    "id": "minecraft:villager_spawn_egg",
+    "components": {
+      "!minecraft:entity_data":{},
+      "minecraft:item_name": {
+			"translate": "item.minecraft.villager_spawn_egg",
+            "color": "#e4c116"
+        }
+    }
+  }
+}
+recipe bswt:requiem/prometheus {
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"key": {
+		"G": "minecraft:gold_block",
+		"N": "minecraft:magma_block",
+		"#": "minecraft:villager_spawn_egg",
+		"M": [
+			"minecraft:magma_cream",
+			"minecraft:blaze_powder"
+		],
+		"R": "minecraft:ghast_tear",
+		"C": [
+			"minecraft:fire_charge",
+			"minecraft:blaze_powder"
+		]
+	},
+	"pattern": [
+		"MRC",
+		"M#C",
+		"GNG"
+	],
+	"result": {
+		"id": "minecraft:enchanted_book",
+		"components": {
+			"minecraft:item_name": {
+				"translate": "requiem.bswt.prometheus",
+				"color": "#87658a"
+			},
+			"minecraft:item_model": "bswt_texture:requiem_prometheus",
+			"minecraft:stored_enchantments": {
+				"minecraft:fire_aspect": 1,
+				"minecraft:flame": 1,
+				"minecraft:fire_protection": 1
+			}
+		}
+	}
+}
+recipe bswt:requiem/midas {
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": "minecraft:golden_pickaxe",
+    "#": "minecraft:villager_spawn_egg",
+    "E": "minecraft:emerald",
+    "D": "minecraft:diamond",
+    "G": "minecraft:gold_ingot"
+  },
+  "pattern": [
+    "DED",
+    "P#P",
+    "DGD"
+  ],
+  "result": {
+    "id": "minecraft:enchanted_book",
+    "components": {
+      "minecraft:item_name": {
+        "translate": "requiem.bswt.midas",
+        "color": "#87658a"
+      },
+      "minecraft:item_model": "bswt_texture:requiem_midas",
+      "minecraft:stored_enchantments": {
+        "minecraft:looting": 1,
+        "minecraft:fortune": 1,
+        "minecraft:luck_of_the_sea": 1
+      }
+    }
+  }
+}
+recipe bswt:requiem/erysichthon {
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"key": {
+		"#": "minecraft:villager_spawn_egg",
+		"C":"minecraft:creeper_head",
+		"Z":"minecraft:zombie_head"
+	},
+	"pattern": [
+		"   ",
+		"Z#C"
+	],
+	"result": {
+		"id": "minecraft:enchanted_book",
+		"components": {
+			"minecraft:item_name": {
+				"translate": "requiem.bswt.erysichthon",
+				"color": "#87658a"
+			},
+			"minecraft:item_model": "bswt_texture:requiem_erysichthon",
+			"minecraft:stored_enchantments": {
+				"bswt:bloodthirsty": 1,
+                "minecraft:thorns": 1
+			}
+		}
+	}
+}
+recipe bswt:requiem/actaeon {
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"key": {
+		"#": "minecraft:villager_spawn_egg",
+		"C": "minecraft:cactus",
+		"S": "minecraft:iron_spear",
+		"X": "minecraft:spider_eye",
+		"A": "minecraft:pointed_dripstone"
+	},
+	"pattern": [
+		"CSC",
+		"X#X",
+		"ACA"
+	],
+	"result": {
+		"id": "minecraft:enchanted_book",
+		"components": {
+			"minecraft:item_name": {
+				"translate": "requiem.bswt.actaeon",
+				"color": "#87658a"
+			},
+			"minecraft:item_model": "bswt_texture:requiem_actaeon",
+			"minecraft:stored_enchantments": {
+				"minecraft:bane_of_arthropods": 1,
+				"minecraft:piercing": 1
+			}
+		}
+	}
+}
+recipe bswt:requiem/niobe {
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"key": {
+		"#": "minecraft:villager_spawn_egg",
+		"X": "minecraft:bow",
+		"B": "minecraft:skeleton_spawn_egg"
+	},
+	"pattern": [
+		"BXB",
+		"B#B",
+		"BBB"
+	],
+	"result": {
+		"id": "minecraft:enchanted_book",
+		"components": {
+			"minecraft:item_name": {
+				"translate": "requiem.bswt.niobe",
+				"color": "#87658a"
+			},
+			"minecraft:item_model": "bswt_texture:requiem_niobe",
+			"minecraft:stored_enchantments": {
+				"minecraft:infinity": 1,
+				"minecraft:multishot": 1
+			}
+		}
+	}
+}
+recipe bswt:requiem/bellerophon {
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"key": {
+		"#": "minecraft:villager_spawn_egg",
+		"X": "minecraft:feather",
+		"S": "minecraft:saddle",
+		"W": "minecraft:white_wool",
+		"C": "minecraft:wind_charge",
+		"B": "minecraft:leather_boots"
+	},
+	"pattern": [
+		"XSX",
+		"C#C",
+		"WBW"
+	],
+	"result": {
+		"id": "minecraft:enchanted_book",
+		"components": {
+			"minecraft:item_name": {
+				"translate": "requiem.bswt.bellerophon",
+				"color": "#87658a"
+			},
+			"minecraft:item_model": "bswt_texture:requiem_bellerophon",
+			"minecraft:stored_enchantments": {
+				"bswt:feather_falling": 1,
+				"bswt:dashing": 1
+			}
+		}
+	}
+}
+recipe bswt:requiem/danaids {
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"key": {
+		"#": "minecraft:villager_spawn_egg",
+		"X": "minecraft:water_bucket",
+		"S": "minecraft:iron_sword"
+	},
+	"pattern": [
+		"SSS",
+		"X#X",
+		"SSS"
+	],
+	"result": {
+		"id": "minecraft:enchanted_book",
+		"components": {
+			"minecraft:item_name": {
+				"translate": "requiem.bswt.danaids",
+				"color": "#87658a"
+			},
+			"minecraft:item_model": "bswt_texture:requiem_danaids",
+			"minecraft:stored_enchantments": {
+				"minecraft:sweeping_edge": 1,
+				"minecraft:breach": 1
+			}
+		}
+	}
+}
+recipe bswt:requiem/sisyphus {
+	"type": "minecraft:crafting_shapeless",
+	"category": "misc",
+	"ingredients": [
+		"minecraft:diorite",
+		"minecraft:andesite",
+		"minecraft:stone",
+		"minecraft:tuff",
+		"minecraft:villager_spawn_egg",
+		"minecraft:deepslate",
+		"minecraft:sandstone",
+		"minecraft:dripstone_block",
+		"minecraft:granite"
+	],
+	"result": {
+		"id": "minecraft:enchanted_book",
+		"components": {
+			"minecraft:item_name": {
+				"translate": "requiem.bswt.sisyphus",
+				"color": "#87658a"
+			},
+			"minecraft:item_model": "bswt_texture:requiem_sisyphus",
+			"minecraft:stored_enchantments": {
+				"minecraft:blast_protection": 1,
+				"minecraft:efficiency": 1
+			}
+		}
+	}
+}
+recipe bswt:requiem/arachne {
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"key": {
+		"#": "minecraft:villager_spawn_egg",
+		"E": "minecraft:spider_eye",
+		"C": "minecraft:cobweb",
+		"S": "minecraft:string"
+	},
+	"pattern": [
+		"CEC",
+		"S#S",
+		"CEC"
+	],
+	"result": {
+		"id": "minecraft:enchanted_book",
+		"components": {
+			"minecraft:item_name": {
+				"translate": "requiem.bswt.arachne",
+				"color": "#87658a"
+			},
+			"minecraft:item_model": "bswt_texture:requiem_arachne",
+			"minecraft:stored_enchantments": {
+				"minecraft:projectile_protection": 1,
+				"minecraft:silk_touch": 1
+			}
+		}
+	}
+}
+recipe bswt:requiem/agdistis {
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"key": {
+		"#": "minecraft:villager_spawn_egg",
+		"X": "minecraft:shears",
+		"P": "minecraft:paper"
+	},
+	"pattern": [
+		" X ",
+		"P#P"
+	],
+	"result": {
+		"id": "minecraft:enchanted_book",
+		"components": {
+			"minecraft:item_name": {
+				"translate": "requiem.bswt.agdistis",
+				"color": "#87658a"
+			},
+			"minecraft:item_model": "bswt_texture:requiem_agdistis",
+			"minecraft:stored_enchantments": {
+				"minecraft:sharpness": 1
+			}
+		}
+	}
+}
+recipe bswt:requiem/salmoneus {
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"key": {
+		"#": "minecraft:villager_spawn_egg",
+		"X": "#minecraft:lightning_rods",
+		"T": "minecraft:torch",
+		"C": "minecraft:cauldron",
+		"L": "minecraft:leather"
+	},
+	"pattern": [
+		"TXT",
+		"L#L",
+		" C "
+	],
+	"result": {
+		"id": "minecraft:enchanted_book",
+		"components": {
+			"minecraft:item_name": {
+				"translate": "requiem.bswt.salmoneus",
+				"color": "#87658a"
+			},
+			"minecraft:item_model": "bswt_texture:requiem_salmoneus",
+			"minecraft:stored_enchantments": {
+				"minecraft:channeling": 1
+			}
+		}
+	}
+}
+recipe bswt:requiem/pentheus {
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"key": {
+		"#": "minecraft:villager_spawn_egg",
+		"X": "minecraft:iron_chain",
+		"L": "minecraft:lead"
+	},
+	"pattern": [
+		" X ",
+		"L#L",
+		" X "
+	],
+	"result": {
+		"id": "minecraft:enchanted_book",
+		"components": {
+			"minecraft:item_name": {
+				"translate": "requiem.bswt.pentheus",
+				"color": "#87658a"
+			},
+			"minecraft:item_model": "bswt_texture:requiem_pentheus",
+			"minecraft:stored_enchantments": {
+				"minecraft:protection": 1
+			}
+		}
+	}
+}

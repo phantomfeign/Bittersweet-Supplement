@@ -1,0 +1,12 @@
+{
+  "parent": "temp:root",
+  "criteria": {
+    "shoot": {
+      "trigger": "minecraft:shot_crossbow",
+      "conditions": {}
+    }
+  },
+  "rewards": {
+    "function": "bswt:enchantment/overload/shot"
+  }
+}
