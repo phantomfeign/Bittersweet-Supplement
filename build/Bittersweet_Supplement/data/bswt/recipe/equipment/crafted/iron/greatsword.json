@@ -61,8 +61,7 @@
         "min_reach": 0,
         "max_reach": 3.5,
         "min_creative_reach": 0,
-        "max_creative_reach": 1,
-        "hitbox_margin": 1
+        "max_creative_reach": 1
       },
       "minecraft:enchantments": {
         "minecraft:sweeping_edge": 1

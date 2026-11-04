@@ -132,11 +132,11 @@ enchantment_tag bswt:exclusive_set/bounding {
   ]
 }
 enchantment_tag bswt:exclusive_set/crossbow_type {
-    "values": [
-        "minecraft:power",
-        "minecraft:quick_charge",
-        "bswt:overload"
-    ]
+  "values": [
+    "minecraft:power",
+    "minecraft:quick_charge",
+    "bswt:overload"
+  ]
 }
 enchantment_tag bswt:exclusive_set/knockback {
   "values": [
@@ -146,16 +146,51 @@ enchantment_tag bswt:exclusive_set/knockback {
   ]
 }
 enchantment_tag bswt:exclusive_set/multishot {
-    "values": [
-        "minecraft:multishot",
-        "minecraft:flame",
-        "bswt:overload"
-    ]
+  "values": [
+    "minecraft:multishot",
+    "minecraft:flame",
+    "bswt:overload"
+  ]
 }
 enchantment_tag bswt:exclusive_set/riptide {
   "values": [
     "minecraft:loyalty",
     "minecraft:channeling",
     "bswt:viper"
+  ]
+}
+enchantment_tag curse {
+  "values": [
+    "bswt:bow_mechanics",
+    "bswt:hefty",
+    "bswt:hooking"
+    ]
+}
+enchantment_tag exclusive_set/mining {
+    "replace": true,
+    "values": [
+        "minecraft:fortune",
+        "minecraft:silk_touch",
+        "minecraft:fire_aspect"
+    ]
+}
+enchantment_tag exclusive_set/leg {
+  "values": [
+    "minecraft:depth_strider",
+    "minecraft:swift_sneak"
+  ]
+}
+enchantment_tag exclusive_set/melee {
+  "values": [
+    "minecraft:sharpness",
+    "minecraft:smite",
+    "minecraft:bane_of_arthropods",
+    "minecraft:fire_aspect",
+    "bswt:frostbite",
+    "minecraft:density",
+    "minecraft:sweeping_edge",
+    "minecraft:breach",
+    "minecraft:fortune",
+    "minecraft:silk_touch"
   ]
 }

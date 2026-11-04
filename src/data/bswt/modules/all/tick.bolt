@@ -1,3 +1,8 @@
+function ticking_functions:call_all:
+    schedule function ticking_functions:tick_1t/call 1t
+    schedule function ticking_functions:tick_0.5s/call 2t
+    schedule function ticking_functions:tick_1s/call 3t
+    schedule function ticking_functions:tick_10s/call 4t
 #—————————————————— 1 TICK
 function ticking_functions:tick_1t/call:
     schedule function ticking_functions:tick_1t/call 1t replace
@@ -18,6 +23,24 @@ function ticking_functions:tick_1t/universal:
     as @s[type=!#bswt:cant_transfer_fire,predicate=bswt:mob_effect/is_on_fire] run function bswt:mob_effect/fire/apply
     as @s[tag=bswt.iceStatue,nbt=!{Health:100.0f}] run function bswt:mob_effect/frostbite/ice_statue/shatter
     as @s[type=block_display,tag=bswt.vinerySpore] run function bswt:enchantment/vinery/petal/tick
+
+#—————————————————— 0.5 SECOND
+function ticking_functions:tick_0.5s/call:
+    schedule function ticking_functions:tick_0.5s/call 10t replace
+    as @e at @s:
+        function ticking_functions:tick_0.5s/universal
+        if entity @s[type=player] run function ticking_functions:tick_0.5s/players
+        
+
+function ticking_functions:tick_0.5s/players:
+    if score @s bswt.Hunger matches 10.. run effect give @s minecraft:hunger 1 255 true
+    if score @s bswt.Hunger matches ..6: 
+        effect give @s minecraft:saturation 1 1 true
+        effect clear @s minecraft:hunger
+
+
+function ticking_functions:tick_0.5s/universal:
+    as @s[tag=bswt.frostbitten] run function bswt:mob_effect/frostbite/tick
 
 #—————————————————— 1 SECOND
 function ticking_functions:tick_1s/call:
@@ -44,20 +67,16 @@ function ticking_functions:tick_1s/cooldowns:
     unless score @s bswt.cd.Lunge matches 3.. run scoreboard players add @s bswt.cd.Lunge 1
     if score @s bswt.cd.Lunge matches 3 run tag @s add canLunge
 
-#—————————————————— 0.5 SECOND
-function ticking_functions:tick_0.5s/call:
-    schedule function ticking_functions:tick_0.5s/call 10t replace
+#—————————————————— 10
+function ticking_functions:tick_10s/call:
+    schedule function ticking_functions:tick_10s/call 10s replace
     as @e at @s:
-        function ticking_functions:tick_0.5s/universal
-        if entity @s[type=player] run function ticking_functions:tick_0.5s/players
+        function ticking_functions:tick_10s/universal
+        if entity @s[type=player] run function ticking_functions:tick_10s/players
         
 
-function ticking_functions:tick_0.5s/players:
-    if score @s bswt.Hunger matches 10.. run effect give @s minecraft:hunger 1 255 true
-    if score @s bswt.Hunger matches ..6: 
-        effect give @s minecraft:saturation 1 1 true
-        effect clear @s minecraft:hunger
+function ticking_functions:tick_10s/players:
+    function bswt:main/campfire/tick
 
-
-function ticking_functions:tick_0.5s/universal:
-    as @s[tag=bswt.frostbitten] run function bswt:mob_effect/frostbite/tick
+function ticking_functions:tick_10s/universal:
+    pass

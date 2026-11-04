@@ -437,6 +437,103 @@ enchantment riptide {
 	"supported_items": "#minecraft:enchantable/trident",
 	"weight": 2
 }
+enchantment luck_of_the_sea {
+	"anvil_cost": 4,
+	"description": {
+		"translate": "enchantment.minecraft.luck_of_the_sea"
+	},
+	"effects": {
+		"minecraft:fishing_luck_bonus": [
+			{
+				"effect": {
+					"type": "minecraft:add",
+					"value": 3
+				}
+			}
+		],
+        "minecraft:fishing_time_reduction": [
+			{
+				"effect": {
+					"type": "minecraft:add",
+					"value": 15
+				}
+			}
+		]
+	},
+	"max_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"max_level": 1,
+	"min_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"slots": [
+		"mainhand"
+	],
+	"supported_items": "#minecraft:enchantable/fishing",
+	"weight": 2
+}
+enchantment looting {
+	"anvil_cost": 0,
+	"description": {
+		"translate": "enchantment.minecraft.looting"
+	},
+	"effects": {
+		"minecraft:equipment_drops": [
+			{
+				"effect": {
+					"type": "minecraft:add",
+					"value": 0.02
+				},
+				"enchanted": "attacker",
+				"requirements": {
+					"condition": "minecraft:entity_properties",
+					"entity": "attacker",
+					"predicate": {
+						"minecraft:entity_type": "minecraft:player"
+					}
+				}
+			}
+		]
+	},
+	"max_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"max_level": 1,
+	"min_cost": {
+		"base": 0,
+		"per_level_above_first": 9
+	},
+	"slots": [
+		"mainhand"
+	],
+	"supported_items": "#minecraft:enchantable/melee_weapon",
+	"weight": 2
+}
+enchantment fortune {
+	"anvil_cost": 0,
+	"description": {
+		"translate": "enchantment.minecraft.fortune"
+	},
+	"exclusive_set": "#minecraft:exclusive_set/mining",
+	"max_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"max_level": 1,
+	"min_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"slots": [
+		"mainhand"
+	],
+	"supported_items": "#minecraft:enchantable/mining_loot",
+	"weight": 2
+}
 enchantment lunge {
 	"anvil_cost": 2,
 	"description": {

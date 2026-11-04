@@ -1,9 +1,7 @@
 append function_tag load {
     "values": [
         "load:load",
-        "ticking_functions:tick_1t/call",
-        "ticking_functions:tick_1s/call",
-        "ticking_functions:tick_0.5s/call"
+        "ticking_functions:call_all"
     ]
 } 
 
