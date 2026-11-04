@@ -1,0 +1,121 @@
+import math
+
+advancement bswt:main/health/drink_ichor {
+	"criteria": {
+		"drink": {
+			"trigger": "minecraft:consume_item",
+			"conditions": {
+				"item": {
+					"components": {
+						"minecraft:custom_data": {
+							"vial_ichor": true
+						}
+					}
+				}
+			}
+		}
+	},
+	"rewards": {
+		"function": "bswt:main/health/drink_ichor"
+	}
+}
+
+function bswt:main/health/change/get_max:
+    store result score @s bswt.maxHealth run attribute @s minecraft:max_health get 1
+    for armor in ["helmet", "chestplate", "leggings", "boots"]:
+        store result score f"#bswt_bronze_{armor}" bswt.Math run attribute @s minecraft:max_health modifier value get f"bswt:bronze_{armor}" 1
+        scoreboard players operation @s bswt.maxHealth -= f"#bswt_bronze_{armor}" bswt.Math
+
+function bswt:main/health/change/decrease:
+    function bswt:main/health/change/get_max
+    scoreboard players set @s bswt.healthRecoveryTime 0 
+    tag @s remove died_recently
+    scoreboard players set @s bswt.Adrenaline 0
+
+    if score @s bswt.maxHealth matches ..10 run return fail
+    scoreboard players remove @s bswt.maxHealth 2
+    function bswt:main/health/change/fix_hp
+    at @s run function bswt:main/health/fx/decrease
+
+function bswt:main/health/change/increase:
+    function bswt:main/health/change/get_max
+    scoreboard players set @s bswt.healthRecoveryTime 0 
+    if score @s bswt.maxHealth matches 60.. run return fail
+    scoreboard players add @s bswt.maxHealth 2
+    function bswt:main/health/change/fix_hp
+    at @s run function bswt:main/health/fx/increase
+
+function bswt:main/health/change/fix_hp: 
+    if score @s bswt.maxHealth matches 60.. run scoreboard players set @s bswt.maxHealth 60
+    if score @s bswt.maxHealth matches ..10 run scoreboard players set @s bswt.maxHealth 10
+    for i in range (60):
+        if score @s bswt.maxHealth matches (i) run attribute @s minecraft:max_health base set (i)
+
+function bswt:main/health/death:
+    function bswt:main/health/change/decrease
+    scoreboard players set @s bswt.playerDeaths 0 
+    function bswt:main/health/fx/debuffs
+
+function bswt:main/health/drink_ichor:
+    advancement revoke @s only bswt:main/health/drink_ichor
+    function bswt:main/health/fx/debuffs
+    function bswt:main/health/fx/ichor
+    store result score @s bswt.maxHealth run attribute @s minecraft:max_health get 1.0
+    unless score @s bswt.maxHealth matches 20.. run scoreboard players set @s bswt.maxHealth 18
+    function bswt:main/health/change/fix_hp
+    function bswt:main/health/change/increase
+
+function bswt:main/health/recovery/tick:
+    scoreboard players add @s bswt.healthRecoverySeconds 1
+
+    if score @s bswt.healthRecoverySeconds matches 60.. run scoreboard players add @s bswt.healthRecoveryTime 1
+    if score @s bswt.healthRecoverySeconds matches 60.. run playsound minecraft:block.amethyst_block.step player @s ~ ~ ~ 1 2
+    if score @s bswt.healthRecoverySeconds matches 60.. run title @s actionbar [{\
+    "text":"Recovery Period: ","bold":false,"color":"white"},\
+    {"score":{"name":"*","objective":"bswt.healthRecoveryTime"}},\
+    {"text":"/15","bold":false,"color":"white"}]
+    if score @s bswt.healthRecoverySeconds matches 60.. run scoreboard players remove @s bswt.healthRecoverySeconds 60
+
+    if score @s bswt.healthRecoveryTime matches 15.. unless score @s bswt.maxHealth matches 20.. run function bswt:main/health/change/increase
+
+function bswt:main/health/fx/debuffs:
+    effect give @s minecraft:darkness 3 0 true
+    effect give @s minecraft:blindness 3 0 true
+    effect give @s minecraft:nausea 3 0 true
+    effect give @s minecraft:slowness 3 0 true
+    effect give @s minecraft:weakness 10 0 true
+
+function bswt:main/health/fx/ichor:
+    playsound minecraft:item.totem.use master @a ~ ~ ~ 5 1.5
+    playsound item.trident.thunder master @a ~ ~ ~ 5 2
+    playsound minecraft:item.bottle.fill_dragonbreath master @a ~ ~ ~ 1 0.5
+
+function bswt:main/health/fx/increase:
+    playsound minecraft:block.bell.resonate player @s ~ ~ ~ 1 1.5
+
+    particle minecraft:end_rod ~ ~1 ~ 0 0 0 0.3 10
+    particle minecraft:totem_of_undying ~ ~1 ~ 0 0 0 0.3 10
+    particle minecraft:glow ~ ~1 ~ 0 0 0 0.1 10
+    particle minecraft:firework ~ ~1 ~ 0 0 0 0.3 10
+    particle minecraft:electric_spark ~ ~1 ~ 0 0 0 0.3 10
+
+function bswt:main/health/fx/decrease:
+    positioned ~ ~1.5 ~:
+        playsound minecraft:block.creaking_heart.break master @a ~ ~ ~ 5 2
+        playsound minecraft:block.creaking_heart.break master @a ~ ~ ~ 8 0.5
+        playsound minecraft:block.creaking_heart.idle master @a ~ ~ ~ 5 2
+        playsound minecraft:event.mob_effect.raid_omen master @a ~ ~ ~ 10 1
+        playsound minecraft:event.mob_effect.bad_omen master @a ~ ~ ~ 10 1
+        playsound minecraft:block.enchantment_table.use master @a ~ ~ ~ 10 1
+        playsound minecraft:particle.soul_escape master @a ~ ~ ~ 10 0.5
+
+        particle soul ~ ~ ~0.0 ~ ~ ~2000000.0 0.0000001 0
+        particle soul ~0.0 ~ ~0.0 ~1175570.5045849462 ~ ~1618033.988749895 0.0000001 0
+        particle soul ~0.0 ~ ~0.0 ~1902113.032590307 ~ ~618033.9887498949 0.0000001 0
+        particle soul ~0.0 ~ ~-0.0 ~1902113.0325903073 ~ ~-618033.9887498947 0.0000001 0
+        particle soul ~0.0 ~ ~-0.0 ~1175570.5045849464 ~ ~-1618033.9887498948 0.0000001 0
+        particle soul ~ ~ ~-0.0 ~ ~ ~-2000000.0 0.0000001 0
+        particle soul ~-0.0 ~ ~-0.0 ~-1175570.504584946 ~ ~-1618033.988749895 0.0000001 0
+        particle soul ~-0.0 ~ ~-0.0 ~-1902113.032590307 ~ ~-618033.9887498951 0.0000001 0
+        particle soul ~-0.0 ~ ~0.0 ~-1902113.0325903073 ~ ~618033.9887498944 0.0000001 0
+        particle soul ~-0.0 ~ ~0.0 ~-1175570.5045849464 ~ ~1618033.9887498948 0.0000001 0

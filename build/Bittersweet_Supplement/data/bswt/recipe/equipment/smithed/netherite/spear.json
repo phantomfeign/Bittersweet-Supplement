@@ -52,6 +52,10 @@
         "max_creative_reach": 6.5,
         "hitbox_margin": 0.125,
         "mob_factor": 0.5
+      },
+      "minecraft:item_name": {
+        "text": "Adamantine Spear",
+        "color": "aqua"
       }
     }
   }

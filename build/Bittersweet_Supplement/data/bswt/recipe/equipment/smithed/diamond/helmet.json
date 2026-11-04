@@ -1,0 +1,53 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "minecraft:diamond",
+  "base": "minecraft:golden_helmet",
+  "template": "minecraft:chicken_spawn_egg",
+  "result": {
+    "id": "minecraft:diamond_helmet",
+    "components": {
+      "minecraft:max_damage": 2000,
+      "minecraft:tooltip_display": {
+        "hidden_components": [
+          "minecraft:attribute_modifiers"
+        ]
+      },
+      "minecraft:attribute_modifiers": [
+        {
+          "type": "minecraft:armor",
+          "id": "bswt:diamond_helmet",
+          "amount": 4,
+          "operation": "add_value",
+          "slot": "head"
+        },
+        {
+          "type": "minecraft:movement_speed",
+          "id": "bswt:diamond_helmet",
+          "amount": 0.003,
+          "operation": "add_value",
+          "slot": "head"
+        }
+      ],
+      "minecraft:lore": [
+        {
+          "text": "4\u26e8",
+          "color": "blue",
+          "italic": false
+        },
+        {
+          "text": "+3%\u23e9",
+          "color": "yellow",
+          "italic": false
+        }
+      ],
+      "minecraft:equippable": {
+        "slot": "head",
+        "equip_sound": "minecraft:item.armor.equip_diamond"
+      },
+      "minecraft:item_name": {
+        "text": "Diamond Helmet",
+        "color": "aqua"
+      }
+    }
+  }
+}

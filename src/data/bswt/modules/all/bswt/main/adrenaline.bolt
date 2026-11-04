@@ -49,30 +49,26 @@ function bswt:main/adrenaline/kill:
     effect give @s minecraft:regeneration 4 0 true
 
 function bswt:main/adrenaline/tick:
-    as @s[tag=!bswt.Rampage] if score @s bswt.Adrenaline matches 100..  run function bittersweet_functions:misc/adrenaline/rampage/start
+    as @s[tag=!bswt.Rampage] if score @s bswt.Adrenaline matches 100..  run function bswt:main/adrenaline/rampage/start
 
-    as @s[tag=bswt.Rampage] run return run function bittersweet_functions:misc/adrenaline/rampage/tick
+    as @s[tag=bswt.Rampage] run return run function bswt:main/adrenaline/rampage/tick
 
     if entity @e[type=#bswt.hostiles,distance=..5] run return run scoreboard players add @s bswt.Adrenaline 1
     if entity @e[type=#bswt.hostiles,distance=..10] run return fail
     if score @s bswt.Adrenaline matches ..10 run return run scoreboard players set @s bswt.Adrenaline 10
-    scoreboard players operation @s bswt.Adrenaline *= #90 Percent
-    scoreboard players operation @s bswt.Adrenaline /= #100 Percent
+    scoreboard players operation @s bswt.Adrenaline *= #90 bswt.Math
+    scoreboard players operation @s bswt.Adrenaline /= #100 bswt.Math
 
 function bswt:main/adrenaline/rampage/start:
     tag @s add bswt.Rampage
-    
     effect give @s minecraft:regeneration 3 2 true
-
-    playsound entity.wolf_angry.growl player @a ~ ~ ~ 10 1
-    playsound entity.wolf_cute.growl player @a ~ ~ ~ 10 1
-    playsound entity.wolf_puglin.growl player @a ~ ~ ~ 10 1
-    playsound entity.wolf.growl player @a ~ ~ ~ 10 1
-
+    for i in range (8):
+        X=(i+1)/4
+        playsound entity.warden.heartbeat player @a ~ ~ ~ 10 (X)
     playsound block.creaking_heart.idle player @a ~ ~ ~ 10 2
     playsound block.creaking_heart.idle player @a ~ ~ ~ 10 1
     playsound block.creaking_heart.idle player @a ~ ~ ~ 10 0.5
-    playsound entity.warden.heartbeat player @a ~ ~ ~ 10 1
+
 
     playsound minecraft:block.trial_spawner.ominous_activate player @a ~ ~ ~ 10 0.8
     playsound minecraft:block.trial_spawner.about_to_spawn_item player @a ~ ~ ~ 10 2
@@ -88,10 +84,9 @@ function bswt:main/adrenaline/rampage/tick:
     effect give @s minecraft:strength 2 0 true
     effect give @s minecraft:resistance 2 0 true
 
-    if score @s bswt.Adrenaline matches 1..:
+    if score @s bswt.Adrenaline matches 1.. run return:
         particle minecraft:raid_omen ~ ~ ~ 0.2 1 0.2 0 4
         particle minecraft:trial_spawner_detection ~ ~ ~ 0.2 1 0.2 0.1 4
-        return fail
 
     scoreboard players set @s bswt.Adrenaline 0
     tag @s remove bswt.Rampage

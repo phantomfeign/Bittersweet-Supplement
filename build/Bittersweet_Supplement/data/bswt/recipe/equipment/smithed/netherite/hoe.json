@@ -29,6 +29,10 @@
         ],
         "default_mining_speed": 1,
         "damage_per_block": 1
+      },
+      "minecraft:item_name": {
+        "text": "Adamantine Hoe",
+        "color": "aqua"
       }
     }
   }

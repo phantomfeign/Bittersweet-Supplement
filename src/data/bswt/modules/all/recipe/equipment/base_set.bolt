@@ -1,0 +1,619 @@
+from beet import Recipe
+from bswt:all/utils/tiers import TIERS,TIER_LOOKUP,EQUIPMENT_PATTERNS_LOOKUP
+
+TOOL_CRAFTING = [
+    {"base_tier": "golden","base_item": "gold_ingot","item_type": "pickaxe"},
+    {"base_tier": "golden","base_item": "gold_ingot","item_type": "axe"},
+    {"base_tier": "golden","base_item": "gold_ingot","item_type": "shovel"},
+    {"base_tier": "golden","base_item": "gold_ingot","item_type": "hoe"},
+
+    {"base_tier": "iron","base_item": "iron_ingot","item_type": "pickaxe"},
+    {"base_tier": "iron","base_item": "iron_ingot","item_type": "axe"},
+    {"base_tier": "iron","base_item": "iron_ingot","item_type": "shovel"},
+    {"base_tier": "iron","base_item": "iron_ingot","item_type": "hoe"},
+
+    {"base_tier": "copper","base_item": "copper_ingot","item_type": "pickaxe"},
+    {"base_tier": "copper","base_item": "copper_ingot","item_type": "axe"},
+    {"base_tier": "copper","base_item": "copper_ingot","item_type": "shovel"},
+    {"base_tier": "copper","base_item": "copper_ingot","item_type": "hoe"}
+]
+#TOOL_CRAFTNG
+for tool in TOOL_CRAFTING:
+    current_tier = TIER_LOOKUP[tool["base_tier"]]
+    mining_speed = current_tier["mining_speed"]
+    weapon_damage = int (current_tier["weapon_damage"]*1.5)
+    attack_speed = current_tier["attack_speed"]/2
+    max_durability = current_tier["durability"]
+
+    COMPONENTS = {
+                "minecraft:tooltip_display": {"hidden_components": ["minecraft:attribute_modifiers"]},
+                "minecraft:lore": [{"text": f"{mining_speed}⛏", "color": "gold", "italic": False}],
+                "minecraft:max_damage": max_durability,
+                "minecraft:tool": {
+                    "rules": [
+                        {
+                            "blocks": f"#minecraft:mineable/{tool['item_type']}",
+                            "speed": mining_speed,
+                            "correct_for_drops": True
+                        },
+                    ],
+                    "default_mining_speed": 1,
+                    "damage_per_block": 1
+                }
+            }
+    if tool['item_type'] == "axe":
+        COMPONENTS["minecraft:attribute_modifiers"] = [
+                    {
+                        "type": "minecraft:attack_damage",
+                        "id": f"bswt:{tool['base_tier']}_axe",
+                        "amount": weapon_damage-1,
+                        "operation": "add_value",
+                        "slot": "mainhand"
+                    },
+                    {
+                        "type": "minecraft:attack_speed",
+                        "id": f"bswt:{tool['base_tier']}_axe",
+                        "amount": -(4-attack_speed),
+                        "operation": "add_value",
+                        "slot": "mainhand"
+                    }
+                ]
+        COMPONENTS["minecraft:lore"].append({
+            "text": f"{weapon_damage}🗡", 
+            "color": "red", 
+            "italic": False
+        })
+        COMPONENTS["minecraft:lore"].append({
+            "text": f"{attack_speed}⌚",
+            "color": "yellow",
+            "italic": false
+        })
+
+    ctx.data.recipes[f"bswt:equipment/crafted/{tool['base_tier']}/{tool['item_type']}"] = Recipe({
+
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "pattern": EQUIPMENT_PATTERNS_LOOKUP[tool["item_type"]]["pattern"],
+        "key": {
+            "#": "minecraft:stick",
+            "X": f"minecraft:{tool["base_item"]}",
+        },
+        "result": {
+            "id": f"minecraft:{tool['base_tier']}_{tool['item_type']}",
+            "components": COMPONENTS
+        }
+    })
+
+TOOL_SMITHING = [
+    {"base_tier":"netherite","addition":"netherite_ingot","template":"hoglin_spawn_egg","item_type": "pickaxe"},
+    {"base_tier":"netherite","addition":"netherite_ingot","template":"hoglin_spawn_egg","item_type": "shovel"},
+    {"base_tier":"netherite","addition":"netherite_ingot","template":"hoglin_spawn_egg","item_type": "hoe"},
+
+    {"base_tier":"diamond","addition":"diamond","template":"chicken_spawn_egg","item_type": "pickaxe"},
+    {"base_tier":"diamond","addition":"diamond","template":"chicken_spawn_egg","item_type": "shovel"},
+    {"base_tier":"diamond","addition":"diamond","template":"chicken_spawn_egg","item_type": "hoe"},
+]
+
+#TOOL_SMITHING
+for tool in TOOL_SMITHING:
+    current_tier = TIER_LOOKUP[tool["base_tier"]]
+    mining_speed = current_tier["mining_speed"]
+    weapon_damage = int (current_tier["weapon_damage"]*1.5)
+    attack_speed = current_tier["attack_speed"]/2
+    max_durability = current_tier["durability"]
+
+    COMPONENTS = {
+                "minecraft:tooltip_display": {"hidden_components": ["minecraft:attribute_modifiers"]},
+                "minecraft:lore": [{"text": f"{mining_speed}⛏", "color": "gold", "italic": False}],
+                "minecraft:max_damage": max_durability,
+                "minecraft:tool": {
+                    "rules": [
+                        {
+                            "blocks": f"#minecraft:mineable/{tool['item_type']}",
+                            "speed": mining_speed,
+                            "correct_for_drops": True
+                        },
+                    ],
+                    "default_mining_speed": 1,
+                    "damage_per_block": 1
+                }
+            }
+
+    if tool['item_type'] == "axe":
+        COMPONENTS["minecraft:attribute_modifiers"] = [
+                    {
+                        "type": "minecraft:attack_damage",
+                        "id": f"bswt:{tool['base_tier']}_axe",
+                        "amount": weapon_damage-1,
+                        "operation": "add_value",
+                        "slot": "mainhand"
+                    },
+                    {
+                        "type": "minecraft:attack_speed",
+                        "id": f"bswt:{tool['base_tier']}_axe",
+                        "amount": -(4-attack_speed),
+                        "operation": "add_value",
+                        "slot": "mainhand"
+                    }
+                ]
+        COMPONENTS["minecraft:lore"].append({
+            "text": f"{weapon_damage}🗡", 
+            "color": "red", 
+            "italic": False
+        })
+        COMPONENTS["minecraft:lore"].append({
+            "text": f"{attack_speed}⌚",
+            "color": "yellow",
+            "italic": false
+        })
+    if tool["base_tier"] == "diamond":
+        COMPONENTS["minecraft:item_name"] = {
+            "text": f"Diamond {tool['item_type'].capitalize()}",
+            "color": "aqua"
+        }
+    if tool["base_tier"] == "netherite":
+        COMPONENTS["minecraft:item_name"] = {
+            "text": f"Adamantine {tool['item_type'].capitalize()}",
+            "color": "aqua"
+        }
+
+    ctx.data.recipes[f"bswt:equipment/smithed/{tool['base_tier']}/{tool['item_type']}"] = Recipe({
+        "type": "minecraft:smithing_transform",
+        "addition": f"minecraft:{tool['addition']}",
+        "base": f"golden_{tool['item_type']}",
+        "template": f"minecraft:{tool['template']}",
+        "result": {
+            "id": f"minecraft:{tool['base_tier']}_{tool['item_type']}",
+            "components": COMPONENTS
+        }
+    })
+
+WEAPON_CRAFTING = [
+    {"base_tier": "copper","base_item": "copper_ingot"},
+    {"base_tier": "iron","base_item": "iron_ingot"},
+    {"base_tier": "golden","base_item": "gold_ingot"},
+]
+
+#SWORD_CRAFTING
+for tool in WEAPON_CRAFTING:
+    current_tier = TIER_LOOKUP[tool["base_tier"]]
+    weapon_damage = current_tier["weapon_damage"]
+    attack_speed = current_tier["attack_speed"]
+    max_durability = current_tier["durability"]
+    COMPONENTS={
+            "minecraft:tooltip_display": {"hidden_components": ["minecraft:attribute_modifiers"]},	
+            "minecraft:attribute_modifiers": [
+                {
+                    "type": "minecraft:attack_damage",
+                    "id": f"bswt:{tool['base_tier']}_sword",
+                    "amount": weapon_damage-1,
+                    "operation": "add_value",
+                    "slot": "mainhand"
+                },
+                {
+                    "type": "minecraft:attack_speed",
+                    "id": f"bswt:{tool['base_tier']}_sword",
+                    "amount": -(4-attack_speed),
+                    "operation": "add_value",
+                    "slot": "mainhand"
+                }
+            ],
+            "minecraft:lore": [
+                {
+                    "text": f"{weapon_damage}🗡",
+                    "color": "red",
+                    "italic": false
+                },
+                {
+                    "text": f"{attack_speed}⌚",
+                    "color": "yellow",
+                    "italic": false
+                }
+            ],
+            "minecraft:max_damage": max_durability,
+        }
+    ctx.data.recipes[f"bswt:equipment/crafted/{tool['base_tier']}/sword"] = Recipe({
+
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "pattern": EQUIPMENT_PATTERNS_LOOKUP["sword"]["pattern"],
+        "key": {
+            "#": "minecraft:stick",
+            "X": f"minecraft:{tool["base_item"]}",
+        },
+        "result": {
+            "id": f"minecraft:{tool['base_tier']}_sword",
+            "components": COMPONENTS 
+        }
+    })
+
+#SPEAR_CRAFTING
+for tool in WEAPON_CRAFTING:
+    current_tier = TIER_LOOKUP[tool["base_tier"]]
+    weapon_damage = int (current_tier["weapon_damage"]*0.7)
+    attack_speed = int(current_tier["attack_speed"]*75)/100
+    max_durability = current_tier["durability"]
+    ctx.data.recipes[f"bswt:equipment/crafted/{tool['base_tier']}/spear"] = Recipe({
+
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "pattern": EQUIPMENT_PATTERNS_LOOKUP["spear"]["pattern"],
+        "key": {
+            "#": "minecraft:stick",
+            "X": f"minecraft:{tool["base_item"]}",
+        },
+        "result": {
+            "id": f"minecraft:{tool['base_tier']}_spear",
+            "components": {
+                "minecraft:max_damage": max_durability,
+                "minecraft:tooltip_display": {"hidden_components": ["minecraft:attribute_modifiers"]},	
+                "minecraft:attribute_modifiers": [
+                    {
+                        "type": "minecraft:attack_damage",
+                        "id": f"bswt:{tool['base_tier']}_spear",
+                        "amount": weapon_damage-1,
+                        "operation": "add_value",
+                        "slot": "mainhand"
+                    },
+                    {
+                        "type": "minecraft:attack_speed",
+                        "id": f"bswt:{tool['base_tier']}_spear",
+                        "amount": -(4-attack_speed),
+                        "operation": "add_value",
+                        "slot": "mainhand"
+                    }
+                ],
+                "minecraft:lore": [
+                    {
+                        "text": f"{weapon_damage}🗡",
+                        "color": "red",
+                        "italic": false
+                    },
+                    {
+                        "text": f"{attack_speed}⌚",
+                        "color": "yellow",
+                        "italic": false
+                    },
+                    {
+                        "text": "1-4.5→",
+                        "color": "green",
+                        "italic": false
+                    }
+                ],
+                "minecraft:attack_range": {
+                "min_reach": 1.0,
+                "max_reach": 4.5,
+                "min_creative_reach": 2.0,
+                "max_creative_reach": 6.5,
+                "hitbox_margin": 0.125,
+                "mob_factor": 0.5
+                }
+            }
+        }
+    })
+
+WEAPON_SMITHING = [
+    {"base_tier":"netherite","addition":"netherite_ingot","template":"hoglin_spawn_egg"},
+    {"base_tier":"netherite","addition":"netherite_ingot","template":"hoglin_spawn_egg"},
+    {"base_tier":"netherite","addition":"netherite_ingot","template":"hoglin_spawn_egg"},
+
+    {"base_tier":"diamond","addition":"diamond","template":"chicken_spawn_egg"},
+    {"base_tier":"diamond","addition":"diamond","template":"chicken_spawn_egg"},
+    {"base_tier":"diamond","addition":"diamond","template":"chicken_spawn_egg"},
+]
+
+#SWORD_SMITHING
+for tool in WEAPON_SMITHING:
+    current_tier = TIER_LOOKUP[tool["base_tier"]]
+    weapon_damage = current_tier["weapon_damage"]
+    attack_speed = current_tier["attack_speed"]
+    max_durability = current_tier["durability"]
+    COMPONENTS = {
+            "minecraft:tooltip_display": {"hidden_components": ["minecraft:attribute_modifiers"]},	
+            "minecraft:attribute_modifiers": [
+                {
+                    "type": "minecraft:attack_damage",
+                    "id": f"bswt:{tool['base_tier']}_sword",
+                    "amount": weapon_damage-1,
+                    "operation": "add_value",
+                    "slot": "mainhand"
+                },
+                {
+                    "type": "minecraft:attack_speed",
+                    "id": f"bswt:{tool['base_tier']}_sword",
+                    "amount": -(4-attack_speed),
+                    "operation": "add_value",
+                    "slot": "mainhand"
+                }
+            ],
+            "minecraft:lore": [
+                {
+                    "text": f"{weapon_damage}🗡",
+                    "color": "red",
+                    "italic": false
+                },
+                {
+                    "text": f"{attack_speed}⌚",
+                    "color": "yellow",
+                    "italic": false
+                }
+            ],
+            "minecraft:max_damage": max_durability,
+        }
+    if tool["base_tier"] == "diamond":
+        COMPONENTS["minecraft:item_name"] = {
+            "text": f"Diamond Sword",
+            "color": "aqua"
+        }
+    if tool["base_tier"] == "netherite":
+        COMPONENTS["minecraft:item_name"] = {
+            "text": f"Adamantine Sword",
+            "color": "aqua"
+        }
+    ctx.data.recipes[f"bswt:equipment/smithed/{tool['base_tier']}/sword"] = Recipe({
+        "type": "minecraft:smithing_transform",
+        "addition": f"minecraft:{tool['addition']}",
+        "base": "minecraft:golden_sword",
+        "template": f"minecraft:{tool['template']}",
+        "result": {
+            "id": f"minecraft:{tool['base_tier']}_sword",
+            "components": COMPONENTS
+        }
+    })
+
+#SPEAR_SMITHING
+for tool in WEAPON_SMITHING:
+    current_tier = TIER_LOOKUP[tool["base_tier"]]
+    weapon_damage = int (current_tier["weapon_damage"]*0.7)
+    attack_speed = int(current_tier["attack_speed"]*75)/100
+    max_durability = current_tier["durability"]
+    COMPONENTS = {
+            "minecraft:max_damage": max_durability,
+            "minecraft:tooltip_display": {"hidden_components": ["minecraft:attribute_modifiers"]},	
+            "minecraft:attribute_modifiers": [
+                {
+                    "type": "minecraft:attack_damage",
+                    "id": f"bswt:{tool['base_tier']}_spear",
+                    "amount": weapon_damage-1,
+                    "operation": "add_value",
+                    "slot": "mainhand"
+                },
+                {
+                    "type": "minecraft:attack_speed",
+                    "id": f"bswt:{tool['base_tier']}_spear",
+                    "amount": -(4-attack_speed),
+                    "operation": "add_value",
+                    "slot": "mainhand"
+                }
+            ],
+            "minecraft:lore": [
+                {
+                    "text": f"{weapon_damage}🗡",
+                    "color": "red",
+                    "italic": false
+                },
+                {
+                    "text": f"{attack_speed}⌚",
+                    "color": "yellow",
+                    "italic": false
+                },
+                {
+                    "text": "1-4.5→",
+                    "color": "green",
+                    "italic": false
+                }
+            ],
+            "minecraft:attack_range": {
+            "min_reach": 1.0,
+            "max_reach": 4.5,
+            "min_creative_reach": 2.0,
+            "max_creative_reach": 6.5,
+            "hitbox_margin": 0.125,
+            "mob_factor": 0.5
+            }
+        }
+    if tool["base_tier"] == "diamond":
+        COMPONENTS["minecraft:item_name"] = {
+            "text": f"Diamond Spear",
+            "color": "aqua"
+        }
+    if tool["base_tier"] == "netherite":
+        COMPONENTS["minecraft:item_name"] = {
+            "text": f"Adamantine Spear",
+            "color": "aqua"
+        }
+    ctx.data.recipes[f"bswt:equipment/smithed/{tool['base_tier']}/spear"] = Recipe({
+
+        "type": "minecraft:smithing_transform",
+        "addition": f"minecraft:{tool['addition']}",
+        "base": "minecraft:golden_spear",
+        "template": f"minecraft:{tool['template']}",
+        "result": {
+            "id": f"minecraft:{tool['base_tier']}_spear",
+            "components": COMPONENTS
+        }
+    })
+
+recipe bswt:equipment/crafted/ranged/arrow_cartridge {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+    "group": "bswt.arrow_cartridge",
+	"key": {
+		"X": "minecraft:copper_ingot",
+		"B": "minecraft:skeleton_spawn_egg",
+		"A": "minecraft:arrow"
+	},
+	"pattern": [
+		"BXB",
+		"AXA"
+	],
+	"result": {
+		"id": "minecraft:stray_spawn_egg",
+		"components": {
+			"!minecraft:entity_data": {},
+			"minecraft:lore": [
+				{
+					"text": "Fully loads a Chambered Crossbow.",
+					"color": "gray"
+				}
+			]
+		},
+		"count": 4
+	}
+}
+recipe bswt:equipment/crafted/ranged/arrow {
+	"type": "minecraft:crafting_shaped",
+	"category":"equipment",
+	"group": "arrow",
+	"key":{
+		"X":"minecraft:flint",
+		"#":"minecraft:stick",
+		"F":"minecraft:feather"
+	},
+	"pattern":[
+		"X",
+		"#",
+		"F"
+	],
+	"result": {
+		"id": "minecraft:arrow",
+		"count": 4
+	}
+}
+recipe bswt:equipment/crafted/ranged/bundle_arrows {
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"key": {
+		"#": "minecraft:arrow"
+	},
+	"pattern": [
+		"###",
+		"###",
+		"###"
+	],
+	"result": {
+		"id": "minecraft:skeleton_spawn_egg",
+		"components": {
+			"!minecraft:entity_data": {}
+		}
+	}
+}
+recipe bswt:equipment/crafted/ranged/iron_crossbow {
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "minecraft:stick",
+    "X": "minecraft:iron_ingot",
+    "~": [
+            "minecraft:string",
+            "minecraft:zombie_spawn_egg"
+        ]
+  },
+  "pattern": [
+    "XXX",
+    "~~~",
+    " # "
+  ],
+  "result": {
+    "id": "minecraft:crossbow",
+        "components": {
+        "minecraft:max_damage": 500,
+	      "minecraft:item_name": {
+				"text": "Iron Crossbow",
+				"color": "white",
+				"italic": false          
+				},
+      "minecraft:repairable":{
+        "items": [
+          "iron_ingot"
+        ]
+      },
+			"enchantments":{
+        "minecraft:power":1,
+				"bswt:bow_mechanics": 1
+			},
+			"enchantment_glint_override": false
+        }
+    }
+}
+recipe bswt:equipment/crafted/ranged/gilded_crossbow {
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "minecraft:stick",
+    "X": "minecraft:gold_ingot",
+    "~": [
+            "minecraft:string",
+            "minecraft:zombie_spawn_egg"
+        ]
+  },
+  "pattern": [
+    "XXX",
+    "~~~",
+    " # "
+  ],
+  "result": {
+    "id": "minecraft:crossbow",
+        "components": {
+        "minecraft:max_damage": 500,
+	      "minecraft:item_name": {
+				"text": "Gilded Crossbow",
+				"color": "white",
+				"italic": false          
+				},
+        "minecraft:item_model":"bswt_texture:gilded_crossbow",
+      "minecraft:repairable":{
+        "items": [
+          "gold_ingot"
+        ]
+      },
+			"enchantments":{
+        "minecraft:quick_charge":1,
+				"bswt:bow_mechanics": 1
+			},
+			"enchantment_glint_override": false
+        }
+    }
+}
+recipe bswt:equipment/crafted/ranged/chambered_crossbow {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"#": "minecraft:iron_ingot",
+		"X": "minecraft:copper_ingot",
+		"~": [
+			"minecraft:string",
+			"minecraft:zombie_spawn_egg"
+		],
+		"R": "minecraft:repeater"
+	},
+	"pattern": [
+		"XXX",
+		"~R~",
+		" # "
+	],
+	"result": {
+		"id": "minecraft:crossbow",
+		"components": {
+			"minecraft:max_damage": 500,
+			"minecraft:item_name": {
+				"text": "Chambered Crossbow",
+				"color": "white",
+				"italic": false
+			},
+			"minecraft:item_model": "bswt_texture:chambered_crossbow",
+			"minecraft:repairable":{
+				"items": [
+				"copper_ingot",
+				"iron_ingot"
+				]
+			},
+			"enchantments": {
+				"bswt:overload":1,
+                "bswt:hefty":1,
+				"bswt:bow_mechanics": 1
+			},
+			"enchantment_glint_override": false
+		}
+	}
+}

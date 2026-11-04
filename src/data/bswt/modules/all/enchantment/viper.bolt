@@ -1,0 +1,202 @@
+
+enchantment bswt:viper {
+	"anvil_cost": 0,
+	"description": {
+		"translate": "enchantment.bswt.viper"
+	},
+	"effects": {
+		"minecraft:projectile_spawned": [
+			{
+				"effect": {
+					"type": "minecraft:run_function",
+					"function": "bswt:enchantment/viper/start"
+				}
+			}
+		],
+		"minecraft:tick": [
+			{
+				"requirements": {
+					"condition": "minecraft:entity_properties",
+					"entity": "this",
+					"predicate": {
+						"minecraft:entity_tags": {
+							"all_of": [
+								"bswt.viperOrigin"
+							]
+						},
+						"minecraft:flags": {
+							"is_in_water": false,
+							"is_fall_flying": false
+						}
+					}
+				},
+				"effect": {
+					"type": "minecraft:all_of",
+					"effects": [
+						{
+							"type": "minecraft:run_function",
+							"function": "utility:tp"
+						},
+						{
+							"type": "minecraft:apply_impulse",
+							"direction": [
+								0,
+								0,
+								1
+							],
+							"coordinate_scale": [
+								1,
+								1,
+								1
+							],
+							"magnitude": 2
+						},
+						{
+							"type": "minecraft:run_function",
+							"function": "bswt:enchantment/viper/cleanup"
+						}
+					]
+				}
+			},
+			{
+				"requirements": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"minecraft:entity_tags": {
+								"all_of": [
+									"bswt.viperOrigin"
+								]
+							}
+						}
+					},
+					{
+						"condition": "minecraft:any_of",
+						"terms": [
+							{
+								"condition": "minecraft:entity_properties",
+								"entity": "this",
+								"predicate": {
+									"minecraft:flags": {
+										"is_in_water": true
+									}
+								}
+							},
+							{
+								"condition": "minecraft:entity_properties",
+								"entity": "this",
+								"predicate": {
+									"minecraft:flags": {
+										"is_fall_flying": true
+									}
+								}
+							}
+						]
+					}
+				],
+				"effect": {
+					"type": "minecraft:all_of",
+					"effects": [
+						{
+							"type": "minecraft:run_function",
+							"function": "utility:tp"
+						},
+						{
+							"type": "minecraft:apply_impulse",
+							"direction": [
+								0,
+								0,
+								1
+							],
+							"coordinate_scale": [
+								1,
+								1,
+								1
+							],
+							"magnitude": 0.1
+						},
+						{
+							"type": "minecraft:run_function",
+							"function": "bswt:enchantment/viper/cleanup"
+						}
+					]
+				}
+			},
+			{
+				"requirements": {
+					"condition": "minecraft:entity_scores",
+					"entity": "this",
+					"scores": {
+						"bswt.viperTimer": {
+							"min": 0
+						}
+					}
+				},
+				"effect": {
+					"type": "minecraft:run_function",
+					"function": "bswt:enchantment/viper/tick"
+				}
+			}
+		]
+	},
+	"max_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"max_level": 1,
+	"min_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"slots": [
+		"hand"
+	],
+	"supported_items": "minecraft:trident",
+	"exclusive_set": "#bswt:exclusive_set/riptide",
+	"weight": 1
+}
+predicate bswt:enchantment/viper/score {
+    "condition": "minecraft:entity_scores",
+    "entity": "this",
+    "scores": {
+        "bswt.viperTimer": {
+            "min": 1
+        }
+    }
+}
+function bswt:enchantment/viper/start:
+    tag @s add bswt.viperTrident
+    execute on origin run function bswt:enchantment/viper/origin
+
+function bswt:enchantment/viper/tick:
+    scoreboard players remove @s bswt.viperTimer 1
+    tag @s add bswt.viperImmune
+    execute as @e[type=!#bswt:nonliving_entity,tag=!bswt.viperImmune,distance=..2] run damage @s 6 minecraft:magic
+    tag @s remove bswt.viperImmune
+    particle minecraft:tinted_leaves{color:[0.604, 0.702, 0.259, 1.0]} ~ ~ ~ 1 1 1 0 3
+    particle minecraft:instant_effect{color:[0.5, 0.6, 0.2]} ~ ~ ~ 0 0 0 0 0
+    playsound block.azalea_leaves.break player @a ~ ~ ~ 4 1
+
+function bswt:enchantment/viper/cleanup:
+    tag @s remove bswt.viperOrigin
+    scoreboard players set @s bswt.viperTimer 10
+    playsound item.trident.riptide_1 player @s ~ ~ ~ 1 1.5
+    playsound item.spear.lunge_1 player @s ~ ~ ~ 1 1
+    effect give @s minecraft:poison 2 0
+
+function bswt:enchantment/viper/origin:
+    tag @s add bswt.viperOrigin
+    execute if entity @s[gamemode=creative] run return run kill @e[sort=nearest,limit=1,type=minecraft:trident,tag=bswt.viperTrident]
+    execute unless items entity @s weapon.mainhand * run return run function bswt:enchantment/viper/replace_hand {slot:weapon.mainhand}
+    execute unless items entity @s weapon.offhand * run return run function bswt:enchantment/viper/replace_hand {slot:weapon.offhand}
+    for i in range (8):
+        SLOT=f"hotbar.{i}"
+        execute unless items entity @s SLOT * run return run function bswt:enchantment/viper/replace_hand {slot:SLOT}
+    for i in range (26):
+        SLOT=f"inventory.{i}"
+        execute unless items entity @s SLOT * run return run function bswt:enchantment/viper/replace_hand {slot:SLOT}
+
+function bswt:enchantment/viper/replace_hand:
+    $item replace entity @s $(slot) from entity @e[sort=nearest,limit=1,type=minecraft:trident,tag=bswt.viperTrident] contents
+    kill @e[sort=nearest,limit=1,type=minecraft:trident,tag=bswt.viperTrident]

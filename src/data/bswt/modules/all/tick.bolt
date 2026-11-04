@@ -9,14 +9,15 @@ function ticking_functions:tick_1t/players:
     if predicate bswt:enchantment/infinity unless items entity @s saddle minecraft:arrow run function utility:ghost_arrow/check_infinity
     if predicate bswt:enchantment/overload unless items entity @s saddle minecraft:arrow run function utility:ghost_arrow/check_overload
     unless predicate bswt:enchantment/infinity unless predicate bswt:enchantment/overload if items entity @s saddle minecraft:arrow run function utility:ghost_arrow/remove
-
-    execute if predicate bswt:enchantment/hefty run function utility:swap_hands
+    if predicate bswt:enchantment/hefty run function utility:swap_hands
+    as @e[type=player,scores={bswt.playerDeaths=1..}] run function bswt:main/health/death
 
 function ticking_functions:tick_1t/universal:
     as @s[type=arrow,tag=bswt.FastArrow] run function bswt:enchantment/sharpshooter/arrow_tick
     as @s[tag=bswt.cannotAttack] run function utility:weakness_tick
-    as @s[type=!#bswt:cant_transfer_fire,predicate=bittersweet_functions:is_on_fire] at @s run function bswt:mob_effect/fire/apply
-    as @e[tag=bswt.iceStatue,nbt=!{Health:100.0f}] at @s run function bswt:mob_effect/frostbite/ice_statue/shatter
+    as @s[type=!#bswt:cant_transfer_fire,predicate=bswt:mob_effect/is_on_fire] run function bswt:mob_effect/fire/apply
+    as @s[tag=bswt.iceStatue,nbt=!{Health:100.0f}] run function bswt:mob_effect/frostbite/ice_statue/shatter
+    as @s[type=block_display,tag=bswt.vinerySpore] run function bswt:enchantment/vinery/petal/tick
 
 #—————————————————— 1 SECOND
 function ticking_functions:tick_1s/call:
@@ -27,17 +28,21 @@ function ticking_functions:tick_1s/call:
         
 
 function ticking_functions:tick_1s/players:
-    execute if score @s bswt.Hunger matches 10.. run effect give @s minecraft:hunger 1 255 true
-    execute if score @s bswt.Hunger matches ..6: 
-        effect give @s minecraft:saturation 1 1 true
-        effect clear @s minecraft:hunger
     function utility:anvil/tick
     function bswt:main/adrenaline/tick
+    function ticking_functions:tick_1s/cooldowns
+    if predicate bswt:enchantment/verdure/light if predicate bswt:enchantment/verdure/either_hand run function bswt:enchantment/verdure/tick
+    if entity @s[tag=bswt.vineryCaster] unless entity @e[type=minecraft:block_display,tag=bswt.vinerySpore,distance=..20] run tag @s remove bswt.vineryCaster
 
 function ticking_functions:tick_1s/universal:
     as @s[tag=bswt.lacerated] run function bswt:enchantment/laceration/tick
     as @s[tag=bswt.timed_projectile] run function utility:projectile_tick
-    as @s[tag=bswt.OnFire] at @s run function bswt:mob_effect/fire/tick
+    as @s[tag=bswt.OnFire] run function bswt:mob_effect/fire/tick
+
+function ticking_functions:tick_1s/cooldowns:
+#lunge
+    unless score @s bswt.cd.Lunge matches 3.. run scoreboard players add @s bswt.cd.Lunge 1
+    if score @s bswt.cd.Lunge matches 3 run tag @s add canLunge
 
 #—————————————————— 0.5 SECOND
 function ticking_functions:tick_0.5s/call:
@@ -48,7 +53,11 @@ function ticking_functions:tick_0.5s/call:
         
 
 function ticking_functions:tick_0.5s/players:
-    pass
+    if score @s bswt.Hunger matches 10.. run effect give @s minecraft:hunger 1 255 true
+    if score @s bswt.Hunger matches ..6: 
+        effect give @s minecraft:saturation 1 1 true
+        effect clear @s minecraft:hunger
+
 
 function ticking_functions:tick_0.5s/universal:
-    as @s[tag=bswt.frostbitten] at @s run function bswt:mob_effect/frostbite/tick
+    as @s[tag=bswt.frostbitten] run function bswt:mob_effect/frostbite/tick

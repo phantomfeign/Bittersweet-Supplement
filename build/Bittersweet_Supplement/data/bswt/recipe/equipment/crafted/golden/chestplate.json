@@ -1,0 +1,44 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": "minecraft:gold_ingot"
+  },
+  "result": {
+    "id": "minecraft:golden_chestplate",
+    "components": {
+      "minecraft:max_damage": 250,
+      "minecraft:tooltip_display": {
+        "hidden_components": [
+          "minecraft:attribute_modifiers"
+        ]
+      },
+      "minecraft:attribute_modifiers": [
+        {
+          "type": "minecraft:armor",
+          "id": "bswt:golden_chestplate",
+          "amount": 4,
+          "operation": "add_value",
+          "slot": "chest"
+        }
+      ],
+      "minecraft:lore": [
+        {
+          "text": "4\u26e8",
+          "color": "blue",
+          "italic": false
+        },
+        {
+          "text": "4/4=\ud83d\udd25\u26e8",
+          "color": "yellow",
+          "italic": false
+        }
+      ]
+    }
+  }
+}

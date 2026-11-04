@@ -1,0 +1,91 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "minecraft:horse_spawn_egg",
+  "base": "minecraft:iron_axe",
+  "template": "minecraft:piglin_spawn_egg",
+  "result": {
+    "id": "minecraft:stone_axe",
+    "components": {
+      "minecraft:max_damage": 2000,
+      "minecraft:item_model": "bswt_texture:bronze_halberd",
+      "minecraft:item_name": {
+        "text": "Bronze Halberd",
+        "color": "aqua"
+      },
+      "minecraft:attribute_modifiers": [
+        {
+          "type": "minecraft:block_interaction_range",
+          "id": "bswt:bronze_halberd",
+          "amount": 1,
+          "operation": "add_value",
+          "slot": "mainhand"
+        },
+        {
+          "type": "minecraft:entity_interaction_range",
+          "id": "bswt:bronze_halberd",
+          "amount": 1,
+          "operation": "add_value",
+          "slot": "mainhand"
+        },
+        {
+          "type": "minecraft:attack_speed",
+          "id": "bswt:bronze_halberd",
+          "amount": -3.2,
+          "operation": "add_value",
+          "slot": "mainhand"
+        },
+        {
+          "type": "minecraft:attack_damage",
+          "id": "bswt:bronze_halberd",
+          "amount": 10,
+          "operation": "add_value",
+          "slot": "mainhand"
+        }
+      ],
+      "minecraft:tooltip_display": {
+        "hidden_components": [
+          "minecraft:attribute_modifiers"
+        ]
+      },
+      "minecraft:lore": [
+        {
+          "text": "9\u26cf",
+          "color": "gold",
+          "italic": false
+        },
+        {
+          "text": "11\ud83d\udde1",
+          "color": "red",
+          "italic": false
+        },
+        {
+          "text": "0.8\u231a",
+          "color": "yellow",
+          "italic": false
+        },
+        {
+          "text": "2-4\u2192",
+          "color": "green",
+          "italic": false
+        }
+      ],
+      "minecraft:attack_range": {
+        "min_reach": 2,
+        "max_reach": 4,
+        "min_creative_reach": 2,
+        "max_creative_reach": 4
+      },
+      "minecraft:tool": {
+        "rules": [
+          {
+            "blocks": "#minecraft:mineable/axe",
+            "speed": 9,
+            "correct_for_drops": true
+          }
+        ],
+        "default_mining_speed": 1,
+        "damage_per_block": 1
+      }
+    }
+  }
+}

@@ -16,7 +16,7 @@
         "italic": false
       },
       "minecraft:item_model": "bswt_texture:copper_shears",
-      "minecraft:max_damage": 200
+      "minecraft:max_damage": 250
     }
   }
 }

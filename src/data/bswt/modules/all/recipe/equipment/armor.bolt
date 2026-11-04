@@ -1,0 +1,260 @@
+from beet import Recipe
+from bswt:all/utils/tiers import TIERS, TIER_LOOKUP, EQUIPMENT_PATTERNS_LOOKUP
+
+ARMOR_TYPES = [("helmet", "head"), ("chestplate", "chest"), ("leggings", "legs"), ("boots", "feet")]
+
+MATERIALS_CRAFTED = [
+    {"base_tier": "leather", "item": "leather", "sound": "leather","armor_major":3,"armor_minor":2},
+    {"base_tier": "copper", "item": "copper_ingot", "sound": "copper","armor_major":4,"armor_minor":3},
+    {"base_tier": "chainmail", "item": "iron_chain", "sound": "chain","armor_major":2,"armor_minor":2},
+    {"base_tier": "iron", "item": "iron_ingot", "sound": "iron","armor_major":5,"armor_minor":4},
+    {"base_tier": "golden", "item": "gold_ingot", "sound": "gold","armor_major":4,"armor_minor":3},
+]
+MATERIALS_SMITHED = [
+    {"base_tier": "diamond", "template":"chicken_spawn_egg", "item": "diamond", "sound": "diamond","armor_major":4,"armor_minor":4},
+    {"base_tier": "netherite", "template":"hoglin_spawn_egg", "item": "netherite_ingot", "sound": "netherite","armor_major":5,"armor_minor":5},
+]
+
+ARMOR_CRAFTING = []
+for CONFIG in MATERIALS_CRAFTED:
+    tier = CONFIG["base_tier"]
+    for item_type, slot in ARMOR_TYPES:
+        ARMOR_CRAFTING.append({
+            "base_tier": tier,
+            "base_item": CONFIG["item"],
+            "item_type": item_type,
+            "slot": slot,
+            "equip_sound": CONFIG["sound"],
+            "armor_major": CONFIG["armor_major"],
+            "armor_minor": CONFIG["armor_minor"],
+        })
+
+ARMOR_SMITHING = []
+for CONFIG in MATERIALS_SMITHED:
+    tier = CONFIG["base_tier"]
+    for item_type, slot in ARMOR_TYPES:
+        ARMOR_SMITHING.append({
+            "base_tier": tier,
+            "addition": CONFIG["item"],
+            "template": CONFIG["template"],
+            "item_type": item_type,
+            "slot": slot,
+            "equip_sound": CONFIG["sound"],
+            "armor_major": CONFIG["armor_major"],
+            "armor_minor": CONFIG["armor_minor"],
+        })
+
+NETHERITE_IMMUNITIES = {
+    "helmet": "🧪⛨: Blindness",
+    "chestplate": "🧪⛨: Weakness",
+    "leggings": "🧪⛨: Poison",
+    "boots": "🧪⛨: Slowness"
+}
+
+for armor in ARMOR_CRAFTING:
+    current_tier = TIER_LOOKUP[armor["base_tier"]]
+    if armor["item_type"] in ("helmet", "boots"):
+        armor_points = armor["armor_minor"]
+    else:
+        armor_points = armor["armor_major"]
+    max_durability = current_tier["durability"]
+
+    components = {
+        "minecraft:max_damage": max_durability,
+        "minecraft:tooltip_display": {"hidden_components": ["minecraft:attribute_modifiers"]},
+        "minecraft:attribute_modifiers": [
+            {
+                "type": "minecraft:armor",
+                "id": f"bswt:{armor['base_tier']}_{armor['item_type']}",
+                "amount": armor_points,
+                "operation": "add_value",
+                "slot": armor["slot"]
+            }
+        ],
+        "minecraft:lore": [
+            {
+                "text": f"{armor_points}⛨", 
+                "color": "blue", "italic": False
+            }
+        ]
+    }
+
+    if armor["item_type"] == "helmet":
+        if armor["base_tier"] in ("copper","golden"):
+            components["minecraft:equippable"] = {
+                "slot": "head",
+                "equip_sound": f"minecraft:item.armor.equip_{armor['equip_sound']}"
+            }
+    if armor["base_tier"] == "chainmail":
+        components["minecraft:enchantment_glint_override"] = false
+        components["minecraft:enchantments"] = {
+            "minecraft:protection": 1
+        }
+    if armor["base_tier"] == "golden":
+        components["minecraft:lore"].append({
+            "text": "4/4=🔥⛨",
+            "color": "yellow", 
+            "italic": False
+        })
+
+    ctx.data.recipes[f"bswt:equipment/crafted/{armor['base_tier']}/{armor['item_type']}"] = Recipe({
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "pattern": EQUIPMENT_PATTERNS_LOOKUP[armor["item_type"]]["pattern"],
+        "key": {
+            "X": f"minecraft:{armor['base_item']}"
+        },
+        "result": {
+            "id": f"minecraft:{armor['base_tier']}_{armor['item_type']}",
+            "components": components
+        }
+    })
+
+for armor in ARMOR_SMITHING:
+    current_tier = TIER_LOOKUP[armor["base_tier"]]
+    if armor["item_type"] in ("helmet", "boots"):
+        armor_points = armor["armor_minor"]
+    else:
+        armor_points = armor["armor_major"]
+    max_durability = current_tier["durability"]
+
+    components = {
+        "minecraft:max_damage": max_durability,
+        "minecraft:tooltip_display": {"hidden_components": ["minecraft:attribute_modifiers"]},
+        "minecraft:attribute_modifiers": [
+            {
+                "type": "minecraft:armor",
+                "id": f"bswt:{armor['base_tier']}_{armor['item_type']}",
+                "amount": armor_points,
+                "operation": "add_value",
+                "slot": armor["slot"]
+            }
+        ],
+        "minecraft:lore": [
+            {
+                "text": f"{armor_points}⛨", 
+                "color": "blue", "italic": False
+            }
+        ]
+    }
+
+    if armor["item_type"] == "helmet":
+        components["minecraft:equippable"] = {
+            "slot": "head",
+            "equip_sound": f"minecraft:item.armor.equip_{armor['equip_sound']}"
+        }
+    if armor["base_tier"] == "diamond":
+        components["minecraft:attribute_modifiers"].append({
+            "type": "minecraft:movement_speed",
+            "id": f"bswt:diamond_{armor['item_type']}",
+            "amount": 0.003,
+            "operation": "add_value",
+            "slot": armor["slot"]
+        })
+        components["minecraft:lore"].append({
+            "text": "+3%⏩", 
+            "color": "yellow", 
+            "italic": False
+        })
+        components["minecraft:item_name"] = {
+            "text": f"Diamond {armor['item_type'].capitalize()}",
+            "color": "aqua"
+        }
+    if armor["base_tier"] == "netherite":
+        components["minecraft:attribute_modifiers"].append({
+            "type": "minecraft:movement_speed",
+            "id": f"bswt:netherite_{armor['item_type']}_slow",
+            "amount": -0.005,
+            "operation": "add_value",
+            "slot": armor["slot"]
+        })
+        components["minecraft:lore"].append({
+            "text": "-5%⏩", 
+            "color": "yellow", 
+            "italic": False
+
+        })
+        components["minecraft:lore"].append({
+            "text": NETHERITE_IMMUNITIES[armor["item_type"]], 
+            "color": "yellow", 
+            "italic": False
+        })
+        components["minecraft:item_name"] = {
+            "text": f"Adamantine {armor['item_type'].capitalize()}",
+            "color": "aqua"
+        }
+    
+    ctx.data.recipes[f"bswt:equipment/smithed/{armor['base_tier']}/{armor['item_type']}"] = Recipe({
+        "type": "minecraft:smithing_transform",
+        "addition": f"minecraft:{armor['addition']}",
+        "base": f"minecraft:golden_{armor['item_type']}",
+        "template": f"minecraft:{armor['template']}",
+
+        "result": {
+            "id": f"minecraft:{armor['base_tier']}_{armor['item_type']}",
+            "components": components
+        }
+    })
+
+BRONZE_SMITHING = [("helmet", "head"), ("chestplate", "chest"), ("leggings", "legs"), ("boots", "feet")]
+
+for armor, slot in BRONZE_SMITHING:
+    COMPONENTS = {
+        "minecraft:item_name": {
+            "text": f"Bronze {armor.capitalize()}",
+            "color": "aqua"
+        },
+        "minecraft:item_model": f"bswt_texture:bronze_{armor}",
+        "minecraft:max_damage": TIERS[4]["durability"],
+        "minecraft:tooltip_display": {"hidden_components": ["minecraft:attribute_modifiers"]},
+			"minecraft:equippable": {
+				"slot": slot,
+				"equip_sound": "minecraft:item.armor.equip_copper",
+				"asset_id": "minecraft:bronze"
+			},
+        "minecraft:attribute_modifiers": [
+            {
+                "type": "minecraft:attack_damage",
+                "id": f"bswt:bronze_{armor}",
+                "amount": 2,
+                "operation": "add_value",
+                "slot": slot
+            },
+            {
+                "type": "minecraft:max_health",
+                "id": f"bswt:bronze_{armor}",
+                "amount": -2,
+                "operation": "add_value",
+                "slot": slot
+            }
+        ],
+        "minecraft:lore": [
+            {
+                "text": "+2🗡",
+                "color": "red",
+                "italic": false
+            },
+            {
+                "text": "-1❤",
+                "color": "dark_red",
+                "italic": false
+            }
+        ]
+    }
+
+    if armor == "helmet":
+        COMPONENTS["minecraft:equippable"] = {
+            "slot": "head",
+            "equip_sound": "minecraft:item.armor.equip_copper"
+        }
+
+    ctx.data.recipes[f"bswt:equipment/smithed/bronze/{armor}"] = Recipe({
+        "type": "minecraft:smithing_transform",
+        "addition": "minecraft:horse_spawn_egg",
+        "base": f"minecraft:copper_{armor}",
+        "template": "minecraft:piglin_spawn_egg",
+        "result": {
+            "id": f"minecraft:chainmail_{armor}",
+            "components": COMPONENTS
+        }
+    })

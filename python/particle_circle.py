@@ -2,16 +2,18 @@ import math
 import datetime
 
 #//vars
-particle_name="cloud"
+particle_name="soul"
 #radius, in blocks, of circle 
 circle_radius=0
 #num of points in circle
-particle_count=12
+particle_count=10
 #velocity 
 particle_velocity=2
 particle_velocity*= 1000000.0
 force_mode=""
 if force_mode!="":force_mode=" "+force_mode
+#z = halo, y = sky ring
+orientation="z"
 
 #//script
 #empty
@@ -33,8 +35,17 @@ for i in range(particle_count):
     dx_str=f"^{round(dx, 10)}" if abs(math.sin(angle)) > 0.01 else "^"
     dy_str=f"^{round(dy, 10)}" if abs(math.cos(angle)) > 0.01 else "^"
 
+    if orientation == "z":
+        z_str = y_str
+        dz_str = dy_str
+        y_str = "^"
+        dy_str = "^"
+    else:
+        z_str = "^"
+        dz_str = "^"
+    
     #instantiate
-    command=f"particle {particle_name} {x_str} {y_str} ^ {dx_str} {dy_str} ^ 0.0000001 0{force_mode}"
+    command=f"particle {particle_name} {x_str} {y_str} {z_str} {dx_str} {dy_str} {dz_str} 0.0000001 0{force_mode}"
     commands.append(command)
 
 #voila

@@ -1,0 +1,55 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "minecraft:horse_spawn_egg",
+  "base": "minecraft:copper_leggings",
+  "template": "minecraft:piglin_spawn_egg",
+  "result": {
+    "id": "minecraft:chainmail_leggings",
+    "components": {
+      "minecraft:item_name": {
+        "text": "Bronze Leggings",
+        "color": "aqua"
+      },
+      "minecraft:item_model": "bswt_texture:bronze_leggings",
+      "minecraft:max_damage": 2000,
+      "minecraft:tooltip_display": {
+        "hidden_components": [
+          "minecraft:attribute_modifiers"
+        ]
+      },
+      "minecraft:equippable": {
+        "slot": "legs",
+        "equip_sound": "minecraft:item.armor.equip_copper",
+        "asset_id": "minecraft:bronze"
+      },
+      "minecraft:attribute_modifiers": [
+        {
+          "type": "minecraft:attack_damage",
+          "id": "bswt:bronze_leggings",
+          "amount": 2,
+          "operation": "add_value",
+          "slot": "legs"
+        },
+        {
+          "type": "minecraft:max_health",
+          "id": "bswt:bronze_leggings",
+          "amount": -2,
+          "operation": "add_value",
+          "slot": "legs"
+        }
+      ],
+      "minecraft:lore": [
+        {
+          "text": "+2\ud83d\udde1",
+          "color": "red",
+          "italic": false
+        },
+        {
+          "text": "-1\u2764",
+          "color": "dark_red",
+          "italic": false
+        }
+      ]
+    }
+  }
+}

@@ -2,5 +2,6 @@
     "files.associations": {
         "*.bolt": "mcfunction"
     },
-    "python-envs.defaultEnvManager": "ms-python.python:system"
+    "python-envs.defaultEnvManager": "ms-python.python:system",
+    "beet.selectedConfigFile": "/Users/levlko/Documents/Minecraft Beet/Bittersweet Supplement/beet.json"
 }

@@ -1,0 +1,61 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "minecraft:stick",
+    "X": "minecraft:copper_ingot"
+  },
+  "pattern": [
+    " X ",
+    "  X",
+    "#X "
+  ],
+  "result": {
+    "id": "minecraft:copper_hoe",
+    "components": {
+      "minecraft:max_damage": 250,
+      "minecraft:item_model": "bswt_texture:copper_sickle",
+      "minecraft:item_name": {
+        "text": "Copper Sickle",
+        "color": "white"
+      },
+      "minecraft:attribute_modifiers": [
+        {
+          "type": "minecraft:attack_speed",
+          "id": "bswt:copper_sickle",
+          "amount": -2.6,
+          "operation": "add_value",
+          "slot": "mainhand"
+        },
+        {
+          "type": "minecraft:attack_damage",
+          "id": "bswt:copper_sickle",
+          "amount": 6,
+          "operation": "add_value",
+          "slot": "mainhand"
+        }
+      ],
+      "minecraft:tooltip_display": {
+        "hidden_components": [
+          "minecraft:attribute_modifiers"
+        ]
+      },
+      "minecraft:lore": [
+        {
+          "text": "7\ud83d\udde1",
+          "color": "red",
+          "italic": false
+        },
+        {
+          "text": "1.4\u231a",
+          "color": "yellow",
+          "italic": false
+        }
+      ],
+      "minecraft:enchantments": {
+        "bswt:hooking": 1
+      },
+      "enchantment_glint_override": false
+    }
+  }
+}

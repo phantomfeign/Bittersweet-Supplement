@@ -18,6 +18,24 @@
           "minecraft:attribute_modifiers"
         ]
       },
+      "minecraft:lore": [
+        {
+          "text": "6\u26cf",
+          "color": "gold",
+          "italic": false
+        },
+        {
+          "text": "9\ud83d\udde1",
+          "color": "red",
+          "italic": false
+        },
+        {
+          "text": "0.8\u231a",
+          "color": "yellow",
+          "italic": false
+        }
+      ],
+      "minecraft:max_damage": 500,
       "minecraft:tool": {
         "rules": [
           {
@@ -44,25 +62,7 @@
           "operation": "add_value",
           "slot": "mainhand"
         }
-      ],
-      "minecraft:lore": [
-        {
-          "text": "6\u26cf",
-          "color": "gold",
-          "italic": false
-        },
-        {
-          "text": "9\ud83d\udde1",
-          "color": "red",
-          "italic": false
-        },
-        {
-          "text": "0.8\u231a",
-          "color": "yellow",
-          "italic": false
-        }
-      ],
-      "minecraft:max_damage": 500
+      ]
     }
   }
 }

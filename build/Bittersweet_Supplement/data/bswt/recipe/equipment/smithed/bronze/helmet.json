@@ -1,0 +1,54 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "minecraft:horse_spawn_egg",
+  "base": "minecraft:copper_helmet",
+  "template": "minecraft:piglin_spawn_egg",
+  "result": {
+    "id": "minecraft:chainmail_helmet",
+    "components": {
+      "minecraft:item_name": {
+        "text": "Bronze Helmet",
+        "color": "aqua"
+      },
+      "minecraft:item_model": "bswt_texture:bronze_helmet",
+      "minecraft:max_damage": 2000,
+      "minecraft:tooltip_display": {
+        "hidden_components": [
+          "minecraft:attribute_modifiers"
+        ]
+      },
+      "minecraft:equippable": {
+        "slot": "head",
+        "equip_sound": "minecraft:item.armor.equip_copper"
+      },
+      "minecraft:attribute_modifiers": [
+        {
+          "type": "minecraft:attack_damage",
+          "id": "bswt:bronze_helmet",
+          "amount": 2,
+          "operation": "add_value",
+          "slot": "head"
+        },
+        {
+          "type": "minecraft:max_health",
+          "id": "bswt:bronze_helmet",
+          "amount": -2,
+          "operation": "add_value",
+          "slot": "head"
+        }
+      ],
+      "minecraft:lore": [
+        {
+          "text": "+2\ud83d\udde1",
+          "color": "red",
+          "italic": false
+        },
+        {
+          "text": "-1\u2764",
+          "color": "dark_red",
+          "italic": false
+        }
+      ]
+    }
+  }
+}

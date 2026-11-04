@@ -1,0 +1,151 @@
+from beet import ItemModifier
+enchantment bswt:overload {
+	"description": {
+		"translate": "enchantment.bswt.overload"
+	},
+	"anvil_cost": 2,
+	"max_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"max_level": 1,
+	"min_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"slots": [
+		"mainhand",
+		"offhand"
+	],
+	"effects": {
+		"minecraft:damage": [
+			{
+				"effect": {
+					"type": "minecraft:add",
+					"value": -1
+				}
+			}
+		]
+	},
+	"supported_items": "#minecraft:enchantable/crossbow",
+	"exclusive_set": "#bswt:exclusive_set/crossbow_type",
+	"weight": 5
+}
+advancement temp:enchantment/overload/shot {
+	"parent": "temp:root",
+	"criteria": {
+		"shoot": {
+			"trigger": "minecraft:shot_crossbow",
+			"conditions": {}
+		}
+	},
+	"rewards": {
+		"function": "bswt:enchantment/overload/shot"
+	}
+}
+advancement temp:enchantment/overload/use {
+	"parent": "temp:root",
+	"criteria": {
+		"shoot": {
+			"trigger": "minecraft:using_item",
+			"conditions": {
+                "item": {
+                    "items": ["minecraft:crossbow"] 
+                }
+            }
+		}
+	},
+	"rewards": {
+		"function": "bswt:enchantment/overload/load_detection/tick"
+	}
+}
+item_modifier bswt:enchantment/overload/loaded/true {
+	"function": "minecraft:set_custom_data",
+	"tag": {
+		"bswt.overloadLoaded":true
+	}
+}
+item_modifier bswt:enchantment/overload/loaded/false {
+	"function": "minecraft:set_custom_data",
+	"tag": {
+		"bswt.overloadLoaded":false
+	}
+}
+for i in range(5):
+    ctx.data.item_modifiers[f"bswt:enchantment/overload/ammo/{i}"] = ItemModifier({
+        "function": "minecraft:set_custom_data",
+        "tag": {
+            "bswt.overloadAmmo": i
+        }
+    })
+
+function bswt:enchantment/overload/load_detection/revoke:
+    #if not loaded but loaded is true set loaded to false
+    if items entity @s weapon.mainhand crossbow[custom_data~{bswt.overloadAmmo:0b,bswt.overloadLoaded:true}] \
+    run item modify entity @s weapon.mainhand bswt:enchantment/overload/loaded/false
+
+    #end and revoke advancement if loaded
+    if items entity @s weapon.mainhand crossbow[custom_data~{bswt.overloadLoaded:true}] \
+    run return run advancement revoke @s only temp:enchantment/overload/use
+
+    #set loaded to false and revoke adv
+    item modify entity @s weapon.mainhand bswt:enchantment/overload/loaded/false
+    advancement revoke @s only temp:enchantment/overload/use
+
+    #un-saddleify loaded arrows
+    if items entity @s weapon.mainhand crossbow[minecraft:charged_projectiles=[{id:"minecraft:arrow",components:{"equippable":{slot:"saddle","equip_sound":"minecraft:intentionally_empty"}}}]] \
+    if predicate bswt:enchantment/overload run item modify entity @s weapon.mainhand utility:load_arrow
+
+    #check if loaded with arrow
+    if items entity @s weapon.mainhand crossbow[minecraft:charged_projectiles=[{id:"minecraft:arrow"}]] \
+    if predicate bswt:enchantment/overload run return run function bswt:enchantment/overload/load_crossbow/call
+
+    if items entity @s weapon.mainhand crossbow[minecraft:charged_projectiles=[{id:"minecraft:arrow",components:{"minecraft:intangible_projectile":{}}}]] \
+    if predicate bswt:enchantment/overload run return run function bswt:enchantment/overload/load_crossbow/call
+
+function bswt:enchantment/overload/load_detection/schedule:
+    execute as @a[advancements={temp:enchantment/overload/use=true}] run function bswt:enchantment/overload/load_detection/revoke
+
+function bswt:enchantment/overload/load_detection/tick:
+    schedule function bswt:enchantment/overload/load_detection/schedule 1t
+
+function bswt:enchantment/overload/load_crossbow/call:
+    item modify entity @s weapon.mainhand bswt:enchantment/overload/loaded/true
+    function bswt:enchantment/overload/load_crossbow/general
+
+function bswt:enchantment/overload/load_crossbow/general:
+    execute as @s[gamemode=creative] run return run item modify entity @s weapon.mainhand bswt:enchantment/overload/ammo/4
+
+    execute store result score @s bswt.arrowCount run clear @s arrow 0
+    if score @s bswt.arrowCount matches 4.. run return run function bswt:enchantment/overload/load_crossbow/arrow {count:4}
+
+    execute store result score @s bswt.arrowCount run clear @s stray_spawn_egg 0
+    if score @s bswt.arrowCount matches 1.. run return run function bswt:enchantment/overload/load_crossbow/cartridge
+
+    execute store result score @s bswt.arrowCount run clear @s arrow 0
+    for i in range(4):
+        if score @s bswt.arrowCount matches i run return run function f"bswt:enchantment/overload/load_crossbow/arrow" {count: i}
+
+function bswt:enchantment/overload/load_crossbow/arrow:
+    $clear @s arrow $(count)
+    $item modify entity @s weapon.mainhand bswt:enchantment/overload/ammo/$(count)
+
+function bswt:enchantment/overload/load_crossbow/cartridge:
+    clear @s minecraft:stray_spawn_egg 1
+    item modify entity @s weapon.mainhand bswt:enchantment/overload/ammo/4
+    playsound item.lodestone_compass.lock player @s ~ ~ ~ 1 0.5
+
+    if items entity @s inventory.* minecraft:arrow run return run give @s minecraft:arrow
+    if items entity @s hotbar.* minecraft:arrow run return run give @s minecraft:arrow
+
+function bswt:enchantment/overload/shot:
+    advancement revoke @s only temp:enchantment/overload/shot
+    execute unless predicate bswt:enchantment/overload run return run say fail
+    item modify entity @s weapon.mainhand bswt:enchantment/overload/loaded/false
+    for i in range (4):
+        CURRENT = i + 1
+        FILTER = f"crossbow[custom_data~{{bswt.overloadAmmo:{CURRENT}b}}]"
+        DECREASE = f"bswt:enchantment/overload/ammo/{i}"
+        execute if items entity @s weapon.mainhand (FILTER):
+            item modify entity @s weapon.mainhand utility:load_arrow
+            item modify entity @s weapon.mainhand (DECREASE)

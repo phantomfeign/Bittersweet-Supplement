@@ -1,0 +1,55 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "minecraft:horse_spawn_egg",
+  "base": "minecraft:copper_boots",
+  "template": "minecraft:piglin_spawn_egg",
+  "result": {
+    "id": "minecraft:chainmail_boots",
+    "components": {
+      "minecraft:item_name": {
+        "text": "Bronze Boots",
+        "color": "aqua"
+      },
+      "minecraft:item_model": "bswt_texture:bronze_boots",
+      "minecraft:max_damage": 2000,
+      "minecraft:tooltip_display": {
+        "hidden_components": [
+          "minecraft:attribute_modifiers"
+        ]
+      },
+      "minecraft:equippable": {
+        "slot": "feet",
+        "equip_sound": "minecraft:item.armor.equip_copper",
+        "asset_id": "minecraft:bronze"
+      },
+      "minecraft:attribute_modifiers": [
+        {
+          "type": "minecraft:attack_damage",
+          "id": "bswt:bronze_boots",
+          "amount": 2,
+          "operation": "add_value",
+          "slot": "feet"
+        },
+        {
+          "type": "minecraft:max_health",
+          "id": "bswt:bronze_boots",
+          "amount": -2,
+          "operation": "add_value",
+          "slot": "feet"
+        }
+      ],
+      "minecraft:lore": [
+        {
+          "text": "+2\ud83d\udde1",
+          "color": "red",
+          "italic": false
+        },
+        {
+          "text": "-1\u2764",
+          "color": "dark_red",
+          "italic": false
+        }
+      ]
+    }
+  }
+}

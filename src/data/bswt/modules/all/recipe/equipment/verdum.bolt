@@ -1,0 +1,354 @@
+recipe bswt:misc_crafting/verdum_crystal {
+	"type": "minecraft:crafting_shaped",
+	"key": {
+		"L":"minecraft:jungle_leaves",
+		"#": "minecraft:moss_block",
+		"X": "minecraft:pig_spawn_egg",
+		"A": "minecraft:amethyst_shard",
+		"E": "minecraft:emerald",
+		"H": "minecraft:honeycomb"
+	},
+	"pattern": [
+		"HEH",
+		"LXL",
+		"#A#"
+	],
+	"result": {
+		"count": 3,
+		"id": "minecraft:bogged_spawn_egg",
+		"componenets": [
+			"!minecraft:entity_data"
+		]
+	}
+}
+recipe bswt:multitool/crafted/verdum/mattock {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"pattern": [
+		"XX#",
+		" #X",
+		"# X"
+	],
+	"key": {
+		"#": "minecraft:stick",
+		"X": "minecraft:bogged_spawn_egg"
+	},
+	"result": {
+		"count": 1,
+		"id": "minecraft:stone_hoe",
+		"components": {
+			"minecraft:item_name": {
+				"text": "Verdum Mattock",
+				"color": "green",
+                "italic": false
+			},
+			"minecraft:item_model": "bswt_texture:verdum_mattock",
+			"minecraft:max_damage": 320,
+            "minecraft:repairable": {
+				"items": [
+                    "minecraft:bogged_spawn_egg"    
+				]
+			},
+			"minecraft:enchantment_glint_override":false,
+			"minecraft:enchantments": {
+				"bswt:verdure": 1
+			},
+			"minecraft:custom_data": {
+				"multitool": "mattock"
+			},
+			"minecraft:tool": {
+				"rules": [
+					{
+						"blocks": "#minecraft:mineable/pickaxe",
+						"speed": 8,
+						"correct_for_drops": true
+					},
+					{
+						"blocks": "#minecraft:mineable/hoe",
+						"speed": 8,
+						"correct_for_drops": true
+					}
+				],
+				"default_mining_speed": 1,
+				"damage_per_block": 1
+			},
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "8⛏",
+					"color": "gold",
+					"italic": false
+				}
+			]
+		}
+	}
+}
+recipe bswt:multitool/crafted/verdum/pulaski {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"pattern": [
+		"X#X",
+		" #X",
+		" # "
+	],
+	"key": {
+		"#": "minecraft:stick",
+		"X": "minecraft:bogged_spawn_egg"
+	},
+	"result": {
+		"count": 1,
+		"id": "minecraft:stone_axe",
+		"components": {
+			"minecraft:item_name": {
+				"text": "Verdum Pulaski",
+				"color": "green",
+                "italic": false
+			},
+			"minecraft:item_model": "bswt_texture:verdum_pulaski",
+			"minecraft:max_damage": 320,
+			"minecraft:damage":0,
+            "minecraft:repairable": {
+				"items": [
+                    "minecraft:bogged_spawn_egg"    
+				]
+			},
+			"minecraft:enchantment_glint_override":false,
+			"minecraft:enchantments": {
+				"bswt:verdure": 1
+			},
+			"minecraft:custom_data": {
+				"multitool": "pulaski"
+			},
+			"minecraft:tool": {
+				"rules": [
+					{
+						"blocks": "#minecraft:mineable/axe",
+						"speed": 8,
+						"correct_for_drops": true
+					},
+					{
+						"blocks": "#minecraft:mineable/shovel",
+						"speed": 8,
+						"correct_for_drops": true
+					}
+				],
+				"default_mining_speed": 1,
+				"damage_per_block": 1
+			},
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "8⛏",
+					"color": "gold",
+					"italic": false
+				}
+			]
+		}
+	}
+}
+recipe bswt:multitool/crafted/verdum/piercer {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"#": "minecraft:iron_ingot",
+		"X": "minecraft:bogged_spawn_egg",
+		"S": "minecraft:stick"
+	},
+	"pattern": [
+		"XXX",
+		" # ",
+		" S "
+	],
+	"result": {
+		"id": "minecraft:trident",
+		"components": {
+			"minecraft:item_model": "bswt_texture:verdum_piercer",
+			"minecraft:item_name": {
+				"text": "Verdum Piercer",
+				"color": "green"
+			},
+            "minecraft:max_damage":600,
+			"minecraft:damage":0,
+            "minecraft:repairable": {
+				"items": [
+					"minecraft:iron_ingot",
+                    "minecraft:bogged_spawn_egg"    
+				]
+			},
+
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:attack_speed",
+					"id": "bswt:verdum_piercer",
+					"amount": -2.4,
+					"operation": "add_value",
+					"slot": "mainhand"
+				},
+				{
+					"type": "minecraft:attack_damage",
+					"id": "bswt:verdum_piercer",
+					"amount": 6,
+					"operation": "add_value",
+					"slot": "mainhand"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "7🗡",
+					"color": "red",
+					"italic": false
+				},
+				{
+					"text": "1.6⌚",
+					"color": "yellow",
+					"italic": false
+				},
+				{
+					"text": "+0.5→",
+					"color": "green",
+					"italic": false
+				}
+			],
+			"minecraft:piercing_weapon": {
+				"deals_knockback": true,
+				"dismounts": true,
+				"sound": "minecraft:item.spear.attack",
+				"hit_sound": "minecraft:item.spear.hit"
+			},
+			"minecraft:attack_range": {
+				"min_reach": 1,
+				"max_reach": 3.5,
+				"min_creative_reach": 1,
+				"max_creative_reach": 3.5
+			},
+			"minecraft:swing_animation": {
+				"type": "stab",
+				"duration": 12
+			},
+			"minecraft:minimum_attack_charge": 1,
+			"minecraft:enchantments": {
+				"bswt:verdure": 1,
+				"bswt:viper": 1,
+				"bswt:hooking": 1
+			}
+		}
+	}
+}
+recipe bswt:multitool/crafted/verdum/quarterstaff {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"#": "minecraft:iron_ingot",
+		"X": "minecraft:bogged_spawn_egg"
+	},
+	"pattern": [
+		"  X",
+		" # ",
+		"X  "
+	],
+	"result": {
+		"id": "minecraft:stone_pickaxe",
+		"components": {
+			"!minecraft:tool":{},
+			"minecraft:item_name": {
+				"text": "Verdum Quarterstaff",
+				"color": "green"
+			},
+			"minecraft:item_model": "bswt_texture:verdum_quarterstaff",
+            "minecraft:max_stack_size":1,
+            "minecraft:max_damage":600,
+			"minecraft:damage":0,
+            "minecraft:repairable": {
+				"items": [
+					"minecraft:iron_ingot",
+                    "minecraft:bogged_spawn_egg"    
+				]
+			},
+			"!minecraft:consumable": {},
+			"minecraft:enchantment_glint_override":false,
+			"minecraft:enchantments": {
+				"bswt:vinery": 1,
+				"bswt:verdure": 1
+			},
+			"minecraft:blocks_attacks": {
+				"damage_reductions": [
+					{
+						"base": 1,
+						"factor": 0.5
+					}
+				],
+				"block_sound": "minecraft:intentionally_empty",
+				"disabled_sound": "minecraft:item.shield.break",
+				"bypassed_by": "#minecraft:bypasses_shield"
+			},
+						"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:block_interaction_range",
+					"id": "bswt:verdum_quarterstaff",
+					"amount": 0.5,
+					"operation": "add_value",
+					"slot": "hand"
+				},
+				{
+					"type": "minecraft:attack_speed",
+					"id": "bswt:verdum_quarterstaff",
+					"amount": -2.4,
+					"operation": "add_value",
+					"slot": "mainhand"
+				},
+				{
+					"type": "minecraft:attack_damage",
+					"id": "bswt:verdum_quarterstaff",
+					"amount": 4,
+					"operation": "add_value",
+					"slot": "mainhand"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "Blocked attacks add charges to Vinery.",
+					"color": "gray",
+					"italic": false
+				},
+				{
+					"text": "5🗡",
+					"color": "red",
+					"italic": false
+				},
+				{
+					"text": "1.6⌚",
+					"color": "yellow",
+					"italic": false
+				},
+				{
+					"text": "+0.5→",
+					"color": "green",
+					"italic": false
+				},
+				{
+					"text": "🛡: 50%",
+					"color": "gray",
+					"italic": false
+				}
+			]
+		}
+	}
+}

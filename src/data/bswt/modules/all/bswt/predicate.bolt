@@ -200,3 +200,11 @@ predicate bswt:chance/25 {
   "condition": "minecraft:random_chance",
   "chance": 0.25
 }
+predicate bswt:chance/20 {
+  "condition": "minecraft:random_chance",
+  "chance": 0.20
+}
+predicate bswt:chance/10 {
+  "condition": "minecraft:random_chance",
+  "chance": 0.10
+}

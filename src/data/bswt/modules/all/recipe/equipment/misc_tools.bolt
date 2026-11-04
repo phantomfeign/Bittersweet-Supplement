@@ -1,0 +1,172 @@
+from bswt:all/utils/tiers import TIERS, TIER_LOOKUP, EQUIPMENT_PATTERNS_LOOKUP
+
+recipe bswt:misc_tools/copper_shears {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"#": "minecraft:copper_ingot"
+	},
+	"pattern": [
+		" #",
+		"# "
+	],
+	"result": {
+		"id": "minecraft:shears",
+		"components": {
+			"minecraft:item_name": {
+				"text": "Copper Shears",
+				"italic": false
+			},
+			"minecraft:item_model": "bswt_texture:copper_shears",
+			"minecraft:max_damage":TIERS[1]["durability"]
+		}
+	}
+}
+recipe bswt:misc_tools/percussive_firestarter {
+	"type": "minecraft:crafting_shapeless",
+	"category": "equipment",
+	"ingredients": [
+		"minecraft:flint",
+		"minecraft:flint"
+	],
+	"result": {
+		"id": "minecraft:flint_and_steel",
+		"components": {
+			"minecraft:max_damage": 1,
+			"minecraft:item_name": "Percussion Firestarter",
+			"minecraft:item_model": "bittersweet_textures:percussion_firestarter",
+			"minecraft:lore": [
+				{
+					"text": "One-time use!",
+					"color": "gray"
+				}
+			],
+			"minecraft:custom_data": {
+				"firestarter": true
+			}
+		}
+	}
+}
+recipe bswt:misc_tools/flint_and_steel {
+	"type": "minecraft:crafting_shapeless",
+	"category": "equipment",
+	"ingredients": [
+		"minecraft:flint",
+		"minecraft:iron_ingot"
+	],
+	"result": {
+		"id": "minecraft:flint_and_steel",
+		"components": {
+			"minecraft:max_damage": 30,
+			"minecraft:lore": [
+				{
+					"text": "Ignites arrows when held in offhand.",
+					"color": "gray"
+				}
+			]
+		}
+	}
+}
+recipe bswt:misc_tools/iron_shears {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"#": "minecraft:iron_ingot"
+	},
+	"pattern": [
+		" #",
+		"# "
+	],
+	"result": {
+		"id": "minecraft:shears",
+		"components": {
+            "minecraft:item_name": {
+				"text": "Iron Shears",
+				"italic": false
+			},
+			"minecraft:max_damage":TIERS[2]["durability"]
+		}
+	}
+}
+recipe bswt:misc_tools/calibrated_compass {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"pattern": [
+		"F",
+		"X",
+		"#"
+	],
+	"key": {
+		"#": "minecraft:iron_ingot",
+		"X": "minecraft:redstone",
+		"F":"minecraft:flint"
+	},
+	"result": {
+		"id": "minecraft:compass",
+		"components": {
+			"minecraft:custom_name": {
+				"text":"Calibrated Compass",
+				"italic":false
+			},
+			"minecraft:lodestone_tracker": {
+				"target": {
+					"pos": [
+						0,
+						64,
+						-999999
+					],
+					"dimension": "minecraft:overworld"
+				},
+				"tracked": false
+			},
+			"minecraft:lore": [
+				{
+					"text": "Points north!",
+					"color": "gray"
+				}
+			]
+		}
+	}
+}
+recipe bswt:misc_tools/iron_shield {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"X": "minecraft:iron_ingot",
+		"W": "#minecraft:planks"
+	},
+	"pattern": [
+		"XWX",
+		"XWX",
+		"XWX"
+	],
+	"result": {
+		"id": "minecraft:shield",
+		"components": {
+			"minecraft:item_name": "Iron Shield",
+			"minecraft:item_model": "minecraft:shield",
+			"minecraft:max_damage": 300,
+			"minecraft:damage": 0,
+			"minecraft:lore": [
+				{
+					"text": "🛡: 90%",
+					"color": "gray",
+					"italic": false
+				}
+			],
+			"minecraft:repairable":{
+				"items": ["minecraft:iron_ingot"]
+			},
+			"minecraft:blocks_attacks": {
+				"damage_reductions": [
+					{
+						"base": 0,
+						"factor": 0.9
+					}
+				],
+				"block_sound": "minecraft:item.shield.block",
+				"disabled_sound": "minecraft:item.shield.break"
+			}
+		}
+	}
+}

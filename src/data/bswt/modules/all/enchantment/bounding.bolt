@@ -1,0 +1,132 @@
+enchantment bswt:bounding {
+	"description": {
+		"translate": "enchantment.bswt.bounding",
+		"fallback": "Bounding"
+	},
+	"supported_items": "#minecraft:enchantable/foot_armor",
+	"exclusive_set": "#bswt:exclusive_set/bounding",
+	"weight": 2,
+	"max_level": 1,
+	"max_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"min_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"anvil_cost": 0,
+	"slots": [
+		"feet"
+	],
+	"effects": {
+		"minecraft:damage_protection": [
+			{
+				"effect": {
+					"type": "minecraft:add",
+					"value": 2
+				},
+				"requirements": {
+					"condition": "minecraft:damage_source_properties",
+					"predicate": {
+						"tags": [
+							{
+								"expected": true,
+								"id": "minecraft:is_fall"
+							},
+							{
+								"expected": false,
+								"id": "minecraft:bypasses_invulnerability"
+							}
+						]
+					}
+				}
+			}
+		],
+		"minecraft:tick": [
+			{
+				"effect": {
+					"type": "minecraft:run_function",
+					"function": "bswt:enchantment/bounding/check"
+				}
+			},
+			{
+				"requirements": {
+					"condition": "minecraft:entity_properties",
+					"entity": "this",
+					"predicate": {
+						"minecraft:entity_tags": {
+							"all_of": [
+								"canBoundingJump"
+							]
+						},
+						"flags": {
+							"is_on_ground": false,
+							"is_in_water": false
+						},
+						"minecraft:type_specific/player": {
+							"input": {
+								"jump": true
+							}
+						}
+					}
+				},
+				"effect": {
+					"type": "minecraft:all_of",
+					"effects": [
+						{
+							"type": "minecraft:run_function",
+							"function": "utility:tp"
+						},
+						{
+							"type": "minecraft:apply_impulse",
+							"direction": [
+								0,
+								1.25,
+								0
+							],
+							"coordinate_scale": [
+								0,
+								1,
+								0
+							],
+							"magnitude": 0.5
+						},
+						{
+							"type": "minecraft:run_function",
+							"function": "bswt:enchantment/bounding/double_jump"
+						}
+					]
+				}
+			}
+		]
+	}
+}
+function bswt:enchantment/bounding/check:
+    if predicate bswt:flag/on_ground:
+        tag @s add boundingJumpEligible
+        tag @s remove jumped
+        tag @s remove releasedJump
+        tag @s remove canBoundingJump
+        scoreboard players set @s bswt.playerJumps 0
+    execute as @a[predicate=!bswt:flag/on_ground] if score @s bswt.playerJumps matches 0 run scoreboard players add @s bswt.playerJumps 1
+
+    execute as @s[tag=boundingJumpEligible]:
+        if score @s bswt.playerJumps matches 1.. run tag @s add jumped
+        scoreboard players set @s bswt.boundingJumps 0
+        scoreboard players set @s bswt.playerJumps 0
+
+    execute as @s[tag=jumped] unless predicate bswt:player/input/jump:
+        tag @s add releasedJump
+        tag @s remove jumped
+    execute as @s[tag=releasedJump]:
+        if score @s bswt.boundingJumps matches 0 if predicate bswt:player/input/jump run tag @s add canBoundingJump
+        if predicate bswt:player/input/jump run tag @s remove releasedJump
+
+function bswt:enchantment/bounding/double_jump:
+    tag @s remove canBoundingJump
+    tag @s remove boundingJumpEligible
+    scoreboard players add @s bswt.boundingJumps 1
+    particle minecraft:cloud ~ ~ ~ 0 0 0 0.05 3 force @a
+    playsound minecraft:entity.phantom.flap player @s ~ ~ ~ 4 1.5
+    playsound minecraft:entity.player.attack.nodamage player @s ~ ~ ~ 4 0.5

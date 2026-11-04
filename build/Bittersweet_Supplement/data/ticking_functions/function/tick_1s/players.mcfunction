@@ -1,4 +1,5 @@
-execute if score @s bswt.Hunger matches 10.. run effect give @s minecraft:hunger 1 255 true
-execute if score @s bswt.Hunger matches ..6 run function ticking_functions:tick_1s/players/nested_execute_0
 function utility:anvil/tick
 function bswt:main/adrenaline/tick
+function ticking_functions:tick_1s/cooldowns
+execute if predicate bswt:enchantment/verdure/light if predicate bswt:enchantment/verdure/either_hand run function bswt:enchantment/verdure/tick
+execute if entity @s[tag=bswt.vineryCaster] unless entity @e[type=minecraft:block_display, tag=bswt.vinerySpore, distance=..20] run tag @s remove bswt.vineryCaster

@@ -39,7 +39,11 @@
           "italic": false
         }
       ],
-      "minecraft:max_damage": 4000
+      "minecraft:max_damage": 4000,
+      "minecraft:item_name": {
+        "text": "Adamantine Sword",
+        "color": "aqua"
+      }
     }
   }
 }

@@ -1,0 +1,49 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "minecraft:diamond",
+  "base": "minecraft:golden_chestplate",
+  "template": "minecraft:chicken_spawn_egg",
+  "result": {
+    "id": "minecraft:diamond_chestplate",
+    "components": {
+      "minecraft:max_damage": 2000,
+      "minecraft:tooltip_display": {
+        "hidden_components": [
+          "minecraft:attribute_modifiers"
+        ]
+      },
+      "minecraft:attribute_modifiers": [
+        {
+          "type": "minecraft:armor",
+          "id": "bswt:diamond_chestplate",
+          "amount": 4,
+          "operation": "add_value",
+          "slot": "chest"
+        },
+        {
+          "type": "minecraft:movement_speed",
+          "id": "bswt:diamond_chestplate",
+          "amount": 0.003,
+          "operation": "add_value",
+          "slot": "chest"
+        }
+      ],
+      "minecraft:lore": [
+        {
+          "text": "4\u26e8",
+          "color": "blue",
+          "italic": false
+        },
+        {
+          "text": "+3%\u23e9",
+          "color": "yellow",
+          "italic": false
+        }
+      ],
+      "minecraft:item_name": {
+        "text": "Diamond Chestplate",
+        "color": "aqua"
+      }
+    }
+  }
+}

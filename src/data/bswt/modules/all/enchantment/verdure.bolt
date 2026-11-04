@@ -1,0 +1,181 @@
+enchantment bswt:verdure {
+	"anvil_cost": 0,
+	"description": {
+		"translate": "enchantment.bswt.verdure"
+	},
+	"effects": {
+		"minecraft:post_attack": [
+			{
+				"effect": {
+					"type": "minecraft:apply_mob_effect",
+					"max_amplifier": 0,
+					"min_amplifier": 0,
+					"max_duration": 5,
+					"min_duration": 3,
+					"to_apply": "minecraft:poison"
+				},
+				"enchanted": "attacker",
+				"affected": "victim"
+			},
+			{
+				"requirements": {
+					"condition": "minecraft:inverted",
+					"term": {
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"minecraft:entity_type": "#bswt:nonliving_entity"
+						}
+					}
+				},
+				"effect": {
+					"type": "minecraft:apply_mob_effect",
+					"max_amplifier": 0,
+					"min_amplifier": 0,
+					"max_duration": 3,
+					"min_duration": 3,
+					"to_apply": "minecraft:regeneration"
+				},
+				"enchanted": "attacker",
+				"affected": "attacker"
+			}
+		]
+	},
+	"max_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"max_level": 1,
+	"min_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"slots": [
+		"mainhand"
+	],
+	"supported_items": "#minecraft:enchantable/melee_weapon",
+	"weight": 1
+}
+function bswt:enchantment/verdure/tick:
+    execute if predicate bswt:chance/10 run return fail
+    execute if predicate bswt:enchantment/verdure/mainhand run function utility:damage_item/call {heal:1,dmg:0,modified_slot:weapon.mainhand,slot:SelectedItem}
+    execute if predicate bswt:enchantment/verdure/offhand run function utility:damage_item/call {heal:1,dmg:0,modified_slot:"weapon.offhand",slot:equipment.offhand}
+
+predicate bswt:enchantment/verdure/light {
+	"condition": "all_of",
+	"terms": [
+		{
+			"condition": "minecraft:location_check",
+			"predicate": {
+				"light": {
+					"light": {
+						"min": 9
+					}
+				}
+			}
+		},
+		{
+			"condition": "minecraft:entity_properties",
+			"entity": "this",
+			"predicate": {
+				"minecraft:location": {
+					"can_see_sky": true
+				}
+			}
+		},
+		{
+			"condition": "minecraft:time_check",
+			"clock": "minecraft:overworld",
+			"value": {
+				"min": 0,
+				"max": 12000
+			},
+			"period": 24000
+		}
+	]
+}
+predicate bswt:enchantment/verdure/either_hand {
+	"condition": "any_of",
+	"terms": [
+		{
+			"condition": "minecraft:entity_properties",
+			"entity": "this",
+			"predicate": {
+				"slots": {
+					"weapon.mainhand": {
+						"predicates": {
+							"minecraft:enchantments": [
+								{
+									"enchantments": "bswt:verdure",
+									"levels": {
+										"min": 1
+									}
+								}
+							]
+						}
+					}
+				}
+			}
+		},
+		{
+			"condition": "minecraft:entity_properties",
+			"entity": "this",
+			"predicate": {
+				"slots": {
+					"weapon.offhand": {
+						"predicates": {
+							"minecraft:enchantments": [
+								{
+									"enchantments": "bswt:verdure",
+									"levels": {
+										"min": 1
+									}
+								}
+							]
+						}
+					}
+				}
+			}
+		}
+	]
+}
+predicate bswt:enchantment/verdure/mainhand {
+	"condition": "minecraft:entity_properties",
+	"entity": "this",
+	"predicate": {
+		"slots": {
+			"weapon.mainhand": {
+				"predicates": {
+					"minecraft:enchantments": [
+						{
+							"enchantments": "bswt:verdure",
+							"levels": {
+								"min": 1
+							}
+						}
+					]
+				}
+			}
+		}
+	}
+}
+predicate bswt:enchantment/verdure/offhand {
+	"condition": "minecraft:entity_properties",
+	"entity": "this",
+	"predicate": {
+		"slots": {
+			"weapon.offhand": {
+				"predicates": {
+					"minecraft:enchantments": [
+						{
+							"enchantments": "bswt:verdure",
+							"levels": {
+								"min": 1
+							}
+						}
+					]
+				}
+			}
+		}
+	}
+}

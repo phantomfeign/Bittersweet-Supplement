@@ -152,3 +152,10 @@ enchantment_tag bswt:exclusive_set/multishot {
         "bswt:overload"
     ]
 }
+enchantment_tag bswt:exclusive_set/riptide {
+  "values": [
+    "minecraft:loyalty",
+    "minecraft:channeling",
+    "bswt:viper"
+  ]
+}

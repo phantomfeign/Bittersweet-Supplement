@@ -1,0 +1,45 @@
+enchantment bswt:bow_mechanics {
+	"description": {
+		"translate": "enchantment.bswt.bow_mechanics"
+	},
+	"supported_items": [
+        "minecraft:bow",
+        "minecraft:crossbow"
+        ],
+	"weight": 1,
+	"max_level": 1,
+	"min_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"max_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"anvil_cost": 0,
+	"slots": [
+		"mainhand"
+	],
+	"effects": {
+		"minecraft:projectile_spawned": [
+			{
+				"effect": {
+					"type": "minecraft:run_function",
+					"function": "bswt:enchantment/flint_ignite"
+				}
+			}
+		]
+	}
+}
+function bswt:enchantment/flint_ignite:
+    tag @s add FlintArrow
+    execute on origin unless items entity @s weapon.offhand minecraft:flint_and_steel run return fail
+    execute on origin:
+        function utility:damage_item/call {heal:0,dmg:1,modified_slot:weapon.mainhand,slot:SelectedItem}
+        playsound minecraft:item.flintandsteel.use player @a
+    execute as @s run data modify entity @s Fire set value 1000
+    particle minecraft:flame ^ ^ ^ 0 0 0 0.2 3
+    particle minecraft:item{item:{id:"minecraft:flint"}} ~ ~ ~ 0 0 0 0.1 3
+    execute on origin if items entity @s weapon.offhand minecraft:flint_and_steel[custom_data={firestarter:true}]: 
+        playsound minecraft:entity.item.break player @a
+        item replace entity @s weapon.offhand with air
