@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "group": "gunpowder",
+  "ingredient": "minecraft:coal",
+  "result": {
+    "id": "minecraft:gunpowder",
+    "count": 1
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "wool",
+  "pattern": [
+    "GG",
+    "GG"
+  ],
+  "key": {
+    "G":"minecraft:string"
+  },
+  "result": {
+    "id": "minecraft:white_wool",
+    "count": 1
+  }
+}

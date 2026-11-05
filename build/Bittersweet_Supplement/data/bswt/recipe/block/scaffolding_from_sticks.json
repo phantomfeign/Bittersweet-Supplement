@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group":"scaffolding",
+  "pattern": [
+    "G#G",
+    "G G",
+    "G G"
+  ],
+  "key": {
+    "#":[
+            "minecraft:string",
+            "minecraft:zombie_spawn_egg"
+        ],
+    "G":"minecraft:stick"
+  },
+  "result": {
+    "id": "minecraft:scaffolding",
+    "count": 1
+  }
+}

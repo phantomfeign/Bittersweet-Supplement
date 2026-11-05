@@ -1,0 +1,50 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:sugar",
+    ["minecraft:pumpkin","minecraft:carved_pumpkin"],
+    "minecraft:sugar",
+    "minecraft:bee_spawn_egg",
+    "#minecraft:eggs",
+    "minecraft:bee_spawn_egg"
+  ],
+  "result": {
+    "id": "minecraft:pumpkin_pie",
+    "components": {
+      "minecraft:lore": [
+        {
+          "text": "❤❤❤❤❤❤",
+          "color": "#54d877",
+          "italic": false
+        },
+        {
+          "text": "A gentle warmth slowly settles",
+          "color": "gray",
+          "italic": false
+        },
+        {
+          "text": "in as you indulge yourself.",
+          "color": "gray",
+          "italic": false
+        }
+      ],
+      "minecraft:consumable": {
+        "consume_seconds": 2.5,
+        "on_consume_effects": [
+          {
+            "type": "apply_effects",
+            "effects": [
+              {
+                "id": "minecraft:regeneration",
+                "amplifier": 0,
+                "duration": 600,
+                    "show_particles": false
+          }
+        ]
+      }
+    ]
+  }
+}
+  }
+}

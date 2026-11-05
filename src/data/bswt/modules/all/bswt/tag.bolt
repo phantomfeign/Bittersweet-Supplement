@@ -1,3 +1,22 @@
+timeline_tag bswt:asphodel {
+  "values": [
+    "#minecraft:universal",
+    "bswt:asphodel",
+    "bswt:asphodel_moon"
+  ]
+}
+item_tag bswt:no_sweeping {
+  "values": [
+    "#minecraft:spears",
+    "#minecraft:axes",
+    "minecraft:trident"
+  ]
+}
+damage_type_tag bypasses_cooldown {
+  "values": [
+    "minecraft:arrow"
+  ]
+}
 damage_type_tag bswt:is_melee {
   "values": [
     "minecraft:player_attack",
@@ -116,6 +135,28 @@ entity_type_tag bswt:cant_transfer_fire {
       "minecraft:fireball"
     ]
 }
+block_tag bswt:nonsolid {
+  "values": [
+    "#minecraft:air",
+    "#minecraft:crops",
+    "#minecraft:cave_vines",
+    "minecraft:water",
+    "minecraft:lava",
+    "minecraft:torch",
+    "minecraft:wall_torch",
+    "minecraft:redstone_wire",
+    "minecraft:tripwire",
+    "minecraft:tripwire_hook",
+    "minecraft:short_grass",
+    "minecraft:tall_grass",
+    "minecraft:fern",
+    "minecraft:vine",
+    "minecraft:large_fern",
+    "minecraft:dandelion",
+    "minecraft:poppy"
+  ]
+}
+
 item_tag bswt:enchantable/knockback {
   "values": [
     "#minecraft:enchantable/melee_weapon",

@@ -1,0 +1,9 @@
+{
+  "replace":true,
+  "values": [
+    "bswt:wandering_trader/buy_ender_pearl",
+    "bswt:wandering_trader/buy_abyssal_shard",
+    "bswt:wandering_trader/buy_resin_brick",
+    "bswt:wandering_trader/buy_ominous_trial_key"
+  ]
+}

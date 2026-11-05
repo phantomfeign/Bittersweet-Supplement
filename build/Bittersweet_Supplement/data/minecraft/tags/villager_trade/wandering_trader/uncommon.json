@@ -1,0 +1,11 @@
+{
+  "replace":true,
+  "values": [
+    "bswt:wandering_trader/maps/mineshaft_explorer",
+    "bswt:wandering_trader/maps/ancient_city_explorer",
+    "bswt:wandering_trader/maps/ocean_monument_explorer",
+    "bswt:wandering_trader/maps/jungle_temple_explorer",
+    "bswt:wandering_trader/maps/shipwreck_explorer",
+    "bswt:wandering_trader/maps/trial_chamber_explorer"
+  ]
+}

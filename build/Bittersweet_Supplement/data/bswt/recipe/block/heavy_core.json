@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": "minecraft:iron_block",
+    "K": "minecraft:ominous_trial_key",
+    "D": "minecraft:diamond_block"
+  },
+  "pattern": [
+    "III",
+    "KDK",
+    "III"
+  ],
+  "result": {
+    "id": "minecraft:heavy_core",
+    "count": 1
+  }
+}

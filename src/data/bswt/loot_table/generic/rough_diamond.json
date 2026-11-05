@@ -1,0 +1,26 @@
+{
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "minecraft:allay_spawn_egg",
+					"functions": [
+						{
+							"function": "minecraft:set_components",
+							"components": {
+								"!minecraft:entity_data": {},
+								"minecraft:item_name": {
+									"text": "Rough Diamond",
+									"italic": false
+								}
+							}
+						}
+					]
+				}
+			]
+		}
+	],
+	"random_sequence": "bswt:generic/rough_diamond"
+}

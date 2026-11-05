@@ -1,0 +1,34 @@
+{
+	"type": "minecraft:equipment",
+	"functions": [],
+	"pools": [
+		{
+			"entries": [
+					{
+					"type": "minecraft:item",
+					"conditions": [],
+					"functions": [
+						{
+						"function": "minecraft:set_components",
+							"components":{
+								"minecraft:max_damage": 400,
+								"minecraft:item_name": {
+										"text": "Longbow",
+										"color": "white",
+										"italic": false          
+										},
+									"enchantments":{
+										"bswt:bow_mechanics": 1
+									},
+									"enchantment_glint_override": false
+							}						
+						}
+					],
+					"name": "minecraft:bow"
+				}
+			],
+			"rolls": 1
+		}
+	],
+	"random_sequence": "bswt:loot_table/equipment/ranged/bow"
+}

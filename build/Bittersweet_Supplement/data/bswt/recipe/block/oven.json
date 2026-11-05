@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "#minecraft:logs",
+    "X": "minecraft:campfire",
+    "S": "minecraft:stone",
+    "B": "minecraft:bricks"
+  },
+  "pattern": [
+    "SSS",
+    "#X#",
+    "BBB"
+  ],
+  "result": {
+    "id": "minecraft:smoker"
+  }
+}

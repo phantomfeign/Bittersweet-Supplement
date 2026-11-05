@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+    "group": "misc",
+	"key": {
+		"#": "bricks",
+		"S": "#minecraft:stone_crafting_materials"
+	},
+	"pattern": [
+		"###",
+		"# #",
+		"SSS"
+	],
+	"result": {
+		"id": "minecraft:furnace"
+	}
+}

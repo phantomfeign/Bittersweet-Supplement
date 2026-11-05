@@ -1,0 +1,632 @@
+from bswt:all/utils/tiers import TIERS, TIER_LOOKUP, EQUIPMENT_PATTERNS_LOOKUP
+recipe bswt:uniques/hellish_trident {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"#": "minecraft:netherite_ingot",
+		"X": "minecraft:gold_ingot"
+	},
+	"pattern": [
+		"X#X",
+		" X ",
+		" X "
+	],
+	"result": {
+		"id": "minecraft:trident",
+		"components": {
+			"minecraft:item_model": "bswt_texture:hellish_trident",
+			"minecraft:item_name": {
+				"text": "Hellish Trident",
+				"color": "light_purple"
+			},
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:attack_speed",
+					"id": "bswt:hellish_trident",
+					"amount": -3,
+					"operation": "add_value",
+					"slot": "mainhand"
+				},
+				{
+					"type": "minecraft:attack_damage",
+					"id": "bswt:hellish_trident",
+					"amount": 8,
+					"operation": "add_value",
+					"slot": "mainhand"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "9🗡",
+					"color": "red",
+					"italic": false
+				},
+				{
+					"text": "1.0⌚",
+					"color": "yellow",
+					"italic": false
+				},
+				{
+					"text": "+0.5→",
+					"color": "green",
+					"italic": false
+				}
+			],
+			"minecraft:max_damage": TIERS[5]["durability"],
+			"minecraft:piercing_weapon": {
+				"deals_knockback": true,
+				"dismounts": true,
+				"sound": "minecraft:item.spear.attack",
+				"hit_sound": "minecraft:item.spear.hit"
+			},
+			"minecraft:attack_range": {
+				"min_reach": 1,
+				"max_reach": 3.5,
+				"min_creative_reach": 1,
+				"max_creative_reach": 3.5
+			},
+			"minecraft:swing_animation": {
+				"type": "stab",
+				"duration": 12
+			},
+			"minecraft:minimum_attack_charge": 1,
+			"minecraft:enchantments": {
+				"minecraft:loyalty": 1
+			},
+			"minecraft:repairable": {
+				"items": [
+					"minecraft:netherite_ingot",
+					"minecraft:gold_block"
+				]
+			}
+		}
+	}
+}
+recipe bswt:uniques/hadal_trident {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"#": "minecraft:prismarine_shard",
+		"X": "minecraft:iron_ingot",
+		"E": "minecraft:emerald"
+	},
+	"pattern": [
+		"#E#",
+		" X ",
+		" X "
+	],
+	"result": {
+		"id": "minecraft:trident",
+		"components": {
+			"minecraft:item_model": "minecraft:trident",
+			"minecraft:item_name": {
+				"text": "Hadal Trident",
+				"color": "light_purple"
+			},
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:attack_speed",
+					"id": "bswt:hadal_trident",
+					"amount": -3,
+					"operation": "add_value",
+					"slot": "mainhand"
+				},
+				{
+					"type": "minecraft:attack_damage",
+					"id": "bswt:hadal_trident",
+					"amount": 8,
+					"operation": "add_value",
+					"slot": "mainhand"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "9🗡",
+					"color": "red",
+					"italic": false
+				},
+				{
+					"text": "1.0⌚",
+					"color": "yellow",
+					"italic": false
+				},
+				{
+					"text": "+0.5→",
+					"color": "green",
+					"italic": false
+				}
+			],
+			"minecraft:max_damage": TIERS[4]["durability"],
+			"minecraft:piercing_weapon": {
+				"deals_knockback": true,
+				"dismounts": true,
+				"sound": "minecraft:item.spear.attack",
+				"hit_sound": "minecraft:item.spear.hit"
+			},
+			"minecraft:attack_range": {
+				"min_reach": 1,
+				"max_reach": 3.5,
+				"min_creative_reach": 1,
+				"max_creative_reach": 3.5
+			},
+			"minecraft:swing_animation": {
+				"type": "stab",
+				"duration": 12
+			},
+			"minecraft:minimum_attack_charge": 1,
+			"minecraft:enchantments": {
+				"minecraft:riptide": 1
+			},
+			"minecraft:repairable": {
+				"items": [
+					"minecraft:prismarine_shard",
+					"minecraft:prismarine_crystals",
+					"minecraft:iron_block"
+				]
+			}
+		}
+	}
+}
+recipe bswt:uniques/wind_mace {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"#": "minecraft:heavy_core",
+		"I": "minecraft:breeze_rod",
+		"B": "minecraft:iron_block"
+	},
+	"pattern": [
+		" # ",
+		" I ",
+		" B "
+	],
+	"result": {
+		"id": "minecraft:mace",
+		"components": {
+			"minecraft:max_damage": TIERS[4]["durability"],
+			"minecraft:item_name": {
+				"text": "Wind Mace",
+				"color": "light_purple"
+			},
+			"minecraft:repairable": {
+				"items": [
+					"minecraft:iron_block"
+				]
+			},
+			"minecraft:custom_data": {
+				"right_click": true
+			},
+			"minecraft:consumable": {
+				"consume_seconds": 999999,
+				"animation": "none",
+				"sound": "minecraft:intentionally_empty",
+				"has_consume_particles": false
+			},
+			"minecraft:tool": {
+				"rules": [
+					{
+						"blocks": "#minecraft:mineable/pickaxe",
+						"speed": 5,
+						"correct_for_drops": true
+					}
+				],
+				"default_mining_speed": 1,
+				"damage_per_block": 0
+			},
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "5⛏",
+					"color": "gold",
+					"italic": false
+				},
+				{
+					"text": "6+🗡",
+					"color": "red",
+					"italic": false
+				},
+				{
+					"text": "0.6⌚",
+					"color": "yellow",
+					"italic": false
+				},
+				{
+					"text": "[4⌚ RMB]: Creates a ",
+					"color": "light_purple",
+					"italic": false
+				},
+				{
+					"text": "burst of wind at your feet.",
+					"color": "light_purple",
+					"italic": false
+				},
+				{
+					"text": "[2⌚ ↓+RMB]: Mines stone",
+					"color": "light_purple",
+					"italic": false
+				},
+				{
+					"text": "in an area infront of you.",
+					"color": "light_purple",
+					"italic": false
+				}
+			]
+		}
+	}
+}
+recipe bswt:uniques/rimed_stiletto {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"#": "minecraft:obsidian",
+		"X": "minecraft:pig_spawn_egg",
+		"B": "minecraft:blue_ice"
+	},
+	"pattern": [
+		" B",
+		" X",
+		" #"
+	],
+	"result": {
+		"id": "minecraft:stone_pickaxe",
+		"components": {
+			"!minecraft:tool":{},
+            "minecraft:item_name":{
+				"text":"Rimed Stiletto",
+				"color": "light_purple",
+				"italic": false
+			},
+			"minecraft:item_model": "bswt_texture:rimed_stiletto",
+			"minecraft:max_damage": TIERS[4]["durability"],
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:attack_speed",
+					"id": "bswt:rimed_stiletto",
+					"amount": -2,
+					"operation": "add_value",
+					"slot": "mainhand"
+				}
+			],
+			"minecraft:damage_type": "minecraft:freeze",
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "1🗡",
+					"color": "red",
+					"italic": false
+				},
+				{
+					"text": "2⌚",
+					"color": "yellow",
+					"italic": false
+				},
+				{
+					"text": "[10⌚ RMB]: Shatters the nearest",
+					"color": "light_purple",
+					"italic": false
+				},
+				{
+					"text": "ice statue within 8→ range.",
+					"color": "light_purple",
+					"italic": false
+				}
+			],
+			"minecraft:enchantments": {
+                "bswt:frostbite": 1
+            },
+				"minecraft:consumable": {
+				"animation": "block",
+				"consume_seconds": 9999999,
+				"has_consume_particles": false,
+				"sound": "minecraft:intentionally_empty"
+			},
+				"minecraft:custom_data": {
+				"frostbiteStomp": true,
+				"right_click": true
+			}
+		}
+	}
+}
+recipe bswt:uniques/amethyst_scythe {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"S": "minecraft:pig_spawn_egg",
+		"#": "minecraft:amethyst_shard",
+		"X": "minecraft:iron_ingot"
+	},
+	"pattern": [
+		"##S",
+		"  X",
+		" X "
+	],
+	"result": {
+		"id": "minecraft:diamond_sword",
+		"components": {
+			"minecraft:item_model": "bswt_texture:amethyst_scythe",
+			"minecraft:item_name": {
+				"text": "Amethyst Scythe",
+				"italic": false
+			},
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:block_interaction_range",
+					"id": "bswt:amethyst_scythe",
+					"amount": 1,
+					"operation": "add_value",
+					"slot": "hand"
+				},
+				{
+					"type": "minecraft:attack_speed",
+					"id": "bswt:amethyst_scythe",
+					"amount": -3,
+					"operation": "add_value",
+					"slot": "mainhand"
+				},
+				{
+					"type": "minecraft:attack_damage",
+					"id": "bswt:amethyst_scythe",
+					"amount": 7,
+					"operation": "add_value",
+					"slot": "mainhand"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "8🗡",
+					"color": "red",
+					"italic": false
+				},
+				{
+					"text": "1.0⌚",
+					"color": "yellow",
+					"italic": false
+				},
+				{
+					"text": "+1→",
+					"color": "green",
+					"italic": false
+				}
+			],
+			"minecraft:max_damage": TIERS[4]["durability"],
+			"minecraft:attack_range": {
+				"min_reach": 1,
+				"max_reach": 4,
+				"min_creative_reach": 1,
+				"max_creative_reach": 4
+			},
+			"minecraft:minimum_attack_charge": 1,
+			"minecraft:enchantments": {
+				"bswt:hooking": 1
+			},
+			"minecraft:repairable": {
+				"items": [
+					"minecraft:amethyst_shard",
+					"minecraft:iron_block"
+				]
+			},
+			"minecraft:tool": {
+				"rules": [
+					{
+						"blocks": "#minecraft:mineable/hoe",
+						"speed": 7,
+						"correct_for_drops": true
+					},
+					{
+						"blocks": "#minecraft:shears_minor_breaking_speed",
+						"speed": 6,
+						"correct_for_drops": true
+					},
+					{
+						"blocks": "#minecraft:shears_major_breaking_speed",
+						"speed": 8,
+						"correct_for_drops": true
+					},
+					{
+						"blocks": "#minecraft:shears_extreme_breaking_speed",
+						"speed": 10,
+						"correct_for_drops": true
+					}
+				],
+				"default_mining_speed": 1,
+				"damage_per_block": 0,
+				"can_destroy_blocks_in_creative": true
+			}
+		}
+	}
+}
+recipe bswt:uniques/refractor {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"#": "minecraft:ender_pearl",
+		"X": "minecraft:amethyst_shard",
+		"C": "minecraft:copper_ingot"
+	},
+	"pattern": [
+		" X",
+		" #",
+		" C"
+	],
+	"result": {
+		"id": "minecraft:diamond_sword",
+		"components": {
+			"minecraft:item_name": {
+				"text":"Refractor",
+				"color":"aqua",
+				"italic":false
+			},
+			"minecraft:item_model": "bswt_texture:refractor",
+			"minecraft:max_damage": 100,
+			"minecraft:damage": 0,
+            "!minecraft:enchantable":{},
+			"minecraft:custom_data": {
+				"summon_abyss_ray": true,
+				"right_click": true
+			},
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "3🗡",
+					"color": "red",
+					"italic": false
+				},
+				{
+					"text": "1.6⌚",
+					"color": "yellow",
+					"italic": false
+				},
+				{
+					"text": "[5⌚ RMB]: Creates a ray",
+					"color": "light_purple",
+					"italic": false
+				},
+				{
+					"text": "of raw abyssal energy.",
+					"color": "light_purple",
+					"italic": false
+				}
+			],
+			"minecraft:repairable": {
+				"items": "minecraft:amethyst_shard"
+			},
+			"minecraft:consumable": {
+				"animation": "none",
+				"consume_seconds": 9999999,
+				"has_consume_particles": false,
+				"sound": "minecraft:intentionally_empty"
+			},
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:attack_speed",
+					"id": "bswt:refractor",
+					"amount": -2.4,
+					"operation": "add_value",
+                    "slot": "mainhand"
+				},
+				{
+					"type": "minecraft:attack_damage",
+					"id": "bswt:refractor",
+					"amount": 2,
+					"operation": "add_value",
+					"slot": "mainhand"
+				}
+			]
+		}
+	}
+}
+recipe bswt:uniques/echo_blade {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"#": "minecraft:echo_shard",
+		"X": "minecraft:amethyst_shard",
+		"C": "minecraft:gold_ingot"
+	},
+	"pattern": [
+		" X",
+		" #",
+		" C"
+	],
+	"result": {
+		"id": "minecraft:diamond_sword",
+		"components": {
+			"minecraft:item_name": {
+				"text":"Sonic Amplifier",
+				"color":"aqua",
+				"italic":false
+			},
+			"minecraft:item_model": "bswt_texture:sonic_amplifier",
+			"minecraft:max_damage": 100,
+			"minecraft:damage": 0,
+            "!minecraft:enchantable":{},
+			"minecraft:custom_data": {
+				"summon_sonic_boom": true,
+				"right_click": true
+			},
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "3🗡",
+					"color": "red",
+					"italic": false
+				},
+				{
+					"text": "1.6⌚",
+					"color": "yellow",
+					"italic": false
+				},
+				{
+					"text": "[10⌚ RMB]: Creates a",
+					"color": "light_purple",
+					"italic": false
+				},
+				{
+					"text": "piercing sonic boom.",
+					"color": "light_purple",
+					"italic": false
+				}
+			],
+			"minecraft:repairable": {
+				"items": [
+					"minecraft:amethyst_shard",
+					"minecraft:echo_shard",
+					"minecraft:gold_block"
+				]
+			},
+			"minecraft:consumable": {
+				"animation": "none",
+				"consume_seconds": 9999999,
+				"has_consume_particles": false,
+				"sound": "minecraft:intentionally_empty"
+			},
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:attack_speed",
+					"id": "bswt:sonic_amplifier",
+					"amount": -2.4,
+					"operation": "add_value",
+					"slot": "mainhand"
+				},
+				{
+					"type": "minecraft:attack_damage",
+					"id": "bswt:sonic_amplifier",
+					"amount": 2,
+					"operation": "add_value",
+					"slot": "mainhand"
+				}
+			]
+		}
+	}
+}

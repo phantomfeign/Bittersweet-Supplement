@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "VAV",
+    "ADA",
+    "VAV"
+  ],
+  "key": {
+    "V": "minecraft:sculk_vein",
+    "A": "minecraft:breeze_spawn_egg",
+    "D": "minecraft:diamond"
+  },
+  "result": {
+    "id": "minecraft:echo_shard",
+    "count": 1
+  }
+}

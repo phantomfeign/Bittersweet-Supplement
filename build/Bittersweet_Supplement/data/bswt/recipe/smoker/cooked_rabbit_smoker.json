@@ -1,0 +1,51 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "experience": 0,
+  "ingredient": "minecraft:rabbit",
+  "result": {
+    "id": "minecraft:cooked_rabbit",
+    "components": {
+      "minecraft:item_name": "Roasted Rabbit",
+      "minecraft:lore": [
+        {
+          "text": "❤❤❤❤",
+          "color": "#54d877",
+          "italic": false
+        },
+        {
+          "text": "A bounding energy and a gentle warmth",
+          "color": "gray",
+          "italic": false
+        },
+        {
+          "text": "slowly settle in as you indulge yourself.",
+          "color": "gray",
+          "italic": false
+        }
+      ],
+      "minecraft:consumable": {
+      "consume_seconds": 2.5,
+        "on_consume_effects": [
+          {
+            "type": "apply_effects",
+            "effects": [
+                {
+            "id": "minecraft:regeneration",
+            "amplifier": 0,
+            "duration": 400,
+                "show_particles": false
+                },
+              {
+                "id": "minecraft:jump_boost",
+                "amplifier": 0,
+                "duration": 600,
+                "show_particles": false
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

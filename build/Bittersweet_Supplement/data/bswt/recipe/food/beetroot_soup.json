@@ -1,0 +1,53 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:bowl",
+    "minecraft:beetroot",
+    "minecraft:beetroot",
+    "minecraft:beetroot",
+    "minecraft:beetroot",
+    "minecraft:beetroot",
+    "minecraft:beetroot",
+    "minecraft:beetroot",
+    "minecraft:beetroot"
+  ],
+  "result": {
+    "id": "minecraft:poisonous_potato",
+"components": {
+  "minecraft:lore": [
+    {
+      "text": "❤❤❤❤",
+      "color": "#54d877",
+      "italic": false
+    },
+    {
+      "text": "A gentle warmth slowly settles",
+      "color": "gray",
+      "italic": false
+    },
+    {
+      "text": "in as you indulge yourself.",
+      "color": "gray",
+      "italic": false
+    }
+  ],
+  "minecraft:consumable": {
+    "consume_seconds": 2.5,
+    "on_consume_effects": [
+      {
+        "type": "apply_effects",
+        "effects": [
+          {
+            "id": "minecraft:regeneration",
+            "amplifier": 0,
+            "duration": 400,
+                "show_particles": false
+          }
+        ]
+      }
+    ]
+  }
+}
+  }
+}

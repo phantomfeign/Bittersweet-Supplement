@@ -1,0 +1,117 @@
+{
+	"type": "minecraft:chest",
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "minecraft:emerald_block"
+				}
+			]
+		},
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "minecraft:map",
+					"functions": [
+						{
+							"function": "minecraft:exploration_map",
+							"destination": "minecraft:on_ocean_explorer_maps"
+						},
+						{
+							"function": "minecraft:filtered",
+							"item_filter": {
+								"items": "minecraft:filled_map",
+								"predicates": {
+									"minecraft:map_id": {}
+								}
+							},
+							"on_fail": {
+								"function": "minecraft:discard"
+							}
+						},
+						{
+							"function": "minecraft:set_components",
+							"components": {
+								"minecraft:item_name": {
+									"text": "Ocean Explorer Map",
+									"italic": false
+								}
+							}
+						}
+					]
+				},
+				{
+					"type": "minecraft:item",
+					"name": "minecraft:map",
+					"functions": [
+						{
+							"function": "minecraft:exploration_map",
+							"destination": "minecraft:on_jungle_explorer_maps"
+						},
+						{
+							"function": "minecraft:filtered",
+							"item_filter": {
+								"items": "minecraft:filled_map",
+								"predicates": {
+									"minecraft:map_id": {}
+								}
+							},
+							"on_fail": {
+								"function": "minecraft:discard"
+							}
+						},
+						{
+							"function": "minecraft:set_components",
+							"components": {
+								"minecraft:item_name": {
+									"text": "Jungle Explorer Map",
+									"italic": false
+								}
+							}
+						}
+					]
+				},
+				{
+					"type": "minecraft:item",
+					"name": "minecraft:map",
+					"functions": [
+						{
+							"function": "minecraft:exploration_map",
+							"destination": "bswt:infested_ruins",
+							"decoration": "minecraft:target_x",
+							"zoom": 1,
+							"search_radius": 50,
+							"skip_existing_chunks": false
+						},
+						{
+							"function": "minecraft:filtered",
+							"item_filter": {
+								"items": "minecraft:filled_map",
+								"predicates": {
+									"minecraft:map_id": {}
+								}
+							},
+							"on_fail": {
+								"function": "minecraft:discard"
+							}
+						},
+						{
+							"function": "minecraft:set_components",
+							"components": {
+								"minecraft:item_name": {
+									"text": "Infested Ruins Explorer Map",
+									"italic": false
+								}
+							}
+						}
+					]
+				}
+			]
+		}
+	],
+	"random_sequence": "minecraft:chests/trial_chambers/intersection_barrel"
+}

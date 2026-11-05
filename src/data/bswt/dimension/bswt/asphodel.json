@@ -1,0 +1,11 @@
+{
+	"type": "bswt:asphodel",
+	"generator": {
+		"type": "minecraft:noise",
+		"biome_source": {
+			"type": "minecraft:fixed",
+			"biome": "bswt:asphodel_pale_garden"
+		},
+		"settings": "minecraft:floating_islands"
+	}
+}

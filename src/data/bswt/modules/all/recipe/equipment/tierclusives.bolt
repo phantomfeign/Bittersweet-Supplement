@@ -1,5 +1,105 @@
 from bswt:all/utils/tiers import TIERS, TIER_LOOKUP, EQUIPMENT_PATTERNS_LOOKUP
 
+recipe bswt:equipment/crafted/bronze/gauntlet {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"pattern": [
+		"BBB",
+		"BBB",
+		"B B"
+	],
+	"key": {
+		"B": "minecraft:horse_spawn_egg"
+	},
+	"result": {
+		"id": "minecraft:iron_golem_spawn_egg",
+		"components": {
+			"minecraft:item_name": {
+				"text": "Bronze Gauntlet"
+			},
+			"!minecraft:entity_data": {},
+			"minecraft:max_damage": 2000,
+			"minecraft:damage": 0,
+			"minecraft:max_stack_size": 1,
+			"minecraft:repairable": {
+				"items": "minecraft:horse_spawn_egg"
+			},
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:attack_knockback",
+					"id": "bswt:bronze_gauntlet",
+					"amount": 1,
+					"operation": "add_value",
+					"display": {
+						"type": "hidden"
+					}
+				},
+				{
+					"type": "minecraft:attack_speed",
+					"id": "bswt:bronze_gauntlet",
+					"amount": -1,
+					"operation": "add_value",
+					"display": {
+						"type": "hidden"
+					}
+				},
+				{
+					"type": "minecraft:block_interaction_range",
+					"id": "bswt:bronze_gauntlet",
+					"amount": 1,
+					"operation": "add_value",
+					"display": {
+						"type": "hidden"
+					}
+				},
+				{
+					"type": "minecraft:entity_interaction_range",
+					"id": "bswt:bronze_gauntlet",
+					"amount": 1,
+					"operation": "add_value",
+					"display": {
+						"type": "hidden"
+					}
+				}
+			],
+			"minecraft:tool": {
+				"rules": [
+					{
+						"blocks": "#minecraft:mineable/pickaxe",
+						"correct_for_drops": true
+					},
+					{
+						"blocks": "#minecraft:mineable/axe",
+						"correct_for_drops": true
+					},
+					{
+						"blocks": "#minecraft:mineable/shovel",
+						"correct_for_drops": true
+					},
+					{
+						"blocks": "#minecraft:mineable/hoe",
+						"correct_for_drops": true
+					}
+				],
+				"default_mining_speed": 3,
+				"damage_per_block": 1,
+				"can_destroy_blocks_in_creative": true
+			},
+			"minecraft:lore": [
+				{
+					"text": "6⛏",
+					"color": "gold",
+					"italic": false
+				},
+				{
+					"text": "+1→",
+					"color": "green",
+					"italic": false
+				}
+			]
+		}
+	}
+}
 recipe bswt:equipment/crafted/copper/sickle {
 	"type": "minecraft:crafting_shaped",
 	"category": "equipment",

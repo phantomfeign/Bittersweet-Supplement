@@ -1,0 +1,56 @@
+{
+	"type": "minecraft:generic",
+	"functions": [],
+	"pools": [
+		{
+			"conditions": [],
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "minecraft:sweet_berries"
+				}
+			],
+			"functions": [
+				{
+					"function": "minecraft:set_components",
+					"components": {
+						"minecraft:lore": [
+							{
+								"text": "♡",
+								"color": "#54d877",
+								"italic": false
+							},
+							{
+								"text": "A gentle warmth slowly settles",
+								"color": "gray",
+								"italic": false
+							},
+							{
+								"text": "in as you quickly devour it.",
+								"color": "gray",
+								"italic": false
+							}
+						],
+						"minecraft:consumable": {
+							"consume_seconds": 1,
+							"on_consume_effects": [
+								{
+									"type": "apply_effects",
+									"effects": [
+										{
+											"id": "minecraft:regeneration",
+											"amplifier": 0,
+											"duration": 50,
+											"show_particles": false
+										}
+									]
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+	]
+}

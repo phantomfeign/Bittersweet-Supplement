@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "minecraft:sticky_piston",
+  "category": "redstone",
+  "ingredients": [
+    "minecraft:piston",
+    "minecraft:bee_spawn_egg"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:sticky_piston"
+  }
+}

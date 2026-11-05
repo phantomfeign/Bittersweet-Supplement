@@ -1,0 +1,16 @@
+{
+  "name": "bswt:infested_ruins",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "bswt:ruins/infested_ruins",
+        "processors":"bswt:infested_ruins_barrel",
+        "override_liquid_settings": "ignore_waterlogging"
+      }
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "experience": 0,
+  "ingredient": "minecraft:cod",
+  "result": {
+    "id": "minecraft:cooked_cod",
+    "components": {
+      "minecraft:lore": [
+        {
+          "text": "❤❤❤❤",
+          "color": "#54d877",
+          "italic": false
+        },
+        {
+          "text": "A flowing energy and a gentle warmth",
+          "color": "gray",
+          "italic": false
+        },
+        {
+          "text": "slowly settle in as you indulge yourself.",
+          "color": "gray",
+          "italic": false
+        }
+      ],
+      "minecraft:item_name": "Smoked Cod",
+      "minecraft:consumable": {
+      "consume_seconds": 2.5,
+        "on_consume_effects": [
+          {
+            "type": "apply_effects",
+            "effects": [
+                {
+            "id": "minecraft:regeneration",
+            "amplifier": 0,
+            "duration": 400,
+                "show_particles": false
+                },
+              {
+                "id": "minecraft:water_breathing",
+                "amplifier": 0,
+                "duration": 1200,
+                "show_particles": false
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

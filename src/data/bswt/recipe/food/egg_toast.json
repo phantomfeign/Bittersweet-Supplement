@@ -1,0 +1,62 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+  "EEE",
+  "BBB"
+  ],
+  "key": {
+    "B": "minecraft:bread",
+    "E": "#minecraft:eggs"
+  },
+  "result": {
+    "id": "minecraft:poisonous_potato",
+    "count": 2,
+"components": {
+      "minecraft:item_name": {
+      "text": "Egg Toast",
+      "italic": false
+      },
+      "item_model":"bswt_texture:egg_toast",
+      "minecraft:lore": [
+        {
+          "text": "❤❤❤❤",
+          "color": "#54d877",
+          "italic":false
+        },
+        {
+          "text": "A burst of energy and a soothing warmth",
+          "color": "gray",
+          "italic":false
+        },
+        {
+          "text": "course steadily within as you eat happily.",
+          "color": "gray",
+          "italic":false
+        }
+      ],
+      "minecraft:consumable": {
+    "consume_seconds": 1.5,
+        "on_consume_effects": [
+          {
+            "type": "apply_effects",
+            "effects": [
+              {
+                "id": "minecraft:regeneration",
+                "amplifier": 1,
+                "duration": 200,
+                "show_particles": false
+              },
+              {
+                "id": "minecraft:speed",
+                "amplifier": 0,
+                "duration": 300,
+                "show_particles": false
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
