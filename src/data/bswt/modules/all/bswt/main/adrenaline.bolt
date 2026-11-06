@@ -6,7 +6,7 @@ advancement temp:adrenaline/kill {
 					"is_direct": true
 				},
 				"entity": {
-					"entity_type": "#bswt.hostiles"
+					"entity_type": "#bswt:hostiles"
 				}
 			},
 			"trigger": "minecraft:player_killed_entity"
@@ -53,8 +53,8 @@ function bswt:main/adrenaline/tick:
 
     as @s[tag=bswt.Rampage] run return run function bswt:main/adrenaline/rampage/tick
 
-    if entity @e[type=#bswt.hostiles,distance=..5] run return run scoreboard players add @s bswt.Adrenaline 1
-    if entity @e[type=#bswt.hostiles,distance=..10] run return fail
+    if entity @e[type=#bswt:hostiles,distance=..5] run return run scoreboard players add @s bswt.Adrenaline 1
+    if entity @e[type=#bswt:hostiles,distance=..10] run return fail
     if score @s bswt.Adrenaline matches ..10 run return run scoreboard players set @s bswt.Adrenaline 10
     scoreboard players operation @s bswt.Adrenaline *= #90 bswt.Math
     scoreboard players operation @s bswt.Adrenaline /= #100 bswt.Math

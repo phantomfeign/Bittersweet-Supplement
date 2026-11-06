@@ -1,3 +1,4 @@
+from beet import Predicate
 predicate bswt:player/can_crit {
     "condition": "minecraft:all_of",
     "terms": [
@@ -192,19 +193,11 @@ predicate bswt:enchantment/hefty {
   }
 }
 
-predicate bswt:chance/50 {
-  "condition": "minecraft:random_chance",
-  "chance": 0.50
-}
-predicate bswt:chance/25 {
-  "condition": "minecraft:random_chance",
-  "chance": 0.25
-}
-predicate bswt:chance/20 {
-  "condition": "minecraft:random_chance",
-  "chance": 0.20
-}
-predicate bswt:chance/10 {
-  "condition": "minecraft:random_chance",
-  "chance": 0.10
-}
+CHANCES=[50,40,25,20,10]
+
+for chance in CHANCES:
+    value=chance/100
+    ctx.data.predicates[f"bswt:chance/{chance}"] = Predicate ({
+    "condition": "minecraft:random_chance",
+    "chance": value
+    })

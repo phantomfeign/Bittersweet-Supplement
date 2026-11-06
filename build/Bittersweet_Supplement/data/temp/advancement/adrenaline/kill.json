@@ -6,7 +6,7 @@
           "is_direct": true
         },
         "entity": {
-          "entity_type": "#bswt.hostiles"
+          "entity_type": "#bswt:hostiles"
         }
       },
       "trigger": "minecraft:player_killed_entity"

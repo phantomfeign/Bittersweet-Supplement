@@ -2,6 +2,7 @@ scoreboard objectives add bswt.maxHealth dummy
 scoreboard players add @a bswt.maxHealth 0
 execute as @a store result score @s bswt.maxHealth run attribute @s minecraft:max_health get 1.0
 scoreboard objectives add bswt.currentHealth health
+scoreboard objectives add SleepStreak dummy
 scoreboard objectives add bswt.healthRecoveryTime dummy
 scoreboard objectives add bswt.healthRecoverySeconds dummy
 scoreboard objectives add bswt.playerDeaths deathCount

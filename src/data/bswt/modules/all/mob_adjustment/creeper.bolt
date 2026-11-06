@@ -1,0 +1,44 @@
+function bswt:mob_adjustment/creeper/spawn:
+    if entity @e[type=minecraft:creeper,distance=1..10] run return run function utility:delete_self
+    data modify entity @s ExplosionRadius set value 0b
+    data modify entity @s Fuse set value 25
+    effect give @s minecraft:luck infinite 99 true
+    attribute @s minecraft:follow_range base set 999
+
+function bswt:mob_adjustment/creeper/watch/tick:
+    tag @e[type=minecraft:creeper,tag=WatchedCreeper] remove WatchedCreeper
+    tag @s remove WatchingCreeper
+
+    unless entity @e[type=minecraft:creeper,distance=..64] run return fail
+    for i in range (5):
+        step=i*4
+        anchored eyes positioned f"^ ^ ^{step}" run function bswt:mob_adjustment/creeper/watch/step
+
+    as @e[type=minecraft:creeper,tag=WatchedCreeper]:
+        effect give @s minecraft:slowness infinite 255 true
+        rotate @s facing entity @a[limit=1,sort=nearest,tag=WatchingCreeper] eyes
+
+    as @e[type=minecraft:creeper,tag=!WatchedCreeper] at @s:
+        effect clear @s minecraft:slowness
+        for i in range(8,0,-1):
+            max_distance = (i)*8
+            move_speed = (23+(i*3))/100
+            unless entity @a[distance=f"..{max_distance}"] run return run attribute @s minecraft:movement_speed base set (move_speed)
+        attribute @s minecraft:movement_speed base set 0.23
+function bswt:mob_adjustment/creeper/watch/step:
+    unless block ~ ~ ~ #bswt:nonsolid run return fail
+    tag @e[type=minecraft:creeper,distance=..2] add WatchedCreeper
+    if entity @e[type=minecraft:creeper,distance=..2] run tag @s add WatchingCreeper
+
+#normal minecraft datapack
+    particle flame ^ ^ ^
+    particle flame ^ ^ ^1
+    particle flame ^ ^ ^2
+    particle flame ^ ^ ^3
+    particle flame ^ ^ ^4
+    particle flame ^ ^ ^5
+    particle flame ^ ^ ^6
+
+#Beet+Bolt
+    for i in range (7):
+        particle flame ^ ^ ^{i}

@@ -92,7 +92,7 @@ enchantment smite {
 			{
 				"effect": {
 					"type": "minecraft:run_function",
-					"function": "bittersweet_functions:enchantments/smite/tick"
+					"function": "bswt:enchantments/smite/tick"
 				}
 			}
 		],

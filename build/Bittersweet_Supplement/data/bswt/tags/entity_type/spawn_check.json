@@ -1,0 +1,25 @@
+{
+  "values": [
+    "minecraft:zombie",
+    "minecraft:husk",
+    "minecraft:drowned",
+    "minecraft:skeleton",
+    "minecraft:parched",
+    "minecraft:stray",
+    "minecraft:bogged",
+    "minecraft:creeper",
+    "minecraft:phantom",
+    "minecraft:spider",
+    "minecraft:cave_spider",
+    "minecraft:silverfish",
+    "minecraft:enderman",
+    "minecraft:snow_golem",
+    "minecraft:iron_golem",
+    "minecraft:elder_guardian",
+    "minecraft:guardian",
+    "minecraft:warden",
+    "minecraft:wither",
+    "minecraft:wandering_trader",
+    "minecraft:area_effect_cloud"
+  ]
+}

@@ -1,0 +1,142 @@
+entity_type_tag bswt:spawn/block/surface {
+    "values": [
+        "minecraft:cave_spider",
+        "minecraft:spider",
+        "minecraft:slime",
+        "minecraft:silverfish"
+    ]
+}
+entity_type_tag bswt:spawn/block/see_sky {
+    "values": [
+        "minecraft:creeper",
+        "minecraft:enderman",
+        "minecraft:witch",
+
+        "minecraft:cave_spider",
+        "minecraft:spider",
+        "minecraft:slime",
+        "minecraft:silverfish"
+    ]
+}
+predicate bswt:see_sky {
+  "condition": "minecraft:entity_properties",
+  "entity": "this",
+  "predicate": {
+    "minecraft:location": {
+      "can_see_sky": true
+    }
+  }
+}
+predicate bswt:on_surface {
+	"condition": "minecraft:any_of",
+	"terms": [
+		{
+			"condition": "minecraft:entity_properties",
+			"entity": "this",
+			"predicate": {
+				"minecraft:location": {
+					"position": {
+						"y": {
+							"min": 30,
+							"max": 350
+						}
+					}
+				}
+			}
+		}
+	]
+}
+
+entity_type_tag bswt:spawn_check {
+    "values": [
+        "minecraft:zombie",
+        "minecraft:husk",
+        "minecraft:drowned",
+        "minecraft:skeleton",
+        "minecraft:parched",
+        "minecraft:stray",
+        "minecraft:bogged",
+        "minecraft:creeper",
+        "minecraft:phantom",
+        "minecraft:spider",
+        "minecraft:cave_spider",
+        "minecraft:silverfish",
+        "minecraft:enderman",
+        "minecraft:snow_golem",
+        "minecraft:iron_golem",
+        "minecraft:elder_guardian",
+        "minecraft:guardian",
+        "minecraft:warden",
+        "minecraft:wither",
+        "minecraft:wandering_trader",
+        "minecraft:area_effect_cloud"
+    ]
+}
+
+function bswt:mob_adjustment/universal/filter:
+    as @s[tag=bswt.filterBypass] run return run function bswt:mob_adjustment/universal/route
+    #behavior of copies
+    if entity @s[tag=bswt.extraSpawn] at @s run spreadplayers ~ ~ 2 4 false @s
+
+    #ban
+    at @s if dimension minecraft:overworld run if entity @s[type=#bswt:spawn/block/surface] if predicate bswt:on_surface run tag @s add bswt.spawnForbidden
+    at @s if dimension minecraft:overworld run if entity @s[type=#bswt:spawn/block/see_sky] if predicate bswt:see_sky run tag @s add bswt.spawnForbidden
+
+    #death to the babies
+    as @s[type=#minecraft:zombies,nbt={IsBaby:1b}] run data merge entity @s {IsBaby:0b}
+
+    #less creepers on surface
+    if entity @s[type=minecraft:creeper] if predicate bswt:on_surface unless predicate bswt:chance/10 run tag @s add bswt.spawnForbidden
+
+    #bye villagers FOR NOW. maybe.
+    as @s[type=minecraft:villager] run tag @s add bswt.spawnForbidden
+
+    #deletion
+    as @s[tag=bswt.spawnForbidden] run return run function utility:delete_self
+
+    function bswt:mob_adjustment/universal/route
+
+    #make a copy
+    for i in range(5,0):
+        j=i+1
+        chance=i*10
+        if entity @s[tag=!bswt.spawnForbidden,tag=!bswt.extraSpawn] if score #sleep SleepStreak matches (j) if predicate (chance) run function bswt:mob_adjustment/copy_self
+
+function bswt:mob_adjustment/universal/copy_self:
+    unless entity @s[type=#bswt:hostiles] run return fail
+    if entity @s[type=minecraft:zombie] run summon minecraft:zombie ~ ~ ~ {Tags:["bswt.extraSpawn"]}
+    if entity @s[type=minecraft:skeleton] run summon minecraft:skeleton ~ ~ ~ {Tags:["bswt.extraSpawn"]}
+    if entity @s[type=minecraft:creeper] run summon minecraft:creeper ~ ~ ~ {Tags:["bswt.extraSpawn"]}
+    if entity @s[type=minecraft:spider] run summon minecraft:spider ~ ~ ~ {Tags:["bswt.extraSpawn"]}
+
+function bswt:mob_adjustment/universal/route:
+    tag @s add bswt.spawnChecked
+    #prevent mobs from dropping equipment
+    data modify entity @s drop_chances set value {head:0.0f,chest:0.0f,legs:0.0f,feet:0.0f,mainhand:0.0f,offhand:0.0f} 
+    #prevent trial goons from being modified
+    as @s[tag=bswt.trialChamberSpawn] run return fail
+    MOBS = [
+        "zombie","husk","drowned",
+        "skeleton","parched","stray","bogged",
+        "creeper","phantom",
+        "spider","cave_spider","silverfish",
+        "enderman",
+        "snow_golem","iron_golem",
+        "elder_guardian","guardian",
+        "warden","wither",
+        "wandering_trader",
+        "area_effect_cloud"
+    ]
+    for i in MOBS:
+        if entity @s[type=f"minecraft:{i}"] run function f"bswt:mob_adjustment/{i}/spawn"
+
+function utility:delete_self:
+    #kill with no loot
+    effect give @s invisibility infinite
+    data merge entity @s {NoAI:1b,Silent:1b,DeathLootTable:"bswt:empty"}
+    tp @s ~ -100 ~
+    as @s[type=!minecraft:slime] run kill @s
+    as @s[type=minecraft:slime]: 
+        tp @s ~ -1000 ~
+        kill @s
+
