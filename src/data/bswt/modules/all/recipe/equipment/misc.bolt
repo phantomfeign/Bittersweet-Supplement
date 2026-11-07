@@ -122,27 +122,6 @@ recipe bswt:misc_equipment/flint_and_steel {
 		}
 	}
 }
-recipe bswt:misc_equipment/iron_shears {
-	"type": "minecraft:crafting_shaped",
-	"category": "equipment",
-	"key": {
-		"#": "minecraft:iron_ingot"
-	},
-	"pattern": [
-		" #",
-		"# "
-	],
-	"result": {
-		"id": "minecraft:shears",
-		"components": {
-            "minecraft:item_name": {
-				"text": "Iron Shears",
-				"italic": false
-			},
-			"minecraft:max_damage":TIERS[2]["durability"]
-		}
-	}
-}
 recipe bswt:misc_equipment/magnet {
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
@@ -212,6 +191,27 @@ recipe bswt:misc_equipment/calibrated_compass {
 					"color": "gray"
 				}
 			]
+		}
+	}
+}
+recipe bswt:misc_equipment/iron_shears {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"#": "minecraft:iron_ingot"
+	},
+	"pattern": [
+		" #",
+		"# "
+	],
+	"result": {
+		"id": "minecraft:shears",
+		"components": {
+            "minecraft:item_name": {
+				"text": "Iron Shears",
+				"italic": false
+			},
+			"minecraft:max_damage":TIERS[2]["durability"]
 		}
 	}
 }

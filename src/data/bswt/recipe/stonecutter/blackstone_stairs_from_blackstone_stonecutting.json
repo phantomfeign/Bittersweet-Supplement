@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": "minecraft:blackstone",
-  "result": {
-    "id": "minecraft:blackstone_stairs",
-    "count": 4
-  }
-}

@@ -1,4 +1,4 @@
-recipe bswt:misc_crafting/abyssal_star_to_shard {
+recipe bswt:material/abyssal_star_to_shard {
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
@@ -19,7 +19,7 @@ recipe bswt:misc_crafting/abyssal_star_to_shard {
     "count": 5
   }
 }
-recipe bswt:misc_crafting/abyssal_shards_to_star {
+recipe bswt:material/abyssal_shards_to_star {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
@@ -34,7 +34,7 @@ recipe bswt:misc_crafting/abyssal_shards_to_star {
     "id": "minecraft:nether_star"
   }
 }
-recipe bswt:misc_crafting/amethyst_shard_to_crystal {
+recipe bswt:material/amethyst_shard_to_crystal {
 	"type": "minecraft:crafting_shaped",
 	"category": "misc",
 	"key": {
@@ -50,7 +50,7 @@ recipe bswt:misc_crafting/amethyst_shard_to_crystal {
 	}
 }
 
-recipe bswt:misc_crafting/bamboo_from_block {
+recipe bswt:material/bamboo_from_block {
 	"type": "minecraft:crafting_shapeless",
 	"category":"building",
 	"ingredients": [
@@ -61,24 +61,18 @@ recipe bswt:misc_crafting/bamboo_from_block {
 		"count": 9
 	}
 }
-
-recipe bswt:misc_crafting/bamboo_planks {
-	"type": "minecraft:crafting_shaped",
-	"category":"building",
-	"key": {
-		"X": "minecraft:bamboo_block"
-    },
-    "pattern": [
-        "XX",
-        "XX"
-    ],
-	"result": {
-		"id": "minecraft:bamboo_planks",
-		"count": 12
-	}
+recipe bswt:material/clay_from_block {
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+      "minecraft:clay" 
+  ],
+  "result": {
+    "id": "minecraft:clay_ball",
+    "count": 4
+  }
 }
-
-recipe bswt:misc_crafting/blaze_rod {
+recipe bswt:material/blaze_rod {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
@@ -99,8 +93,25 @@ recipe bswt:misc_crafting/blaze_rod {
     }
   }
 }
-
-recipe bswt:misc_crafting/breeze_rod {
+recipe bswt:material/echo_shard {
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "VAV",
+    "ADA",
+    "VAV"
+  ],
+  "key": {
+    "V": "minecraft:sculk_vein",
+    "A": "minecraft:breeze_spawn_egg",
+    "D": "minecraft:diamond"
+  },
+  "result": {
+    "id": "minecraft:echo_shard",
+    "count": 1
+  }
+}
+recipe bswt:material/breeze_rod {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
@@ -116,7 +127,7 @@ recipe bswt:misc_crafting/breeze_rod {
   }
 }
 
-recipe bswt:misc_crafting/bronze_ingot {
+recipe bswt:material/bronze_ingot {
     "type": "crafting_shaped",
     "category": "misc",
     "key":{
@@ -136,7 +147,7 @@ recipe bswt:misc_crafting/bronze_ingot {
     }
 }
 
-recipe bswt:misc_crafting/bronze_upgrade {
+recipe bswt:material/bronze_upgrade {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
@@ -196,7 +207,7 @@ recipe bswt:misc_crafting/bronze_upgrade {
 		}
 	}
 }
-recipe bswt:misc_crafting/diamond_upgrade {
+recipe bswt:material/diamond_upgrade {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
@@ -251,7 +262,7 @@ recipe bswt:misc_crafting/diamond_upgrade {
     } 
   }
 }
-recipe bswt:misc_crafting/adamantine_upgrade {
+recipe bswt:material/adamantine_upgrade {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
@@ -306,7 +317,8 @@ recipe bswt:misc_crafting/adamantine_upgrade {
     } 
   }
 }
-recipe bswt:misc_crafting/brown_dye {
+
+recipe bswt:material/brown_dye {
 	"type": "minecraft:crafting_shapeless",
 	"group": "brown_dye",
 	"ingredients": [
@@ -321,34 +333,40 @@ recipe bswt:misc_crafting/brown_dye {
 	}
 }
 
-recipe bswt:misc_crafting/clay_from_block {
-  "type": "minecraft:crafting_shapeless",
-  "category": "building",
-  "ingredients": [
-      "minecraft:clay" 
-  ],
-  "result": {
-    "id": "minecraft:clay_ball",
-    "count": 4
-  }
-}
-
-recipe bswt:misc_crafting/conduit {
+recipe bswt:material/copper_wiring {
 	"type": "minecraft:crafting_shaped",
     "group": "building",
 	"key": {
-		"#": "minecraft:nautilus_shell",
-		"X": "minecraft:heart_of_the_sea",
-		"D": "minecraft:diamond",
-		"G": "minecraft:gold_ingot",
-		"E": "minecraft:emerald"
+		"#": "minecraft:copper_nugget"
 	},
 	"pattern": [
-		"#E#",
-		"GXG",
-		"#D#"
+    "#",
+    "#"
 	],
 	"result": {
-		"id": "minecraft:conduit"
+		"id": "minecraft:redstone",
+    "count": 2
+	}
+}
+
+recipe bswt:material/prismatic_core {
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"pattern": [
+		"LGA",
+		"III",
+		"AGL"
+	],
+	"key": {
+		"I": "minecraft:iron_ingot",
+		"G": "minecraft:gold_ingot",
+		"L": "minecraft:lapis_lazuli",
+		"A": "minecraft:amethyst_shard"
+	},
+	"result": {
+		"id": "minecraft:breeze_spawn_egg",
+		"components": {
+			"!minecraft:entity_data": {}
+		}
 	}
 }

@@ -1,6 +1,7 @@
 import math
 
 advancement bswt:main/health/drink_ichor {
+    "parent": "temp:root",
 	"criteria": {
 		"drink": {
 			"trigger": "minecraft:consume_item",

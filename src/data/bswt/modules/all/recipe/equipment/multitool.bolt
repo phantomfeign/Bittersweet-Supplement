@@ -24,7 +24,7 @@ for tool in MULTITOOL_CRAFTING:
     current_tier = TIER_LOOKUP[tool["base_tier"]]
     mining_speed = current_tier["mining_speed"]
     max_durability = int(current_tier["durability"]*1.5)
-    ctx.data.recipes[f"bswt:multitool/crafted/mattock/{tool['base_tier']}"] = Recipe({
+    ctx.data.recipes[f"bswt:equipment/crafted/{tool['base_tier']}/mattock"] = Recipe({
 
         "type": "minecraft:crafting_shaped",
         "category": "equipment",
@@ -72,7 +72,7 @@ for tool in MULTITOOL_CRAFTING:
     current_tier = TIER_LOOKUP[tool["base_tier"]]
     mining_speed = current_tier["mining_speed"]
     max_durability = int(current_tier["durability"]*1.5)
-    ctx.data.recipes[f"bswt:multitool/crafted/pulaski/{tool['base_tier']}"] = Recipe({
+    ctx.data.recipes[f"bswt:equipment/crafted/{tool['base_tier']}/pulaski"] = Recipe({
 
         "type": "minecraft:crafting_shaped",
         "category": "equipment",
@@ -144,7 +144,7 @@ for tool in MULTITOOL_SMITHING:
     mining_speed = current_tier["mining_speed"]
     max_durability = int(current_tier["durability"]*1.5)
 
-    ctx.data.recipes[f"bswt:multitool/smithed/mattock/{tool['base_tier']}"] = Recipe({
+    ctx.data.recipes[f"bswt:equipment/smithed/{tool['base_tier']}/mattock"] = Recipe({
         "type": "minecraft:smithing_transform",
         "addition": f"minecraft:{tool['addition']}",
         "base": f"minecraft:{tool['base_tier']}_hoe",
@@ -184,7 +184,7 @@ for tool in MULTITOOL_SMITHING:
     mining_speed = current_tier["mining_speed"]
     max_durability = int(current_tier["durability"]*1.5)
 
-    ctx.data.recipes[f"bswt:multitool/smithed/mattock/{tool['base_tier']}_alt"] = Recipe({
+    ctx.data.recipes[f"bswt:equipment/smithed/{tool['base_tier']}/mattock_alt"] = Recipe({
         "type": "minecraft:smithing_transform",
         "addition": f"minecraft:{tool['addition']}",
         "base": f"minecraft:{tool['base_tier']}_pickaxe",
@@ -224,7 +224,7 @@ for tool in MULTITOOL_SMITHING:
     mining_speed = current_tier["mining_speed"]
     max_durability = int(current_tier["durability"]*1.5)
 
-    ctx.data.recipes[f"bswt:multitool/smithed/pulaski/{tool['base_tier']}"] = Recipe({
+    ctx.data.recipes[f"bswt:equipment/smithed/{tool['base_tier']}/pulaski"] = Recipe({
         "type": "minecraft:smithing_transform",
         "addition": f"minecraft:{tool['addition']}",
         "base": f"minecraft:{tool['base_tier']}_axe",
@@ -264,7 +264,7 @@ for tool in MULTITOOL_SMITHING:
     mining_speed = current_tier["mining_speed"]
     max_durability = int(current_tier["durability"]*1.5)
 
-    ctx.data.recipes[f"bswt:multitool/smithed/pulaski/{tool['base_tier']}_alt"] = Recipe({
+    ctx.data.recipes[f"bswt:equipment/smithed/{tool['base_tier']}/pulaski_alt"] = Recipe({
         "type": "minecraft:smithing_transform",
         "addition": f"minecraft:{tool['addition']}",
         "base": f"minecraft:{tool['base_tier']}_shovel",

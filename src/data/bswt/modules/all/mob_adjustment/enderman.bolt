@@ -2,7 +2,7 @@ function bswt:mob_adjustment/enderman/spawn:
     scoreboard players add @s bswt.endermanPullTimer 0
     attribute @s minecraft:attack_damage base set 0
     item replace entity @s weapon.mainhand with minecraft:wooden_axe[\
-    minecraft:item_model="bittersweet_supplement:invisible",minecraft:weapon={disable_blocking_for_seconds:2.0}]
+    minecraft:item_model="bswt:invisible",minecraft:weapon={disable_blocking_for_seconds:2.0}]
 
 function bswt:mob_adjustment/enderman/tick:
     unless predicate bswt:mob/has_target unless entity @e[distance=..8,tag=bswt.Cramped,tag=!PullTarget] run return run scoreboard players set @s bswt.endermanPullTimer 0

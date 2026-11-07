@@ -1,4 +1,4 @@
-recipe bswt:primative/sword {
+recipe bswt:equipment/crafted/primative/sword {
     "type": "minecraft:crafting_shaped",
     "category": "equipment",
     "key": {
@@ -35,7 +35,7 @@ recipe bswt:primative/sword {
         }
     }
 }
-recipe bswt:primative/spear {
+recipe bswt:equipment/crafted/primative/spear {
     "type": "minecraft:crafting_shaped",
     "category": "equipment",
     "key": {
@@ -86,7 +86,7 @@ recipe bswt:primative/spear {
         }
     }
 }
-recipe bswt:primative/axe {
+recipe bswt:equipment/crafted/primative/axe {
     "type": "minecraft:crafting_shaped",
     "category": "equipment",
     "key": {
@@ -129,7 +129,7 @@ recipe bswt:primative/axe {
         }
     }
 }
-recipe bswt:primative/pickaxe {
+recipe bswt:equipment/crafted/primative/pickaxe {
         "type": "minecraft:crafting_shaped",
         "category": "equipment",
         "key": {
@@ -162,7 +162,7 @@ recipe bswt:primative/pickaxe {
         }
     }
 }
-recipe bswt:primative/shovel {
+recipe bswt:equipment/crafted/primative/shovel {
         "type": "minecraft:crafting_shaped",
         "category": "equipment",
         "key": {
@@ -194,7 +194,7 @@ recipe bswt:primative/shovel {
         }
     }
 }
-recipe bswt:primative/hoe {
+recipe bswt:equipment/crafted/primative/hoe {
         "type": "minecraft:crafting_shaped",
         "category": "equipment",
         "key": {

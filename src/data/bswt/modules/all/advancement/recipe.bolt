@@ -1,0 +1,147 @@
+from beet import Advancement
+TIERS=[
+    (
+        "leather","leather",
+        ["helmet","chestplate","leggings","boots"],
+        [
+            "bundle"
+        ],
+        []
+    ),
+    (
+        "primative","flint",
+        ["sword","axe","pickaxe"],
+        [
+            "percussive_firestarter"
+        ],
+        []
+    ),
+    (
+        "copper","copper_ingot",
+        ["sword","spear","axe","pickaxe","shovel","hoe","helmet","chestplate","leggings","boots","mattock","pulaski","sickle"],
+        [
+            "copper_shears",
+            "copper_wire"
+        ],
+        []
+    ),
+    (
+        "iron","iron_ingot",
+        ["sword","spear","axe","pickaxe","shovel","hoe","helmet","chestplate","leggings","boots","mattock","pulaski","halberd","greatsword"],
+        [
+            "flint_and_steel",
+            "magnet",
+            "calibrated_compass",
+            "iron_shield",
+            "iron_shears",
+        ],
+        []
+    ),
+    (
+        "verdum","bogged_spawn_egg",
+        ["piercer","quarterstaff","mattock","pulaski"],
+        [
+            "flint_and_steel",
+            "magnet",
+            "calibrated_compass",
+            "iron_shield",
+            "iron_shears",
+        ],
+        []
+    ),
+    (
+        "golden","gold_ingot",
+        ["sword","spear","axe","pickaxe","shovel","hoe","helmet","chestplate","leggings","boots","mattock","pulaski"],
+        [],
+        [
+            "bswt:requiem/empty"
+        ]
+    ),
+    (
+        "diamond","diamond",
+        [],
+        [],
+        [
+            "bswt:misc_crafting/diamond_upgrade",
+            "bswt:uniques/amethyst_scythe"
+        ]
+    ),
+    (
+        "bronze","horse_spawn_egg",
+        ["gauntlet"],
+        [],
+        [
+            "bswt:misc_crafting/bronze_upgrade"
+        ]
+    ),
+    (
+        "netherite","netherite_ingot",
+        [],
+        [],
+        [
+            "bswt:misc_crafting/adamantine_upgrade",
+            "bswt:uniques/hellish_trident"
+        ]
+    )
+]
+
+for name,get,items,misc,extras in TIERS:
+    recipe_list = []
+    for item in (items):
+        recipe_list.append(f"bswt:equipment/crafted/{name}/{item}")
+    for misc in (misc):
+        recipe_list.append(f"bswt:misc_equipment/{misc}")
+    for extra in (extras):
+        recipe_list.append(extra)
+
+    ctx.data.advancements[f"bswt:main/recipe/{name}"] = Advancement ({
+    "parent": "temp:root",
+    "criteria": {
+        "get": {
+        "trigger": "minecraft:inventory_changed",
+        "conditions": {
+            "items": [{"items": f"minecraft:{get}"}]
+            }
+        }
+    },
+    "rewards": {
+        "recipes": recipe_list
+    }
+    })
+
+REQUIEMS=[
+    "actaeon",
+    "agdistis",
+    "arachne",
+    "bellerophon",
+    "capaneus",
+    "danaids",
+    "erysichthon",
+    "midas",
+    "niobe",
+    "orithyia",
+    "orpheus",
+    "pentheus",
+    "prometheus",
+    "salmoneus",
+    "sisyphus"
+]
+recipe_list = []
+
+for requiem in REQUIEMS:
+    recipe_list.append(f"bswt:requiem/{requiem}")
+
+ctx.data.advancements[f"bswt:main/recipe/requiem"] = Advancement ({
+"parent": "temp:root",
+"criteria": {
+    "get": {
+    "trigger": "minecraft:inventory_changed",
+    "conditions": {
+        "items": [{"items": "minecraft:villager_spawn_egg"}]
+        }
+    }
+},
+"rewards": {
+    "recipes": recipe_list
+}
+})

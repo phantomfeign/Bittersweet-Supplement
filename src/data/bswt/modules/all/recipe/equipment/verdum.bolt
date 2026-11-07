@@ -21,7 +21,7 @@ recipe bswt:misc_crafting/verdum_crystal {
 		]
 	}
 }
-recipe bswt:multitool/crafted/verdum/mattock {
+recipe bswt:equipment/crafted/verdum/mattock {
 	"type": "minecraft:crafting_shaped",
 	"category": "equipment",
 	"pattern": [
@@ -87,7 +87,7 @@ recipe bswt:multitool/crafted/verdum/mattock {
 		}
 	}
 }
-recipe bswt:multitool/crafted/verdum/pulaski {
+recipe bswt:equipment/crafted/verdum/pulaski {
 	"type": "minecraft:crafting_shaped",
 	"category": "equipment",
 	"pattern": [
@@ -154,7 +154,7 @@ recipe bswt:multitool/crafted/verdum/pulaski {
 		}
 	}
 }
-recipe bswt:multitool/crafted/verdum/piercer {
+recipe bswt:equipment/crafted/verdum/piercer {
 	"type": "minecraft:crafting_shaped",
 	"category": "equipment",
 	"key": {
@@ -247,7 +247,7 @@ recipe bswt:multitool/crafted/verdum/piercer {
 		}
 	}
 }
-recipe bswt:multitool/crafted/verdum/quarterstaff {
+recipe bswt:equipment/crafted/verdum/quarterstaff {
 	"type": "minecraft:crafting_shaped",
 	"category": "equipment",
 	"key": {

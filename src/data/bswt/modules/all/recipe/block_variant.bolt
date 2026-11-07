@@ -1,4 +1,5 @@
 from beet import Recipe
+from beet import Advancement
 
 WOOD_PREFIXES = [
     "acacia","birch","spruce",
@@ -92,7 +93,7 @@ PRESSURE_PLATES += WOOD_VARIANTS
 for b in PRESSURE_PLATES:
     prefix = b["prefix"]
     block = b["block"]
-    ctx.data.recipes[f"bswt:block_variants/pressure_plate/{prefix}"] = Recipe({
+    ctx.data.recipes[f"bswt:block_variant/pressure_plate/{prefix}"] = Recipe({
 
         "type": "minecraft:crafting_shaped",
         "category": "building",
@@ -111,7 +112,7 @@ for b in PRESSURE_PLATES:
 for b in BLOCK_VARIANTS:
     prefix = b["prefix"]
     block = b["block"]
-    ctx.data.recipes[f"bswt:block_variants/stair/{prefix}"] = Recipe({
+    ctx.data.recipes[f"bswt:block_variant/stair/{prefix}"] = Recipe({
 
         "type": "minecraft:crafting_shaped",
         "category": "building",
@@ -133,7 +134,7 @@ for b in BLOCK_VARIANTS:
     prefix = b["prefix"]
     block = b["block"]
 
-    ctx.data.recipes[f"bswt:block_variants/stair_to_block/{prefix}"] = Recipe({
+    ctx.data.recipes[f"bswt:block_variant/stair_to_block/{prefix}"] = Recipe({
 
         "type": "minecraft:crafting_shaped",
         "category": "building",
@@ -155,7 +156,7 @@ for b in BLOCK_VARIANTS:
     prefix = b["prefix"]
     block = b["block"]
 
-    ctx.data.recipes[f"bswt:block_variants/slab/{prefix}"] = Recipe({
+    ctx.data.recipes[f"bswt:block_variant/slab/{prefix}"] = Recipe({
         "type": "minecraft:crafting_shaped",
         "category": "building",
         "pattern": [
@@ -174,8 +175,7 @@ for b in BLOCK_VARIANTS:
 for b in BLOCK_VARIANTS:
     prefix = b["prefix"]
     block = b["block"]
-    ctx.data.recipes[f"bswt:block_variants/slab_to_block/{prefix}"] = Recipe({
-
+    ctx.data.recipes[f"bswt:block_variant/slab_to_block/{prefix}"] = Recipe({
         "type": "minecraft:crafting_shaped",
         "category": "building",
         "pattern": [
@@ -187,5 +187,55 @@ for b in BLOCK_VARIANTS:
         },
         "result": {
             "id": f"minecraft:{block}"
+        }
+    })
+
+#ADVANCEMENT
+for b in PRESSURE_PLATES:
+    prefix = b["prefix"]
+    block = b["block"]
+    
+    ctx.data.advancements[f"bswt:main/recipe/block_variant/{prefix}"] = Advancement({
+        "parent": "temp:root",
+        "criteria": {
+            "has_item": {
+                "trigger": "minecraft:inventory_changed",
+                "conditions": {
+                    "items": [{"items": [f"minecraft:{block}"]}]
+                }
+            }
+        },
+        "rewards": {
+            "recipes": [f"bswt:block_variant/pressure_plate/{prefix}"]
+        }
+    })
+
+for b in BLOCK_VARIANTS:
+    prefix = b["prefix"]
+    block = b["block"]
+    
+    ctx.data.advancements[f"bswt:main/recipe/block_variant/{prefix}"] = Advancement({
+        "parent": "temp:root",
+        "criteria": {
+            "has_any_variant_item": {
+                "trigger": "minecraft:inventory_changed",
+                "conditions": {
+                    "items": [
+                        {"items": [
+                            f"minecraft:{block}",
+                            f"minecraft:{prefix}_stairs",
+                            f"minecraft:{prefix}_slab"
+                        ]}
+                    ]
+                }
+            }
+        },
+        "rewards": {
+            "recipes": [
+                f"bswt:block_variant/stair/{prefix}",
+                f"bswt:block_variant/stair_to_block/{prefix}",
+                f"bswt:block_variant/slab/{prefix}",
+                f"bswt:block_variant/slab_to_block/{prefix}"
+            ]
         }
     })
