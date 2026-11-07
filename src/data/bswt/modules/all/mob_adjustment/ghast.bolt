@@ -1,0 +1,23 @@
+function bswt:mob_adjustment/ghast/spawn:
+    pass
+
+function bswt:mob/ghast/kill:
+    advancement revoke @s only bswt:mob/ghast/kill
+    give @s minecraft:ghast_tear
+
+advancement temp:mob/ghast/kill{
+  "parent":"temp:root",
+	"criteria": {
+		"kill_ghast": {
+			"trigger": "minecraft:player_killed_entity",
+			"conditions": {
+				"entity": {
+					"minecraft:entity_type": "minecraft:ghast"
+				}
+			}
+		}
+	},
+	"rewards": {
+		"function": "bswt:mob/ghast/kill"
+	}
+}

@@ -39,12 +39,15 @@ function ticking_functions:tick_0.5s/call:
         
 function ticking_functions:tick_0.5s/universal:
     as @s[tag=bswt.frostbitten] run function bswt:mob_effect/frostbite/tick
+    as @s[type=enderman] at @s run function bswt:mob_adjustment/enderman/tick
 
 function ticking_functions:tick_0.5s/players:
     if score @s bswt.Hunger matches 10.. run effect give @s minecraft:hunger 1 255 true
     if score @s bswt.Hunger matches ..6: 
         effect give @s minecraft:saturation 1 1 true
         effect clear @s minecraft:hunger
+    as @s[tag=bswt.Cramped] if block ~ ~2 ~ #bswt:nonsolid run tag @s remove bswt.Cramped
+    as @s[tag=!bswt.Cramped] unless block ~ ~2 ~ #bswt:nonsolid run tag @s add bswt.Cramped
 
 #—————————————————— 1 SECOND
 function ticking_functions:tick_1s/call:

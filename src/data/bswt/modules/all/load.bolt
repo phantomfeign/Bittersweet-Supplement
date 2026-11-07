@@ -42,6 +42,8 @@ function load:scoreboard:
     scoreboard objectives add bswt.anvilUse minecraft.custom:minecraft.interact_with_anvil
     scoreboard players set 0 bswt.anvilUse 0
 
+    scoreboard objectives add bswt.endermanPullTimer dummy
+
 #ENCHANTS
     #LACERATION
     scoreboard objectives add bswt.lacerationStacks dummy

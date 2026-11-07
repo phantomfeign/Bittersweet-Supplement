@@ -1,0 +1,45 @@
+function bswt:mob_adjustment/pillager/spawn:
+    if predicate bswt:chance/5 unless entity @e[type=minecraft:pillager,tag=bswt.fireworkPillager,distance=..10] run tag @s add bswt.fireworkPillager
+    if entity @s[tag=bswt.fireworkPillager]:
+        item replace entity @s armor.head with minecraft:iron_helmet
+        
+        item replace entity @s weapon.offhand with \
+        minecraft:firework_rocket[minecraft:fireworks={explosions:[\
+        {shape:"burst",has_trail:true,colors:[2378283]},\
+        {shape:"burst",has_trail:true,colors:[2378283]},\
+        ]}] 64
+
+        item replace entity @s weapon.mainhand with minecraft:crossbow
+        item modify entity @s weapon.mainhand bswt:mob/pillager_firework
+        clear @s #minecraft:arrows
+
+item_modifier bswt:mob/pillager_firework {
+  "function": "minecraft:set_components",
+  "components": {
+    "minecraft:charged_projectiles": [
+      {
+        "id": "minecraft:firework_rocket",
+        "count": 1,
+        "components": {
+          "minecraft:fireworks": {
+            "explosions": [
+              {
+                "shape": "burst",
+                "has_trail": true,
+                "has_twinkle": false,
+                "colors": [2378283]
+              },
+              {
+                "shape": "burst",
+                "has_trail": true,
+                "has_twinkle": false,
+                "colors": [2378283]
+              }
+            ],
+            "flight_duration": 1
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+function bswt:mob_adjustment/enderman/spawn:
+    scoreboard players add @s bswt.endermanPullTimer 0
+    attribute @s minecraft:attack_damage base set 0
+    item replace entity @s weapon.mainhand with minecraft:wooden_axe[\
+    minecraft:item_model="bittersweet_supplement:invisible",minecraft:weapon={disable_blocking_for_seconds:2.0}]
+
+function bswt:mob_adjustment/enderman/tick:
+    unless predicate bswt:mob/has_target unless entity @e[distance=..8,tag=bswt.Cramped,tag=!PullTarget] run return run scoreboard players set @s bswt.endermanPullTimer 0
+    as @s[predicate=bswt:mob/has_target] run scoreboard players add @s bswt.endermanPullTimer 1
+    if score @s bswt.endermanPullTimer matches 5..:
+        if entity @a[distance=..8,tag=bswt.Cramped,tag=!PullTarget] run function bswt:mob_adjustment/enderman/tp/windup
+        scoreboard players set @s bswt.endermanPullTimer 0
+    ride @s dismount
+    
+function bswt:mob_adjustment/enderman/tp/windup:
+    scoreboard players set @e[type=enderman] bswt.endermanPullTimer 0
+    tag @s add PullHost
+
+    positioned ~ ~ ~:
+        particle minecraft:enchant ~ ~1.5 ~ 1 1 1 0.5 30 force
+        particle minecraft:end_rod ~ ~2 ~ 1 1 1 0.5 10
+        particle minecraft:enchant ~ ~1.5 ~ 0 1 0 0 30 force
+
+    as @a[tag=bswt.Cramped,tag=!PullTarget,sort=nearest,limit=1,distance=..8] at @s:
+        particle minecraft:portal ~ ~1 ~ 0.5 1 0.5 0.1 30 force
+        particle minecraft:enchant ~ ~1.5 ~ 0.5 1 0.5 0 30 force
+        playsound minecraft:entity.enderman.teleport master @s ~ ~ ~ 1 0.5
+        effect give @s minecraft:blindness 4 0
+        tag @s add PullTarget
+
+    schedule function bswt:mob_adjustment/enderman/tp/call 20t
+    effect give @s slowness 1 255 true
+
+function bswt:mob_adjustment/enderman/tp/call:
+    as @a[tag=PullTarget,sort=nearest,limit=1,distance=..8]:
+        effect give @s resistance 1 0 true
+        effect give @s slowness 2 1 true
+    as @e[type=minecraft:enderman,tag=PullHost,sort=nearest,limit=1] at @s: 
+        tp @e[type=minecraft:player,tag=PullTarget,sort=nearest,limit=1] ^ ^ ^
+        scoreboard players set @s bswt.endermanPullTimer 0
+        effect clear @s slowness
+
+    particle minecraft:portal ~ ~1 ~ 1 1 1 0.5 30
+    particle minecraft:end_rod ~ ~2 ~ 1 1 1 0.5 10
+
+    tag @a[tag=PullTarget,sort=nearest,limit=1] remove PullTarget
+    tag @e[type=minecraft:enderman] remove PullHost

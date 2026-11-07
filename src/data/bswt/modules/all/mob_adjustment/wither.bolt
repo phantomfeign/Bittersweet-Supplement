@@ -1,0 +1,68 @@
+advancement temp:mob/make_wither {
+    "parent":"temp:root",
+	"criteria": {
+		"summon_wither": {
+			"conditions": {
+				"entity": {
+					"minecraft:entity_type": "minecraft:wither"
+				}
+			},
+			"trigger": "minecraft:summoned_entity"
+		}
+	},
+	"requirements": [
+		[
+			"summon_wither"
+		]
+	],
+	"rewards": {
+		"function": "bswt:mob_adjustment/wither/forbid"
+	}
+}
+
+function bswt:mob_adjustment/wither/forbid:
+    advancement revoke @s only temp:mob/make_wither
+    unless dimension minecraft:the_nether run schedule function bswt:mob_adjustment/wither/run 11s
+
+function bswt:mob_adjustment/wither/call:
+    execute as @e[type=minecraft:wither] at @s run function bswt:mob_adjustment/wither/kill_wither
+
+function bswt:mob_adjustment/wither/kill_wither:
+    data modify entity @s DeathLootTable set value "bswt:mob/wither_ingredients"
+    data merge entity @s {NoAI:1b,Silent:1b}
+    tellraw @a {"text":"This monstrosity recoils in the Elysian air.","color":"#ff8f1e"}
+    effect give @e[distance=..2] minecraft:wither 5
+    particle minecraft:soul_fire_flame ~ ~ ~ 0 0 0 0.1 10
+    particle minecraft:flame ~ ~ ~ 0 0 0 0.1 10
+    particle minecraft:flash{color:16741378} ~ ~ ~ 0 0 0 0 1
+    particle minecraft:dust_pillar{block_state:"minecraft:soul_sand"} ~ ~ ~ 0 0 0 0.2 5
+    particle minecraft:dust_pillar{block_state:"minecraft:blackstone"} ~ ~ ~ 0 0 0 0.2 5
+    execute at @p run schedule function bswt:mob_adjustment/wither/kill_star 1t
+    kill @s
+
+function bswt:mob_adjustment/wither/kill_star:
+	kill @e[type=item,nbt={Item:{id:"minecraft:nether_star",count:1}}]
+
+loot_table bswt:mob/wither_ingredients {
+	"type": "minecraft:entity",
+	"pools": [
+		{
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "minecraft:soul_sand"
+				}
+			],
+			"rolls": 4
+		},
+		{
+			"rolls": 3,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "minecraft:wither_skeleton_skull"
+				}
+			]
+		}
+	]
+}

@@ -5,6 +5,22 @@ advancement temp:root {
 		}
     }
 }
+
+function utility:clear_armor:
+  unless predicate bswt:in_trial_chamber run item replace entity @s armor.head with minecraft:air
+  unless predicate bswt:in_trial_chamber run item replace entity @s armor.chest with minecraft:air
+  unless predicate bswt:in_trial_chamber run item replace entity @s armor.legs with minecraft:air
+  unless predicate bswt:in_trial_chamber run item replace entity @s armor.feet with minecraft:air
+
+predicate bswt:in_trial_chamber {
+    "condition": "location_check",
+    "predicate": {
+        "structures": [
+            "minecraft:trial_chambers"
+        ]
+    }
+}
+
 function utility:projectile_tick:
     scoreboard players remove @s bswt.projectileLifeSpan 1
     execute if score @s bswt.projectileLifeSpan matches ..0 run kill @s

@@ -193,7 +193,7 @@ predicate bswt:enchantment/hefty {
   }
 }
 
-CHANCES=[50,40,25,20,10]
+CHANCES=[50,40,33,25,20,10,5]
 
 for chance in CHANCES:
     value=chance/100
@@ -201,3 +201,13 @@ for chance in CHANCES:
     "condition": "minecraft:random_chance",
     "chance": value
     })
+
+predicate bswt:mob/has_target {
+	"condition": "minecraft:entity_properties",
+	"entity": "this",
+	"predicate": {
+		"minecraft:targeted_entity": {
+			"minecraft:entity_type": "minecraft:player"
+		}
+	}
+}

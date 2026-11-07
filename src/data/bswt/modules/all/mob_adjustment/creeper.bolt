@@ -29,16 +29,3 @@ function bswt:mob_adjustment/creeper/watch/step:
     unless block ~ ~ ~ #bswt:nonsolid run return fail
     tag @e[type=minecraft:creeper,distance=..2] add WatchedCreeper
     if entity @e[type=minecraft:creeper,distance=..2] run tag @s add WatchingCreeper
-
-#normal minecraft datapack
-    particle flame ^ ^ ^
-    particle flame ^ ^ ^1
-    particle flame ^ ^ ^2
-    particle flame ^ ^ ^3
-    particle flame ^ ^ ^4
-    particle flame ^ ^ ^5
-    particle flame ^ ^ ^6
-
-#Beet+Bolt
-    for i in range (7):
-        particle flame ^ ^ ^{i}

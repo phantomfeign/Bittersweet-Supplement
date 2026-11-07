@@ -1,0 +1,50 @@
+function bswt:mob_adjustment/phantom/spawn:
+    attribute @s minecraft:max_health base set 40
+    data merge entity @s {Health:40.0f}
+    attribute @s minecraft:scale base set 1.25
+    attribute @s minecraft:attack_damage base set 8
+    attribute @s minecraft:knockback_resistance base set 1
+
+advancement temp:mob/phantom/kill_player {
+	"criteria": {
+		"kill": {
+			"trigger": "minecraft:entity_killed_player",
+			"conditions": {
+				"killing_blow": {
+					"is_direct": true
+				}
+			}
+		}
+	},
+	"rewards": {
+        "function":"bswt:mob_adjustment/phantom/kill_player"
+    }
+}
+function bswt:mob_adjustment/phantom/kill_player:
+    as @e[sort=nearest,limit=1,type=minecraft:phantom] run data merge entity @s {Health:40.0f}
+
+
+advancement temp:mob/phantom/hit_player {
+  "parent":"temp:root",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:entity_hurt_player",
+      "conditions": {
+        "damage": {
+          "type": {
+            "direct_entity": {
+              "minecraft:entity_type": "minecraft:phantom"
+            }
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "bswt:mob_adjustment/phantom/hit_player"
+  }
+}
+
+function bswt:mob_adjustment/phantom/hit_player:
+    effect give @s minecraft:slowness 3
+    effect give @s minecraft:levitation 3
