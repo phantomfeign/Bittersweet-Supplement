@@ -1,6 +1,0 @@
-{
-  "amount": 5.0,
-  "random_sequence": "minecraft:trade_set/wandering_trader/common",
-  "allow_duplicates": false,
-  "trades": "#minecraft:wandering_trader/common"
-}
