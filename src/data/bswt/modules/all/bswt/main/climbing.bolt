@@ -1,0 +1,58 @@
+predicate main:climbing/blocks {
+    "condition": "minecraft:any_of",
+    "terms": [
+        {
+            "condition":"minecraft:location_check",
+            "predicate": {
+                "block": {
+                    "blocks": "#minecraft:climbable"
+                }
+            }
+        },
+        {
+            "condition":"minecraft:location_check",
+            "offsetY": 1,
+            "predicate": {
+                "block": {
+                    "blocks": "#minecraft:climbable"
+                }
+            }
+        }
+    ]
+} 
+predicate main:climbing/input {
+    "condition": "minecraft:any_of",
+    "terms": [
+        {
+            "condition":"minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+                "minecraft:type_specific/player": {
+                    "input": {
+                        "jump": true
+                    }
+                }
+            }
+        },
+        {
+            "condition":"minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+                "minecraft:type_specific/player": {
+                    "input": {
+                        "forward": true
+                    }
+                }
+            }
+        } 
+    ]
+}
+function main:climb:
+    unless predicate main:climbing/input if entity @s[x_rotation=80..90]:
+        if block ~ ~-0.3 ~ #minecraft:climbable run tp @s ~ ~-0.25 ~
+        data modify entity @s fall_distance set value 0.0f
+
+    if predicate main:climbing/input if predicate main:climbing/blocks if entity @s[x_rotation=-90..-30] \
+    if block ~ ~1.2 ~ #minecraft:climbable run return run effect give @s levitation 1 15 true
+
+    effect clear @s levitation

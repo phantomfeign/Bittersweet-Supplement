@@ -20,7 +20,11 @@ function load:scoreboard:
     execute as @a store result score @s bswt.maxHealth run attribute @s minecraft:max_health get 1.0
     scoreboard objectives add bswt.currentHealth health
 
+    scoreboard objectives add Day dummy
+    scoreboard objectives add Time dummy
+    scoreboard objectives add SleepAttempt dummy
     scoreboard objectives add SleepStreak dummy
+    scoreboard objectives add BloodMoonActive dummy
 
     scoreboard objectives add bswt.healthRecoveryTime dummy
     scoreboard objectives add bswt.healthRecoverySeconds dummy
@@ -65,8 +69,13 @@ function load:scoreboard:
     scoreboard objectives add bswt.viperTimer dummy
     #VINERY
     scoreboard objectives add bswt.vineryStacks dummy
+    scoreboard players add @a bswt.vineryStacks 0
     #LUNGE
     scoreboard objectives add bswt.cd.Lunge dummy
+    #MACE
+    scoreboard objectives add bswt.cd.Gust dummy
+    scoreboard objectives add bswt.cd.Mine dummy
+
 function load:gamerule:
     gamerule natural_health_regeneration false
     gamerule keep_inventory true

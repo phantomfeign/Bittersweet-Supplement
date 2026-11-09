@@ -35,7 +35,7 @@ function bswt:enchantment/flint_ignite:
     tag @s add FlintArrow
     execute on origin unless items entity @s weapon.offhand minecraft:flint_and_steel run return fail
     execute on origin:
-        function utility:damage_item/call {heal:0,dmg:1,modified_slot:weapon.mainhand,slot:SelectedItem}
+        function utility:damage_item/call {heal:0,dmg:1,hand_slot:SelectedItem,damaged_slot:weapon.mainhand}
         playsound minecraft:item.flintandsteel.use player @a
     execute as @s run data modify entity @s Fire set value 1000
     particle minecraft:flame ^ ^ ^ 0 0 0 0.2 3

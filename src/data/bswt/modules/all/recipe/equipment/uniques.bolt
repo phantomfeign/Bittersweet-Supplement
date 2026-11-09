@@ -204,7 +204,8 @@ recipe bswt:uniques/wind_mace {
 				]
 			},
 			"minecraft:custom_data": {
-				"right_click": true
+				"right_click": true,
+				"bswt.wind_mace": true
 			},
 			"minecraft:consumable": {
 				"consume_seconds": 999999,
@@ -339,7 +340,7 @@ recipe bswt:uniques/rimed_stiletto {
 				"sound": "minecraft:intentionally_empty"
 			},
 				"minecraft:custom_data": {
-				"frostbiteStomp": true,
+				"bswt.frostbite_stomp": true,
 				"right_click": true
 			}
 		}

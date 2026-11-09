@@ -535,3 +535,60 @@ recipe bswt:equipment/smithed/bronze/greatsword {
 		}
 	}
 }
+recipe bswt:equipment/crafted/golden/rapier {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"#": "minecraft:stick",
+		"X": "minecraft:gold_ingot"
+	},
+	"pattern": [
+		"  X",
+		" X ",
+		"#  "
+	],
+	"result": {
+		"id": "minecraft:golden_sword",
+		"components": {
+            "minecraft:max_damage": TIERS[3]["durability"],
+			"minecraft:item_model": "bswt_texture:golden_rapier",
+			"minecraft:item_name": {
+				"text": "Golden Rapier",
+				"color": "white"
+			},
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:attack_speed",
+					"id": "bswt:golden_rapier",
+					"amount": -1.4,
+					"operation": "add_value",
+					"slot": "mainhand"
+				},
+				{
+					"type": "minecraft:attack_damage",
+					"id": "bswt:golden_rapier",
+					"amount": 3,
+					"operation": "add_value",
+					"slot": "mainhand"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "4🗡",
+					"color": "red",
+					"italic": false
+				},
+				{
+					"text": "2.6⌚",
+					"color": "yellow",
+					"italic": false
+				}
+			]
+		}
+	}
+}

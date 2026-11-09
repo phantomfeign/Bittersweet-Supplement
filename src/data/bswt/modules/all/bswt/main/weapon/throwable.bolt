@@ -1,0 +1,56 @@
+advancement main:weapon/throw/breeze_rod/summon {
+  "parent": "temp:root",
+  "criteria": {
+    "use": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": 
+            "breeze_rod",
+          "predicates": {
+            "minecraft:custom_data": {
+              "adjusted_item": true
+              }
+            }
+          }
+        }
+      }
+    },
+  "rewards": {
+    "function": "main:weapon/throw/breeze_rod/summon"
+  }
+}
+function main:weapon/throw/breeze_rod/summon:
+    advancement revoke @s only main:weapon/throw/breeze_rod/summon
+    function utility:spawn_w_motion {Type:breeze_wind_charge, X:0,Y:0,Z:6,Tags:timedProjectile}
+    as @e[sort=nearest,limit=1,type=minecraft:breeze_wind_charge,tag=timedProjectile] run scoreboard players set @s bswt.projectileLifeSpan 20
+
+advancement main:weapon/throw/fire_charge/summon {
+  "parent": "temp:root",
+  "criteria": {
+    "use": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": 
+            "fire_charge",
+          "predicates": {
+            "minecraft:custom_data": {
+              "adjusted_item": true
+              }
+            }
+          }
+        }
+      }
+    },
+  "rewards": {
+    "function": "main:weapon/throw/fire_charge/summon"
+  }
+}
+function main:weapon/throw/fire_charge/summon:
+    advancement revoke @s only main:weapon/throw/fire_charge/summon
+    function utility:spawn_w_motion {Type:fireball, X:0,Y:0,Z:6,Tags:timedProjectile}
+    as @e[sort=nearest,limit=1,type=minecraft:fireball,tag=timedProjectile]:
+        data merge entity @s {ExplosionPower:1}
+        scoreboard players set @s bswt.projectileLifeSpan 20
+    

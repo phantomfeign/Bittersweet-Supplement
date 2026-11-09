@@ -82,6 +82,6 @@
 		]
 	],
   "rewards": {
-    "function": "bittersweet_functions:mob_adjustments/equipment/tier_progression/endgame"
+    "function": "bswt:mob_adjustments/equipment/tier_progression/endgame"
   }
 }

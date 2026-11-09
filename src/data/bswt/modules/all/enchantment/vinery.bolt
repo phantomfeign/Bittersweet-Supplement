@@ -171,7 +171,6 @@ function bswt:enchantment/vinery/block:
         playsound block.leaf_litter.break player @a ~ ~ ~ 2 1.5
 
 function bswt:enchantment/vinery/call:
-    say call
     if score @s bswt.vineryStacks matches ..0 run return fail
     if score @s bswt.vineryStacks matches 4.. run scoreboard players set @s bswt.vineryStacks 4
     for i in range (4):

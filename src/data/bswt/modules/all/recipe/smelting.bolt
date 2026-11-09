@@ -1,0 +1,19 @@
+recipe bswt:smelting/gold_nugget {
+  "type": "minecraft:smelting",
+  "group": "gold_nugget",
+  "ingredient": "minecraft:raw_gold",
+  "result": {
+    "id": "minecraft:gold_nugget"
+  },
+  "cookingtime": 150
+}
+recipe bswt:smelting/iron_nugget {
+  "type": "minecraft:smelting",
+  "group": "iron_nugget",
+  "ingredient": "minecraft:raw_iron",
+  "result": {
+    "id": "minecraft:iron_nugget",
+    "count":3
+  },
+  "cookingtime": 150
+}

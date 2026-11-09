@@ -1,0 +1,55 @@
+block_tag main:mace_mineable {
+  "values": [
+    "minecraft:stone",
+    "minecraft:cobblestone",
+    "minecraft:deepslate",
+    "minecraft:cobbled_deepslate",
+    "minecraft:granite",
+    "minecraft:diorite",
+    "minecraft:andesite",
+    "minecraft:tuff",
+    "minecraft:basalt",
+    "minecraft:blackstone",
+    "minecraft:netherrack",
+    "minecraft:crimson_nylium",
+    "minecraft:warped_nylium",
+    "minecraft:dripstone_block",
+    "minecraft:pointed_dripstone",
+    "minecraft:sulfur",
+    "minecraft:sulfur_spike",
+    "minecraft:cinnabar"
+  ]
+}
+function main:weapon/mace/wind_charge/summon:
+  unless score @s bswt.cd.Gust matches 0 run return fail
+  scoreboard players set @s bswt.cd.Gust 10
+  playsound minecraft:item.mace.smash_air player @a ~ ~ ~ 4 2
+  summon minecraft:wind_charge ~ ~ ~ {Motion:[0.0,-5,0.0]}
+
+function main:weapon/mace/mine/start:
+  unless score @s bswt.cd.Mine matches 0 run return fail
+  scoreboard players set @s bswt.cd.Mine 2
+  $function utility:damage_item/call {heal:0,dmg:1,hand_slot:$(hand_slot),damaged_slot:$(damaged_slot)}
+  playsound minecraft:item.mace.smash_air player @a ~ ~ ~ 4 1
+  playsound minecraft:entity.breeze.charge player @a ~ ~ ~ 4 1
+  anchored eyes positioned ^ ^ ^2 run particle minecraft:gust
+  anchored eyes positioned ^ ^ ^2 align xyz positioned ~-1 ~-1 ~-1 run function main:weapon/mace/mine/x
+
+function main:weapon/mace/mine/this:
+  particle small_gust
+  setblock ~ ~ ~ air destroy
+
+function main:weapon/mace/mine/x:
+  function main:weapon/mace/mine/y
+  execute positioned ~1 ~ ~ run function main:weapon/mace/mine/y
+  execute positioned ~2 ~ ~ run function main:weapon/mace/mine/y
+
+function main:weapon/mace/mine/y:
+  function main:weapon/mace/mine/z
+  execute positioned ~ ~1 ~ run function main:weapon/mace/mine/z
+  execute positioned ~ ~2 ~ run function main:weapon/mace/mine/z
+
+function main:weapon/mace/mine/z:
+  execute if block ~ ~ ~ #main:mace_mineable run function main:weapon/mace/mine/this
+  execute positioned ~ ~ ~1 if block ~ ~ ~ #main:mace_mineable run function main:weapon/mace/mine/this
+  execute positioned ~ ~ ~2 if block ~ ~ ~ #main:mace_mineable run function main:weapon/mace/mine/this

@@ -1,0 +1,58 @@
+advancement main:right_click/use {
+  "parent": "temp:root",
+  "criteria": {
+    "right_clicked": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "item": {
+          "predicates": {
+            "minecraft:custom_data": {
+              "right_click": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "right_clicked"
+    ]
+
+  ],
+  "rewards": {
+    "function": "main:right_click/sort"
+  }
+}
+
+
+function main:right_click/sort:
+    advancement revoke @s only main:right_click/use
+    if predicate main:right_click/mainhand run function main:right_click/call {hand_slot:SelectedItem,damaged_slot:weapon.mainhand}
+    unless predicate main:right_click/mainhand if predicate main:right_click/offhand run function main:right_click/call {hand_slot:equipment.offhand,damaged_slot:weapon.offhand}
+
+function main:right_click/call:
+    $execute if items entity @s $(damaged_slot) mace unless predicate bswt:player/input/sneak run function main:weapon/mace/wind_charge/summon
+    $execute if items entity @s $(damaged_slot) mace if predicate bswt:player/input/sneak run function main:weapon/mace/mine/start {hand_slot:$(hand_slot),damaged_slot:$(damaged_slot)}
+    function main:actionbar/build/call
+
+predicate main:right_click/mainhand {
+    "condition": "minecraft:entity_properties",
+    "entity": "this",
+    "predicate": {
+        "slots": {
+            "weapon.mainhand": {
+                "predicates": {
+                    "minecraft:custom_data": {
+                        "right_click": true
+                    }}}}}} 
+predicate main:right_click/offhand {
+    "condition": "minecraft:entity_properties",
+    "entity": "this",
+    "predicate": {
+        "slots": {
+            "weapon.offhand": {
+                "predicates": {
+                    "minecraft:custom_data": {
+                        "right_click": true
+                    }}}}}} 

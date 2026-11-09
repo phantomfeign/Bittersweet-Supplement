@@ -467,6 +467,9 @@
       "namespace": "minecraft",
       "path":"^recipe/smoker\\.json$"
     },{
+      "namespace": "minecraft",
+      "path":"^recipe/campfire\\.json$"
+    },{
 
       "namespace": "minecraft",
       "path": "^recipe/mossy_cobblestone_from_moss_block\\.json$"

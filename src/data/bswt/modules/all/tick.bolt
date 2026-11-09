@@ -3,6 +3,8 @@ function ticking_functions:call_all:
     schedule function ticking_functions:tick_0.5s/call 2t
     schedule function ticking_functions:tick_1s/call 3t
     schedule function ticking_functions:tick_10s/call 4t
+    schedule function utility:time_monitor 5t
+
 #—————————————————— 1 TICK
 function ticking_functions:tick_1t/call:
     schedule function ticking_functions:tick_1t/call 1t replace
@@ -24,11 +26,18 @@ function ticking_functions:tick_1t/universal:
 
 function ticking_functions:tick_1t/players:
     function bswt:mob_adjustment/creeper/watch/tick
+    function main:climb
     if predicate bswt:enchantment/infinity unless items entity @s saddle minecraft:arrow run function utility:ghost_arrow/check_infinity
     if predicate bswt:enchantment/overload unless items entity @s saddle minecraft:arrow run function utility:ghost_arrow/check_overload
     unless predicate bswt:enchantment/infinity unless predicate bswt:enchantment/overload if items entity @s saddle minecraft:arrow run function utility:ghost_arrow/remove
     if predicate bswt:enchantment/hefty run function utility:swap_hands
-    as @e[type=player,scores={bswt.playerDeaths=1..}] run function bswt:main/health/death
+    as @s[scores={bswt.playerDeaths=1..}] run function bswt:main/health/death
+    #sleep
+    tag @s add bswt.sleeping
+    as @s at @s positioned ~ ~0.200001 ~ if entity @s[dx=0] run tag @s remove bswt.sleeping
+    as @s[tag=bswt.sleeping]:
+        unless score #sleep SleepAttempt matches 1 run schedule function main:sleep/advance_time 40t
+        scoreboard players set #sleep SleepAttempt 1
 
 #—————————————————— 0.5 SECOND
 function ticking_functions:tick_0.5s/call:
@@ -66,13 +75,17 @@ function ticking_functions:tick_1s/players:
     function utility:anvil/tick
     function bswt:main/adrenaline/tick
     function ticking_functions:tick_1s/cooldowns
+    function main:actionbar/build/call
     if predicate bswt:enchantment/verdure/light if predicate bswt:enchantment/verdure/either_hand run function bswt:enchantment/verdure/tick
     if entity @s[tag=bswt.vineryCaster] unless entity @e[type=minecraft:block_display,tag=bswt.vinerySpore,distance=..20] run tag @s remove bswt.vineryCaster
 
 function ticking_functions:tick_1s/cooldowns:
-#lunge
-    unless score @s bswt.cd.Lunge matches 3.. run scoreboard players add @s bswt.cd.Lunge 1
-    if score @s bswt.cd.Lunge matches 3 run tag @s add canLunge
+    for cooldown in ["Lunge","Gust","Mine"]:
+        SCORE=f"bswt.cd.{cooldown}"
+        unless score @s (SCORE) matches ..0 run scoreboard players remove @s (SCORE) 1
+        if score @s (SCORE) matches ..-1 run scoreboard players set @s (SCORE) 0
+    #special
+    if score @s bswt.cd.Lunge matches ..0 run tag @s add canLunge
 
 #—————————————————— 10
 function ticking_functions:tick_10s/call:

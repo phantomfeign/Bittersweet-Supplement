@@ -104,7 +104,7 @@ function bswt:enchantment/overload/load_detection/revoke:
     if predicate bswt:enchantment/overload run return run function bswt:enchantment/overload/load_crossbow/call
 
 function bswt:enchantment/overload/load_detection/schedule:
-    execute as @a[advancements={temp:enchantment/overload/use=true}] run function bswt:enchantment/overload/load_detection/revoke
+    as @a[advancements={temp:enchantment/overload/use=true}] run function bswt:enchantment/overload/load_detection/revoke
 
 function bswt:enchantment/overload/load_detection/tick:
     schedule function bswt:enchantment/overload/load_detection/schedule 1t
@@ -114,15 +114,15 @@ function bswt:enchantment/overload/load_crossbow/call:
     function bswt:enchantment/overload/load_crossbow/general
 
 function bswt:enchantment/overload/load_crossbow/general:
-    execute as @s[gamemode=creative] run return run item modify entity @s weapon.mainhand bswt:enchantment/overload/ammo/4
+    as @s[gamemode=creative] run return run item modify entity @s weapon.mainhand bswt:enchantment/overload/ammo/4
 
-    execute store result score @s bswt.arrowCount run clear @s arrow 0
+    store result score @s bswt.arrowCount run clear @s arrow 0
     if score @s bswt.arrowCount matches 4.. run return run function bswt:enchantment/overload/load_crossbow/arrow {count:4}
 
-    execute store result score @s bswt.arrowCount run clear @s stray_spawn_egg 0
+    store result score @s bswt.arrowCount run clear @s stray_spawn_egg 0
     if score @s bswt.arrowCount matches 1.. run return run function bswt:enchantment/overload/load_crossbow/cartridge
 
-    execute store result score @s bswt.arrowCount run clear @s arrow 0
+    store result score @s bswt.arrowCount run clear @s arrow 0
     for i in range(4):
         if score @s bswt.arrowCount matches i run return run function f"bswt:enchantment/overload/load_crossbow/arrow" {count: i}
 
@@ -140,12 +140,12 @@ function bswt:enchantment/overload/load_crossbow/cartridge:
 
 function bswt:enchantment/overload/shot:
     advancement revoke @s only temp:enchantment/overload/shot
-    execute unless predicate bswt:enchantment/overload run return run say fail
+    unless predicate bswt:enchantment/overload run return fail
     item modify entity @s weapon.mainhand bswt:enchantment/overload/loaded/false
     for i in range (4):
         CURRENT = i + 1
         FILTER = f"crossbow[custom_data~{{bswt.overloadAmmo:{CURRENT}b}}]"
         DECREASE = f"bswt:enchantment/overload/ammo/{i}"
-        execute if items entity @s weapon.mainhand (FILTER):
+        if items entity @s weapon.mainhand (FILTER):
             item modify entity @s weapon.mainhand utility:load_arrow
             item modify entity @s weapon.mainhand (DECREASE)

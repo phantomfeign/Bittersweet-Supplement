@@ -1,0 +1,503 @@
+from beet import ItemTag
+STACK = [
+    "snowball",
+    "egg",
+    "brown_egg",
+    "blue_egg",
+    "milk_bucket"
+]
+REPLACE = [
+    "fire_charge",
+    "breeze_rod",
+    "blaze_rod",
+    "brown_mushroom",
+    "red_mushroom",
+    "tropical_fish",
+    "honey_bottle",
+]
+ctx.data.item_tags["main:modify_items/stack_list"] = ItemTag ({
+    "values": (STACK)
+})
+ctx.data.item_tags["main:modify_items/replace_list"] = ItemTag ({
+    "values": (REPLACE)
+})
+
+function main:modify_items/process/replace:
+    for entry in ["fire_charge","breeze_rod","blaze_rod","brown_mushroom","red_mushroom","tropical_fish","honey_bottle"]:
+        item=f"{entry}[!custom_data={{adjusted_item:1b}}]"
+        replacement=f"bswt:misc/{entry}"
+        if items entity @s inventory.* (item):
+            loot give @s loot (replacement)
+            clear @s (item) 1
+        if items entity @s hotbar.* (item):
+            loot give @s loot (replacement)
+            clear @s (item) 1
+    #retrigger
+    if items entity @s inventory.* #main:modify_items/replace_list run function main:modify_items/process/replace
+    if items entity @s hotbar.* #main:modify_items/replace_list run function main:modify_items/process/replace
+
+advancement main:modify_items/check {
+    "parent": "temp:root",
+	"criteria": {
+		"inventory_changed": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {}
+		}
+	},
+	"rewards": {
+		"function": "main:modify_items/check"
+	}
+}
+
+function main:modify_items/check:
+    advancement revoke @s only main:modify_items/check
+    if items entity @s inventory.* #main:modify_items/replace_list run function main:modify_items/process/replace
+    if items entity @s hotbar.* #main:modify_items/replace_list run function main:modify_items/process/replace
+
+    if items entity @s inventory.* #main:modify_items/stack_list run function main:modify_items/process/stack
+    if items entity @s hotbar.* #main:modify_items/stack_list run function main:modify_items/process/stack
+
+    if items entity @s inventory.* minecraft:potion[potion_contents={potion:"minecraft:water"},!max_stack_size=64] run function main:modify_items/process/water
+    if items entity @s hotbar.* minecraft:potion[potion_contents={potion:"minecraft:water"},!max_stack_size=64] run function main:modify_items/process/water
+
+    if items entity @s hotbar.* minecraft:arrow[minecraft:equippable={slot:"saddle"}] run function main:modify_items/process/arrow
+    if items entity @s inventory.* minecraft:arrow[minecraft:equippable={slot:"saddle"}] run function main:modify_items/process/arrow
+
+function main:modify_items/process/water:
+    #water
+    if items entity @s inventory.* minecraft:potion[potion_contents={potion:"minecraft:water"},!max_stack_size=64] run give @s minecraft:potion[max_stack_size=64,minecraft:custom_name={"text":"Vial of Water","italic":false},potion_contents={potion:"minecraft:water"}]
+    if items entity @s hotbar.* minecraft:potion[potion_contents={potion:"minecraft:water"},!max_stack_size=64] run give @s minecraft:potion[max_stack_size=64,minecraft:custom_name={"text":"Vial of Water","italic":false},potion_contents={potion:"minecraft:water"}]
+    
+    if items entity @s inventory.* minecraft:potion[potion_contents={potion:"minecraft:water"},!max_stack_size=64] run clear @s minecraft:potion[potion_contents={potion:"minecraft:water"},!max_stack_size=64] 1
+    if items entity @s hotbar.* minecraft:potion[potion_contents={potion:"minecraft:water"},!max_stack_size=64] run clear @s minecraft:potion[potion_contents={potion:"minecraft:water"},!max_stack_size=64] 1
+
+function main:modify_items/process/arrow:
+    if items entity @s hotbar.* minecraft:arrow[minecraft:equippable={slot:"saddle"}] run give @s minecraft:arrow
+    if items entity @s hotbar.* minecraft:arrow[minecraft:equippable={slot:"saddle"}] run clear @s minecraft:arrow[minecraft:equippable={slot:"saddle"}] 1
+    if items entity @s inventory.* minecraft:arrow[minecraft:equippable={slot:"saddle"}] run give @s minecraft:arrow
+    if items entity @s inventory.* minecraft:arrow[minecraft:equippable={slot:"saddle"}] run clear @s minecraft:arrow[minecraft:equippable={slot:"saddle"}] 1
+
+    if items entity @s hotbar.* minecraft:arrow[minecraft:equippable={slot:"saddle"}] run return run function main:modify_items/process/arrow
+    if items entity @s inventory.* minecraft:arrow[minecraft:equippable={slot:"saddle"}] run return run function main:modify_items/process/arrow
+
+loot_table bswt:misc/blaze_rod {
+	"type": "minecraft:entity",
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"functions": [
+						{
+							"function": "minecraft:set_components",
+							"components": {
+								"minecraft:enchantments": {
+                                    "minecraft:fire_aspect":1 
+                                },
+                                "minecraft:enchantment_glint_override": false
+							}
+						}
+					],
+					"name": "minecraft:blaze_rod"
+				}
+			]
+		}
+	]
+}
+loot_table bswt:misc/breeze_rod {
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:breeze_rod",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_components",
+                            "components": {
+                                "minecraft:max_stack_size": 64,
+                                "custom_data": {
+                                    "adjusted_item":true
+                                },
+                                "lore": [
+                                    {
+                                        "text": "Creates a strong gust of wind.",
+                                        "color": "gray"
+                                    }
+                                ],
+                                "consumable": {
+                                    "consume_seconds": 0,
+                                    "animation": "toot_horn",
+                                    "sound": "intentionally_empty",
+                                    "has_consume_particles": false,
+                                    "on_consume_effects": [
+                                        {
+                                            "type": "minecraft:play_sound",
+                                            "sound": "intentionally_empty"
+                                        }
+                                    ]
+                                },
+                                "use_cooldown": {
+                                    "seconds": 0.5,
+                                    "cooldown_group": "bswt.thrown_projectiles"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+loot_table bswt:misc/fire_charge {
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:fire_charge",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_components",
+                            "components": {
+                                "minecraft:max_stack_size": 64,
+                                "item_name": "Fireball",
+                                "minecraft:item_model": "minecraft:fire_charge",
+                                "custom_data": {
+                                    "adjusted_item":true
+                                },
+                                "consumable": {
+                                    "consume_seconds": 0,
+                                    "animation": "none",
+                                    "sound": "intentionally_empty",
+                                    "has_consume_particles": false,
+                                    "on_consume_effects": [
+                                        {
+                                            "type": "minecraft:play_sound",
+                                            "sound": "intentionally_empty"
+                                        }
+                                    ]
+                                },
+                                "use_cooldown": {
+                                    "seconds": 0.5,
+                                    "cooldown_group": "bswt.thrown_projectiles"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+loot_table bswt:misc/greater_fire_res {
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:potion",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_components",
+                            "components": {
+                                "minecraft:item_name": "Greater Potion",
+                                "!minecraft:use_remainder":{},
+                                "minecraft:potion_contents": {
+                                    "custom_effects": [
+                                        {
+                                            "id": "minecraft:fire_resistance",
+                                            "duration": 36000,
+                                            "show_particles": true
+                                        }
+                                    ]
+                                },
+                                "max_stack_size": 16,
+                                "minecraft:custom_name": {
+                                    "text": "Greater Potion",
+                                    "color": "green",
+                                    "italic": false
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+loot_table bswt:misc/lesser_fire_res {
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:potion",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_components",
+                            "components": {
+                                "minecraft:item_name": "Lesser Potion",
+                                "!minecraft:use_remainder":{},
+                                "minecraft:potion_contents": {
+                                    "custom_effects": [
+                                        {
+                                            "id": "minecraft:fire_resistance",
+                                            "duration": 12000,
+                                            "show_particles": true
+                                        }
+                                    ]
+                                },
+                                "max_stack_size": 16,
+                                "minecraft:custom_name": {
+                                    "text": "Lesser Potion",
+                                    "color": "green",
+                                    "italic": false
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+loot_table bswt:misc/red_mushroom {
+	"type": "minecraft:entity",
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "minecraft:red_mushroom",
+					"functions": [
+						{
+							"function": "minecraft:set_components",
+							"components": {
+                                "minecraft:custom_data":{"adjusted_item":true},
+								"minecraft:lore": [
+									{
+										"text": "☠☠",
+										"color": "#b38ef3",
+										"italic": false
+									},
+									{
+										"text": "A vile sickness courses",
+										"color": "gray",
+										"italic": false
+									},
+									{
+										"text": "steadily within you as",
+										"color": "gray",
+										"italic": false
+									},
+									{
+										"text": "you hastily choke it down.",
+										"color": "gray",
+										"italic": false
+									}
+								],
+								"minecraft:consumable": {
+									"consume_seconds": 0.5,
+									"on_consume_effects": [
+										{
+											"type": "apply_effects",
+											"effects": [
+												{
+													"id": "minecraft:poison",
+													"amplifier": 1,
+													"duration": 50,
+													"show_particles": false
+												}
+											]
+										}
+									]
+								}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}
+loot_table bswt:misc/brown_mushroom {
+	"type": "minecraft:entity",
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "minecraft:brown_mushroom",
+					"functions": [
+						{
+							"function": "minecraft:set_components",
+							"components": {
+                                "minecraft:custom_data":{"adjusted_item":true},
+								"minecraft:lore": [
+									{
+										"text": "❤",
+										"color": "#54d877",
+										"italic": false
+									},
+									{
+										"text": "A gentle warmth slowly settles",
+										"color": "gray",
+										"italic": false
+									},
+									{
+										"text": "in as you hastily wolf it down.",
+										"color": "gray",
+										"italic": false
+									}
+								],
+								"minecraft:consumable": {
+									"consume_seconds": 0.5,
+									"on_consume_effects": [
+										{
+											"type": "apply_effects",
+											"effects": [
+												{
+													"id": "minecraft:regeneration",
+													"amplifier": 0,
+													"duration": 100,
+													"show_particles": false
+												}
+											]
+										}
+									]
+								}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}
+loot_table bswt:misc/honey_bottle {
+	"type": "minecraft:generic",
+	"pools": [
+		{
+            "rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "minecraft:honey_bottle",
+					"functions": [
+						{
+							"function": "minecraft:set_components",
+							"components": {
+                                "minecraft:custom_data":{"adjusted_item":true},
+								"!minecraft:use_remainder":{},
+								"minecraft:lore": [
+									{
+										"text": "♡",
+										"color": "#54d877",
+										"italic": false
+									},
+									{
+										"text": "A burst of energy and a",
+										"color": "gray",
+										"italic": false
+									},
+									{
+										"text": "gentle warmth slowly settle",
+										"color": "gray",
+										"italic": false
+									},
+									{
+										"text": "in as you hastily gulp it down.",
+										"color": "gray",
+										"italic": false
+									}
+								],
+                                "minecraft:max_stack_size":64,
+								"minecraft:consumable": {
+									"animation":"drink",
+                                    "sound":"item.honey_bottle.drink",
+                                    "has_consume_particles":false,
+									"on_consume_effects": [
+										{
+											"type": "apply_effects",
+											"effects": [
+												{
+													"id": "minecraft:regeneration",
+													"amplifier": 0,
+													"duration": 50,
+													"show_particles": false
+												},
+												{
+													"id": "minecraft:speed",
+													"amplifier": 0,
+													"duration": 60,
+													"show_particles": false
+												}
+											]
+										}
+									]
+								}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}
+loot_table bswt:misc/tropical_fish {
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:tropical_fish_spawn_egg",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_components",
+                            "components": {
+                                "minecraft:item_name": "Tropical Fish",
+                                "minecraft:item_model": "minecraft:tropical_fish"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+
+advancement main:modify_items/process/stack/snowball {
+	"parent": "temp:root",
+	"criteria": {
+		"get": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": "minecraft:snowball",
+						"components": {
+							"minecraft:max_stack_size": 16
+						}
+					}
+				]
+			}
+		}
+	},
+	"rewards": {
+		"function": "main:modify_items/process/stack/snowball"
+	}
+}
+
+function main:modify_items/process/stack/snowball:
+    advancement revoke @s only main:modify_items/process/stack/snowball
+    clear @s minecraft:snowball[!max_stack_size=64] 1
+    give @s minecraft:snowball[max_stack_size=64]

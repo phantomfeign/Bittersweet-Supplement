@@ -1,0 +1,37 @@
+advancement main:strip_log/check {
+    "parent": "temp:root",
+	"criteria": {
+		"strip_log": {
+			"trigger": "minecraft:item_used_on_block",
+			"conditions": {
+				"location": [
+					{
+						"condition": "minecraft:match_tool",
+						"predicate": {
+							"items": "#minecraft:axes"
+						}
+					},
+					{
+						"condition": "minecraft:location_check",
+						"predicate": {
+							"block": {
+								"blocks": "#minecraft:logs"
+							}
+						}
+					}
+				]
+			}
+		}
+	},
+	"rewards": {
+		"function": "main:strip_log/check"
+	}
+}
+function main:strip_log/check:
+    advancement revoke @s only main:strip_log/check
+    if predicate bswt:chance/20:
+        for i in range (10):
+            at @s anchored eyes positioned ^ ^ ^i if block ~ ~ ~ #c:stripped_logs run function main:strip_log/give
+
+function main:strip_log/give:
+    summon item ~ ~ ~ {Item:{id:"minecraft:zombie_spawn_egg", count:1, components:{"!minecraft:entity_data":{}}}}

@@ -370,3 +370,17 @@ recipe bswt:material/prismatic_core {
 		}
 	}
 }
+recipe bswt:material/gold_ingot_from_nuggets {
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"pattern": [
+		"XX",
+		"XX"
+	],
+	"key": {
+		"X": "minecraft:gold_nugget",
+	},
+	"result": {
+		"id": "minecraft:gold_ingot"
+	}
+}

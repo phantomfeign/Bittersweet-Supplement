@@ -1,0 +1,60 @@
+function main:sleep/advance_time:
+    unless entity @a[tag=!bswt.sleeping]:
+        function main:sleep/messages
+        as @a[tag=bswt.sleeping] at @s:
+            tp @s ~ ~0.1 ~
+            spawnpoint @s ~ ~ ~
+        tag @a remove bswt.sleeping
+        if score #sleep SleepStreak matches 5.. run return fail
+        scoreboard players add #sleep SleepStreak 1
+        time set day
+    scoreboard players set #sleep SleepAttempt 0
+
+function main:sleep/night_start:
+    as @e[type=minecraft:wandering_trader] run function bswt:mob_adjustment/wandering_trader/depart
+    if score #sleep SleepStreak matches 5 run function main:sleep/blood_moon/start
+
+function main:sleep/day_start:
+
+    if score #sleep SleepStreak matches 2.. run tellraw @a {"text":"The hordes weaken.","color":"#ffea4b"}
+    if score #sleep BloodMoonActive matches 1 run scoreboard players set #sleep SleepStreak 0
+    if score #sleep BloodMoonActive matches 1 run scoreboard players set #sleep BloodMoonActive 0
+    if score #sleep SleepStreak matches ..-1 run scoreboard players set #sleep SleepStreak 0
+    as @a unless score @s MaxHealth matches 20.. run function bswt:main/health/change/increase
+
+function main:sleep/messages:
+    if score #sleep SleepStreak matches 0 run tellraw @a {"text":"You feel well rested.","color":"#f6f6ff"}
+    if score #sleep SleepStreak matches 1 run tellraw @a {"text":"You feel.. rested..","color":"#c6b4cb"}
+    if score #sleep SleepStreak matches 2 run tellraw @a {"text":"You feel tired.","color":"#aa96b0"}
+    if score #sleep SleepStreak matches 3 run tellraw @a {"text":"You feel restless.","color":"#8f7da2"}
+    if score #sleep SleepStreak matches 4 run tellraw @a {"text":"You feel sick.","color":"#736b95"}
+    if score #sleep SleepStreak matches 5.. run tellraw @a {"text":"You cannot sleep now. You are having Night Terrors.","color":"#57588a"}
+
+function main:sleep/blood_moon/start:
+    tellraw @a {"text":"A terrible night is upon us..","color":"#57588a"}
+    scoreboard players set #sleep BloodMoonActive 1
+    time set night
+    weather thunder
+
+    as @a positioned ~ 200 ~ positioned over motion_blocking run summon minecraft:phantom ~ ~ ~ {Tags:[SpawnBypass],Motion:[1,1,0]}
+    as @a positioned ~ 200 ~ positioned over motion_blocking run summon minecraft:phantom ~ ~ ~ {Tags:[SpawnBypass],Motion:[1,1,1]}
+    as @a positioned ~ 200 ~ positioned over motion_blocking run summon minecraft:phantom ~ ~ ~ {Tags:[SpawnBypass],Motion:[0,2,1]}
+    as @a positioned ~ 200 ~ positioned over motion_blocking run summon minecraft:phantom ~ ~ ~ {Tags:[SpawnBypass],Motion:[1,1,1]}
+
+    playsound minecraft:ambient.cave master @s ~ ~ ~ 1 1
+    playsound minecraft:block.glass.break master @s ~ ~ ~ 1 0.1
+    playsound minecraft:block.amethyst_block.break master @s ~ ~ ~ 1 0.1
+    playsound block.conduit.activate master @s ~ ~ ~ 1 0.1
+    playsound minecraft:block.conduit.ambient master @s ~ ~ ~ 1 0.1
+    playsound minecraft:block.conduit.attack.target master @s ~ ~ ~ 1 0.1
+    playsound minecraft:block.end_portal.spawn master @s ~ ~ ~ 1 0.1
+    playsound minecraft:block.portal.trigger master @s ~ ~ ~ 1 0.1
+    playsound minecraft:event.mob_effect.raid_omen master @s ~ ~ ~ 1 1
+    playsound minecraft:event.mob_effect.raid_omen master @s ~ ~ ~ 1 0.5
+    playsound minecraft:particle.soul_escape master @s ~ ~ ~ 1 0.5
+    playsound item.trident.thunder master @s ~ ~ ~ 1 2
+    playsound minecraft:entity.wither.spawn master @s ~ ~ ~ 1 1
+    playsound minecraft:entity.wither.spawn master @s ~ ~ ~ 1 0.5
+    playsound minecraft:entity.wither.spawn master @s ~ ~ ~ 1 0.1
+
+

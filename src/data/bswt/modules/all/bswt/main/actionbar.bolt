@@ -1,0 +1,98 @@
+from beet import Predicate
+
+function main:actionbar/build/call:
+    data remove storage bswt:actionbar now
+    data modify storage bswt:actionbar now append value ""
+    #offhand
+    if predicate main:actionbar/offhand: 
+        function main:actionbar/build/macro {slot:"weapon.offhand"}
+        if predicate main:actionbar/mainhand run data modify storage bswt:actionbar now append value {"text":" | ","color":"gray"}
+    #mainhand
+    if predicate main:actionbar/mainhand run function main:actionbar/build/macro {slot:"weapon.mainhand"}
+
+    with storage bswt:actionbar:
+        $title @s actionbar $(now)
+
+ENCHANTMENTS = [
+    "bswt:verdure",
+    "bswt:vinery",
+    "bswt:overload",
+    "minecraft:lunge"
+]
+
+#predicates
+for hand_name, slot_id in {"mainhand": "weapon.mainhand", "offhand": "weapon.offhand"}.items():    
+    TERMS = [({
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+            "slots": {
+                slot_id: {
+                    "predicates": {
+                        "minecraft:custom_data": {
+                            "right_click": true
+                        }}}}}})]
+
+    for enchantment in ENCHANTMENTS:
+        TERMS.append({
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+                "slots": {
+                    slot_id: {
+                        "predicates": {
+                            "minecraft:enchantments": [
+                                {
+                                    "enchantments": enchantment,
+                                    "levels": {"min": 1}
+                        }]}}}}})
+
+        ctx.data.predicates[f"main:actionbar/{hand_name}"] = Predicate ({
+        "condition": "any_of",
+        "terms": TERMS
+    })
+
+function main:actionbar/build/macro:
+    $execute if items entity @s $(slot) *[custom_data~{bswt.wind_mace:true}] run function main:actionbar/item/mace
+    $execute if items entity @s $(slot) *[custom_data~{bswt.abyss_ray:true}] run function main:actionbar/item/abyss_ray
+    $execute if items entity @s $(slot) *[custom_data~{bswt.sonic_boom:true}] run function main:actionbar/item/sonic_boom
+    $execute if items entity @s $(slot) *[custom_data~{bswt.frostbite_stomp:true}] run function main:actionbar/item/frostbite_stomp
+
+    $execute if items entity @s $(slot) *[minecraft:enchantments~[{enchantments:"minecraft:lunge",levels:1}]] \
+    run function main:actionbar/item/lunge
+
+    $execute if items entity @s $(slot) *[minecraft:enchantments~[{enchantments:"bswt:overload",levels:1}]] \
+    run function main:actionbar/item/overload
+
+    $execute if items entity @s $(slot) *[minecraft:enchantments~[{enchantments:"bswt:verdure",levels:1}]] \
+    run function main:actionbar/item/verdure
+
+    $execute if items entity @s $(slot) *[minecraft:enchantments~[{enchantments:"bswt:vinery",levels:1}]] \
+    run function main:actionbar/item/vinery
+
+#————————————————————————————————
+
+function main:actionbar/item/vinery:
+    if score @s bswt.vineryStacks matches 1.. run return run data modify storage bswt:actionbar now append value \
+    [{"text":"Spores:","color":"gray"},{"score":{"name":"*","objective":"bswt.vineryStacks"},"color":"gray"}]
+    data modify storage bswt:actionbar now append value \
+    [{"text":"Spores:","color":"white"},{"text":" 4","color":"white"}]
+
+function main:actionbar/item/mace:
+    unless score @s bswt.cd.Gust matches 1.. run data modify storage bswt:actionbar now append value \
+    {"text":"Gust","color":"white"}
+    if score @s bswt.cd.Gust matches 1.. run data modify storage bswt:actionbar now append value \
+    [{"text":"Gust ","color":"gray"},{"score":{"name":"*","objective":"bswt.cd.Gust"},"color":"gray"}]
+
+    data modify storage bswt:actionbar now append value {"text":" & ","color":"gray"}
+
+    unless score @s bswt.cd.Mine matches 1.. run data modify storage bswt:actionbar now append value \
+    {"text":"Mine","color":"white"}
+    if score @s bswt.cd.Mine matches 1.. run data modify storage bswt:actionbar now append value \
+    [{"text":"Mine ","color":"gray"},{"score":{"name":"*","objective":"bswt.cd.Mine"},"color":"gray"}]
+
+function main:actionbar/item/lunge:
+    if score @s bswt.cd.Lunge matches 1.. run return run data modify storage bswt:actionbar now append value \
+    [{"text":"Lunge ","color":"gray"},{"score":{"name":"*","objective":"bswt.cd.Lunge"},"color":"gray"}]
+    data modify storage bswt:actionbar now append value \
+    {"text":"Lunge","color":"white"}

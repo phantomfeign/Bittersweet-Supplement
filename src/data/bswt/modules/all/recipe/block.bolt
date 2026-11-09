@@ -144,4 +144,39 @@ recipe bswt:block/bamboo_planks {
 		"count": 12
 	}
 }
+recipe bswt:block/campfire {
+	"type": "minecraft:crafting_shaped",
+	"category":"building",
+	"key": {
+		"X": "minecraft:stick",
+    "#": "#minecraft:logs"
+    },
+    "pattern": [
+        "XX",
+        "##"
+    ],
+	"result": {
+		"id": "minecraft:campfire",
+		"components": {
+			"minecraft:block_state": {
+				"lit": "false"
+			}
+		}
+	}
+}
+recipe bswt:block/ice {
+	"type": "minecraft:crafting_shaped",
+	"category":"building",
+	"key": {
+		"X": "minecraft:snow_block",
+    },
+    "pattern": [
+        "XXX",
+        "XXX",
+        "XXX"
+    ],
+	"result": {
+		"id": "minecraft:ice"
+	}
+}
 

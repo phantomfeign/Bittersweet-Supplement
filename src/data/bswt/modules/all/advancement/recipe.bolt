@@ -9,12 +9,18 @@ TIERS=[
         []
     ),
     (
-        "primative","flint",
-        ["sword","axe","pickaxe"],
+        "flint","flint",
+        [],
         [
             "percussive_firestarter"
         ],
         []
+    ),
+    (
+        "primative","stick",
+        ["sword","spear","axe","pickaxe","shovel","hoe"],
+        [],
+        ["bswt:block/campfire"]
     ),
     (
         "copper","copper_ingot",
@@ -51,7 +57,7 @@ TIERS=[
     ),
     (
         "golden","gold_ingot",
-        ["sword","spear","axe","pickaxe","shovel","hoe","helmet","chestplate","leggings","boots","mattock","pulaski"],
+        ["sword","spear","axe","pickaxe","shovel","hoe","helmet","chestplate","leggings","boots","mattock","pulaski","rapier"],
         [],
         [
             "bswt:requiem/empty"
@@ -145,3 +151,33 @@ ctx.data.advancements[f"bswt:main/recipe/requiem"] = Advancement ({
     "recipes": recipe_list
 }
 })
+
+BLOCKS = [
+    {"item": "snow_block", "recipe": "bswt:block/ice"},
+    {"item": "bamboo", "recipe": "bswt:block/bamboo_planks"}
+]
+
+for entry in BLOCKS:
+    block = entry["item"]
+    recipe_id = entry["recipe"]
+    
+    # Track the recipe ID
+    recipe_list.append(recipe_id)
+
+    # Dynamic advancement key per block
+    ctx.data.advancements[f"bswt:main/recipe/{block}"] = Advancement({
+        "parent": "temp:root",
+        "criteria": {
+            "get": {
+                "trigger": "minecraft:inventory_changed",
+                "conditions": {
+                    # Minecraft expects a list of IDs inside the items array
+                    "items": [{"items": [f"minecraft:{block}"]}]
+                }
+            }
+        },
+        "rewards": {
+            # Unlocks only the specific recipe for this item
+            "recipes": [recipe_id]
+        }
+    })
