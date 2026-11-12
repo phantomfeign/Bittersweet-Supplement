@@ -1,5 +1,19 @@
 from bswt:all/utils/tiers import TIERS, TIER_LOOKUP, EQUIPMENT_PATTERNS_LOOKUP
 
+recipe bswt:misc_equipment/bucket {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"#": "#minecraft:planks"
+	},
+	"pattern": [
+		"# #",
+		" # "
+	],
+	"result": {
+		"id": "minecraft:bucket"
+	}
+}
 recipe bswt:misc_equipment/copper_shears {
 	"type": "minecraft:crafting_shaped",
 	"category": "equipment",

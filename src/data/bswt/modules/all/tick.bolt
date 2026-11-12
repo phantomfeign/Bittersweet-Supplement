@@ -1,9 +1,10 @@
 function ticking_functions:call_all:
     schedule function ticking_functions:tick_1t/call 1t
-    schedule function ticking_functions:tick_0.5s/call 2t
-    schedule function ticking_functions:tick_1s/call 3t
-    schedule function ticking_functions:tick_10s/call 4t
-    schedule function utility:time_monitor 5t
+    schedule function ticking_functions:tick_0.25s/call 2t
+    schedule function ticking_functions:tick_0.5s/call 3t
+    schedule function ticking_functions:tick_1s/call 4t
+    schedule function ticking_functions:tick_10s/call 5t
+    schedule function utility:time_monitor 6t
 
 #—————————————————— 1 TICK
 function ticking_functions:tick_1t/call:
@@ -23,6 +24,8 @@ function ticking_functions:tick_1t/universal:
     
     kill @s[type=experience_orb]
     as @s[type=area_effect_cloud,tag=!bswt.aec_checked] run function bswt:mob_adjustment/area_effect_cloud/spawn
+    as @s[type=marker,tag=bswt.frostbiteStompMarker] run function bswt:enchantment/frostbite/stomp/tick
+    as @s[tag=bswt.crystalline_candle_proj] run function main:weapon/crystalline_candle/projectile/tick
 
 function ticking_functions:tick_1t/players:
     function bswt:mob_adjustment/creeper/watch/tick
@@ -38,6 +41,19 @@ function ticking_functions:tick_1t/players:
     as @s[tag=bswt.sleeping]:
         unless score #sleep SleepAttempt matches 1 run schedule function main:sleep/advance_time 40t
         scoreboard players set #sleep SleepAttempt 1
+
+#—————————————————— 0.25 SECOND
+function ticking_functions:tick_0.25s/call:
+    schedule function ticking_functions:tick_0.25s/call 5t replace
+    as @e at @s:
+        function ticking_functions:tick_0.25s/universal
+        if entity @s[type=player] run function ticking_functions:tick_0.25s/players
+        
+function ticking_functions:tick_0.25s/universal:
+    as @s[tag=bswt.crystalline_candle_proj] run function main:weapon/crystalline_candle/projectile/fx
+
+function ticking_functions:tick_0.25s/players:
+    pass
 
 #—————————————————— 0.5 SECOND
 function ticking_functions:tick_0.5s/call:
@@ -70,17 +86,28 @@ function ticking_functions:tick_1s/universal:
     as @s[tag=bswt.timed_projectile] run function utility:projectile_tick
     as @s[tag=bswt.OnFire] run function bswt:mob_effect/fire/tick
     as @s[type=#bswt:spawn_check,tag=!bswt.spawnChecked] run function bswt:mob_adjustment/universal/filter
+    as @s[type=zombie] run function bswt:mob_adjustment/zombie/tick
+    as @s[type=minecraft:marker,tag=spawner_marker] at @s run function main:spawner/marker/tick
+    as @s[type=item] at @s if items entity @s contents #bswt:equipment/gold_gear run function main:gold_repair/check_damage
 
 function ticking_functions:tick_1s/players:
     function utility:anvil/tick
     function bswt:main/adrenaline/tick
     function ticking_functions:tick_1s/cooldowns
     function main:actionbar/build/call
+    function main:weapon/crystalline_candle/heal
+    function main:spawner/replace_spawners
     if predicate bswt:enchantment/verdure/light if predicate bswt:enchantment/verdure/either_hand run function bswt:enchantment/verdure/tick
     if entity @s[tag=bswt.vineryCaster] unless entity @e[type=minecraft:block_display,tag=bswt.vinerySpore,distance=..20] run tag @s remove bswt.vineryCaster
 
 function ticking_functions:tick_1s/cooldowns:
-    for cooldown in ["Lunge","Gust","Mine"]:
+    for cooldown in [
+    "Lunge",
+    "Gust",
+    "Mine",
+    "FrostbiteStomp",
+    "Harvest"
+    ]:
         SCORE=f"bswt.cd.{cooldown}"
         unless score @s (SCORE) matches ..0 run scoreboard players remove @s (SCORE) 1
         if score @s (SCORE) matches ..-1 run scoreboard players set @s (SCORE) 0

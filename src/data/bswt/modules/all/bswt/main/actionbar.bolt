@@ -30,7 +30,7 @@ for hand_name, slot_id in {"mainhand": "weapon.mainhand", "offhand": "weapon.off
                 slot_id: {
                     "predicates": {
                         "minecraft:custom_data": {
-                            "right_click": true
+                            "bswt.right_click": true
                         }}}}}})]
 
     for enchantment in ENCHANTMENTS:
@@ -56,10 +56,13 @@ function main:actionbar/build/macro:
     $execute if items entity @s $(slot) *[custom_data~{bswt.wind_mace:true}] run function main:actionbar/item/mace
     $execute if items entity @s $(slot) *[custom_data~{bswt.abyss_ray:true}] run function main:actionbar/item/abyss_ray
     $execute if items entity @s $(slot) *[custom_data~{bswt.sonic_boom:true}] run function main:actionbar/item/sonic_boom
-    $execute if items entity @s $(slot) *[custom_data~{bswt.frostbite_stomp:true}] run function main:actionbar/item/frostbite_stomp
 
     $execute if items entity @s $(slot) *[minecraft:enchantments~[{enchantments:"minecraft:lunge",levels:1}]] \
     run function main:actionbar/item/lunge
+
+    $execute if items entity @s $(slot) *[minecraft:enchantments~[{enchantments:"bswt:frostbite",levels:1}]] \
+    run function main:actionbar/item/frostbite
+
 
     $execute if items entity @s $(slot) *[minecraft:enchantments~[{enchantments:"bswt:overload",levels:1}]] \
     run function main:actionbar/item/overload
@@ -96,3 +99,9 @@ function main:actionbar/item/lunge:
     [{"text":"Lunge ","color":"gray"},{"score":{"name":"*","objective":"bswt.cd.Lunge"},"color":"gray"}]
     data modify storage bswt:actionbar now append value \
     {"text":"Lunge","color":"white"}
+
+function main:actionbar/item/frostbite:
+    if score @s bswt.cd.FrostbiteStomp matches 1.. run return run data modify storage bswt:actionbar now append value \
+    [{"text":"Shatter ","color":"gray"},{"score":{"name":"*","objective":"bswt.cd.FrostbiteStomp"},"color":"gray"}]
+    data modify storage bswt:actionbar now append value \
+    {"text":"Shatter","color":"white"}

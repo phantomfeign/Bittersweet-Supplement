@@ -114,6 +114,7 @@ for name,get,items,misc,extras in TIERS:
         "recipes": recipe_list
     }
     })
+#———————————————————————————REQUIEMS
 
 REQUIEMS=[
     "actaeon",
@@ -152,32 +153,33 @@ ctx.data.advancements[f"bswt:main/recipe/requiem"] = Advancement ({
 }
 })
 
-BLOCKS = [
+#———————————————————————————RECIPES
+BASIC = [
     {"item": "snow_block", "recipe": "bswt:block/ice"},
-    {"item": "bamboo", "recipe": "bswt:block/bamboo_planks"}
+    {"item": "bamboo", "recipe": "bswt:block/bamboo_planks"},
+    {"item": "#planks", "recipe": "bswt:misc_equipment/bucket"}
 ]
 
-for entry in BLOCKS:
-    block = entry["item"]
+for entry in BASIC:
+    item = entry["item"]
     recipe_id = entry["recipe"]
-    
-    # Track the recipe ID
+    name = item.lstrip("#")
+
     recipe_list.append(recipe_id)
 
-    # Dynamic advancement key per block
-    ctx.data.advancements[f"bswt:main/recipe/{block}"] = Advancement({
+    if item.startswith("#"):
+        items_condition = [{"items": item}]
+    else:
+        items_condition = [{"items": [item]}]
+
+    ctx.data.advancements[f"bswt:main/recipe/{name}"] = Advancement({
         "parent": "temp:root",
         "criteria": {
             "get": {
                 "trigger": "minecraft:inventory_changed",
-                "conditions": {
-                    # Minecraft expects a list of IDs inside the items array
-                    "items": [{"items": [f"minecraft:{block}"]}]
-                }
+                "conditions": {"items": items_condition},
             }
         },
-        "rewards": {
-            # Unlocks only the specific recipe for this item
-            "recipes": [recipe_id]
-        }
+        "rewards": {"recipes": [recipe_id]},
     })
+

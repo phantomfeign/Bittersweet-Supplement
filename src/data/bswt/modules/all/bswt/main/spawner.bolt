@@ -1,0 +1,101 @@
+function main:spawner/command:
+    $summon minecraft:marker ~ ~ ~ {Tags:["$(spawner_type)","spawner_marker","smithed.strict","smithed.entity"]}
+    $scoreboard players set @e[type=minecraft:marker,tag=spawner_marker,sort=nearest,distance=..1,limit=1] bswt.spawnerMobs $(mob_count)
+    $scoreboard players set @e[type=minecraft:marker,tag=spawner_marker,sort=nearest,distance=..1,limit=1] bswt.spawnerTimer $(spawn_timer)
+    playsound minecraft:block.vault.open_shutter master @a ~ ~ ~ 8 1
+    setblock ~ ~ ~ minecraft:spawner{}
+
+function main:spawner/replace_spawners:
+    if entity @s[gamemode=creative] run return fail
+    if entity @s[gamemode=spectator] run return fail
+    #regular dungeon
+    fill ~15 ~15 ~15 ~-15 ~-15 ~-15 \
+    minecraft:command_block{auto:true,Command:"function main:spawner/command \
+    {spawner_type:dungeon_spawner,mob_count:5,spawn_timer:3}"} \
+    replace minecraft:spawner{SpawnData:{entity:{id:"minecraft:zombie"}}}
+    fill ~15 ~15 ~15 ~-15 ~-15 ~-15 \
+    minecraft:command_block{auto:true,Command:"function main:spawner/command \
+    {spawner_type:dungeon_spawner,mob_count:5,spawn_timer:3}"} \
+    replace minecraft:spawner{SpawnData:{entity:{id:"minecraft:skeleton"}}}
+    fill ~15 ~15 ~15 ~-15 ~-15 ~-15 \
+    minecraft:command_block{auto:true,Command:"function main:spawner/command \
+    {spawner_type:dungeon_spawner,mob_count:5,spawn_timer:3}"} \
+    replace minecraft:spawner{SpawnData:{entity:{id:"minecraft:spider"}}}
+
+    #mineshaft
+    fill ~15 ~15 ~15 ~-15 ~-15 ~-15 \
+    minecraft:command_block{auto:true,Command:"function main:spawner/command \
+    {spawner_type:mineshaft_spawner,mob_count:6,spawn_timer:3}"} \
+    replace minecraft:spawner{SpawnData:{entity:{id:"minecraft:cave_spider"}}}
+
+    #medium dungeon
+    fill ~15 ~15 ~15 ~-15 ~-15 ~-15 \
+    minecraft:command_block{auto:true,Command:"function main:spawner/command \
+    {spawner_type:medium_dungeon,mob_count:10,spawn_timer:3}"} \
+    replace minecraft:spawner{SpawnData:{entity:{id:"minecraft:copper_golem"}}}
+
+    #blaze
+    fill ~15 ~15 ~15 ~-15 ~-15 ~-15 \
+    minecraft:trial_spawner[ominous=false]{\
+    normal_config:"bswt:blaze_trial",\
+    ominous_config:"bswt:blaze_trial"} \
+    replace minecraft:spawner{SpawnData:{entity:{id:"minecraft:blaze"}}}
+
+function main:spawner/marker/tick:
+    unless block ~ ~ ~ minecraft:spawner run return run function main:spawner/marker/kill
+    if predicate bswt:chance/30 run playsound minecraft:block.trial_spawner.ambient ambient @a ~ ~ ~ 15 2
+    if entity @a[distance=..9] run scoreboard players remove @s[type=minecraft:marker,tag=spawner_marker] bswt.spawnerTimer 1
+    playsound minecraft:block.copper_bulb.turn_off hostile @s ~ ~ ~ 16 1
+    unless entity @a[distance=..4] run return fail
+    particle minecraft:trial_spawner_detection ~ ~ ~ 0 0 0 0 3
+    as @s[type=minecraft:marker,tag=spawner_marker] if score @s bswt.spawnerTimer matches ..0 run function main:spawner/marker/sort
+
+function main:spawner/marker/sort:
+    for type in ["dungeon","mineshaft","medium_dungeon"]:
+        tag=f"{type}_spawner"
+        func=f"main:spawner/marker/rolls/{type}/call"
+        as @s[type=marker,tag=spawner_marker,tag=(tag)] at @s run function func
+
+    particle minecraft:trial_spawner_detection_ominous ~ ~ ~ 0 0 0 0.1 10
+    playsound minecraft:block.spawner.place master @a ~ ~ ~ 8 0.8
+    playsound minecraft:block.trial_spawner.detect_player master @a ~ ~ ~ 8 1
+
+    scoreboard players remove @s bswt.spawnerMobs 1
+    if score @s bswt.spawnerMobs matches ..0 run function main:spawner/marker/kill
+
+function main:spawner/marker/kill:
+    kill @s
+    playsound block.trial_spawner.close_shutter master @a ~ ~ ~ 8 0.8
+
+function main:spawner/marker/rolls/dungeon/call:
+    for i in range(3):
+        function main:spawner/marker/rolls/dungeon/single
+    as @e[type=#bswt:spawn_check,tag=!bswt.spawnChecked,tag=!bswt.filterBypass] run function bswt:mob_adjustment/universal/route
+    scoreboard players set @s bswt.spawnerTimer 8
+
+function main:spawner/marker/rolls/dungeon/single:
+    if predicate bswt:chance/25 run summon splash_potion ~ ~1 ~ {Item:{id:"minecraft:splash_potion",components:{"minecraft:potion_contents":{potion:"minecraft:infested"}}}}
+    if predicate bswt:chance/50 run return run summon minecraft:zombie ~ ~1 ~ {Tags:[bswt.filterBypass],Motion:[-0.1,0.0,-0.1]}
+    if predicate bswt:chance/25 run return run summon minecraft:skeleton ~ ~1 ~ {Tags:[bswt.filterBypass],Motion:[-0.2,0.0,0.2]}
+    summon minecraft:spider ~ ~1 ~ {Tags:[bswt.filterBypass],Motion:[0.2,0.0,-0.2]}
+    
+function main:spawner/marker/rolls/medium_dungeon/call:
+    for i in range(3):
+        function main:spawner/marker/rolls/medium_dungeon/single
+    as @e[type=#bswt:spawn_check,tag=!bswt.spawnChecked,tag=!bswt.filterBypass] run function bswt:mob_adjustment/universal/route
+    scoreboard players set @s bswt.spawnerTimer 8
+
+function main:spawner/marker/rolls/medium_dungeon/single:
+    if predicate bswt:chance/25 run return run summon minecraft:witch ~ ~1 ~ {Tags:[bswt.filterBypass],Motion:[0.2,0.0,-0.2]}
+    summon minecraft:husk ~ ~1 ~ {Tags:[bswt.filterBypass],Motion:[-0.2,0.0,0.2]}
+
+function main:spawner/marker/rolls/mineshaft/call:
+    for i in range(3):
+        function main:spawner/marker/rolls/mineshaft/single
+    as @e[type=#bswt:spawn_check,tag=!bswt.spawnChecked,tag=!bswt.filterBypass] run function bswt:mob_adjustment/universal/route
+    scoreboard players set @s bswt.spawnerTimer 15
+
+function main:spawner/marker/rolls/mineshaft/single:
+    if predicate bswt:chance/30 run return run summon minecraft:cave_spider ~ ~0.5 ~ {Tags:[bswt.filterBypass],Motion:[-0.1,0.0,-0.1]}
+    if predicate bswt:chance/50 run return run summon minecraft:cave_spider ~ ~0.5 ~ {Tags:[bswt.filterBypass],Motion:[0.1,0.0,0.1]}
+    summon minecraft:spider ~ ~0.5 ~ {Tags:[bswt.filterBypass],Motion:[0.1,0.0,-0.1]}

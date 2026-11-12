@@ -2,18 +2,18 @@ import math
 import datetime
 
 #//vars
-particle_name="soul"
+particle_name="minecraft:dust_color_transition{from_color:[1,1,1],to_color:[0.5,0.9,1],scale:1}"
 #radius, in blocks, of circle 
-circle_radius=0
+circle_radius=3
 #num of points in circle
-particle_count=10
+particle_count=8
 #velocity 
-particle_velocity=2
+particle_velocity=1
 particle_velocity*= 1000000.0
 force_mode=""
 if force_mode!="":force_mode=" "+force_mode
 #z = halo, y = sky ring
-orientation="z"
+orientation="y"
 
 #//script
 #empty

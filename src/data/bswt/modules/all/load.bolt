@@ -37,7 +37,9 @@ function load:scoreboard:
     scoreboard players set #90 bswt.Math 90
     scoreboard players set #100 bswt.Math 100 
     scoreboard players set #150 bswt.Math 150 
-    
+   
+    scoreboard objectives add bswt.goldRepair dummy
+   
     scoreboard objectives add bswt.projectileLifeSpan dummy
     
     scoreboard objectives add bswt.Hunger food
@@ -47,34 +49,44 @@ function load:scoreboard:
     scoreboard players set 0 bswt.anvilUse 0
 
     scoreboard objectives add bswt.endermanPullTimer dummy
+    scoreboard objectives add bswt.spawnerTimer dummy
+#———————————————————WEAPONS
+#CRYSTALLINE CANDLE
+    scoreboard objectives add bswt.crystallineCandle dummy
 
-#ENCHANTS
-    #LACERATION
+#———————————————————ENCHANTS
+#LACERATION
     scoreboard objectives add bswt.lacerationStacks dummy
-    #BOUNDING
+#BOUNDING
     scoreboard objectives add bswt.boundingJumps dummy
     scoreboard objectives add bswt.playerJumps minecraft.custom:minecraft.jump
-    #SHARPSHOOTER
+#SHARPSHOOTER
     scoreboard objectives add bswt.arrowAge dummy
-    #OVERLOAD
+#OVERLOAD
     scoreboard objectives add bswt.arrowCount dummy
-    #HOOKING
+#HOOKING
     scoreboard objectives add bswt.weaknessTimer dummy
-    #FIRE
+#FIRE
     scoreboard objectives add bswt.fireTimer dummy
-    #FROSTBITE
+#FROSTBITE
     scoreboard objectives add bswt.frostbiteHealth dummy
     scoreboard objectives add bswt.frostbiteTimer dummy
-    #VIPER
+#VIPER
     scoreboard objectives add bswt.viperTimer dummy
-    #VINERY
+#VINERY
     scoreboard objectives add bswt.vineryStacks dummy
     scoreboard players add @a bswt.vineryStacks 0
-    #LUNGE
-    scoreboard objectives add bswt.cd.Lunge dummy
-    #MACE
-    scoreboard objectives add bswt.cd.Gust dummy
-    scoreboard objectives add bswt.cd.Mine dummy
+#COOLDOWNS
+    for cooldown in [
+    "Lunge",
+    "Gust",
+    "Mine",
+    "FrostbiteStomp",
+    "Harvest"
+    ]:
+        SCORE=f"bswt.cd.{cooldown}"
+        scoreboard objectives add (SCORE) dummy
+        scoreboard players add @s (SCORE) 0
 
 function load:gamerule:
     gamerule natural_health_regeneration false

@@ -465,7 +465,7 @@ recipe bswt:equipment/crafted/iron/greatsword {
 				"min_reach": 0,
 				"max_reach": 3.5,
 				"min_creative_reach": 0,
-				"max_creative_reach": 1
+				"max_creative_reach": 3.5
 			},
 			"minecraft:enchantments": {
 				"minecraft:sweeping_edge": 1
@@ -530,7 +530,7 @@ recipe bswt:equipment/smithed/bronze/greatsword {
 				"min_reach": 0,
 				"max_reach": 3.5,
 				"min_creative_reach": 0,
-				"max_creative_reach": 1
+				"max_creative_reach": 3.5
 			}
 		}
 	}
@@ -550,7 +550,7 @@ recipe bswt:equipment/crafted/golden/rapier {
 	"result": {
 		"id": "minecraft:golden_sword",
 		"components": {
-            "minecraft:max_damage": TIERS[3]["durability"],
+			"minecraft:max_damage": TIERS[3]["durability"],
 			"minecraft:item_model": "bswt_texture:golden_rapier",
 			"minecraft:item_name": {
 				"text": "Golden Rapier",
@@ -586,6 +586,147 @@ recipe bswt:equipment/crafted/golden/rapier {
 				{
 					"text": "2.6⌚",
 					"color": "yellow",
+					"italic": false
+				}
+			],
+			"minecraft:attack_range": {
+				"min_reach": 0,
+				"max_reach": 3,
+				"min_creative_reach": 0,
+				"max_creative_reach": 3
+			},
+			"minecraft:piercing_weapon": {
+				"deals_knockback": true
+			},
+			"minecraft:swing_animation": {
+				"type": "stab",
+				"duration": 10
+			}
+		}
+	}
+}
+recipe bswt:equipment/crafted/bronze/rapier {
+    "type": "minecraft:smithing_transform",
+    "addition": "minecraft:horse_spawn_egg",
+    "base": "minecraft:golden_sword",
+    "template": "minecraft:piglin_spawn_egg",
+	"result": {
+		"id": "minecraft:stone_sword",
+		"components": {
+			"minecraft:max_damage": TIERS[4]["durability"],
+			"minecraft:item_model": "bswt_texture:bronze_rapier",
+			"minecraft:item_name": {
+				"text": "Bronze Rapier",
+				"color": "white"
+			},
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:attack_speed",
+					"id": "bswt:bronze_rapier",
+					"amount": -1.4,
+					"operation": "add_value",
+					"slot": "mainhand"
+				},
+				{
+					"type": "minecraft:attack_damage",
+					"id": "bswt:bronze_rapier",
+					"amount": 4,
+					"operation": "add_value",
+					"slot": "mainhand"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "5🗡",
+					"color": "red",
+					"italic": false
+				},
+				{
+					"text": "2.6⌚",
+					"color": "yellow",
+					"italic": false
+				}
+			],
+			"minecraft:attack_range": {
+				"min_reach": 0,
+				"max_reach": 3,
+				"min_creative_reach": 0,
+				"max_creative_reach": 3
+			},
+			"minecraft:piercing_weapon": {
+				"deals_knockback": true
+			},
+			"minecraft:swing_animation": {
+				"type": "stab",
+				"duration": 10
+			}
+		}
+	}
+}
+recipe bswt:equipment/crafted/golden/dagger {
+	"type": "minecraft:crafting_shaped",
+	"key": {
+		"#": "minecraft:gold_ingot",
+		"X": "minecraft:stick"
+	},
+	"pattern": [
+		" #",
+		" X"
+	],
+	"result": {
+		"id": "minecraft:golden_sword",
+		"components": {
+			"minecraft:item_name": "Gilded Dagger",
+			"minecraft:item_model": "bswt_texture:golden_dagger",
+			"minecraft:max_damage": TIERS[3]["durability"],
+			"minecraft:consumable": {
+				"consume_seconds": 999999,
+				"animation": "trident",
+				"sound": "minecraft:intentionally_empty",
+				"has_consume_particles": false,
+				"on_consume_effects": [
+					{
+						"type": "minecraft:play_sound",
+						"sound": "minecraft:intentionally_empty"
+					}
+				]
+			},
+			"minecraft:custom_data": {
+				"bswt_throwable": "golden_dagger"
+			},
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:attack_damage",
+					"id": "bswt:golden_dagger",
+					"amount": 3,
+					"operation": "add_value",
+					"slot": "mainhand"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "3🗡",
+					"color": "red",
+					"italic": false
+				},
+				{
+					"text": "4⌚",
+					"color": "yellow",
+					"italic": false
+				},
+				{
+					"text": "-0.5→",
+					"color": "green",
 					"italic": false
 				}
 			]

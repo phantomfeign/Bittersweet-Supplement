@@ -193,7 +193,7 @@ predicate bswt:enchantment/hefty {
   }
 }
 
-CHANCES=[50,40,33,25,20,10,5]
+CHANCES=[50,40,33,30,25,20,10,5]
 
 for chance in CHANCES:
     value=chance/100

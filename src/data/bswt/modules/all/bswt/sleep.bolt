@@ -35,26 +35,26 @@ function main:sleep/blood_moon/start:
     scoreboard players set #sleep BloodMoonActive 1
     time set night
     weather thunder
-
-    as @a positioned ~ 200 ~ positioned over motion_blocking run summon minecraft:phantom ~ ~ ~ {Tags:[SpawnBypass],Motion:[1,1,0]}
-    as @a positioned ~ 200 ~ positioned over motion_blocking run summon minecraft:phantom ~ ~ ~ {Tags:[SpawnBypass],Motion:[1,1,1]}
-    as @a positioned ~ 200 ~ positioned over motion_blocking run summon minecraft:phantom ~ ~ ~ {Tags:[SpawnBypass],Motion:[0,2,1]}
-    as @a positioned ~ 200 ~ positioned over motion_blocking run summon minecraft:phantom ~ ~ ~ {Tags:[SpawnBypass],Motion:[1,1,1]}
-
-    playsound minecraft:ambient.cave master @s ~ ~ ~ 1 1
-    playsound minecraft:block.glass.break master @s ~ ~ ~ 1 0.1
-    playsound minecraft:block.amethyst_block.break master @s ~ ~ ~ 1 0.1
-    playsound block.conduit.activate master @s ~ ~ ~ 1 0.1
-    playsound minecraft:block.conduit.ambient master @s ~ ~ ~ 1 0.1
-    playsound minecraft:block.conduit.attack.target master @s ~ ~ ~ 1 0.1
-    playsound minecraft:block.end_portal.spawn master @s ~ ~ ~ 1 0.1
-    playsound minecraft:block.portal.trigger master @s ~ ~ ~ 1 0.1
-    playsound minecraft:event.mob_effect.raid_omen master @s ~ ~ ~ 1 1
-    playsound minecraft:event.mob_effect.raid_omen master @s ~ ~ ~ 1 0.5
-    playsound minecraft:particle.soul_escape master @s ~ ~ ~ 1 0.5
-    playsound item.trident.thunder master @s ~ ~ ~ 1 2
-    playsound minecraft:entity.wither.spawn master @s ~ ~ ~ 1 1
-    playsound minecraft:entity.wither.spawn master @s ~ ~ ~ 1 0.5
-    playsound minecraft:entity.wither.spawn master @s ~ ~ ~ 1 0.1
+    as @a positioned ~ 200 ~ positioned over motion_blocking: 
+        summon minecraft:phantom ~ ~ ~ {Tags:[bswt.filterBypass],Motion:[1,1,0]}
+        summon minecraft:phantom ~ ~ ~ {Tags:[bswt.filterBypass],Motion:[1,1,1]}
+        summon minecraft:phantom ~ ~ ~ {Tags:[bswt.filterBypass],Motion:[0,2,1]}
+        summon minecraft:phantom ~ ~ ~ {Tags:[bswt.filterBypass],Motion:[1,1,1]}
+    as @a:
+        playsound minecraft:ambient.cave master @s ~ ~ ~ 1 1
+        playsound minecraft:block.glass.break master @s ~ ~ ~ 1 0.1
+        playsound minecraft:block.amethyst_block.break master @s ~ ~ ~ 1 0.1
+        playsound block.conduit.activate master @s ~ ~ ~ 1 0.1
+        playsound minecraft:block.conduit.ambient master @s ~ ~ ~ 1 0.1
+        playsound minecraft:block.conduit.attack.target master @s ~ ~ ~ 1 0.1
+        playsound minecraft:block.end_portal.spawn master @s ~ ~ ~ 1 0.1
+        playsound minecraft:block.portal.trigger master @s ~ ~ ~ 1 0.1
+        playsound minecraft:event.mob_effect.raid_omen master @s ~ ~ ~ 1 1
+        playsound minecraft:event.mob_effect.raid_omen master @s ~ ~ ~ 1 0.5
+        playsound minecraft:particle.soul_escape master @s ~ ~ ~ 1 0.5
+        playsound item.trident.thunder master @s ~ ~ ~ 1 2
+        playsound minecraft:entity.wither.spawn master @s ~ ~ ~ 1 1
+        playsound minecraft:entity.wither.spawn master @s ~ ~ ~ 1 0.5
+        playsound minecraft:entity.wither.spawn master @s ~ ~ ~ 1 0.1
 
 

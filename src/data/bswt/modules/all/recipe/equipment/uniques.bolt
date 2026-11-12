@@ -204,7 +204,7 @@ recipe bswt:uniques/wind_mace {
 				]
 			},
 			"minecraft:custom_data": {
-				"right_click": true,
+				"bswt.right_click": true,
 				"bswt.wind_mace": true
 			},
 			"minecraft:consumable": {
@@ -334,14 +334,69 @@ recipe bswt:uniques/rimed_stiletto {
                 "bswt:frostbite": 1
             },
 				"minecraft:consumable": {
-				"animation": "block",
+				"animation": "none",
 				"consume_seconds": 9999999,
 				"has_consume_particles": false,
 				"sound": "minecraft:intentionally_empty"
 			},
 				"minecraft:custom_data": {
-				"bswt.frostbite_stomp": true,
-				"right_click": true
+				"bswt.right_click": true
+			}
+		}
+	}
+}
+recipe bswt:uniques/crystalline_candle {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"#": "minecraft:blue_candle",
+		"X": "minecraft:pig_spawn_egg",
+		"B": "minecraft:blue_ice"
+	},
+	"pattern": [
+		" X",
+		" #",
+		" B"
+	],
+	"result": {
+		"id": "minecraft:stone_pickaxe",
+		"components": {
+			"!minecraft:tool":{},
+            "minecraft:item_name":{
+				"text":"Crystalline Candle",
+				"color": "light_purple",
+				"italic": false
+			},
+			"minecraft:item_model": "bswt_texture:crystalline_candle",
+			"minecraft:max_damage": 120,
+			"minecraft:damage_type": "minecraft:freeze",
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "[RMB]: Spews icy winds.",
+					"color": "light_purple",
+					"italic": false
+				},
+				{
+					"text": "Also check out Mowzie's Mobs!.",
+					"color": "dark_gray",
+					"italic": false
+				}
+			],
+				"minecraft:consumable": {
+				"animation": "none",
+				"consume_seconds": 9999999,
+				"has_consume_particles": false,
+				"sound": "minecraft:intentionally_empty"
+			},
+				"minecraft:custom_data": {
+				"bswt.right_click": true,
+				"bswt.crystalline_candle": true,
+				"bswt.unbreakable": true
 			}
 		}
 	}
@@ -366,6 +421,16 @@ recipe bswt:uniques/amethyst_scythe {
 			"minecraft:item_name": {
 				"text": "Amethyst Scythe",
 				"italic": false
+			},
+			"minecraft:custom_data": {
+				"bswt.harvester": true,
+				"bswt.right_click": true
+			},
+			"minecraft:consumable": {
+				"animation": "none",
+				"consume_seconds": 9999999,
+				"has_consume_particles": false,
+				"sound": "minecraft:intentionally_empty"
 			},
 			"minecraft:attribute_modifiers": [
 				{
@@ -409,6 +474,16 @@ recipe bswt:uniques/amethyst_scythe {
 				{
 					"text": "+1→",
 					"color": "green",
+					"italic": false
+				},
+				{
+					"text": "[RMB]: Harvests crops in",
+					"color": "light_purple",
+					"italic": false
+				},
+				{
+					"text": "an area infront of you.",
+					"color": "light_purple",
 					"italic": false
 				}
 			],
@@ -486,7 +561,13 @@ recipe bswt:uniques/refractor {
             "!minecraft:enchantable":{},
 			"minecraft:custom_data": {
 				"summon_abyss_ray": true,
-				"right_click": true
+				"bswt.right_click": true
+			},
+			"minecraft:consumable": {
+				"animation": "none",
+				"consume_seconds": 9999999,
+				"has_consume_particles": false,
+				"sound": "minecraft:intentionally_empty"
 			},
 			"minecraft:tooltip_display": {
 				"hidden_components": [
@@ -517,12 +598,6 @@ recipe bswt:uniques/refractor {
 			],
 			"minecraft:repairable": {
 				"items": "minecraft:amethyst_shard"
-			},
-			"minecraft:consumable": {
-				"animation": "none",
-				"consume_seconds": 9999999,
-				"has_consume_particles": false,
-				"sound": "minecraft:intentionally_empty"
 			},
 			"minecraft:attribute_modifiers": [
 				{
@@ -570,7 +645,7 @@ recipe bswt:uniques/echo_blade {
             "!minecraft:enchantable":{},
 			"minecraft:custom_data": {
 				"summon_sonic_boom": true,
-				"right_click": true
+				"bswt.right_click": true
 			},
 			"minecraft:tooltip_display": {
 				"hidden_components": [

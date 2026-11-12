@@ -344,6 +344,9 @@
       "path": "^recipe/compass\\.json$"
     },{
       "namespace": "minecraft",
+      "path": "^recipe/bucket\\.json$"
+    },{
+      "namespace": "minecraft",
       "path": "^recipe/shield\\.json$"
     },{
       "namespace": "minecraft",

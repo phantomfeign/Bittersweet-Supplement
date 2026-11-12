@@ -1,0 +1,94 @@
+advancement main:weapon/crystalline_candle/use {
+	"parent": "temp:root",
+	"criteria": {
+		"use": {
+			"trigger": "minecraft:using_item",
+			"conditions": {
+				"item": {
+					"predicates": {
+						"minecraft:custom_data": {
+							"bswt.crystalline_candle": true
+						}
+					}
+				}
+			}
+		}
+	},
+	"rewards": {
+		"function": "main:weapon/crystalline_candle/use"
+	}
+}
+advancement main:weapon/crystalline_candle/tick {
+	"parent": "temp:root",
+	"criteria": {
+		"tick_on_cooldown": {
+			"trigger": "minecraft:tick",
+			"conditions": {
+				"player": [
+					{
+						"condition": "minecraft:inverted",
+						"term": {
+							"condition": "minecraft:entity_scores",
+							"entity": "this",
+							"scores": {
+								"bswt.crystallineCandle": 0
+							}
+						}
+					}
+				]
+			}
+		}
+	},
+	"rewards": {
+		"function": "main:weapon/crystalline_candle/tick"
+	}
+}
+function main:weapon/crystalline_candle/tick:
+    scoreboard players set @s bswt.crystallineCandle 0
+
+function main:weapon/crystalline_candle/use:
+    advancement revoke @s only main:weapon/crystalline_candle/use
+
+    store result score #damage bswt.Math run data get storage bswt.durability Item.components."minecraft:damage"
+    store result score #max_durability bswt.Math run data get storage bswt.durability Item.components."minecraft:max_damage"
+    scoreboard players remove #max_durability bswt.Math 1
+    if score #damage bswt.Math >= #max_durability bswt.Math run return fail
+
+    unless score @s bswt.crystallineCandle matches 0 run return run advancement revoke @s only main:weapon/crystalline_candle/tick
+    scoreboard players set @s bswt.crystallineCandle 1
+    
+    scoreboard players add #sfx bswt.crystallineCandle 1
+    if score #sfx bswt.crystallineCandle matches 5..:
+      scoreboard players set #sfx bswt.crystallineCandle 0
+      playsound minecraft:block.amethyst_block.resonate player @a ~ ~ ~ 10 1
+
+    $execute unless entity @s[gamemode=creative] run function utility:damage_item/call {heal:0,dmg:1,hand_slot:$(hand_slot),damaged_slot:$(damaged_slot)}
+    anchored eyes run summon marker ^ ^ ^1 {Tags:["bswt.crystalline_candle_proj"]}
+    rotated as @s as @e[type=marker, tag=bswt.crystalline_candle_proj,limit=1,sort=nearest] run rotate @s ~ ~
+
+function main:weapon/crystalline_candle/heal:
+    if items entity @s weapon.mainhand *[custom_data~{bswt.crystalline_candle:true}] run return run function utility:damage_item/call {heal:2,dmg:0,hand_slot:SelectedItem,damaged_slot:weapon.mainhand}
+    if items entity @s weapon.offhand *[custom_data~{bswt.crystalline_candle:true}] run return run function utility:damage_item/call {heal:2,dmg:0,hand_slot:equipment.offhand,damaged_slot:weapon.offhand}
+    for i in range(9):
+          slot_name = f"hotbar.{i}"
+          nbt_path = f"Inventory[{{Slot:{i}b}}]" 
+        
+          if items entity @s (slot_name) *[custom_data~{bswt.crystalline_candle:true}] run return run function utility:damage_item/call {heal:2, dmg:0, hand_slot:(nbt_path), damaged_slot:(slot_name)}
+
+#———————————————————————PROJECTILE
+function main:weapon/crystalline_candle/projectile/tick:
+  unless block ~ ~ ~ #bswt:nonsolid run kill @s
+  particle minecraft:dust_color_transition{from_color:[0.5,0.8,1],to_color:[0,0.1,0.5],scale:1}
+  tp @s ^ ^ ^0.5
+
+function main:weapon/crystalline_candle/projectile/fx:
+  scoreboard players add @s bswt.crystallineCandle 1
+  for i in range (5):
+    speed = i / 20
+    count = 5 + (i * 2)
+    dist = 1 + (i / 2)
+    if score @s bswt.crystallineCandle matches (i) run particle minecraft:cloud ~ ~ ~ 0 0 0 (speed) (count)
+    if score @s bswt.crystallineCandle matches (i) as @e[distance=..(dist)] run damage @s 1 minecraft:freeze
+    if score @s bswt.crystallineCandle matches (i) as @e[distance=..(dist)] run effect give @s slowness 2
+
+  if score @s bswt.crystallineCandle matches 5.. run kill @s

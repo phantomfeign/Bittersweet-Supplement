@@ -771,49 +771,57 @@ enchantment thorns {
 	"weight": 1
 }
 enchantment feather_falling {
-  "anvil_cost": 0,
-  "description": {
-    "translate": "enchantment.minecraft.feather_falling"
-  },
-  "effects": {
-    "minecraft:damage_protection": [
-      {
-        "effect": {
-          "type": "minecraft:add",
-          "value": 10
-        },
-        "requirements": {
-          "condition": "minecraft:damage_source_properties",
-          "predicate": {
-            "tags": [
-              {
-                "expected": true,
-                "id": "minecraft:is_fall"
-              },
-              {
-                "expected": false,
-                "id": "minecraft:bypasses_invulnerability"
-              }
-            ]
-          }
-        }
-      }
-    ]
-  },
-  "max_cost": {
-    "base": 0,
-    "per_level_above_first": 0
-  },
-  "max_level": 1,
-  "min_cost": {
-    "base": 0,
-    "per_level_above_first": 0
-  },
-  "slots": [
-    "armor"
-  ],
-  "supported_items": "#minecraft:enchantable/foot_armor",
-  "weight": 5
+	"anvil_cost": 0,
+	"description": {
+		"translate": "enchantment.minecraft.feather_falling"
+	},
+	"effects": {
+		"minecraft:damage_protection": [
+			{
+				"effect": {
+					"type": "minecraft:add",
+					"value": 10
+				},
+				"requirements": {
+					"condition": "minecraft:damage_source_properties",
+					"predicate": {
+						"tags": [
+							{
+								"expected": true,
+								"id": "minecraft:is_fall"
+							},
+							{
+								"expected": false,
+								"id": "minecraft:bypasses_invulnerability"
+							}
+						]
+					}
+				}
+			}
+		],
+		"minecraft:attributes": [
+			{
+				"attribute": "minecraft:safe_fall_distance",
+				"id": "bswt:feather_falling",
+				"amount": 2,
+				"operation": "add_value"
+			}
+		]
+	},
+	"max_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"max_level": 1,
+	"min_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"slots": [
+		"armor"
+	],
+	"supported_items": "#minecraft:enchantable/foot_armor",
+	"weight": 5
 }
 enchantment protection {
 	"anvil_cost": 0,

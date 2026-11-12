@@ -31,3 +31,17 @@ enchantment bswt:frostbite {
 	"exclusive_set": "#minecraft:exclusive_set/damage",
 	"weight": 10
 }
+
+function bswt:enchantment/frostbite/stomp/start:
+	unless score @s bswt.cd.FrostbiteStomp matches 0 run return fail
+	scoreboard players set @s bswt.cd.FrostbiteStomp 1
+	unless entity @e[tag=bswt.iceStatue,distance=..8] run return fail
+	scoreboard players set @s bswt.cd.FrostbiteStomp 10
+	summon minecraft:marker ~ ~1 ~ {Tags:["bswt.frostbiteStompMarker"]}
+
+function bswt:enchantment/frostbite/stomp/tick:
+	unless entity @e[tag=bswt.iceStatue,distance=..12] run return run kill @s
+	if entity @e[tag=bswt.iceStatue,distance=..2] run as @e[limit=1,sort=nearest,tag=bswt.iceStatue] run damage @s 1
+	facing entity @e[tag=bswt.iceStatue,limit=1,sort=nearest] eyes run tp @s ^ ^ ^0.5
+	particle minecraft:dust_color_transition{from_color:[0.5,0.8,1],to_color:[0,0.1,0.5],scale:1} ~ ~ ~ 0.1 0.1 0.1 0 2
+	particle minecraft:snowflake ~ ~ ~ 0.1 0.1 0.1 0 3
