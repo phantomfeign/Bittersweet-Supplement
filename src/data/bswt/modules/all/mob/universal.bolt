@@ -74,8 +74,8 @@ entity_type_tag bswt:spawn_check {
     ]
 }
 
-function bswt:mob_adjustment/universal/filter:
-    as @s[tag=bswt.filterBypass] run return run function bswt:mob_adjustment/universal/route
+function bswt:mob/universal/filter:
+    as @s[tag=bswt.filterBypass] run return run function bswt:mob/universal/route
     #behavior of copies
     if entity @s[tag=bswt.extraSpawn] at @s run spreadplayers ~ ~ 2 4 false @s
 
@@ -95,22 +95,22 @@ function bswt:mob_adjustment/universal/filter:
     #deletion
     as @s[tag=bswt.spawnForbidden] run return run function utility:delete_self
 
-    function bswt:mob_adjustment/universal/route
+    function bswt:mob/universal/route
 
     #make a copy
     for i in range(5,0):
         j=i+1
         chance=i*10
-        if entity @s[tag=!bswt.spawnForbidden,tag=!bswt.extraSpawn] if score #sleep SleepStreak matches (j) if predicate (chance) run function bswt:mob_adjustment/copy_self
+        if entity @s[tag=!bswt.spawnForbidden,tag=!bswt.extraSpawn] if score #sleep SleepStreak matches (j) if predicate (chance) run function bswt:mob/copy_self
 
-function bswt:mob_adjustment/universal/copy_self:
+function bswt:mob/universal/copy_self:
     unless entity @s[type=#bswt:hostiles] run return fail
     if entity @s[type=minecraft:zombie] run summon minecraft:zombie ~ ~ ~ {Tags:["bswt.extraSpawn"]}
     if entity @s[type=minecraft:skeleton] run summon minecraft:skeleton ~ ~ ~ {Tags:["bswt.extraSpawn"]}
     if entity @s[type=minecraft:creeper] run summon minecraft:creeper ~ ~ ~ {Tags:["bswt.extraSpawn"]}
     if entity @s[type=minecraft:spider] run summon minecraft:spider ~ ~ ~ {Tags:["bswt.extraSpawn"]}
 
-function bswt:mob_adjustment/universal/route:
+function bswt:mob/universal/route:
     tag @s add bswt.spawnChecked
     #prevent mobs from dropping equipment
     data modify entity @s drop_chances set value {head:0.0f,chest:0.0f,legs:0.0f,feet:0.0f,mainhand:0.0f,offhand:0.0f} 
@@ -129,7 +129,7 @@ function bswt:mob_adjustment/universal/route:
         "area_effect_cloud"
     ]
     for i in MOBS:
-        if entity @s[type=f"minecraft:{i}"] run function f"bswt:mob_adjustment/{i}/spawn"
+        if entity @s[type=f"minecraft:{i}"] run function f"bswt:mob/{i}/spawn"
 
 function utility:delete_self:
     #kill with no loot

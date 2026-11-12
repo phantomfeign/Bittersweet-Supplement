@@ -70,7 +70,7 @@ function main:spawner/marker/kill:
 function main:spawner/marker/rolls/dungeon/call:
     for i in range(3):
         function main:spawner/marker/rolls/dungeon/single
-    as @e[type=#bswt:spawn_check,tag=!bswt.spawnChecked,tag=!bswt.filterBypass] run function bswt:mob_adjustment/universal/route
+    as @e[type=#bswt:spawn_check,tag=!bswt.spawnChecked,tag=!bswt.filterBypass] run function bswt:mob/universal/route
     scoreboard players set @s bswt.spawnerTimer 8
 
 function main:spawner/marker/rolls/dungeon/single:
@@ -82,7 +82,7 @@ function main:spawner/marker/rolls/dungeon/single:
 function main:spawner/marker/rolls/medium_dungeon/call:
     for i in range(3):
         function main:spawner/marker/rolls/medium_dungeon/single
-    as @e[type=#bswt:spawn_check,tag=!bswt.spawnChecked,tag=!bswt.filterBypass] run function bswt:mob_adjustment/universal/route
+    as @e[type=#bswt:spawn_check,tag=!bswt.spawnChecked,tag=!bswt.filterBypass] run function bswt:mob/universal/route
     scoreboard players set @s bswt.spawnerTimer 8
 
 function main:spawner/marker/rolls/medium_dungeon/single:
@@ -92,7 +92,7 @@ function main:spawner/marker/rolls/medium_dungeon/single:
 function main:spawner/marker/rolls/mineshaft/call:
     for i in range(3):
         function main:spawner/marker/rolls/mineshaft/single
-    as @e[type=#bswt:spawn_check,tag=!bswt.spawnChecked,tag=!bswt.filterBypass] run function bswt:mob_adjustment/universal/route
+    as @e[type=#bswt:spawn_check,tag=!bswt.spawnChecked,tag=!bswt.filterBypass] run function bswt:mob/universal/route
     scoreboard players set @s bswt.spawnerTimer 15
 
 function main:spawner/marker/rolls/mineshaft/single:

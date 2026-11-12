@@ -1,4 +1,4 @@
-function bswt:mob_adjustment/zombie/spawn:
+function bswt:mob/zombie/spawn:
     attribute @s minecraft:attack_damage base set 3
     attribute @s minecraft:knockback_resistance base set 0.5
     attribute @s minecraft:follow_range base set 25
@@ -23,18 +23,18 @@ advancement temp:mob/zombie/hit_player {
     }
   },
   "rewards": {
-    "function": "bswt:mob_adjustment/zombie/hit_player"
+    "function": "bswt:mob/zombie/hit_player"
   }
 }
 
-function bswt:mob_adjustment/zombie/hit_player:
+function bswt:mob/zombie/hit_player:
     advancement revoke @s only temp:mob/zombie/hit_player
     on attacker if entity @s[type=#minecraft:zombies]:
       effect give @s minecraft:slowness 5 1 true
       scoreboard players set @s ZombieChaseTime 0
       attribute @s minecraft:movement_speed base set 0.24
 
-function bswt:mob_adjustment/zombie/tick:
+function bswt:mob/zombie/tick:
     scoreboard players add @s ZombieChaseTime 1
     for i in range (60):
       move_speed = (240+(i*5))/1000

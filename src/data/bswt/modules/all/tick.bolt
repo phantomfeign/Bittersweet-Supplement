@@ -23,12 +23,12 @@ function ticking_functions:tick_1t/universal:
     as @s[type=block_display,tag=bswt.vinerySpore] run function bswt:enchantment/vinery/petal/tick
     
     kill @s[type=experience_orb]
-    as @s[type=area_effect_cloud,tag=!bswt.aec_checked] run function bswt:mob_adjustment/area_effect_cloud/spawn
+    as @s[type=area_effect_cloud,tag=!bswt.aec_checked] run function bswt:mob/area_effect_cloud/spawn
     as @s[type=marker,tag=bswt.frostbiteStompMarker] run function bswt:enchantment/frostbite/stomp/tick
     as @s[tag=bswt.crystalline_candle_proj] run function main:weapon/crystalline_candle/projectile/tick
 
 function ticking_functions:tick_1t/players:
-    function bswt:mob_adjustment/creeper/watch/tick
+    function bswt:mob/creeper/watch/tick
     function main:climb
     if predicate bswt:enchantment/infinity unless items entity @s saddle minecraft:arrow run function utility:ghost_arrow/check_infinity
     if predicate bswt:enchantment/overload unless items entity @s saddle minecraft:arrow run function utility:ghost_arrow/check_overload
@@ -64,7 +64,7 @@ function ticking_functions:tick_0.5s/call:
         
 function ticking_functions:tick_0.5s/universal:
     as @s[tag=bswt.frostbitten] run function bswt:mob_effect/frostbite/tick
-    as @s[type=enderman] at @s run function bswt:mob_adjustment/enderman/tick
+    as @s[type=enderman] at @s run function bswt:mob/enderman/tick
 
 function ticking_functions:tick_0.5s/players:
     if score @s bswt.Hunger matches 10.. run effect give @s minecraft:hunger 1 255 true
@@ -85,8 +85,8 @@ function ticking_functions:tick_1s/universal:
     as @s[tag=bswt.lacerated] run function bswt:enchantment/laceration/tick
     as @s[tag=bswt.timed_projectile] run function utility:projectile_tick
     as @s[tag=bswt.OnFire] run function bswt:mob_effect/fire/tick
-    as @s[type=#bswt:spawn_check,tag=!bswt.spawnChecked] run function bswt:mob_adjustment/universal/filter
-    as @s[type=zombie] run function bswt:mob_adjustment/zombie/tick
+    as @s[type=#bswt:spawn_check,tag=!bswt.spawnChecked] run function bswt:mob/universal/filter
+    as @s[type=zombie] run function bswt:mob/zombie/tick
     as @s[type=minecraft:marker,tag=spawner_marker] at @s run function main:spawner/marker/tick
     as @s[type=item] at @s if items entity @s contents #bswt:equipment/gold_gear run function main:gold_repair/check_damage
 

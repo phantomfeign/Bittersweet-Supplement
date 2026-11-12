@@ -1,4 +1,4 @@
-function bswt:mob_adjustment/spider/spawn:
+function bswt:mob/spider/spawn:
     attribute @s minecraft:max_health base set 10
     data merge entity @s {Health:10.0f}
     attribute @s minecraft:movement_speed base set 0.35
@@ -22,11 +22,11 @@ advancement temp:mob/spider/hit_player{
     }
   },
   "rewards": {
-    "function": "bswt:mob_adjustment/spider/hit_player"
+    "function": "bswt:mob/spider/hit_player"
   }
 }
 
-function bswt:mob_adjustment/spider/hit_player:
+function bswt:mob/spider/hit_player:
     advancement revoke @s only temp:mob/spider/hit_player
 
     if block ~ ~ ~ minecraft:cobweb run return fail

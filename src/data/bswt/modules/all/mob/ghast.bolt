@@ -1,4 +1,4 @@
-function bswt:mob_adjustment/ghast/spawn:
+function bswt:mob/ghast/spawn:
     pass
 
 function bswt:mob/ghast/kill:

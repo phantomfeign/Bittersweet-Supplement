@@ -1,4 +1,4 @@
-function bswt:mob_adjustment/wandering_trader/spawn:
+function bswt:mob/wandering_trader/spawn:
     tellraw @a "The wandering trader has arrived."
     effect clear @s
     effect give @s glowing infinite 0 true
@@ -8,7 +8,7 @@ function bswt:mob_adjustment/wandering_trader/spawn:
     attribute @s minecraft:knockback_resistance modifier add bswt:wandering_trader 1.0 add_value
     data merge entity @s {Silent:true}
     
-function bswt:mob_adjustment/wandering_trader/depart:
+function bswt:mob/wandering_trader/depart:
     tellraw @a "The wandering trader has departed."
     particle gust_emitter_large ~ ~ ~ 0 0 0 0 10 force
     function utility:delete_self

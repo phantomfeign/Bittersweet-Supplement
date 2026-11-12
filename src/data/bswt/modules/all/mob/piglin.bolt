@@ -1,4 +1,4 @@
-function bswt:mob_adjustment/piglin/spawn:
+function bswt:mob/piglin/spawn:
     if items entity @s weapon.mainhand minecraft:crossbow run item modify entity @s weapon.mainhand bswt:mob/piglin_crossbow
 
 item_modifier bswt:mob/piglin_crossbow {

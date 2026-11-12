@@ -1,2 +1,0 @@
-function bswt:mob_adjustment/villger/spawn:
-    function utility:delete_self

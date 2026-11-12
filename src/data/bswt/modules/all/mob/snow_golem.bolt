@@ -1,8 +1,8 @@
-function bswt:mob_adjustment/snow_golem/spawn:
+function bswt:mob/snow_golem/spawn:
     attribute @s minecraft:max_health base set 10
     as @s run data merge entity @s {Health:10.0f}
 
-function bswt:mob_adjustment/snow_golem/aura:
+function bswt:mob/snow_golem/aura:
     unless entity @e[distance=..3,type=!minecraft:snow_golem,type=!minecraft:player] run return fail
     as @e[distance=..3,type=!minecraft:snow_golem,type=!minecraft:player] run function bswt:mob_effect/frostbite/apply
     particle minecraft:snowflake ~ ~2 ~ 3 2 3 0 10 normal

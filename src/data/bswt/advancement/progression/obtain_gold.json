@@ -38,6 +38,6 @@
     }
   },
   "rewards": {
-    "function": "bswt:mob_adjustments/equipment/tier_progression/gold"
+    "function": "bswt:mobs/equipment/tier_progression/gold"
   }
 }

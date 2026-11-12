@@ -1,4 +1,4 @@
-function bswt:mob_adjustment/cave_spider/spawn:
+function bswt:mob/cave_spider/spawn:
   attribute @s minecraft:max_health base set 8
   data merge entity @s {Health:8.0f}
   attribute @s minecraft:movement_speed base set 0.35
@@ -23,11 +23,11 @@ advancement temp:mob/cave_spider/hit_player{
     }
   },
   "rewards": {
-    "function": "bswt:mob_adjustment/cave_spider/hit_player"
+    "function": "bswt:mob/cave_spider/hit_player"
   }
 }
 
-function bswt:mob_adjustment/cave_spider/hit_player:
+function bswt:mob/cave_spider/hit_player:
     advancement revoke @s only temp:mob/cave_spider/hit_player
     effect give @s minecraft:poison 2 5    
 

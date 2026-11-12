@@ -11,7 +11,7 @@ function main:sleep/advance_time:
     scoreboard players set #sleep SleepAttempt 0
 
 function main:sleep/night_start:
-    as @e[type=minecraft:wandering_trader] run function bswt:mob_adjustment/wandering_trader/depart
+    as @e[type=minecraft:wandering_trader] run function bswt:mob/wandering_trader/depart
     if score #sleep SleepStreak matches 5 run function main:sleep/blood_moon/start
 
 function main:sleep/day_start:

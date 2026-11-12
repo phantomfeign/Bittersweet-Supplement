@@ -1,4 +1,4 @@
-function bswt:mob_adjustment/drowned/spawn:
+function bswt:mob/drowned/spawn:
     function utility:clear_armor
     item replace entity @s weapon.mainhand with minecraft:stone_sword
     attribute @s minecraft:max_health base set 18

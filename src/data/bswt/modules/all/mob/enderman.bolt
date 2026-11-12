@@ -1,18 +1,18 @@
-function bswt:mob_adjustment/enderman/spawn:
+function bswt:mob/enderman/spawn:
     scoreboard players add @s bswt.endermanPullTimer 0
     attribute @s minecraft:attack_damage base set 0
     item replace entity @s weapon.mainhand with minecraft:wooden_axe[\
     minecraft:item_model="bswt:invisible",minecraft:weapon={disable_blocking_for_seconds:2.0}]
 
-function bswt:mob_adjustment/enderman/tick:
+function bswt:mob/enderman/tick:
     unless predicate bswt:mob/has_target unless entity @e[distance=..8,tag=bswt.Cramped,tag=!PullTarget] run return run scoreboard players set @s bswt.endermanPullTimer 0
     as @s[predicate=bswt:mob/has_target] run scoreboard players add @s bswt.endermanPullTimer 1
     if score @s bswt.endermanPullTimer matches 5..:
-        if entity @a[distance=..8,tag=bswt.Cramped,tag=!PullTarget] run function bswt:mob_adjustment/enderman/tp/windup
+        if entity @a[distance=..8,tag=bswt.Cramped,tag=!PullTarget] run function bswt:mob/enderman/tp/windup
         scoreboard players set @s bswt.endermanPullTimer 0
     ride @s dismount
     
-function bswt:mob_adjustment/enderman/tp/windup:
+function bswt:mob/enderman/tp/windup:
     scoreboard players set @e[type=enderman] bswt.endermanPullTimer 0
     tag @s add PullHost
 
@@ -28,10 +28,10 @@ function bswt:mob_adjustment/enderman/tp/windup:
         effect give @s minecraft:blindness 4 0
         tag @s add PullTarget
 
-    schedule function bswt:mob_adjustment/enderman/tp/call 20t
+    schedule function bswt:mob/enderman/tp/call 20t
     effect give @s slowness 1 255 true
 
-function bswt:mob_adjustment/enderman/tp/call:
+function bswt:mob/enderman/tp/call:
     as @a[tag=PullTarget,sort=nearest,limit=1,distance=..8]:
         effect give @s resistance 1 0 true
         effect give @s slowness 2 1 true
