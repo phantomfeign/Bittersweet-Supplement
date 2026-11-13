@@ -98,10 +98,8 @@ function bswt:mob/boss/gorgon/attack/lunge/execute:
     as @e[limit=1,type=skeleton,tag=bswt.Gorgon]:
       as @e[limit=1] at @s run playsound minecraft:item.spear.lunge_1 hostile @a ~ ~ ~ 1 0.8
       at @p rotate @s facing ~ ~0.5 ~
-      for i in range (20):
-        if entity @a[distance=..(i)] run return run function utility:give_motion {X:0,Y:0,Z:(i*1.2)}
-      function utility:give_motion {X:0,Y:0,Z:23}
-
+      function utility:get_motion_towards {force:1,target:"type=player"}
+      effect give @s slowness 2 1
 function bswt:mob/boss/gorgon/attack/lunge/cleanup:
     as @e[limit=1,type=skeleton,tag=bswt.Gorgon]:
       item replace entity @s weapon.mainhand with minecraft:air

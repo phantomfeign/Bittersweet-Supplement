@@ -62,6 +62,8 @@ function load:scoreboard:
     scoreboard objectives add bswt.jumpWeaknessTimer dummy
 #NoAI
     scoreboard objectives add bswt.noAI dummy
+#cannot_attack
+    scoreboard objectives add bswt.CantAttack dummy
 
 #———————————————————ENCHANTS
 #LACERATION

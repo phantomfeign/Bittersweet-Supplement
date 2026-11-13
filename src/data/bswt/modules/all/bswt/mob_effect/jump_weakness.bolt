@@ -11,3 +11,10 @@ function bswt:mob_effect/jump_weakness/apply:
     $attribute @s minecraft:jump_strength modifier add bswt.jump_weakness $(severity) add_value
     $scoreboard players set @s bswt.jumpWeaknessTimer $(duration)
     tag @s add bswt.JumpWeakness
+
+function bswt:mob_effect/jump_weakness/apply_seconds:
+    attribute @s minecraft:jump_strength modifier remove bswt.jump_weakness
+    $attribute @s minecraft:jump_strength modifier add bswt.jump_weakness $(severity) add_value
+    tag @s add bswt.JumpWeakness
+    for i in range(20):
+        $scoreboard players set @s bswt.jumpWeaknessTimer $(duration)
