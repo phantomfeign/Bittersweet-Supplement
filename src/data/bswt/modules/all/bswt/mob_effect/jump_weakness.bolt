@@ -1,0 +1,13 @@
+function bswt:mob_effect/jump_weakness/tick:
+    scoreboard players remove @s bswt.jumpWeaknessTimer 1
+    if score @s bswt.jumpWeaknessTimer matches ..0:
+        attribute @s minecraft:jump_strength modifier remove bswt.jump_weakness
+        scoreboard players set @s bswt.jumpWeaknessTimer 0
+        tag @s remove bswt.JumpWeakness
+
+function bswt:mob_effect/jump_weakness/apply:
+    #function bswt:mob_effect/jump_weakness/apply {duration:1,severity:0.2}
+    attribute @s minecraft:jump_strength modifier remove bswt.jump_weakness
+    $attribute @s minecraft:jump_strength modifier add bswt.jump_weakness $(severity) add_value
+    $scoreboard players set @s bswt.jumpWeaknessTimer $(duration)
+    tag @s add bswt.JumpWeakness

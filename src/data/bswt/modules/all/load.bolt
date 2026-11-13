@@ -31,6 +31,7 @@ function load:scoreboard:
     scoreboard objectives add bswt.playerDeaths deathCount
 
     scoreboard objectives add bswt.timer dummy
+    scoreboard objectives add bswt.bossAbilityTimer dummy
 
     scoreboard objectives add bswt.Math dummy
     scoreboard players set #70 bswt.Math 70
@@ -54,6 +55,14 @@ function load:scoreboard:
 #CRYSTALLINE CANDLE
     scoreboard objectives add bswt.crystallineCandle dummy
 
+#———————————————————MOB EFFEC
+#FIRE
+    scoreboard objectives add bswt.fireTimer dummy
+#JUMP WEAKNESS
+    scoreboard objectives add bswt.jumpWeaknessTimer dummy
+#NoAI
+    scoreboard objectives add bswt.noAI dummy
+
 #———————————————————ENCHANTS
 #LACERATION
     scoreboard objectives add bswt.lacerationStacks dummy
@@ -66,8 +75,6 @@ function load:scoreboard:
     scoreboard objectives add bswt.arrowCount dummy
 #HOOKING
     scoreboard objectives add bswt.weaknessTimer dummy
-#FIRE
-    scoreboard objectives add bswt.fireTimer dummy
 #FROSTBITE
     scoreboard objectives add bswt.frostbiteHealth dummy
     scoreboard objectives add bswt.frostbiteTimer dummy

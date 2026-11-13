@@ -1,0 +1,12 @@
+function bswt:mob_effect/noai/tick:
+    scoreboard players remove @s bswt.noAI 1
+    if score @s bswt.noAI matches ..0:
+        data merge entity @s {NoAI:0b}
+        scoreboard players set @s bswt.noAI 0
+        tag @s remove bswt.noAI
+
+function bswt:mob_effect/noai/apply:
+    #function bswt:mob_effect/noai/apply {duration:1}
+    data merge entity @s {NoAI:1b}
+    $scoreboard players set @s bswt.noAI $(duration)
+    tag @s add bswt.noAI

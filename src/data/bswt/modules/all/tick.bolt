@@ -19,6 +19,8 @@ function ticking_functions:tick_1t/universal:
     as @s[tag=bswt.cannotAttack] run function utility:weakness_tick
 
     as @s[type=!#bswt:cant_transfer_fire,predicate=bswt:mob_effect/is_on_fire] run function bswt:mob_effect/fire/apply
+    as @s[tag=bswt.JumpWeakness] run function bswt:mob_effect/jump_weakness/tick
+    as @s[tag=bswt.noAI] run function bswt:mob_effect/noai/tick
     as @s[tag=bswt.iceStatue,nbt=!{Health:100.0f}] run function bswt:mob_effect/frostbite/ice_statue/shatter
     as @s[type=block_display,tag=bswt.vinerySpore] run function bswt:enchantment/vinery/petal/tick
     
@@ -85,10 +87,12 @@ function ticking_functions:tick_1s/universal:
     as @s[tag=bswt.lacerated] run function bswt:enchantment/laceration/tick
     as @s[tag=bswt.timed_projectile] run function utility:projectile_tick
     as @s[tag=bswt.OnFire] run function bswt:mob_effect/fire/tick
+    as @s[tag=bswt.JumpWeakness] run function bswt:mob_effect/jump_weakness/tick
     as @s[type=#bswt:spawn_check,tag=!bswt.spawnChecked] run function bswt:mob/universal/filter
     as @s[type=zombie] run function bswt:mob/zombie/tick
     as @s[type=minecraft:marker,tag=spawner_marker] at @s run function main:spawner/marker/tick
     as @s[type=item] at @s if items entity @s contents #bswt:equipment/gold_gear run function main:gold_repair/check_damage
+    as @s[type=skeleton,tag=bswt.Gorgon] run function bswt:mob/boss/gorgon/tick
 
 function ticking_functions:tick_1s/players:
     function utility:anvil/tick

@@ -75,6 +75,7 @@ entity_type_tag bswt:spawn_check {
 }
 
 function bswt:mob/universal/filter:
+    as @s[tag=bswt.adjustmentBypass] run return run tag @s add bswt.spawnChecked
     as @s[tag=bswt.filterBypass] run return run function bswt:mob/universal/route
     #behavior of copies
     if entity @s[tag=bswt.extraSpawn] at @s run spreadplayers ~ ~ 2 4 false @s
