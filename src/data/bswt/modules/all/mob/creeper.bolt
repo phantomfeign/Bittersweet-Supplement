@@ -1,5 +1,5 @@
 function bswt:mob/creeper/spawn:
-    if entity @e[type=minecraft:creeper,distance=1..10] run return run function utility:delete_self
+    if entity @e[type=minecraft:creeper,distance=2..20] run return run function utility:delete_self
     data modify entity @s ExplosionRadius set value 0b
     data modify entity @s Fuse set value 25
     effect give @s minecraft:luck infinite 99 true
@@ -22,7 +22,7 @@ function bswt:mob/creeper/watch/tick:
         effect clear @s minecraft:slowness
         for i in range(8,0,-1):
             max_distance = (i)*8
-            move_speed = (23+(i*3))/100
+            move_speed = (26+(i*4))/100
             unless entity @a[distance=f"..{max_distance}"] run return run attribute @s minecraft:movement_speed base set (move_speed)
         attribute @s minecraft:movement_speed base set 0.23
 function bswt:mob/creeper/watch/step:

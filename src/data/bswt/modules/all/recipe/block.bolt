@@ -54,27 +54,22 @@ recipe bswt:block/melon_block {
   }
 }
 
-recipe bswt:block/lockbox {
+recipe bswt:block/safe {
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
     "C": "#minecraft:copper_chests",
-    "I": "minecraft:iron_block",
-    "G": "minecraft:gold_block",
-    "S": "minecraft:pig_spawn_egg",
+    "X": "minecraft:iron_block",
+    "#": "minecraft:iron_ingot",
     "E": "minecraft:emerald"
   },
   "pattern": [
-    "ISI",
-    "ECE",
-    "IGI"
+    "#E#",
+    "#C#",
+    "#X#"
   ],
   "result": {
-    "id": "minecraft:light_gray_shulker_box",
-    "components": {
-      "minecraft:item_name": "Lockbox"
-    },
-    "count": 1
+    "id": "minecraft:light_gray_shulker_box"
   }
 }
 
@@ -179,4 +174,19 @@ recipe bswt:block/ice {
 		"id": "minecraft:ice"
 	}
 }
-
+recipe bswt:block/blast_furnace {
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": "minecraft:deepslate",
+    "I": "minecraft:iron_ingot",
+    "X": "minecraft:furnace"
+  },
+  "pattern": [
+    "###",
+    "#X#",
+    "III"
+  ],
+  "result": {
+    "id": "minecraft:blast_furnace"
+  }
+}

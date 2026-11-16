@@ -25,6 +25,7 @@ advancement bswt:mob_effect/petrified/clear {
 }
 function bswt:mob_effect/petrified/clear:
     advancement revoke @s only bswt:mob_effect/petrified/clear
+    function bswt:mob_effect/jump_weakness/clear
     effect clear @s minecraft:slowness
     effect clear @s minecraft:weakness
     tag @s remove bswt.Petrified
@@ -33,5 +34,5 @@ function bswt:mob_effect/petrified/apply:
     #function bswt:mob_effect/petrified/apply {duration:60}
     $effect give @s minecraft:slowness $(duration) 255 true
     $effect give @s minecraft:weakness $(duration) 255 true
-    function bswt:mob_effect/jump_weakness/apply_seconds {duration:$(duration),severity:0.2}
+    $function bswt:mob_effect/jump_weakness/apply_seconds {duration:$(duration),severity:1}
     tag @s add bswt.Petrified

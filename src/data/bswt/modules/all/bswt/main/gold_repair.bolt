@@ -16,7 +16,7 @@ function main:gold_repair/repair:
     particle minecraft:glow ~ ~0.25 ~ 0 0 0 0.05 3
     particle minecraft:firefly ~ ~0.25 ~ 0 1 0 1 3
     playsound entity.experience_orb.pickup player @a ~ ~ ~ 3 1 1
-    as @a[tag=RepairPlayer] run advancement grant @s only bswt:progression/worth_its_weight
+    as @a[tag=RepairPlayer] run advancement grant @s only bswt:progression/repair_gold
 
     store result score #damage bswt.goldRepair run data get entity @e[limit=1,sort=nearest,type=item,tag=this] Item.components."minecraft:damage"
     if score #damage bswt.goldRepair matches 0 run return 0

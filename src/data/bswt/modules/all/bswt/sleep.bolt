@@ -1,3 +1,12 @@
+function utility:time_monitor:
+    store result score #time Time run time query day
+    if entity @e[type=phantom]:
+        time set night
+        weather thunder
+    if score #time Time matches 39000 run function main:sleep/night_start
+    if score #time Time matches 2999 run function main:sleep/day_start
+    schedule function utility:time_monitor 1t
+
 function main:sleep/advance_time:
     unless entity @a[tag=!bswt.sleeping]:
         function main:sleep/messages
@@ -5,7 +14,7 @@ function main:sleep/advance_time:
             tp @s ~ ~0.1 ~
             spawnpoint @s ~ ~ ~
         tag @a remove bswt.sleeping
-        if score #sleep SleepStreak matches 5.. run return fail
+        if score #sleep SleepStreak matches 4.. run return fail
         scoreboard players add #sleep SleepStreak 1
         time set day
     scoreboard players set #sleep SleepAttempt 0
@@ -15,10 +24,13 @@ function main:sleep/night_start:
     if score #sleep SleepStreak matches 5 run function main:sleep/blood_moon/start
 
 function main:sleep/day_start:
-
-    if score #sleep SleepStreak matches 2.. run tellraw @a {"text":"The hordes weaken.","color":"#ffea4b"}
-    if score #sleep BloodMoonActive matches 1 run scoreboard players set #sleep SleepStreak 0
-    if score #sleep BloodMoonActive matches 1 run scoreboard players set #sleep BloodMoonActive 0
+    if score #sleep SleepStreak matches 2..: 
+        tellraw @a {"text":"The hordes weaken.","color":"#ffea4b"}
+        scoreboard players remove #sleep SleepStreak 1
+    if score #sleep BloodMoonActive matches 1: 
+        scoreboard players set #sleep SleepStreak 0
+        scoreboard players set #sleep BloodMoonActive 0
+        unless score @s bswt.maxHealth matches 20.. run scoreboard players set @s bswt.maxHealth 18
     if score #sleep SleepStreak matches ..-1 run scoreboard players set #sleep SleepStreak 0
     as @a unless score @s MaxHealth matches 20.. run function bswt:main/health/change/increase
 
@@ -26,21 +38,13 @@ function main:sleep/messages:
     if score #sleep SleepStreak matches 0 run tellraw @a {"text":"You feel well rested.","color":"#f6f6ff"}
     if score #sleep SleepStreak matches 1 run tellraw @a {"text":"You feel.. rested..","color":"#c6b4cb"}
     if score #sleep SleepStreak matches 2 run tellraw @a {"text":"You feel tired.","color":"#aa96b0"}
-    if score #sleep SleepStreak matches 3 run tellraw @a {"text":"You feel restless.","color":"#8f7da2"}
-    if score #sleep SleepStreak matches 4 run tellraw @a {"text":"You feel sick.","color":"#736b95"}
-    if score #sleep SleepStreak matches 5.. run tellraw @a {"text":"You cannot sleep now. You are having Night Terrors.","color":"#57588a"}
+    if score #sleep SleepStreak matches 3 run tellraw @a {"text":"You feel sick.","color":"#8f7da2"}
+    if score #sleep SleepStreak matches 4.. run tellraw @a {"text":"You cannot sleep now. You are having Night Terrors.","color":"#57588a"}
 
 function main:sleep/blood_moon/start:
     tellraw @a {"text":"A terrible night is upon us..","color":"#57588a"}
     scoreboard players set #sleep BloodMoonActive 1
-    time set night
-    weather thunder
-    as @a positioned ~ 200 ~ positioned over motion_blocking: 
-        summon minecraft:phantom ~ ~ ~ {Tags:[bswt.filterBypass],Motion:[1,1,0]}
-        summon minecraft:phantom ~ ~ ~ {Tags:[bswt.filterBypass],Motion:[1,1,1]}
-        summon minecraft:phantom ~ ~ ~ {Tags:[bswt.filterBypass],Motion:[0,2,1]}
-        summon minecraft:phantom ~ ~ ~ {Tags:[bswt.filterBypass],Motion:[1,1,1]}
-    as @a:
+    as @a at @s:
         playsound minecraft:ambient.cave master @s ~ ~ ~ 1 1
         playsound minecraft:block.glass.break master @s ~ ~ ~ 1 0.1
         playsound minecraft:block.amethyst_block.break master @s ~ ~ ~ 1 0.1
@@ -56,5 +60,10 @@ function main:sleep/blood_moon/start:
         playsound minecraft:entity.wither.spawn master @s ~ ~ ~ 1 1
         playsound minecraft:entity.wither.spawn master @s ~ ~ ~ 1 0.5
         playsound minecraft:entity.wither.spawn master @s ~ ~ ~ 1 0.1
-
+        
+        positioned ~ ~200 ~ positioned over motion_blocking: 
+            summon minecraft:phantom ~ ~ ~ {Tags:[bswt.filterBypass],Motion:[1,1,0]}
+            summon minecraft:phantom ~ ~ ~ {Tags:[bswt.filterBypass],Motion:[1,1,1]}
+            summon minecraft:phantom ~ ~ ~ {Tags:[bswt.filterBypass],Motion:[0,2,1]}
+            summon minecraft:phantom ~ ~ ~ {Tags:[bswt.filterBypass],Motion:[1,1,1]}
 

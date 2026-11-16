@@ -29,7 +29,7 @@ TIERS=[
             "copper_shears",
             "copper_wire"
         ],
-        []
+        ["bswt:misc_equipment/bucket"]
     ),
     (
         "iron","iron_ingot",
@@ -41,7 +41,10 @@ TIERS=[
             "iron_shield",
             "iron_shears",
         ],
-        []
+        [
+            "bswt:block/blast_furnace",
+            "bswt:block/safe"
+        ]
     ),
     (
         "verdum","bogged_spawn_egg",
@@ -68,8 +71,7 @@ TIERS=[
         [],
         [],
         [
-            "bswt:misc_crafting/diamond_upgrade",
-            "bswt:uniques/amethyst_scythe"
+            "bswt:material/diamond_upgrade"
         ]
     ),
     (
@@ -77,7 +79,7 @@ TIERS=[
         ["gauntlet"],
         [],
         [
-            "bswt:misc_crafting/bronze_upgrade"
+            "bswt:material/bronze_upgrade"
         ]
     ),
     (
@@ -85,7 +87,7 @@ TIERS=[
         [],
         [],
         [
-            "bswt:misc_crafting/adamantine_upgrade",
+            "bswt:material/adamantine_upgrade",
             "bswt:uniques/hellish_trident"
         ]
     )
@@ -157,7 +159,7 @@ ctx.data.advancements[f"bswt:main/recipe/requiem"] = Advancement ({
 BASIC = [
     {"item": "snow_block", "recipe": "bswt:block/ice"},
     {"item": "bamboo", "recipe": "bswt:block/bamboo_planks"},
-    {"item": "#planks", "recipe": "bswt:misc_equipment/bucket"}
+    {"item": "amethyst_shard", "recipe": "bswt:uniques/amethyst_scythe"}
 ]
 
 for entry in BASIC:

@@ -1,0 +1,14 @@
+function bswt:mob_effect/spearing/apply:
+    #function bswt:mob_effect/spearing/apply {duration:15}
+    $scoreboard players remove @s bswt.spearingTimer $(duration)
+    tag @s add bswt.Spearing
+
+function bswt:mob_effect/spearing/tick:
+    scoreboard players remove @s bswt.spearingTimer 1
+    for i in range(3):
+      for i in range(3):
+        offset = f"^{(i-1.5)/2}"
+        at @s positioned ^ (offset) ^ as @a[distance=..0.5] run damage @s 12 minecraft:spear by @e[limit=1,sort=nearest,tag=bswt.Gorgon]
+
+    tag @s add bswt.Spearing
+

@@ -18,7 +18,8 @@ function load:scoreboard:
     scoreboard objectives add bswt.maxHealth dummy
     scoreboard players add @a bswt.maxHealth 0
     execute as @a store result score @s bswt.maxHealth run attribute @s minecraft:max_health get 1.0
-    scoreboard objectives add bswt.currentHealth health
+    scoreboard objectives add bswt.playerHealth health
+    scoreboard objectives add bswt.healthDummy dummy
 
     scoreboard objectives add Day dummy
     scoreboard objectives add Time dummy
@@ -49,6 +50,7 @@ function load:scoreboard:
     scoreboard objectives add bswt.anvilUse minecraft.custom:minecraft.interact_with_anvil
     scoreboard players set 0 bswt.anvilUse 0
 
+    scoreboard objectives add bswt.ZombieChaseTimer dummy
     scoreboard objectives add bswt.endermanPullTimer dummy
     scoreboard objectives add bswt.spawnerTimer dummy
 #———————————————————WEAPONS
@@ -64,6 +66,8 @@ function load:scoreboard:
     scoreboard objectives add bswt.noAI dummy
 #cannot_attack
     scoreboard objectives add bswt.CantAttack dummy
+#Spearing
+    scoreboard objectives add bswt.spearingTimer dummy
 
 #———————————————————ENCHANTS
 #LACERATION
@@ -78,7 +82,6 @@ function load:scoreboard:
 #HOOKING
     scoreboard objectives add bswt.weaknessTimer dummy
 #FROSTBITE
-    scoreboard objectives add bswt.frostbiteHealth dummy
     scoreboard objectives add bswt.frostbiteTimer dummy
 #VIPER
     scoreboard objectives add bswt.viperTimer dummy

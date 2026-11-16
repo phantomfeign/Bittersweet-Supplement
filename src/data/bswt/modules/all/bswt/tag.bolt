@@ -170,6 +170,7 @@ block_tag bswt:nonsolid {
     "#minecraft:crops",
     "#minecraft:saplings",
     "#minecraft:signs",
+    "minecraft:snow",
     "minecraft:attached_melon_stem",
     "minecraft:attached_pumpkin_stem",
     "minecraft:nether_wart",

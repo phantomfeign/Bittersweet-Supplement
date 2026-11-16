@@ -31,11 +31,11 @@ function bswt:mob/zombie/hit_player:
     advancement revoke @s only temp:mob/zombie/hit_player
     on attacker if entity @s[type=#minecraft:zombies]:
       effect give @s minecraft:slowness 5 1 true
-      scoreboard players set @s ZombieChaseTime 0
+      scoreboard players set @s bswt.ZombieChaseTimer 0
       attribute @s minecraft:movement_speed base set 0.24
 
 function bswt:mob/zombie/tick:
-    scoreboard players add @s ZombieChaseTime 1
+    scoreboard players add @s bswt.ZombieChaseTimer 1
     for i in range (60):
       move_speed = (240+(i*5))/1000
-      if score @s ZombieChaseTime matches (i) run return run attribute @s minecraft:movement_speed base set (move_speed)
+      if score @s bswt.ZombieChaseTimer matches (i) run return run attribute @s minecraft:movement_speed base set (move_speed)

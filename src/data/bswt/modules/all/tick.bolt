@@ -20,6 +20,7 @@ function ticking_functions:tick_1t/universal:
     as @s[tag=bswt.JumpWeakness] run function bswt:mob_effect/jump_weakness/tick
     as @s[tag=bswt.CantAttack] run function bswt:mob_effect/cant_attack/tick
     as @s[tag=bswt.noAI] run function bswt:mob_effect/noai/tick
+    as @s[tag=bswt.Spearing] run function bswt:mob_effect/spearing/tick
 
     as @s[tag=bswt.iceStatue,nbt=!{Health:100.0f}] run function bswt:mob_effect/frostbite/ice_statue/shatter
     as @s[type=block_display,tag=bswt.vinerySpore] run function bswt:enchantment/vinery/petal/tick
@@ -29,9 +30,13 @@ function ticking_functions:tick_1t/universal:
     as @s[type=marker,tag=bswt.frostbiteStompMarker] run function bswt:enchantment/frostbite/stomp/tick
     as @s[tag=bswt.crystalline_candle_proj] run function main:weapon/crystalline_candle/projectile/tick
 
+    as @s[type=skeleton,tag=bswt.Gorgon] if score #title bswt.bossAbilityTimer matches 1.. at @s run function bswt:mob/boss/gorgon/title/tick
+
+    as @s[type=block_display,tag=bswt.GorgonRock] at @s run function bswt:mob/boss/gorgon/attack/throw_rock/tick
+
 function ticking_functions:tick_1t/players:
     function bswt:mob/creeper/watch/tick
-    function main:climb
+    if predicate main:climbing/blocks run function main:climb
     if predicate bswt:enchantment/infinity unless items entity @s saddle minecraft:arrow run function utility:ghost_arrow/check_infinity
     if predicate bswt:enchantment/overload unless items entity @s saddle minecraft:arrow run function utility:ghost_arrow/check_overload
     unless predicate bswt:enchantment/infinity unless predicate bswt:enchantment/overload if items entity @s saddle minecraft:arrow run function utility:ghost_arrow/remove
@@ -92,7 +97,7 @@ function ticking_functions:tick_1s/universal:
     as @s[type=zombie] run function bswt:mob/zombie/tick
     as @s[type=minecraft:marker,tag=spawner_marker] at @s run function main:spawner/marker/tick
     as @s[type=item] at @s if items entity @s contents #bswt:equipment/gold_gear run function main:gold_repair/check_damage
-    as @s[type=skeleton,tag=bswt.Gorgon] run function bswt:mob/boss/gorgon/tick
+    unless score #title bswt.bossAbilityTimer matches 1.. as @s[type=skeleton,tag=bswt.Gorgon] at @s run function bswt:mob/boss/gorgon/tick
 
 function ticking_functions:tick_1s/players:
     function utility:anvil/tick

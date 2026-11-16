@@ -187,7 +187,7 @@ function bswt:enchantment/viper/cleanup:
 
 function bswt:enchantment/viper/origin:
     tag @s add bswt.viperOrigin
-    execute if entity @s[gamemode=creative] run return run kill @e[sort=nearest,limit=1,type=minecraft:trident,tag=bswt.viperTrident]
+    execute if entity @s[gamemode=creative] run return run kill @e[limit=1,sort=nearest,type=minecraft:trident,tag=bswt.viperTrident]
     execute unless items entity @s weapon.mainhand * run return run function bswt:enchantment/viper/replace_hand {slot:weapon.mainhand}
     execute unless items entity @s weapon.offhand * run return run function bswt:enchantment/viper/replace_hand {slot:weapon.offhand}
     for i in range (8):
@@ -198,5 +198,5 @@ function bswt:enchantment/viper/origin:
         execute unless items entity @s SLOT * run return run function bswt:enchantment/viper/replace_hand {slot:SLOT}
 
 function bswt:enchantment/viper/replace_hand:
-    $item replace entity @s $(slot) from entity @e[sort=nearest,limit=1,type=minecraft:trident,tag=bswt.viperTrident] contents
-    kill @e[sort=nearest,limit=1,type=minecraft:trident,tag=bswt.viperTrident]
+    $item replace entity @s $(slot) from entity @e[limit=1,sort=nearest,type=minecraft:trident,tag=bswt.viperTrident] contents
+    kill @e[limit=1,sort=nearest,type=minecraft:trident,tag=bswt.viperTrident]

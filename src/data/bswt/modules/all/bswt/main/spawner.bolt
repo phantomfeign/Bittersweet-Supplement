@@ -9,33 +9,33 @@ function main:spawner/replace_spawners:
     if entity @s[gamemode=creative] run return fail
     if entity @s[gamemode=spectator] run return fail
     #regular dungeon
-    fill ~15 ~15 ~15 ~-15 ~-15 ~-15 \
+    fill ~16 ~16 ~16 ~-16 ~-16 ~-16 \
     minecraft:command_block{auto:true,Command:"function main:spawner/command \
     {spawner_type:dungeon_spawner,mob_count:5,spawn_timer:3}"} \
     replace minecraft:spawner{SpawnData:{entity:{id:"minecraft:zombie"}}}
-    fill ~15 ~15 ~15 ~-15 ~-15 ~-15 \
+    fill ~16 ~16 ~16 ~-16 ~-16 ~-16 \
     minecraft:command_block{auto:true,Command:"function main:spawner/command \
     {spawner_type:dungeon_spawner,mob_count:5,spawn_timer:3}"} \
     replace minecraft:spawner{SpawnData:{entity:{id:"minecraft:skeleton"}}}
-    fill ~15 ~15 ~15 ~-15 ~-15 ~-15 \
+    fill ~16 ~16 ~16 ~-16 ~-16 ~-16 \
     minecraft:command_block{auto:true,Command:"function main:spawner/command \
     {spawner_type:dungeon_spawner,mob_count:5,spawn_timer:3}"} \
     replace minecraft:spawner{SpawnData:{entity:{id:"minecraft:spider"}}}
 
     #mineshaft
-    fill ~15 ~15 ~15 ~-15 ~-15 ~-15 \
+    fill ~16 ~16 ~16 ~-16 ~-16 ~-16 \
     minecraft:command_block{auto:true,Command:"function main:spawner/command \
     {spawner_type:mineshaft_spawner,mob_count:6,spawn_timer:3}"} \
     replace minecraft:spawner{SpawnData:{entity:{id:"minecraft:cave_spider"}}}
 
     #medium dungeon
-    fill ~15 ~15 ~15 ~-15 ~-15 ~-15 \
+    fill ~16 ~16 ~16 ~-16 ~-16 ~-16 \
     minecraft:command_block{auto:true,Command:"function main:spawner/command \
     {spawner_type:medium_dungeon,mob_count:10,spawn_timer:3}"} \
     replace minecraft:spawner{SpawnData:{entity:{id:"minecraft:copper_golem"}}}
 
     #blaze
-    fill ~15 ~15 ~15 ~-15 ~-15 ~-15 \
+    fill ~16 ~16 ~16 ~-16 ~-16 ~-16 \
     minecraft:trial_spawner[ominous=false]{\
     normal_config:"bswt:blaze_trial",\
     ominous_config:"bswt:blaze_trial"} \
@@ -43,12 +43,15 @@ function main:spawner/replace_spawners:
 
 function main:spawner/marker/tick:
     unless block ~ ~ ~ minecraft:spawner run return run function main:spawner/marker/kill
-    if predicate bswt:chance/30 run playsound minecraft:block.trial_spawner.ambient ambient @a ~ ~ ~ 15 2
-    if entity @a[distance=..9] run scoreboard players remove @s[type=minecraft:marker,tag=spawner_marker] bswt.spawnerTimer 1
-    playsound minecraft:block.copper_bulb.turn_off hostile @s ~ ~ ~ 16 1
-    unless entity @a[distance=..4] run return fail
+    
+    if entity @a[distance=..20] run scoreboard players remove @s[type=minecraft:marker,tag=spawner_marker] bswt.spawnerTimer 1
+
     particle minecraft:trial_spawner_detection ~ ~ ~ 0 0 0 0 3
-    as @s[type=minecraft:marker,tag=spawner_marker] if score @s bswt.spawnerTimer matches ..0 run function main:spawner/marker/sort
+    playsound minecraft:block.copper_bulb.turn_off hostile @s ~ ~ ~ 16 1
+    if predicate bswt:chance/30 run playsound minecraft:block.trial_spawner.ambient ambient @a ~ ~ ~ 15 2
+    
+    as @s[type=minecraft:marker,tag=spawner_marker] positioned ~ ~ ~ if entity @a[distance=..8] if score @s bswt.spawnerTimer matches ..0:
+        function main:spawner/marker/sort
 
 function main:spawner/marker/sort:
     for type in ["dungeon","mineshaft","medium_dungeon"]:

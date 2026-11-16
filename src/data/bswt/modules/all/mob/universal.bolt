@@ -77,12 +77,15 @@ entity_type_tag bswt:spawn_check {
 function bswt:mob/universal/filter:
     as @s[tag=bswt.adjustmentBypass] run return run tag @s add bswt.spawnChecked
     as @s[tag=bswt.filterBypass] run return run function bswt:mob/universal/route
+
     #behavior of copies
-    if entity @s[tag=bswt.extraSpawn] at @s run spreadplayers ~ ~ 2 4 false @s
+    if entity @s[tag=bswt.extraSpawn] at @s return:
+        function bswt:mob/universal/route
+        spreadplayers ~ ~ 2 4 false @s
 
     #ban
-    at @s if dimension minecraft:overworld run if entity @s[type=#bswt:spawn/block/surface] if predicate bswt:on_surface run tag @s add bswt.spawnForbidden
-    at @s if dimension minecraft:overworld run if entity @s[type=#bswt:spawn/block/see_sky] if predicate bswt:see_sky run tag @s add bswt.spawnForbidden
+    at @s if dimension minecraft:overworld if entity @s[type=#bswt:spawn/block/surface] if predicate bswt:on_surface run tag @s add bswt.spawnForbidden
+    at @s if dimension minecraft:overworld if entity @s[type=#bswt:spawn/block/see_sky] if predicate bswt:see_sky run tag @s add bswt.spawnForbidden
 
     #death to the babies
     as @s[type=#minecraft:zombies,nbt={IsBaby:1b}] run data merge entity @s {IsBaby:0b}
@@ -99,17 +102,26 @@ function bswt:mob/universal/filter:
     function bswt:mob/universal/route
 
     #make a copy
-    for i in range(5,0):
-        j=i+1
-        chance=i*10
-        if entity @s[tag=!bswt.spawnForbidden,tag=!bswt.extraSpawn] if score #sleep SleepStreak matches (j) if predicate (chance) run function bswt:mob/copy_self
+    for i in range(1,4):
+        chance = (2**(i-1)) * 10
+        if entity @s[tag=!bswt.extraSpawn] if score #sleep SleepStreak matches (i) if predicate f"bswt:chance/{chance}" run function bswt:mob/universal/copy_self
+    if entity @s[tag=!bswt.extraSpawn] if score #sleep SleepStreak matches 4.. run function bswt:mob/universal/copy_self
+    
+
 
 function bswt:mob/universal/copy_self:
     unless entity @s[type=#bswt:hostiles] run return fail
-    if entity @s[type=minecraft:zombie] run summon minecraft:zombie ~ ~ ~ {Tags:["bswt.extraSpawn"]}
-    if entity @s[type=minecraft:skeleton] run summon minecraft:skeleton ~ ~ ~ {Tags:["bswt.extraSpawn"]}
-    if entity @s[type=minecraft:creeper] run summon minecraft:creeper ~ ~ ~ {Tags:["bswt.extraSpawn"]}
-    if entity @s[type=minecraft:spider] run summon minecraft:spider ~ ~ ~ {Tags:["bswt.extraSpawn"]}
+    for mob in [
+        "zombie",
+        "husk",
+        "drowned",
+        "skeleton",
+        "parched",
+        "stray",
+        "bogged",
+        "spider"
+    ]:
+        as @s[type=f"minecraft:{mob}"] run return run summon f"minecraft:{mob}" ~ ~ ~ {Tags:["bswt.extraSpawn"]}
 
 function bswt:mob/universal/route:
     tag @s add bswt.spawnChecked

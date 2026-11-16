@@ -21,7 +21,7 @@ function bswt:mob/enderman/tp/windup:
         particle minecraft:end_rod ~ ~2 ~ 1 1 1 0.5 10
         particle minecraft:enchant ~ ~1.5 ~ 0 1 0 0 30 force
 
-    as @a[tag=bswt.Cramped,tag=!PullTarget,sort=nearest,limit=1,distance=..8] at @s:
+    as @a[tag=bswt.Cramped,tag=!PullTarget,limit=1,sort=nearest,distance=..8] at @s:
         particle minecraft:portal ~ ~1 ~ 0.5 1 0.5 0.1 30 force
         particle minecraft:enchant ~ ~1.5 ~ 0.5 1 0.5 0 30 force
         playsound minecraft:entity.enderman.teleport master @s ~ ~ ~ 1 0.5
@@ -32,16 +32,16 @@ function bswt:mob/enderman/tp/windup:
     effect give @s slowness 1 255 true
 
 function bswt:mob/enderman/tp/call:
-    as @a[tag=PullTarget,sort=nearest,limit=1,distance=..8]:
+    as @a[tag=PullTarget,limit=1,sort=nearest,distance=..8]:
         effect give @s resistance 1 0 true
         effect give @s slowness 2 1 true
-    as @e[type=minecraft:enderman,tag=PullHost,sort=nearest,limit=1] at @s: 
-        tp @e[type=minecraft:player,tag=PullTarget,sort=nearest,limit=1] ^ ^ ^
+    as @e[type=minecraft:enderman,tag=PullHost,limit=1,sort=nearest] at @s: 
+        tp @e[type=minecraft:player,tag=PullTarget,limit=1,sort=nearest] ^ ^ ^
         scoreboard players set @s bswt.endermanPullTimer 0
         effect clear @s slowness
 
     particle minecraft:portal ~ ~1 ~ 1 1 1 0.5 30
     particle minecraft:end_rod ~ ~2 ~ 1 1 1 0.5 10
 
-    tag @a[tag=PullTarget,sort=nearest,limit=1] remove PullTarget
+    tag @a[tag=PullTarget,limit=1,sort=nearest] remove PullTarget
     tag @e[type=minecraft:enderman] remove PullHost
