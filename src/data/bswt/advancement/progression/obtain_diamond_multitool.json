@@ -4,7 +4,7 @@
 			"id": "minecraft:emerald"
 		},
 		"title": "Jack of All Jades",
-		"description": "Smith two diamond tools together with an emerald.",
+		"description": "Smith two diamond or adamantine tools together with an emerald.",
 		"frame": "goal",
 		"show_toast": true,
 		"announce_to_chat": true,
@@ -12,37 +12,65 @@
 	},
 	"parent": "bswt:progression/obtain_diamond",
 	"criteria": {
-		"craft_pulaski": {
+		"diamond_pulaski": {
 			"trigger": "minecraft:recipe_crafted",
 			"conditions": {
 				"recipe_id": "bswt:equipment/smithed/diamond/mattock"
 			}
 		},
-		"craft_mattock": {
+		"diamond_mattock": {
 			"trigger": "minecraft:recipe_crafted",
 			"conditions": {
 				"recipe_id": "bswt:equipment/smithed/diamond/pulaski"
 			}
 		},
-		"craft_mattock_alt": {
+		"diamond_mattock_alt": {
 			"trigger": "minecraft:recipe_crafted",
 			"conditions": {
 				"recipe_id": "bswt:equipment/smithed/diamond/mattock_alt"
 			}
 		},
-		"craft_pulaski_alt": {
+		"diamond_pulaski_alt": {
 			"trigger": "minecraft:recipe_crafted",
 			"conditions": {
 				"recipe_id": "bswt:equipment/smithed/diamond/pulaski_alt"
+			}
+		},
+		"netherite_pulaski": {
+			"trigger": "minecraft:recipe_crafted",
+			"conditions": {
+				"recipe_id": "bswt:equipment/smithed/netherite/mattock"
+			}
+		},
+		"netherite_mattock": {
+			"trigger": "minecraft:recipe_crafted",
+			"conditions": {
+				"recipe_id": "bswt:equipment/smithed/netherite/mattock"
+			}
+		},
+		"netherite_mattock_alt": {
+			"trigger": "minecraft:recipe_crafted",
+			"conditions": {
+				"recipe_id": "bswt:equipment/smithed/netherite/mattock_alt"
+			}
+		},
+		"netherite_pulaski_alt": {
+			"trigger": "minecraft:recipe_crafted",
+			"conditions": {
+				"recipe_id": "bswt:equipment/smithed/netherite/pulaski_alt"
 			}
 		}
 	},
 	"requirements": [
 		[
-			"craft_mattock",
-			"craft_pulaski",
-      		"craft_mattock_alt",
-			"craft_pulaski_alt"
+			"diamond_mattock",
+			"diamond_pulaski",
+      		"diamond_mattock_alt",
+			"diamond_pulaski_alt",
+			"netherite_mattock",
+			"netherite_pulaski",
+      		"netherite_mattock_alt",
+			"netherite_pulaski_alt"
 		]
 	]
 }

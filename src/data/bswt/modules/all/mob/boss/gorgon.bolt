@@ -28,6 +28,11 @@ function bswt:mob/boss/gorgon/title/finish:
   title @a[distance=..128] subtitle {"color":"dark_green","text":"HARBINGER OF STONE"}
   function bswt:mob/boss/gorgon/bossbar/create
 
+#————————————————— BOSSBAR
+function bswt:mob/boss/gorgon/bossbar/clear:
+    bossbar remove gorgon
+    kill @s
+
 function bswt:mob/boss/gorgon/bossbar/create:
     bossbar add gorgon [{"text":"EXILED GORGON","color":"dark_green"}]
     bossbar set gorgon players @a
@@ -67,7 +72,8 @@ function bswt:mob/boss/gorgon/spawn/summon:
     if entity @e[type=skeleton,tag=bswt.Gorgon] run return run \
     tellraw @a {"text":"It's already here.","color":"dark_green"}
 
-    summon skeleton ~ ~1 ~ {\
+    summon minecraft:marker ~ ~1 ~ {Tags:bswt.GorgonWatcher}
+    summon minecraft:skeleton ~ ~1 ~ {\
         drop_chances:{mainhand:0,offhand:0,head:0,chest:0,legs:0,feet:0},
         Tags:["bswt.Gorgon","bswt.adjustmentBypass","bswt.filterBypass"],\
         CustomName:{"color": "green","italic":false,"text":"EXILED GORGON"},\
@@ -98,8 +104,8 @@ function bswt:mob/boss/gorgon/spawn/summon:
         function bswt:mob/boss/gorgon/attack/equip_sword
 
 function bswt:mob/boss/gorgon/tick:
-    if block ~ ~ ~ lava run effect give @s fire_resistance 1
     function bswt:mob/boss/gorgon/bossbar/tick
+    if block ~ ~ ~ lava run effect give @s fire_resistance 1
     scoreboard players add @s bswt.bossAbilityTimer 1
     if score @s bswt.bossAbilityTimer matches 10.. positioned ~ ~ ~ run function bswt:mob/boss/gorgon/attack/call
 
@@ -116,10 +122,12 @@ function bswt:mob/boss/gorgon/attack/call:
     if score @s bswt.bossAbilityTimer matches 1 run function bswt:mob/boss/gorgon/attack/screech
     if score @s bswt.bossAbilityTimer matches 2 run function bswt:mob/boss/gorgon/attack/lunge/windup
     if score @s bswt.bossAbilityTimer matches 3 run function bswt:mob/boss/gorgon/attack/throw_rock/windup
-    scoreboard players set @s bswt.bossAbilityTimer 6
     store result score @s bswt.healthDummy run data get entity @s Health
-    scoreboard players operation @s bswt.healthDummy /= #100 bswt.Math
+    scoreboard players set @s bswt.bossAbilityTimer 600
     scoreboard players operation @s bswt.bossAbilityTimer -= @s bswt.healthDummy
+    scoreboard players operation @s bswt.bossAbilityTimer *= #3 bswt.Math
+    scoreboard players operation @s bswt.bossAbilityTimer /= #200 bswt.Math
+    scoreboard players operation @s bswt.bossAbilityTimer -= #1 bswt.Math
 
 #——————————————— SCREECH
 function bswt:mob/boss/gorgon/attack/screech:
@@ -146,9 +154,10 @@ function bswt:mob/boss/gorgon/attack/screech:
 
 #——————————————— LUNGE
 function bswt:mob/boss/gorgon/attack/lunge/windup:
-    unless entity @a[distance=..18] run return run scoreboard players add @s bswt.bossAbilityTimer 10
+    unless entity @a[distance=3..16] run return run scoreboard players add @s bswt.bossAbilityTimer 10
     schedule function bswt:mob/boss/gorgon/attack/lunge/execute 15t
-    data merge entity @s {Motion:[0,0.5,0]}
+    data merge entity @s {Motion:[0,0.2,0]}
+    
     bossbar set gorgon color yellow
     rotate @s ~45 20
     
@@ -174,25 +183,24 @@ function bswt:mob/boss/gorgon/attack/lunge/execute:
       as @a[limit=1,sort=nearest] at @s run playsound minecraft:item.spear.lunge_1 hostile @a ~ ~ ~ 10 0.8
       at @p rotate @s facing ~ ~0.5 ~
       function bswt:mob_effect/spearing/apply {duration:15}
-      function utility:get_motion_towards {x:04,y:03,target:"type=player"}
+      function utility:get_motion_towards {x:03,y:0,target:"type=player"}
           
 function bswt:mob/boss/gorgon/attack/lunge/cleanup:
     as @e[limit=1,type=skeleton,tag=bswt.Gorgon]:
-      effect give @s slowness 3 1
-      effect give @s weakness 3 1
+      effect give @s slowness 2 1
       function bswt:mob/boss/gorgon/attack/equip_sword
 
 #——————————————— THROW
 function bswt:mob/boss/gorgon/attack/throw_rock/windup:
-    unless entity @a[distance=..24] run return run scoreboard players add @s bswt.bossAbilityTimer 10
+    unless entity @a[distance=..24,tag=!bswt.Petrified] run return run scoreboard players add @s bswt.bossAbilityTimer 10
     schedule function bswt:mob/boss/gorgon/attack/throw_rock/execute 20t
     data merge entity @s {Motion:[0,0.5,0]}
     bossbar set gorgon color yellow
-    rotate @s ~-45 20
+    rotate @s ~-45 ~20
     
     item replace entity @s weapon.offhand with minecraft:cobblestone
 
-    as @a[limit=1,sort=nearest] at @s:
+    as @a[limit=1,sort=nearest,tag=!bswt.Petrified] at @s:
       playsound minecraft:block.deepslate_bricks.place hostile @a ~ ~ ~ 10 1
       particle minecraft:vault_connection ~ ~ ~ 0 0 0 0 10
       particle minecraft:witch ~ ~ ~ 0 0 0 0 1
@@ -210,44 +218,41 @@ function bswt:mob/boss/gorgon/attack/throw_rock/execute:
 
       at @p rotate @s facing ~ ~0.2 ~
 
-      function utility:spawn_w_motion {Type:snowball, X:0,Y:0,Z:16,Tags:bswt.GorgonRockSB}
-      
-      anchored eyes run summon minecraft:block_display ~ ~ ~ {Tags:["bswt.GorgonRock","timedProjectile"],block_state:{Name:"minecraft:cobblestone"}}
+      at @s:
+        summon minecraft:armor_stand ~ ~1 ~ {Tags:["bswt.GorgonRockMount"],Invisible:1b,Invulnerable:1b,Silent:1b}
+        summon minecraft:block_display ~ ~1 ~ {Tags:["bswt.GorgonRock","timedProjectile"],block_state:{Name:"minecraft:cobblestone"}}
+
+      as @e[type=armor_stand,tag=bswt.GorgonRockMount]:
+        function utility:get_motion_towards {x:02,y:01,target:"type=player"}
+        attribute @s minecraft:scale base set 0.1
+
       as @e[limit=1,sort=nearest,type=block_display,tag=bswt.GorgonRock]:
         scoreboard players set @s bswt.projectileLifeSpan 20
-
-        data modify entity @s Motion set from entity @e[limit=1,sort=nearest,type=snowball,tag=bswt.GorgonRockSB] Motion
-        kill @e[limit=1,sort=nearest,type=snowball,tag=bswt.GorgonRockSB]
-
         data modify entity @s transformation set value \
-          {translation:[0f,0.5f,0f],\
+          {translation:[-0.5f,-0.5f,0f],\
           scale:[1f,1f,1f],\
           left_rotation:[0.0f,0.0f,0.0f,1.0f],\
           right_rotation:[0.0f,0.0f,0.0f,1.0f]}
 
+        ride @s mount @e[limit=1,sort=nearest,type=armor_stand,tag=bswt.GorgonRockMount]
+
 function bswt:mob/boss/gorgon/attack/throw_rock/tick:
-    say rtick
-    rotate @s ~20 ~20
-    positioned ~ ~ ~ if entity @a[distance=..1] at @a[limit=1,sort=nearest] anchored eyes:
-      tp @s ~ ~ ~
-      function bswt:mob/boss/gorgon/attack/throw_rock/hit
-      say player
-    unless block ~ ~ ~ #bswt:nonsolid:
-      say son
-      function bswt:mob/boss/gorgon/attack/throw_rock/hit
+    if entity @a[distance=..0.5] run function bswt:mob/boss/gorgon/attack/throw_rock/hit
+    unless block ~ ~-0.01 ~ #bswt:nonsolid run function bswt:mob/boss/gorgon/attack/throw_rock/hit
+    as @e[limit=1,sort=nearest,type=block_display,tag=bswt.GorgonRock] run rotate @s ~10 ~20
 
 function bswt:mob/boss/gorgon/attack/throw_rock/hit:
-    say hit
     playsound minecraft:block.deepslate.break hostile @a ~ ~ ~ 10 0.5
     playsound minecraft:block.calcite.break hostile @a ~ ~ ~ 10 0.5
 
-    particle minecraft:dust_pillar{block_state:"minecraft:cobblestone"} ~ ~ ~ 0.2 0.2 0.2 0 15
-    particle minecraft:dust_plume ~ ~ ~ 0.5 0.5 0.5 0 15
+    particle minecraft:dust_pillar{block_state:"minecraft:cobblestone"} ~ ~ ~ 0.5 0.5 0.5 0 15
+    particle minecraft:dust_plume ~ ~ ~ 1 1 1 0 15
 
-    as @a[distance=..1]:
-      damage @s 5 minecraft:mob_projectile by @e[limit=1,sort=nearest,tag=bswt.Gorgon]
+    as @a[distance=..2]:
+      damage @s 4 minecraft:mob_projectile by @e[limit=1,sort=nearest,tag=bswt.Gorgon]
       function bswt:mob_effect/petrified/apply {duration:60}
-
+    
+    kill @e[limit=1,sort=nearest,type=block_display,tag=bswt.GorgonRock]
     kill @s
     
 advancement bswt:mob/boss/gorgon/kill_player {

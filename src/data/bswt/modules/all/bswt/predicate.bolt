@@ -105,7 +105,6 @@ predicate bswt:flag/on_ground {
 	"condition": "minecraft:entity_properties",
 	"entity": "this",
 	"predicate": {
-		"minecraft:entity_type": "player",
 		"flags": {
 			"is_on_ground": true
 		}

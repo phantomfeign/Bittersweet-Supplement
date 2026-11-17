@@ -1,0 +1,95 @@
+enchantment main:grappler {
+	"description": "Grapple Impulse Preset 1",
+	"supported_items": "minecraft:brick",
+	"weight": 1,
+	"max_level": 1,
+	"min_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"max_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"anvil_cost": 0,
+	"slots": [
+		"saddle"
+	],
+	"effects": {
+		"minecraft:projectile_spawned": [
+			{
+				"effect": {
+					"type": "minecraft:run_function",
+					"function": "main:grappler/tag"
+				}
+			}
+		]
+	}
+}
+function main:grappler/tag:
+    tag @s add bswt.grapplerBobber
+
+function main:grappler/load:
+    scoreboard objectives add bswt.grappler dummy
+    scoreboard objectives add bswt.grappler.fishing_rod minecraft.used:minecraft.fishing_rod
+    for i in range(4):
+        scoreboard objectives add f"bswt.grappler.UUID{i}" dummy    
+
+function main:grappler/hook:
+    tag @s add bswt.grappler.hooked
+
+    function main:grappler/uuid/cache_score
+    as @a at @s run function main:grappler/match_player
+
+function main:grappler/uuid/bobber:
+    tag @s add bswt.grappler.init
+
+    as @p[scores={bswt.grappler.fishing_rod=1..}] run function main:grappler/uuid/cache_nbt
+    scoreboard players reset * bswt.grappler.fishing_rod
+
+    function main:grappler/uuid/copy_cache
+
+function main:grappler/uuid/cache_nbt:
+    for i in range(4):
+        store result score .Cache f"bswt.grappler.UUID{i}" run data get entity @s f"UUID[{i}]"
+
+function main:grappler/uuid/cache_score:
+    for i in range(4):
+        store result score .Cache f"bswt.grappler.UUID{i}" run scoreboard players get @s f"bswt.grappler.UUID{i}"
+
+function main:grappler/uuid/copy_cache:
+    for i in range(4):
+        scoreboard players operation @s f"bswt.grappler.UUID{i}" = .Cache f"bswt.grappler.UUID{i}"
+        
+function main:grappler/match_player:
+    for i in range(4):
+        store result score .Player f"bswt.grappler.UUID{i}" run data get entity @s f"UUID[{i}]"
+
+    if score .Player bswt.grappler.UUID0 = .Cache bswt.grappler.UUID0 \
+    if score .Player bswt.grappler.UUID1 = .Cache bswt.grappler.UUID1 \
+    if score .Player bswt.grappler.UUID2 = .Cache bswt.grappler.UUID2 \
+    if score .Player bswt.grappler.UUID3 = .Cache bswt.grappler.UUID3 run function main:grappler/call
+
+function main:grappler/call:
+    schedule function main:grappler/wait 2t append
+    tag @s add bswt.grappler.grappling
+    
+    if predicate bswt:flag/on_ground:
+        scoreboard players set $strength player_motion.api.launch 4000
+        at @s facing ~ ~1 ~ run function player_motion:api/launch_looking
+    
+    for i in range(16):
+        dist = f"{i}..{i+1}"
+        val = int(((i / 10)) * 10000)
+        if entity @e[sort=nearest,limit=1,tag=bswt.grappler.hooked,distance=(dist)] run scoreboard players set @s bswt.grappler (val)
+        if entity @e[sort=nearest,limit=1,tag=bswt.grappler.hooked,distance=(dist)] run say (i)
+
+function main:grappler/wait:
+    as @a[tag=bswt.grappler.grappling] at @s run function main:grappler/impulse
+
+function main:grappler/impulse:
+    tag @s remove bswt.grappler.grappling
+    store result score $strength player_motion.api.launch run scoreboard players get @s bswt.grappler
+    facing entity @e[sort=nearest,limit=1,tag=bswt.grappler.hooked] eyes run function player_motion:api/launch_looking
+    kill @e[sort=nearest,limit=1,tag=bswt.grappler.hooked]
+

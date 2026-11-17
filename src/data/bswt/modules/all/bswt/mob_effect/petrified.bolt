@@ -25,14 +25,24 @@ advancement bswt:mob_effect/petrified/clear {
 }
 function bswt:mob_effect/petrified/clear:
     advancement revoke @s only bswt:mob_effect/petrified/clear
-    function bswt:mob_effect/jump_weakness/clear
-    effect clear @s minecraft:slowness
-    effect clear @s minecraft:weakness
+    
+    attribute @s minecraft:attack_damage modifier remove bswt.petrified
+    attribute @s minecraft:movement_speed modifier remove bswt.petrified
+    attribute @s minecraft:jump_strength modifier remove bswt.petrified
+
+    scoreboard players set @s bswt.PetrifiedTimer 0
     tag @s remove bswt.Petrified
 
 function bswt:mob_effect/petrified/apply:
     #function bswt:mob_effect/petrified/apply {duration:60}
-    $effect give @s minecraft:slowness $(duration) 255 true
-    $effect give @s minecraft:weakness $(duration) 255 true
-    $function bswt:mob_effect/jump_weakness/apply_seconds {duration:$(duration),severity:1}
+    $scoreboard players set @s bswt.PetrifiedTimer $(duration)
+
+    attribute @s minecraft:attack_damage modifier add bswt.petrified -100 add_value
+    attribute @s minecraft:movement_speed modifier add bswt.petrified -100 add_value
+    attribute @s minecraft:jump_strength modifier add bswt.petrified -1 add_value
     tag @s add bswt.Petrified
+
+function bswt:mob_effect/petrified/tick:
+    scoreboard players remove @s bswt.PetrifiedTimer 1
+    if score @s bswt.PetrifiedTimer matches ..0 run function bswt:mob_effect/petrified/clear
+

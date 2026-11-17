@@ -16,6 +16,9 @@ function ticking_functions:tick_1t/call:
 function ticking_functions:tick_1t/universal:
     as @s[type=arrow,tag=bswt.FastArrow] run function bswt:enchantment/sharpshooter/arrow_tick
 
+    as @s[type=fishing_bobber,tag=bswt.grapplerBobber,tag=!bswt.grappler.init] at @s positioned ~ ~-1.62 ~ run function main:grappler/uuid/bobber
+    as @s[type=fishing_bobber,tag=bswt.grapplerBobber,tag=!bswt.grappler.hooked] at @s if predicate bswt:flag/on_ground run function main:grappler/hook
+
     as @s[type=!#bswt:cant_transfer_fire,predicate=bswt:mob_effect/is_on_fire] run function bswt:mob_effect/fire/apply
     as @s[tag=bswt.JumpWeakness] run function bswt:mob_effect/jump_weakness/tick
     as @s[tag=bswt.CantAttack] run function bswt:mob_effect/cant_attack/tick
@@ -31,9 +34,10 @@ function ticking_functions:tick_1t/universal:
     as @s[tag=bswt.crystalline_candle_proj] run function main:weapon/crystalline_candle/projectile/tick
 
     as @s[type=skeleton,tag=bswt.Gorgon] if score #title bswt.bossAbilityTimer matches 1.. at @s run function bswt:mob/boss/gorgon/title/tick
+    as @s[type=marker,tag=bswt.GorgonWatcher] unless entity @e[type=skeleton,tag=bswt.Gorgon] run function bswt:mob/boss/gorgon/bossbar/clear
 
-    as @s[type=block_display,tag=bswt.GorgonRock] at @s run function bswt:mob/boss/gorgon/attack/throw_rock/tick
-
+    as @s[type=armor_stand,tag=bswt.GorgonRockMount] at @s run function bswt:mob/boss/gorgon/attack/throw_rock/tick
+    
 function ticking_functions:tick_1t/players:
     function bswt:mob/creeper/watch/tick
     if predicate main:climbing/blocks run function main:climb
@@ -93,6 +97,7 @@ function ticking_functions:tick_1s/universal:
     as @s[tag=bswt.timed_projectile] run function utility:projectile_tick
     as @s[tag=bswt.OnFire] run function bswt:mob_effect/fire/tick
     as @s[tag=bswt.JumpWeakness] run function bswt:mob_effect/jump_weakness/tick
+    as @s[tag=bswt.Petrified] run function bswt:mob_effect/petrified/tick
     as @s[type=#bswt:spawn_check,tag=!bswt.spawnChecked] run function bswt:mob/universal/filter
     as @s[type=zombie] run function bswt:mob/zombie/tick
     as @s[type=minecraft:marker,tag=spawner_marker] at @s run function main:spawner/marker/tick
@@ -121,7 +126,7 @@ function ticking_functions:tick_1s/cooldowns:
         unless score @s (SCORE) matches ..0 run scoreboard players remove @s (SCORE) 1
         if score @s (SCORE) matches ..-1 run scoreboard players set @s (SCORE) 0
     #special
-    if score @s bswt.cd.Lunge matches ..0 run tag @s add canLunge
+    as @s[tag=!canLunge] if score @s bswt.cd.Lunge matches ..0 run tag @s add canLunge
 
 #—————————————————— 10
 function ticking_functions:tick_10s/call:

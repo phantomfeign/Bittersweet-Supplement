@@ -157,3 +157,19 @@ function utility:damage_item/call:
 
 function utility:tp:
     tp @s ~ ~ ~
+
+function utility:tp_spawnpoint:
+    data modify storage bswt:spawnpoint X set from entity @s respawn.pos[0]
+    data modify storage bswt:spawnpoint Y set from entity @s respawn.pos[1]
+    data modify storage bswt:spawnpoint Z set from entity @s respawn.pos[2]
+    data modify storage bswt:spawnpoint Pitch set from entity @s respawn.pitch
+    data modify storage bswt:spawnpoint Yaw set from entity @s respawn.yaw
+    data modify storage bswt:spawnpoint Dimension set from entity @s respawn.dimension
+    data modify entity @s fall_distance set value 0.0f
+
+    with storage bswt:spawnpoint:
+      $execute in $(Dimension) run tp @s $(X) $(Y).9 $(Z)
+
+      effect give @s minecraft:blindness 1 2 true
+      $particle minecraft:end_rod $(X) $(Y) $(Z) 0 1 0 0.1 10
+      $execute in $(Dimension) run playsound minecraft:entity.illusioner.mirror_move player @a $(X) $(Y) $(Z) 1 1

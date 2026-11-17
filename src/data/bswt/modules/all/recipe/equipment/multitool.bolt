@@ -39,7 +39,7 @@ for tool in MULTITOOL_CRAFTING:
             "P": f"minecraft:{tool['added_item']}"
         },
         "result": {
-            "id": f"minecraft:{tool['base_tier']}_hoe",
+            "id": f"minecraft:{tool['base_tier']}_shovel",
             "components": {
                 "minecraft:item_name": {"translate": f"item.bswt.{tool['base_tier']}_mattock", "italic": False},
                 "minecraft:item_model": f"bswt_texture:{tool['base_tier']}_mattock",
@@ -55,7 +55,7 @@ for tool in MULTITOOL_CRAFTING:
                             "correct_for_drops": True
                         },
                         {
-                            "blocks": "#minecraft:mineable/hoe",
+                            "blocks": "#minecraft:mineable/shovel",
                             "speed": mining_speed,
                             "correct_for_drops": True
                         }
@@ -87,7 +87,7 @@ for tool in MULTITOOL_CRAFTING:
             "P": f"minecraft:{tool['added_item']}"
         },
         "result": {
-            "id": f"minecraft:{tool['base_tier']}_axe",
+            "id": f"minecraft:{tool['base_tier']}_hoe",
             "components": {
                 "minecraft:item_name": {"translate": f"item.bswt.{tool['base_tier']}_pulaski", "italic": False},
                 "minecraft:item_model": f"bswt_texture:{tool['base_tier']}_pulaski",
@@ -103,7 +103,7 @@ for tool in MULTITOOL_CRAFTING:
                             "correct_for_drops": True
                         },
                         {
-                            "blocks": "#minecraft:mineable/shovel",
+                            "blocks": "#minecraft:mineable/hoe",
                             "speed": mining_speed,
                             "correct_for_drops": True
                         }
@@ -147,10 +147,10 @@ for tool in MULTITOOL_SMITHING:
     ctx.data.recipes[f"bswt:equipment/smithed/{tool['base_tier']}/mattock"] = Recipe({
         "type": "minecraft:smithing_transform",
         "addition": f"minecraft:{tool['addition']}",
-        "base": f"minecraft:{tool['base_tier']}_hoe",
+        "base": f"minecraft:{tool['base_tier']}_shovel",
         "template": f"minecraft:{tool['base_tier']}_pickaxe",
         "result": {
-            "id": f"minecraft:{tool['base_tier']}_hoe",
+            "id": f"minecraft:{tool['base_tier']}_shovel",
             "components": {
                 "minecraft:item_name": {"translate": f"item.bswt.{tool['base_tier']}_mattock", "italic": False},
                 "minecraft:item_model": f"bswt_texture:{tool['base_tier']}_mattock",
@@ -166,7 +166,7 @@ for tool in MULTITOOL_SMITHING:
                             "correct_for_drops": True
                         },
                         {
-                            "blocks": "#minecraft:mineable/hoe",
+                            "blocks": "#minecraft:mineable/shovel",
                             "speed": mining_speed,
                             "correct_for_drops": True
                         }
@@ -188,9 +188,9 @@ for tool in MULTITOOL_SMITHING:
         "type": "minecraft:smithing_transform",
         "addition": f"minecraft:{tool['addition']}",
         "base": f"minecraft:{tool['base_tier']}_pickaxe",
-        "template": f"minecraft:{tool['base_tier']}_hoe",
+        "template": f"minecraft:{tool['base_tier']}_shovel",
         "result": {
-            "id": f"minecraft:{tool['base_tier']}_hoe",
+            "id": f"minecraft:{tool['base_tier']}_shovel",
             "components": {
                 "minecraft:item_name": {"translate": f"item.bswt.{tool['base_tier']}_mattock", "italic": False},
                 "minecraft:item_model": f"bswt_texture:{tool['base_tier']}_mattock",
@@ -206,7 +206,7 @@ for tool in MULTITOOL_SMITHING:
                             "correct_for_drops": True
                         },
                         {
-                            "blocks": "#minecraft:mineable/hoe",
+                            "blocks": "#minecraft:mineable/shovel",
                             "speed": mining_speed,
                             "correct_for_drops": True
                         }
@@ -228,9 +228,9 @@ for tool in MULTITOOL_SMITHING:
         "type": "minecraft:smithing_transform",
         "addition": f"minecraft:{tool['addition']}",
         "base": f"minecraft:{tool['base_tier']}_axe",
-        "template": f"minecraft:{tool['base_tier']}_shovel",
+        "template": f"minecraft:{tool['base_tier']}_hoe",
         "result": {
-            "id": f"minecraft:{tool['base_tier']}_axe",
+            "id": f"minecraft:{tool['base_tier']}_hoe",
             "components": {
                 "minecraft:item_name": {"translate": f"item.bswt.{tool['base_tier']}_pulaski", "italic": False},
                 "minecraft:item_model": f"bswt_texture:{tool['base_tier']}_pulaski",
@@ -246,7 +246,7 @@ for tool in MULTITOOL_SMITHING:
                             "correct_for_drops": True
                         },
                         {
-                            "blocks": "#minecraft:mineable/shovel",
+                            "blocks": "#minecraft:mineable/hoe",
                             "speed": mining_speed,
                             "correct_for_drops": True
                         }
@@ -267,7 +267,7 @@ for tool in MULTITOOL_SMITHING:
     ctx.data.recipes[f"bswt:equipment/smithed/{tool['base_tier']}/pulaski_alt"] = Recipe({
         "type": "minecraft:smithing_transform",
         "addition": f"minecraft:{tool['addition']}",
-        "base": f"minecraft:{tool['base_tier']}_shovel",
+        "base": f"minecraft:{tool['base_tier']}_hoe",
         "template": f"minecraft:{tool['base_tier']}_axe",
         "result": {
             "id": f"minecraft:{tool['base_tier']}_axe",
@@ -286,7 +286,7 @@ for tool in MULTITOOL_SMITHING:
                             "correct_for_drops": True
                         },
                         {
-                            "blocks": "#minecraft:mineable/shovel",
+                            "blocks": "#minecraft:mineable/hoe",
                             "speed": mining_speed,
                             "correct_for_drops": True
                         }

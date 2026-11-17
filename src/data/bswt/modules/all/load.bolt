@@ -15,6 +15,7 @@ function load:load:
     function load:gamerule
 
 function load:scoreboard:
+    function bswt:grappler/load
     scoreboard objectives add bswt.maxHealth dummy
     scoreboard players add @a bswt.maxHealth 0
     execute as @a store result score @s bswt.maxHealth run attribute @s minecraft:max_health get 1.0
@@ -35,11 +36,9 @@ function load:scoreboard:
     scoreboard objectives add bswt.bossAbilityTimer dummy
 
     scoreboard objectives add bswt.Math dummy
-    scoreboard players set #70 bswt.Math 70
-    scoreboard players set #90 bswt.Math 90
-    scoreboard players set #100 bswt.Math 100 
-    scoreboard players set #150 bswt.Math 150 
-   
+    for num in [1,3,70,90,100,150,200]:
+        scoreboard players set f"#{num}" bswt.Math (num)
+    
     scoreboard objectives add bswt.goldRepair dummy
    
     scoreboard objectives add bswt.projectileLifeSpan dummy
@@ -68,6 +67,8 @@ function load:scoreboard:
     scoreboard objectives add bswt.CantAttack dummy
 #Spearing
     scoreboard objectives add bswt.spearingTimer dummy
+#petrifgy
+    scoreboard objectives add bswt.PetrifiedTimer dummy
 
 #———————————————————ENCHANTS
 #LACERATION

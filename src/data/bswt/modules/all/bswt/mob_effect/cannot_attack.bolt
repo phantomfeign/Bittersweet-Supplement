@@ -1,12 +1,16 @@
-function bswt:mob_effect/cant_attack/tick:
-    scoreboard players remove @s bswt.CantAttack 1
-    if score @s bswt.CantAttack matches ..0:
-        scoreboard players set @s bswt.CantAttack 0
-        effect clear @s minecraft:weakness
-        tag @s remove bswt.CantAttack
-
 function bswt:mob_effect/cant_attack/apply:
     #function bswt:mob_effect/cant_attack/apply {duration:20}
     $scoreboard players set @s bswt.CantAttack $(duration)
-    effect give @s minecraft:weakness infinite 255 true
+    attribute @s minecraft:attack_damage modifier add bswt.cant_attack -100 add_value
     tag @s add bswt.CantAttack
+
+function bswt:mob_effect/cant_attack/tick:
+    scoreboard players remove @s bswt.CantAttack 1
+    if score @s bswt.CantAttack matches ..0:
+        function bswt:mob_effect/cant_attack/clear
+
+function bswt:mob_effect/cant_attack/clear:
+    scoreboard players set @s bswt.CantAttack 0
+    attribute @s minecraft:attack_damage modifier remove bswt.cant_attack
+    tag @s remove bswt.CantAttack
+
