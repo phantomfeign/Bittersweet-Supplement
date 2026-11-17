@@ -95,15 +95,12 @@ function utility:ghost_arrow/remove:
     item replace entity @s saddle with minecraft:air
 
 function utility:ghost_arrow/check_overload:
-    if items entity @s inventory.* minecraft:arrow run return fail
-    if items entity @s hotbar.* minecraft:arrow run return fail
+    if items entity @s container.* minecraft:arrow run return fail
 
-    if items entity @s inventory.* minecraft:stray_spawn_egg run return run function utility:ghost_arrow/add
-    if items entity @s hotbar.* minecraft:stray_spawn_egg run return run function utility:ghost_arrow/add
+    if items entity @s container.* minecraft:stray_spawn_egg run return run function utility:ghost_arrow/add
 
 function utility:ghost_arrow/check_infinity:
-    if items entity @s inventory.* minecraft:arrow run return fail
-    if items entity @s hotbar.* minecraft:arrow run return fail
+    if items entity @s container.* minecraft:arrow run return fail
     function utility:ghost_arrow/add
 
 item_modifier utility:load_arrow {

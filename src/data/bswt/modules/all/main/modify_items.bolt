@@ -26,21 +26,17 @@ function main:modify_items/process/replace:
     for entry in ["fire_charge","breeze_rod","blaze_rod","brown_mushroom","red_mushroom","tropical_fish","honey_bottle"]:
         item=f"{entry}[!custom_data={{adjusted_item:1b}}]"
         replacement=f"bswt:misc/{entry}"
-        if items entity @s inventory.* (item):
-            loot give @s loot (replacement)
-            clear @s (item) 1
-        if items entity @s hotbar.* (item):
+        if items entity @s container.* (item):
             loot give @s loot (replacement)
             clear @s (item) 1
     #retrigger
-    if items entity @s inventory.* #main:modify_items/replace_list run function main:modify_items/process/replace
-    if items entity @s hotbar.* #main:modify_items/replace_list run function main:modify_items/process/replace
+    if items entity @s container.* #main:modify_items/replace_list run function main:modify_items/process/replace
 
 advancement main:modify_items/check {
     "parent": "temp:root",
 	"criteria": {
-		"inventory_changed": {
-			"trigger": "minecraft:inventory_changed",
+		"container_changed": {
+			"trigger": "minecraft:container_changed",
 			"conditions": {}
 		}
 	},
@@ -51,34 +47,25 @@ advancement main:modify_items/check {
 
 function main:modify_items/check:
     advancement revoke @s only main:modify_items/check
-    if items entity @s inventory.* #main:modify_items/replace_list run function main:modify_items/process/replace
-    if items entity @s hotbar.* #main:modify_items/replace_list run function main:modify_items/process/replace
+    if items entity @s container.* #main:modify_items/replace_list run function main:modify_items/process/replace
 
-    if items entity @s inventory.* #main:modify_items/stack_list run function main:modify_items/process/stack
-    if items entity @s hotbar.* #main:modify_items/stack_list run function main:modify_items/process/stack
+    if items entity @s container.* #main:modify_items/stack_list run function main:modify_items/process/stack
 
-    if items entity @s inventory.* minecraft:potion[potion_contents={potion:"minecraft:water"},!max_stack_size=64] run function main:modify_items/process/water
-    if items entity @s hotbar.* minecraft:potion[potion_contents={potion:"minecraft:water"},!max_stack_size=64] run function main:modify_items/process/water
+    if items entity @s container.* minecraft:potion[potion_contents={potion:"minecraft:water"},!max_stack_size=64] run function main:modify_items/process/water
 
-    if items entity @s hotbar.* minecraft:arrow[minecraft:equippable={slot:"saddle"}] run function main:modify_items/process/arrow
-    if items entity @s inventory.* minecraft:arrow[minecraft:equippable={slot:"saddle"}] run function main:modify_items/process/arrow
+    if items entity @s container.* minecraft:arrow[minecraft:equippable={slot:"saddle"}] run function main:modify_items/process/arrow
 
 function main:modify_items/process/water:
     #water
-    if items entity @s inventory.* minecraft:potion[potion_contents={potion:"minecraft:water"},!max_stack_size=64] run give @s minecraft:potion[max_stack_size=64,minecraft:custom_name={"text":"Vial of Water","italic":false},potion_contents={potion:"minecraft:water"}]
-    if items entity @s hotbar.* minecraft:potion[potion_contents={potion:"minecraft:water"},!max_stack_size=64] run give @s minecraft:potion[max_stack_size=64,minecraft:custom_name={"text":"Vial of Water","italic":false},potion_contents={potion:"minecraft:water"}]
+    if items entity @s container.* minecraft:potion[potion_contents={potion:"minecraft:water"},!max_stack_size=64] run give @s minecraft:potion[max_stack_size=64,minecraft:custom_name={"text":"Vial of Water","italic":false},potion_contents={potion:"minecraft:water"}]
     
-    if items entity @s inventory.* minecraft:potion[potion_contents={potion:"minecraft:water"},!max_stack_size=64] run clear @s minecraft:potion[potion_contents={potion:"minecraft:water"},!max_stack_size=64] 1
-    if items entity @s hotbar.* minecraft:potion[potion_contents={potion:"minecraft:water"},!max_stack_size=64] run clear @s minecraft:potion[potion_contents={potion:"minecraft:water"},!max_stack_size=64] 1
+    if items entity @s container.* minecraft:potion[potion_contents={potion:"minecraft:water"},!max_stack_size=64] run clear @s minecraft:potion[potion_contents={potion:"minecraft:water"},!max_stack_size=64] 1
 
 function main:modify_items/process/arrow:
-    if items entity @s hotbar.* minecraft:arrow[minecraft:equippable={slot:"saddle"}] run give @s minecraft:arrow
-    if items entity @s hotbar.* minecraft:arrow[minecraft:equippable={slot:"saddle"}] run clear @s minecraft:arrow[minecraft:equippable={slot:"saddle"}] 1
-    if items entity @s inventory.* minecraft:arrow[minecraft:equippable={slot:"saddle"}] run give @s minecraft:arrow
-    if items entity @s inventory.* minecraft:arrow[minecraft:equippable={slot:"saddle"}] run clear @s minecraft:arrow[minecraft:equippable={slot:"saddle"}] 1
+    if items entity @s container.* minecraft:arrow[minecraft:equippable={slot:"saddle"}] run give @s minecraft:arrow
+    if items entity @s container.* minecraft:arrow[minecraft:equippable={slot:"saddle"}] run clear @s minecraft:arrow[minecraft:equippable={slot:"saddle"}] 1
 
-    if items entity @s hotbar.* minecraft:arrow[minecraft:equippable={slot:"saddle"}] run return run function main:modify_items/process/arrow
-    if items entity @s inventory.* minecraft:arrow[minecraft:equippable={slot:"saddle"}] run return run function main:modify_items/process/arrow
+    if items entity @s container.* minecraft:arrow[minecraft:equippable={slot:"saddle"}] run return run function main:modify_items/process/arrow
 
 loot_table bswt:misc/blaze_rod {
 	"type": "minecraft:entity",
@@ -479,7 +466,7 @@ advancement main:modify_items/process/stack/snowball {
 	"parent": "temp:root",
 	"criteria": {
 		"get": {
-			"trigger": "minecraft:inventory_changed",
+			"trigger": "minecraft:container_changed",
 			"conditions": {
 				"items": [
 					{

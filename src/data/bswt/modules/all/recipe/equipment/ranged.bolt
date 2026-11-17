@@ -1,0 +1,183 @@
+recipe bswt:equipment/crafted/ranged/arrow {
+	"type": "minecraft:crafting_shaped",
+	"category":"equipment",
+	"group": "arrow",
+	"key":{
+		"X":"minecraft:flint",
+		"#":"minecraft:stick",
+		"F":"minecraft:feather"
+	},
+	"pattern":[
+		"X",
+		"#",
+		"F"
+	],
+	"result": {
+		"id": "minecraft:arrow",
+		"count": 4
+	}
+}
+recipe bswt:equipment/crafted/ranged/bundle_arrows {
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"key": {
+		"#": "minecraft:arrow"
+	},
+	"pattern": [
+		"###",
+		"###",
+		"###"
+	],
+	"result": {
+		"id": "minecraft:skeleton_spawn_egg",
+		"components": {
+			"!minecraft:entity_data": {}
+		}
+	}
+}
+recipe bswt:equipment/crafted/ranged/iron_crossbow {
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "minecraft:stick",
+    "X": "minecraft:iron_ingot",
+    "~": [
+            "minecraft:string",
+            "minecraft:zombie_spawn_egg"
+        ]
+  },
+  "pattern": [
+    "XXX",
+    "~~~",
+    " # "
+  ],
+  "result": {
+    "id": "minecraft:crossbow",
+        "components": {
+        "minecraft:max_damage": 500,
+	      "minecraft:item_name": {
+				"text": "Iron Crossbow",
+				"color": "white",
+				"italic": false          
+				},
+      "minecraft:repairable":{
+        "items": [
+          "iron_ingot"
+        ]
+      },
+			"enchantments":{
+        "minecraft:power":1,
+				"bswt:bow_mechanics": 1
+			},
+			"enchantment_glint_override": false
+        }
+    }
+}
+recipe bswt:equipment/crafted/ranged/gilded_crossbow {
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "minecraft:stick",
+    "X": "minecraft:gold_ingot",
+    "~": [
+            "minecraft:string",
+            "minecraft:zombie_spawn_egg"
+        ]
+  },
+  "pattern": [
+    "XXX",
+    "~~~",
+    " # "
+  ],
+  "result": {
+    "id": "minecraft:crossbow",
+        "components": {
+        "minecraft:max_damage": 500,
+	      "minecraft:item_name": {
+				"text": "Gilded Crossbow",
+				"color": "white",
+				"italic": false          
+				},
+        "minecraft:item_model":"bswt_texture:gilded_crossbow",
+      "minecraft:repairable":{
+        "items": [
+          "gold_ingot"
+        ]
+      },
+			"enchantments":{
+        "minecraft:quick_charge":1,
+				"bswt:bow_mechanics": 1
+			},
+			"enchantment_glint_override": false
+        }
+    }
+}
+recipe bswt:equipment/crafted/ranged/chambered_crossbow {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"#": "minecraft:iron_ingot",
+		"X": "minecraft:copper_ingot",
+		"~": [
+			"minecraft:string",
+			"minecraft:zombie_spawn_egg"
+		],
+		"R": "minecraft:repeater"
+	},
+	"pattern": [
+		"XXX",
+		"~R~",
+		" # "
+	],
+	"result": {
+		"id": "minecraft:crossbow",
+		"components": {
+			"minecraft:max_damage": 500,
+			"minecraft:item_name": {
+				"text": "Chambered Crossbow",
+				"color": "white",
+				"italic": false
+			},
+			"minecraft:item_model": "bswt_texture:chambered_crossbow",
+			"minecraft:repairable":{
+				"items": [
+				"copper_ingot",
+				"iron_ingot"
+				]
+			},
+			"enchantments": {
+				"bswt:overload":1,
+                "bswt:hefty":1,
+				"bswt:bow_mechanics": 1
+			},
+			"enchantment_glint_override": false
+		}
+	}
+}
+recipe bswt:equipment/crafted/ranged/arrow_cartridge {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+    "group": "bswt.arrow_cartridge",
+	"key": {
+		"X": "minecraft:copper_ingot",
+		"B": "minecraft:skeleton_spawn_egg",
+		"A": "minecraft:arrow"
+	},
+	"pattern": [
+		"BXB",
+		"AXA"
+	],
+	"result": {
+		"id": "minecraft:stray_spawn_egg",
+		"components": {
+			"!minecraft:entity_data": {},
+			"minecraft:lore": [
+				{
+					"text": "Fully loads a Chambered Crossbow.",
+					"color": "gray"
+				}
+			]
+		},
+		"count": 4
+	}
+}

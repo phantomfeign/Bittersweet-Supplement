@@ -14,8 +14,9 @@ function ticking_functions:tick_1t/call:
         if entity @s[type=player] run function ticking_functions:tick_1t/players
 
 function ticking_functions:tick_1t/universal:
-    as @s[type=arrow,tag=bswt.FastArrow] run function bswt:enchantment/sharpshooter/arrow_tick
-
+    as @s[type=minecraft:arrow,tag=bswt.FastArrow] run function bswt:enchantment/sharpshooter/arrow_tick
+    as @s[type=minecraft:arrow,nbt={inGround:1b}] at @s if block ~ ~ ~ minecraft:pointed_dripstone[vertical_direction=down] run setblock ~ ~ ~ air destroy
+    
     as @s[type=fishing_bobber,tag=bswt.grapplerBobber,tag=!bswt.grappler.init] at @s positioned ~ ~-1.62 ~ run function main:grappler/uuid/bobber
     as @s[type=fishing_bobber,tag=bswt.grapplerBobber,tag=!bswt.grappler.hooked] at @s if predicate bswt:flag/on_ground run function main:grappler/hook
 

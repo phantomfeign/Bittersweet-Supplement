@@ -29,7 +29,11 @@ TIERS=[
             "copper_shears",
             "copper_wire"
         ],
-        ["bswt:misc_equipment/bucket"]
+        [
+        "bswt:misc_equipment/bucket",
+        "bswt:equipment/crafted/ranged/chambered_crossbow",
+        "bswt:equipment/crafted/ranged/arrow_cartridge"
+        ]
     ),
     (
         "iron","iron_ingot",
@@ -43,7 +47,8 @@ TIERS=[
         ],
         [
             "bswt:block/blast_furnace",
-            "bswt:block/safe"
+            "bswt:block/safe",
+            "bswt:equipment/crafted/ranged/iron_crossbow"
         ]
     ),
     (
@@ -63,7 +68,8 @@ TIERS=[
         ["sword","spear","axe","pickaxe","shovel","hoe","helmet","chestplate","leggings","boots","mattock","pulaski","rapier"],
         [],
         [
-            "bswt:requiem/empty"
+            "bswt:requiem/empty",
+            "bswt:equipment/crafted/ranged/gilded_crossbow"
         ]
     ),
     (
@@ -160,6 +166,7 @@ BASIC = [
     {"item": "snow_block", "recipe": "bswt:block/ice"},
     {"item": "bamboo", "recipe": "bswt:block/bamboo_planks"},
     {"item": "amethyst_shard", "recipe": "bswt:uniques/amethyst_scythe"}
+    {"item": "arrow", "recipe": "bswt:equipment/crafted/ranged/arrow, bswt:equipment/crafted/ranged/bundle_arrows"}
 ]
 
 for entry in BASIC:

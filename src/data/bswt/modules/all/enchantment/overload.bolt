@@ -135,8 +135,7 @@ function bswt:enchantment/overload/load_crossbow/cartridge:
     item modify entity @s weapon.mainhand bswt:enchantment/overload/ammo/4
     playsound item.lodestone_compass.lock player @s ~ ~ ~ 1 0.5
 
-    if items entity @s inventory.* minecraft:arrow run return run give @s minecraft:arrow
-    if items entity @s hotbar.* minecraft:arrow run return run give @s minecraft:arrow
+    if items entity @s container.* minecraft:arrow run return run give @s minecraft:arrow
 
 function bswt:enchantment/overload/shot:
     advancement revoke @s only temp:enchantment/overload/shot

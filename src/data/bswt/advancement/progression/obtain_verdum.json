@@ -5,7 +5,7 @@
       "components": {}
     },
     "title": "Magic Moss",
-    "description": "Acquire Verdum crystals from vine-covered temples or crafting.",
+    "description": "Acquire Verdum Crystals from vine-covered temples or crafting.",
     "frame": "goal",
     "show_toast": true,
     "announce_to_chat": true,
