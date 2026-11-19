@@ -3,13 +3,6 @@ function crucifix:conditions
 
 function crucifix:bad_spirits/candle_blow
 
-# craft Crucifix
-
-execute as @e[type=minecraft:item] at @s if items entity @s contents minecraft:stick[minecraft:count=2] if items entity @e[distance=..0.5] contents minecraft:iron_nugget if items entity @e[distance=..0.5] contents minecraft:string run function crucifix:give_cross
-execute as @e[type=minecraft:item] at @s if items entity @s contents minecraft:stick[minecraft:count=2] if items entity @e[distance=..0.5] contents minecraft:iron_nugget if items entity @e[distance=..0.5] contents minecraft:string run playsound minecraft:block.shelf.place block @a ~ ~ ~ 1 0.7
-execute as @e[type=minecraft:item] at @s if items entity @s contents minecraft:stick[minecraft:count=2] if items entity @e[distance=..0.5] contents minecraft:iron_nugget if items entity @e[distance=..0.5] contents minecraft:string run kill @e[type=item,distance=..0.5]
-
-
 # identifiers
 execute at @a rotated ~ 0 if block ~ ~ ~ #doors unless block ^ ^ ^0.6 #doors unless entity @e[tag=door,distance=..2] run summon minecraft:block_display ~ ~ ~ {Tags:["door"]}
 execute as @a at @s if block ~ ~ ~ #minecraft:beds unless entity @e[tag=bed,distance=..2] run summon minecraft:block_display ~ ~ ~ {Tags:["bed"]}

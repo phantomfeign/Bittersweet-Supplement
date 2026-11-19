@@ -1,0 +1,270 @@
+from beet import BlockTag
+import math
+from nbtlib import Float
+
+COLORS = [
+    "white", "orange", "magenta", "light_blue",
+    "yellow", "lime", "pink", "gray",
+    "light_gray", "cyan", "purple", "blue",
+    "brown", "green", "red", "black",
+]
+
+SUPPORTS_CRUCIFIX = [
+    "#minecraft:base_stone_overworld",
+    "#minecraft:base_stone_nether",
+    "#minecraft:planks",
+    "#minecraft:logs",
+    "#minecraft:wool",
+    "#minecraft:terracotta",
+    "minecraft:cobblestone",
+    "minecraft:mossy_cobblestone",
+    "minecraft:bricks",
+    "minecraft:nether_bricks",
+    "minecraft:red_nether_bricks",
+    "minecraft:obsidian",
+    "minecraft:crying_obsidian",
+    "minecraft:end_stone",
+    "minecraft:end_stone_bricks",
+    "minecraft:prismarine",
+    "minecraft:prismarine_bricks",
+    "minecraft:dark_prismarine",
+    "minecraft:blackstone",
+    "minecraft:polished_blackstone",
+    "minecraft:polished_blackstone_bricks",
+    "minecraft:polished_deepslate",
+]
+
+for color in COLORS:
+    SUPPORTS_CRUCIFIX.append(f"minecraft:{color}_concrete")
+
+for variant in ["", "mossy_", "cracked_", "chiseled_"]:
+    SUPPORTS_CRUCIFIX.append(f"minecraft:{variant}stone_bricks")
+
+for base in ["deepslate_bricks", "deepslate_tiles"]:
+    SUPPORTS_CRUCIFIX.append(f"minecraft:{base}")
+    SUPPORTS_CRUCIFIX.append(f"minecraft:cracked_{base}")
+
+for suffix in ["block", "bricks", "pillar"]:
+    SUPPORTS_CRUCIFIX.append(f"minecraft:quartz_{suffix}")
+    SUPPORTS_CRUCIFIX.append("minecraft:smooth_quartz")
+    SUPPORTS_CRUCIFIX.append("minecraft:chiseled_quartz_block")
+
+for suffix in ["block", "pillar"]:
+    SUPPORTS_CRUCIFIX.append(f"minecraft:purpur_{suffix}")
+
+ctx.data.block_tags["bswt:supports_crucifix"] = BlockTag({"values": SUPPORTS_CRUCIFIX})
+
+entity_type_tag main:spirit/kakodaimon {
+  "values": [
+    "#minecraft:undead",
+    "minecraft:witch",
+    "minecraft:evoker",
+    "minecraft:vex",
+    "minecraft:creaking",
+    "minecraft:hoglin",
+    "minecraft:enderman",
+    "minecraft:phantom",
+    "minecraft:piglin"
+  ]
+}
+
+advancement main:spirit/hurt_by_kakodaimon {
+  "parent": "temp:root",
+  "criteria": {
+    "hurt": {
+      "trigger": "minecraft:entity_hurt_player",
+      "conditions": {
+        "entity": {
+          "type": "#crucifix:spiritually_charged_entities"
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "main:spirit/hurt_by_kakodaimon"
+  }
+}
+function main:spirit/hurt_by_kakodaimon:
+    scoreboard players add @s spiritual_charge 100
+    advancement revoke @s only main:spirit/hurt_by_kakodaimon
+
+loot_table main:spirit/crucifix {
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stick",
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:item_name": {
+                  "text": "Crucifix",
+                  "italic": false
+                },
+                "minecraft:item_model": "bswt_texture:crucifix",
+                "minecraft:custom_data": {"bswt.crucifix": true,"bswt.right_click":true},
+                "minecraft:consumable": {
+                  "animation": "block",
+                  "consume_seconds": 9999999,
+                  "has_consume_particles": false,
+                  "sound": "minecraft:intentionally_empty"
+                },
+                "minecraft:entity_data": {
+                  "id": "minecraft:marker",
+                  "Tags": [
+                    "newCrucifix"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+function main:spirit/crucifix/tick:
+    as @s[type=marker,tag=newCrucifix] at @s:
+        facing entity @p[sort=nearest] feet run tp @s ~ ~ ~ ~ 0
+        function utility:round_dir
+
+        # Marker spawns at the center of the adjacent air block (0.5 away from the wall face),
+        # so check 0.6 blocks out to reach inside the neighboring wall blocks:
+        rotated as @s unless block ^ ^0.5 ^-0.6 #bswt:supports_crucifix:
+            if block ~ ~0.5 ~-0.6 #bswt:supports_crucifix run rotate @s 0 0
+            if block ~ ~0.5 ~0.6 #bswt:supports_crucifix run rotate @s 180 0
+            if block ~0.6 ~0.5 ~ #bswt:supports_crucifix run rotate @s 90 0
+            if block ~-0.6 ~0.5 ~ #bswt:supports_crucifix run rotate @s -90 0
+        
+        rotated as @s:
+            if block ^ ^0.5 ^-0.6 #bswt:supports_crucifix:
+                # Shift ^-0.45 from block center (0.5) to sit at 0.05 on the wall surface
+                summon item_display ^ ^0.5 ^-0.45 {
+                    item: {
+                        id: "minecraft:stick",
+                        components: {"minecraft:item_model": "bswt_texture:crucifix"}
+                    },
+                    Tags: ["crucifixDisplay"]
+                }
+                data modify entity @e[limit=1,sort=nearest,type=item_display,tag=crucifixDisplay] Rotation set from entity @s Rotation
+
+                summon interaction ^ ^0.1 ^-0.45 {
+                    width: 0.4f,
+                    height: 0.8f,
+                    Tags: ["crucifixHitbox"]
+                }
+
+            unless block ^ ^0.5 ^-0.6 #bswt:supports_crucifix run loot spawn ~ ~ ~ loot main:spirit/crucifix
+        kill @s
+
+    # punch interaction
+    as @s[type=interaction,tag=crucifixHitbox] if data entity @s attack at @s:
+        playsound minecraft:entity.armor_stand.break block @a ~ ~ ~ 1 1
+        loot spawn ~ ~ ~ loot main:spirit/crucifix
+        kill @e[limit=1,sort=nearest,type=item_display,tag=crucifixDisplay]
+        kill @s
+
+    # no walls (crucifixDisplay is at 0.05 off the wall, so ^-0.2 reaches 0.15 into the wall)
+    as @s[type=item_display,tag=crucifixDisplay] at @s:
+        function main:spirit/crucifix/rotate
+        unless block ^ ^ ^-0.2 #bswt:supports_crucifix:
+          playsound minecraft:entity.armor_stand.break block @a ~ ~ ~ 1 1
+          loot spawn ~ ~ ~ loot main:spirit/crucifix
+          kill @e[limit=1,sort=nearest,type=interaction,tag=crucifixHitbox]
+          kill @s
+
+function main:spirit/crucifix/rotate:
+    if dimension minecraft:the_nether run return:
+        data modify entity @s transformation.left_rotation set value [0f,0f,1f,0f]
+        if predicate bswt:chance/50 run particle minecraft:flame ~ ~ ~ 0.2 0.3 0.2 0.01 1
+
+    unless entity @e[type=#main:spirit/kakodaimon,distance=..64] run data modify entity @s transformation.left_rotation set value [0f, 0f, 0f, 1f]
+
+    if entity @e[type=#main:spirit/kakodaimon,distance=..64]:
+        for dist in range(64, 9, -1):
+            progress = (64 - dist) / 54.0
+            deg = progress * 180.0
+            rad = math.radians(deg)
+            zval = Float(round(math.sin(rad / 2.0), 5))
+            wval = Float(round(math.cos(rad / 2.0), 5))
+
+            if entity @e[type=#main:spirit/kakodaimon,distance=f"..{dist}"] run data modify entity @s transformation.left_rotation set value [0f, 0f, zval, wval]
+
+advancement main:spirit/crucifix/use {
+	"parent": "temp:root",
+	"criteria": {
+		"impossible": {
+			"trigger": "minecraft:impossible"
+		}
+	},
+	"rewards": {
+		"function": "main:spirit/crucifix/holding/use"
+	}
+}
+
+function main:spirit/crucifix/holding/clear:
+    tag @s remove bswt.holdingCrucifix
+    function bswt:mob_effect/petrified/clear
+    scoreboard players set @s bswt.usingCrucifix 0
+    scoreboard players set @s bswt.crucifixPower 0
+
+function main:spirit/crucifix/holding/use:
+    as @s[tag=!bswt.holdingCrucifix]:
+        tag @s add bswt.holdingCrucifix
+        for sound in ["activate","ambient","power_select"]:
+            playsound f"minecraft:block.beacon.{sound}" player @a ~ ~ ~ 0.1 2
+    scoreboard players set @s bswt.usingCrucifix 2
+    scoreboard players add @s bswt.crucifixPower 1
+    function bswt:mob_effect/petrified/apply {duration:1} 
+    
+    for particle in ["end_rod", "enchant"]:
+        if predicate bswt:chance/40 particle f"minecraft:{particle}" ~ ~1 ~ 0.5 0.5 0.5 0.02 1
+
+    advancement revoke @s only main:spirit/crucifix/use
+    if score @s bswt.crucifixPower matches 20..99 as @e[type=#main:spirit/kakodaimon,distance=..6] at @s run function main:spirit/crucifix/holding/victim/normal
+    if score @s bswt.crucifixPower matches 100.. as @e[type=#main:spirit/kakodaimon,distance=..6] at @s run function main:spirit/crucifix/holding/victim/empowered
+
+function main:spirit/crucifix/holding/victim/normal:
+    particle minecraft:flame ~ ~1 ~ 0.3 1 0.3 0.02 1
+
+    #melee
+    for mob in [ "#minecraft:zombies","minecraft:hoglin","minecraft:piglin"]:
+        as @s[type=mob]:
+            function bswt:mob_effect/fire/apply_flat
+            effect give @s minecraft:weakness 1 0 true
+
+    #special
+    for mob in ["minecraft:enderman","minecraft:vex","minecraft:phantom"]:
+        as @s[type=mob]:
+            effect give @s minecraft:weakness 1 0 true
+            effect give @s minecraft:slowness 1 0 true
+
+    #ranged
+    for mob in ["#minecraft:skeletons","minecraft:witch","minecraft:evoker"]:
+        as @s[type=mob]:
+            effect give @s minecraft:slowness 1 0 true
+
+function main:spirit/crucifix/holding/victim/empowered:
+    particle minecraft:soul_fire_flame ~ ~1 ~ 0.3 1 0.3 0.02 1
+
+    for mob in [ "#minecraft:zombies","minecraft:hoglin","minecraft:piglin"]:
+        as @s[type=mob]:
+            if predicate bswt:chance/10 damage @s 1 minecraft:magic
+            function bswt:mob_effect/fire/apply_flat
+            effect give @s minecraft:weakness 1 0 true
+
+    #special
+    for mob in ["minecraft:enderman","minecraft:vex","minecraft:phantom"]:
+        as @s[type=mob]:
+            effect give @s minecraft:weakness 1 1 true
+            effect give @s minecraft:slowness 1 1 true
+
+    #ranged
+    for mob in ["#minecraft:skeletons","minecraft:witch","minecraft:evoker"]:
+        as @s[type=mob]:
+            effect give @s minecraft:slowness 1 1 true
+            if predicate bswt:chance/10 damage @s 1 minecraft:magic
