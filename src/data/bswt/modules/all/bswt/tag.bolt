@@ -98,7 +98,7 @@ entity_type_tag bswt:is_passive {
     "#bswt:nonliving_entity",
     "minecraft:allay",
     "minecraft:armadillo",
-    "minecraft:axolotl",
+    "minecraft:parrot",
     "minecraft:bat",
     "minecraft:camel",
     "minecraft:cat",

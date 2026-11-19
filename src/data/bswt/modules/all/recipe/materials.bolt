@@ -38,7 +38,7 @@ recipe bswt:material/amethyst_shard_to_crystal {
 	"type": "minecraft:crafting_shaped",
 	"category": "misc",
 	"key": {
-		"#": "minecraft:axolotl_spawn_egg"
+		"#": "minecraft:parrot_spawn_egg"
 	},
 	"pattern": [
 		"###",
@@ -383,4 +383,39 @@ recipe bswt:material/gold_ingot_from_nuggets {
 	"result": {
 		"id": "minecraft:gold_ingot"
 	}
+}
+recipe bswt:material/netherite_ingot {
+  "type": "minecraft:crafting_shaped",
+  "group": "netherite_ingot",
+  "pattern": [
+    "XXX",
+    "#G#",
+    "XXX"
+  ],
+  "key": {
+    "X": "minecraft:netherite_scrap",
+    "G": "minecraft:gold_ingot",
+    "#": "minecraft:iron_ingot"
+  },
+  "result": {
+    "id": "minecraft:netherite_ingot",
+    "count": 2
+  }
+}
+recipe bswt:material/rose_gold_ingot {
+  "type": "minecraft:crafting_shaped",
+  "group": "netherite_ingot",
+  "pattern": [
+    "GGG",
+    "#X#",
+    "XXX"
+  ],
+  "key": {
+    "X": "minecraft:copper_ingot",
+    "G": "minecraft:gold_ingot",
+    "#": "minecraft:amethyst_shard"
+  },
+  "result": {
+    "id": "minecraft:axolotl_spawn_egg"
+  }
 }

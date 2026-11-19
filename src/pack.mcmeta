@@ -268,6 +268,9 @@
     },{
 
       "namespace": "minecraft",
+      "path": "^recipe/netherite_ingot\\.json$"
+    },{      
+      "namespace": "minecraft",
       "path": "^recipe/netherite_upgrade_smithing_template\\.json$"
     },{      
       "namespace": "minecraft",
