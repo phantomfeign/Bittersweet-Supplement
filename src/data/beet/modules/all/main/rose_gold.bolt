@@ -1,0 +1,52 @@
+predicate main:player/has_regen {
+	"condition": "minecraft:entity_properties",
+	"entity": "this",
+	"predicate": {
+		"effects": {
+			"minecraft:regeneration": {}
+		}
+	}
+}
+
+function main:rose_gold/tick:
+	for i in range(36):
+		slot_name = f"container.{i}"
+		nbt_path = f"Inventory[{{Slot:{i}b}}]"
+		if items entity @s (slot_name) *[minecraft:custom_data~{bswt.rose_gold:true}] run function utility:damage_item/call {heal:1,dmg:0,hand_slot:(nbt_path),damaged_slot:(slot_name)}
+
+    for slot_name, nbt_path in [
+		("armor.head", "Inventory[{Slot:103b}]"),
+		("armor.chest", "Inventory[{Slot:102b}]"),
+		("armor.legs", "Inventory[{Slot:101b}]"),
+		("armor.feet", "Inventory[{Slot:100b}]"),
+		("weapon.offhand", "Inventory[{Slot:-106b}]"),
+	]:
+		if items entity @s (slot_name) *[minecraft:custom_data~{bswt.rose_gold:true}] run function utility:damage_item/call {heal:1,dmg:0,hand_slot:(nbt_path),damaged_slot:(slot_name)}
+
+advancement main:rose_gold/hit {
+	"parent": "temp:root",
+	"criteria": {
+		"hit": {
+			"trigger": "minecraft:player_hurt_entity",
+			"conditions": {
+				"player": {
+					"minecraft:equipment": {
+						"mainhand": {
+							"components": {
+								"minecraft:custom_data": {"bswt.rose_gold":true}
+							}
+						}
+					}
+				},
+				"entity": {
+					"minecraft:entity_type": "bswt:hostiles"
+				}
+			}
+		}
+	},
+	"rewards": {
+		"function": "main:rose_gold/lifesteal"
+	}
+}
+function main:rose_gold/lifesteal:
+    if predicate bswt:chance/25 run effect give @s minecraft:regeneration 1 2

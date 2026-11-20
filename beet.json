@@ -17,7 +17,7 @@
     "meta": {
         "bolt": {
             "entrypoint": [
-                "bswt:all"
+                "beet:all"
             ]
         }
     }

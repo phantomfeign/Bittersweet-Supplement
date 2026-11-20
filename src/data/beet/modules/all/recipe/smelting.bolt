@@ -1,0 +1,29 @@
+recipe bswt:smelting/gold_nugget {
+  "type": "minecraft:smelting",
+  "group": "gold_nugget",
+  "ingredient": "minecraft:raw_gold",
+  "result": {
+    "id": "minecraft:gold_nugget"
+  },
+  "cookingtime": 150
+}
+recipe bswt:smelting/iron_nugget {
+  "type": "minecraft:smelting",
+  "group": "iron_nugget",
+  "ingredient": "minecraft:raw_iron",
+  "result": {
+    "id": "minecraft:iron_nugget",
+    "count":3
+  },
+  "cookingtime": 150
+}
+recipe bswt:blasting/diamond {
+	"type": "minecraft:blasting",
+	"experience": 0,
+	"group": "coal",
+	"ingredient": "minecraft:allay_spawn_egg",
+	"result": {
+		"id": "minecraft:diamond"
+	},
+	"cookingtime": 300
+}

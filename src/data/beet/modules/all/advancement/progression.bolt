@@ -1,0 +1,572 @@
+from beet import Advancement
+
+advancement bswt:progression/root {
+    "display": {
+        "icon": {
+            "id": "minecraft:lily_of_the_valley"
+        },
+        "title": "",
+        "description": "",
+        "background": "minecraft:block/green_terracotta",
+        "frame": "challenge",
+        "show_toast": false,
+        "announce_to_chat": false,
+        "hidden": false
+    },
+    "criteria": {
+        "root": {
+            "trigger": "minecraft:tick"
+        }
+    }
+}
+
+ADVANCEMENTS = {
+    "obtain_campfire": {
+        "title": "It's a Start",
+        "description": "Acquire a campfire",
+        "item": "campfire",
+        "frame": "task",
+        "parent": "obtain_flint",
+    },
+    "obtain_smoker": {
+        "title": "Sous Chef",
+        "description": "Cooks faster and cooks meat better!",
+        "item": "smoker",
+        "frame": "goal",
+        "parent": "obtain_campfire",
+        "rewards": {
+            "recipes": [],
+            "function": "bswt:food/smoker_recipes_unlock"
+        },
+    },
+    "obtain_empty_boon": {
+        "title": "Gifts of Old",
+        "description": "What will you do when given a blank slate?",
+        "item": "villager_spawn_egg",
+        "frame": "task",
+        "parent": "obtain_gold",
+    },
+    "obtain_blast_furnace": {
+        "title": "Smelt Harder, Not Smarter",
+        "description": "Blast furnaces leave less waste behind.",
+        "item": "blast_furnace",
+        "frame": "task",
+        "parent": "obtain_furnace",
+    },
+    "obtain_furnace": {
+        "title": "Did I Leave The—",
+        "description": "Craft a furnace using bricks hardened by campfire smoke.",
+        "item": "furnace",
+        "frame": "task",
+        "parent": "obtain_campfire",
+    },
+    "obtain_verdum": {
+        "title": "Magic Moss",
+        "description": "Acquire Verdum Crystals from vine-covered temples or crafting.",
+        "item": "bogged_spawn_egg",
+        "frame": "goal",
+        "parent": "obtain_iron",
+    },
+}
+
+for filename, data in ADVANCEMENTS.items():
+    item_id = f"minecraft:{data['item']}"
+    parent_id = f"bswt:progression/{data['parent']}"
+
+    adv_body = {
+        "display": {
+            "icon": {"id": item_id},
+            "title": data["title"],
+            "description": data["description"],
+            "frame": data["frame"],
+            "show_toast": true,
+            "announce_to_chat": true,
+            "hidden": data.get("hidden", false),
+        },
+        "parent": parent_id,
+        "criteria": {
+            "acquire": {
+                "trigger": "minecraft:inventory_changed",
+                "conditions": {
+                    "items": [
+                        {"items": [item_id]}
+                    ]
+                },
+            }
+        },
+    }
+
+    if "rewards" in data:
+        adv_body["rewards"] = data["rewards"]
+
+    advancement f"bswt:progression/{filename}" adv_body
+
+advancement bswt:progression/repair_gold {
+    "display": {
+        "icon": {
+            "id": "minecraft:golden_hoe",
+            "components": {}
+        },
+        "title": "Worth Its Weight",
+        "description": "Throw a gold ingot on top of damaged gold equipment.",
+        "frame": "goal",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "parent": "bswt:progression/obtain_gold",
+    "criteria": {
+        "nope": {
+            "trigger": "minecraft:impossible"
+        }
+    }
+}
+
+advancement bswt:progression/blast_diamond {
+    "display": {
+        "icon": {
+            "id": "minecraft:allay_spawn_egg"
+        },
+        "title": "Under Pressure",
+        "description": "Refine rough diamonds in a blast furnace.",
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "parent": "bswt:progression/obtain_blast_furnace",
+    "criteria": {
+        "blast": {
+            "trigger": "minecraft:recipe_crafted",
+            "conditions": {
+                "recipe_id": "bswt:blasting/diamond"
+            }
+        }
+    }
+}
+
+advancement bswt:progression/blast_debris {
+    "display": {
+        "icon": {
+            "id": "minecraft:netherite_scrap"
+        },
+        "title": "Superheated Salvaging",
+        "description": "Purify ancient debris in a blast furnace.",
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "parent": "bswt:progression/obtain_blast_furnace",
+    "criteria": {
+        "blast": {
+            "trigger": "minecraft:recipe_crafted",
+            "conditions": {
+                "recipe_id": "bswt:blasting/debris"
+            }
+        }
+    }
+}
+
+advancement bswt:progression/bucket_lava {
+    "display": {
+        "icon": {
+            "id": "minecraft:lava_bucket"
+        },
+        "title": "Hot Plate!",
+        "description": "Fill a bucket with lava.",
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "parent": "bswt:progression/obtain_copper",
+    "criteria": {
+        "bucket_lava": {
+            "trigger": "minecraft:item_used_on_block",
+            "conditions": {
+                "location": [
+                    {
+                        "condition": "minecraft:any_of",
+                        "terms": [
+                            {
+                                "condition": "minecraft:block_state_property",
+                                "block": "minecraft:lava"
+                            },
+                            {
+                                "condition": "minecraft:block_state_property",
+                                "block": "minecraft:lava_cauldron"
+                            }
+                        ]
+                    },
+                    {
+                        "condition": "minecraft:match_tool",
+                        "predicate": {
+                            "items": [
+                                "minecraft:bucket"
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
+
+advancement bswt:progression/enter_tartarus {
+    "display": {
+        "icon": {
+            "id": "minecraft:crying_obsidian"
+        },
+        "title": "Eternal Damnation",
+        "description": "Enter Tartarus.",
+        "frame": "challenge",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "parent": "bswt:progression/bucket_lava",
+    "criteria": {
+        "enter": {
+            "trigger": "minecraft:nether_travel"
+        }
+    }
+}
+
+advancement bswt:progression/smith_hybrid_tool {
+    "display": {
+        "icon": {
+            "id": "minecraft:emerald"
+        },
+        "title": "Jack of All Jades",
+        "description": "Smith two diamond or adamantine tools together with an emerald.",
+        "frame": "goal",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "parent": "bswt:progression/obtain_diamond",
+    "criteria": {
+        "diamond_pulaski": {
+            "trigger": "minecraft:recipe_crafted",
+            "conditions": {
+                "recipe_id": "bswt:equipment/smithed/diamond/mattock"
+            }
+        },
+        "diamond_mattock": {
+            "trigger": "minecraft:recipe_crafted",
+            "conditions": {
+                "recipe_id": "bswt:equipment/smithed/diamond/pulaski"
+            }
+        },
+        "diamond_mattock_alt": {
+            "trigger": "minecraft:recipe_crafted",
+            "conditions": {
+                "recipe_id": "bswt:equipment/smithed/diamond/mattock_alt"
+            }
+        },
+        "diamond_pulaski_alt": {
+            "trigger": "minecraft:recipe_crafted",
+            "conditions": {
+                "recipe_id": "bswt:equipment/smithed/diamond/pulaski_alt"
+            }
+        },
+        "netherite_pulaski": {
+            "trigger": "minecraft:recipe_crafted",
+            "conditions": {
+                "recipe_id": "bswt:equipment/smithed/netherite/mattock"
+            }
+        },
+        "netherite_mattock": {
+            "trigger": "minecraft:recipe_crafted",
+            "conditions": {
+                "recipe_id": "bswt:equipment/smithed/netherite/mattock"
+            }
+        },
+        "netherite_mattock_alt": {
+            "trigger": "minecraft:recipe_crafted",
+            "conditions": {
+                "recipe_id": "bswt:equipment/smithed/netherite/mattock_alt"
+            }
+        },
+        "netherite_pulaski_alt": {
+            "trigger": "minecraft:recipe_crafted",
+            "conditions": {
+                "recipe_id": "bswt:equipment/smithed/netherite/pulaski_alt"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "diamond_mattock",
+            "diamond_pulaski",
+            "diamond_mattock_alt",
+            "diamond_pulaski_alt",
+            "netherite_mattock",
+            "netherite_pulaski",
+            "netherite_mattock_alt",
+            "netherite_pulaski_alt"
+        ]
+    ]
+}
+
+advancement bswt:progression/craft_bronze {
+    "display": {
+        "icon": {
+            "id": "minecraft:horse_spawn_egg",
+            "components": {}
+        },
+        "title": "Alloy of Heroes",
+        "description": "\"Dare you clash against the Champion of Elysium and his most trusted friend?\"",
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "parent": "bswt:progression/enter_tartarus",
+    "criteria": {
+        "pike": {
+            "trigger": "minecraft:recipe_crafted",
+            "conditions": {
+                "recipe_id": "bswt:smithing/bronze/bronze_pike"
+            }
+        },
+        "halberd": {
+            "trigger": "minecraft:recipe_crafted",
+            "conditions": {
+                "recipe_id": "bswt:smithing/bronze/bronze_halberd"
+            }
+        },
+        "greatsword": {
+            "trigger": "minecraft:recipe_crafted",
+            "conditions": {
+                "recipe_id": "bswt:smithing/bronze/bronze_greatsword"
+            }
+        },
+        "sickle": {
+            "trigger": "minecraft:recipe_crafted",
+            "conditions": {
+                "recipe_id": "bswt:smithing/bronze/bronze_sickle"
+            }
+        },
+        "cutlass": {
+            "trigger": "minecraft:recipe_crafted",
+            "conditions": {
+                "recipe_id": "bswt:smithing/bronze/bronze_cutlass"
+            }
+        },
+        "helmet": {
+            "trigger": "minecraft:recipe_crafted",
+            "conditions": {
+                "recipe_id": "bswt:smithing/bronze/bronze_helmet"
+            }
+        },
+        "chestplate": {
+            "trigger": "minecraft:recipe_crafted",
+            "conditions": {
+                "recipe_id": "bswt:smithing/bronze/bronze_chestplate"
+            }
+        },
+        "leggings": {
+            "trigger": "minecraft:recipe_crafted",
+            "conditions": {
+                "recipe_id": "bswt:smithing/bronze/bronze_leggings"
+            }
+        },
+        "boots": {
+            "trigger": "minecraft:recipe_crafted",
+            "conditions": {
+                "recipe_id": "bswt:smithing/bronze/bronze_boots"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "pike",
+            "halberd",
+            "greatsword",
+            "sickle",
+            "cutlass",
+            "helmet",
+            "chestplate",
+            "leggings",
+            "boots"
+        ]
+    ]
+}
+
+advancement bswt:progression/unheard_lament {
+    "display": {
+        "icon": {
+            "id": "minecraft:nether_star"
+        },
+        "title": "Unheard Lament",
+        "description": "Darkness brews in old dungeons and demigods.",
+        "frame": "challenge",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "parent": "bswt:progression/obtain_iron",
+    "criteria": {
+        "acquire": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "minecraft:pig_spawn_egg",
+                            "minecraft:nether_star"
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}
+
+advancement bswt:progression/obtain_chainmail {
+    "display": {
+        "icon": {
+            "id": "minecraft:chainmail_chestplate",
+            "components": {}
+        },
+        "title": "Chained Up",
+        "description": "6x as iron-efficient!",
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "parent": "bswt:progression/obtain_iron",
+    "criteria": {
+        "acquire": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "minecraft:chainmail_helmet",
+                            "minecraft:chainmail_chestplate",
+                            "minecraft:chainmail_leggings",
+                            "minecraft:chainmail_boots"
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}
+
+FLINT_PIECES = [
+    "sword",
+    "pickaxe",
+    "axe",
+]
+
+FULL_EQUIPMENT_PIECES = [
+    "spear",
+    "sword",
+    "axe",
+    "pickaxe",
+    "shovel",
+    "hoe",
+    "helmet",
+    "chestplate",
+    "leggings",
+    "boots",
+]
+
+TIER_ADVANCEMENTS = {
+    "obtain_flint": {
+        "tier": "flint",
+        "method": "crafted",
+        "pieces": FLINT_PIECES,
+        "icon": "minecraft:flint",
+        "title": "Flint and.. Sticks?",
+        "description": "Make primitive tools.",
+        "parent": "root",
+    },
+    "obtain_copper": {
+        "tier": "copper",
+        "method": "crafted",
+        "pieces": FULL_EQUIPMENT_PIECES,
+        "icon": "minecraft:copper_ingot",
+        "title": "Liberty, Liberty, Liberty",
+        "description": "\"Ey, I'm walkin 'ere!\".",
+        "parent": "obtain_furnace",
+    },
+    "obtain_gold": {
+        "tier": "gold",
+        "method": "crafted",
+        "pieces": FULL_EQUIPMENT_PIECES,
+        "icon": "minecraft:gold_ingot",
+        "title": "Gold Rush",
+        "description": "\"We're rich! Rich and gay.\"",
+        "parent": "obtain_copper",
+    },
+    "obtain_rose_gold": {
+        "tier": "rose_gold",
+        "method": "crafted",
+        "pieces": FULL_EQUIPMENT_PIECES,
+        "icon": "minecraft:gold_ingot",
+        "title": "A Single Pale Rose",
+        "description": "\"Every moment you love being yourself, that's me. Loving you and loving being you.\"",
+        "parent": "obtain_gold",
+    },
+    "obtain_iron": {
+        "tier": "iron",
+        "method": "crafted",
+        "pieces": FULL_EQUIPMENT_PIECES,
+        "icon": "minecraft:iron_ingot",
+        "title": "Hard 2 Break",
+        "description": "\"People like you bring me nothing but anger.\"",
+        "parent": "obtain_copper",
+    },
+    "obtain_diamond": {
+        "tier": "diamond",
+        "method": "smithed",
+        "pieces": FULL_EQUIPMENT_PIECES,
+        "icon": "minecraft:diamond",
+        "title": "Diamond Standard",
+        "description": "\"Miiine diamonds.\"",
+        "parent": "blast_diamond",
+    },
+    "obtain_netherite": {
+        "tier": "netherite",
+        "method": "smithed",
+        "pieces": FULL_EQUIPMENT_PIECES,
+        "icon": "minecraft:netherite_ingot",
+        "title": "Tartarus's Spoils",
+        "description": "In with the new..",
+        "parent": "blast_debris",
+    },
+}
+
+for filename, data in TIER_ADVANCEMENTS.items():
+    criteria = {}
+    for piece in data["pieces"]:
+        criteria[piece] = {
+            "trigger": "minecraft:recipe_crafted",
+            "conditions": {
+                "recipe_id": f"bswt:equipment/{data['method']}/{data['tier']}/{piece}"
+            },
+        }
+
+    advancement f"bswt:progression/{filename}" {
+        "display": {
+            "icon": {
+                "id": data["icon"],
+                "components": {}
+            },
+            "title": data["title"],
+            "description": data["description"],
+            "frame": "task",
+            "show_toast": true,
+            "announce_to_chat": true,
+            "hidden": false
+        },
+        "parent": f"bswt:progression/{data['parent']}",
+        "criteria": criteria,
+        "requirements": [data["pieces"]],
+    }

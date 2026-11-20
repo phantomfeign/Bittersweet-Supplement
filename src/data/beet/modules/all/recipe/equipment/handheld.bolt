@@ -1,0 +1,175 @@
+from beet import Recipe
+from beet:all/utils/tiers import TIERS, TIER_LOOKUP, EQUIPMENT_PATTERNS_LOOKUP
+
+TOOLS = ("pickaxe", "axe", "shovel", "hoe")
+SMITHED_TOOLS = ("pickaxe", "shovel", "hoe")
+WEAPONS = ("sword", "spear")
+
+CUSTOM_NAMES = {
+    "diamond": "Diamond",
+    "netherite": "Adamantine",
+    "rose_gold": "Rose Gold",
+}
+
+
+def get_result_id(_base_tier, _item_type):
+    if _base_tier == "rose_gold":
+        return f"minecraft:diamond_{_item_type}"
+    return f"minecraft:{_base_tier}_{_item_type}"
+
+
+def build_components(_base_tier, _item_type):
+    _tier = TIER_LOOKUP[_base_tier]
+    _is_tool = _item_type in TOOLS
+    _is_weapon = _item_type in ("axe", "sword", "spear")
+    _lore = []
+
+    if _base_tier == "rose_gold":
+        _lore = [
+            {
+                "text": "Lifesteals and regenerates when you do.",
+                "color": "yellow",
+                "italic": false,
+            }
+        ]
+
+    _components = {
+        "minecraft:tooltip_display": {"hidden_components": ["minecraft:attribute_modifiers"]},
+        "minecraft:max_damage": _tier["durability"],
+        "minecraft:lore": _lore,
+    }
+
+    # custom item model for rose gold
+    if _base_tier == "rose_gold":
+        _components["minecraft:item_model"] = f"bswt_texture:rose_gold_{_item_type}"
+        _components["minecraft:custom_data"] = {
+            "bswt.rose_gold":true
+        }
+
+    # mining stats
+    if _is_tool:
+        _mining_speed = _tier["mining_speed"]
+        _components["minecraft:lore"].append(
+            {"text": f"{_mining_speed}⛏", "color": "gold", "italic": false}
+        )
+        _components["minecraft:tool"] = {
+            "rules": [
+                {
+                    "blocks": f"#minecraft:mineable/{_item_type}",
+                    "speed": _mining_speed,
+                    "correct_for_drops": true,
+                }
+            ],
+            "default_mining_speed": 1,
+            "damage_per_block": 1,
+        }
+
+    # combat stats
+    if _is_weapon:
+        _attack_damage = 0
+        _attack_speed = 0
+        if _item_type == "axe":
+            _attack_damage = int(_tier["weapon_damage"] * 1.5)
+            _attack_speed = _tier["attack_speed"] / 2
+        elif _item_type == "spear":
+            _attack_damage = int(_tier["weapon_damage"] * 0.7)
+            _attack_speed = int(_tier["attack_speed"] * 75) / 100
+        else:
+            _attack_damage = _tier["weapon_damage"]
+            _attack_speed = _tier["attack_speed"]
+
+        _components["minecraft:attribute_modifiers"] = [
+            {
+                "type": "minecraft:attack_damage",
+                "id": f"bswt:{_base_tier}_{_item_type}",
+                "amount": _attack_damage - 1,
+                "operation": "add_value",
+                "slot": "mainhand",
+            },
+            {
+                "type": "minecraft:attack_speed",
+                "id": f"bswt:{_base_tier}_{_item_type}",
+                "amount": -(4 - _attack_speed),
+                "operation": "add_value",
+                "slot": "mainhand",
+            },
+        ]
+        _components["minecraft:lore"].extend([
+            {"text": f"{_attack_damage}🗡", "color": "red", "italic": false},
+            {"text": f"{_attack_speed}⌚", "color": "yellow", "italic": false},
+        ])
+
+    # spear reach
+    if _item_type == "spear":
+        _components["minecraft:lore"].append(
+            {"text": "1-4.5→", "color": "green", "italic": false}
+        )
+        _components["minecraft:attack_range"] = {
+            "min_reach": 1.0,
+            "max_reach": 4.5,
+            "min_creative_reach": 2.0,
+            "max_creative_reach": 6.5,
+            "hitbox_margin": 0.125,
+            "mob_factor": 0.5,
+        }
+
+    # custom item names
+    if _base_tier in CUSTOM_NAMES:
+        _components["minecraft:item_name"] = {
+            "text": f"{CUSTOM_NAMES[_base_tier]} {_item_type.capitalize()}",
+            "color": "aqua",
+        }
+
+    return _components
+
+
+def add_crafted_recipe(_base_tier, _material, _item_type):
+    ctx.data.recipes[f"bswt:equipment/crafted/{_base_tier}/{_item_type}"] = Recipe({
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "pattern": EQUIPMENT_PATTERNS_LOOKUP[_item_type]["pattern"],
+        "key": {
+            "#": "minecraft:stick",
+            "X": f"minecraft:{_material}",
+        },
+        "result": {
+            "id": get_result_id(_base_tier, _item_type),
+            "components": build_components(_base_tier, _item_type),
+        },
+    })
+
+
+def add_smithed_recipe(_base_tier, _addition, _item_type):
+    ctx.data.recipes[f"bswt:equipment/smithed/{_base_tier}/{_item_type}"] = Recipe({
+        "type": "minecraft:smithing_transform",
+        "addition": f"minecraft:{_addition}",
+        "base": f"minecraft:golden_{_item_type}",
+        "template": "minecraft:netherite_upgrade_smithing_template",
+        "result": {
+            "id": get_result_id(_base_tier, _item_type),
+            "components": build_components(_base_tier, _item_type),
+        },
+    })
+
+
+#——————————— RECIPE GEN
+
+CRAFTED_TIERS = {
+    "copper": "copper_ingot",
+    "iron": "iron_ingot",
+    "golden": "gold_ingot",
+}
+
+SMITHED_TIERS = {
+    "diamond": "diamond",
+    "netherite": "netherite_ingot",
+    "rose_gold": "axolotl_spawn_egg",
+}
+
+for _tier_name, _material in CRAFTED_TIERS.items():
+    for _equip_type in TOOLS + WEAPONS:
+        add_crafted_recipe(_tier_name, _material, _equip_type)
+
+for _tier_name, _addition in SMITHED_TIERS.items():
+    for _equip_type in SMITHED_TOOLS + WEAPONS:
+        add_smithed_recipe(_tier_name, _addition, _equip_type)

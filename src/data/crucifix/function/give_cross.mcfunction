@@ -1,1 +1,0 @@
-give @p armor_stand[custom_name={"italic":false,"text":"Crucifix"},entity_data={id:"minecraft:armor_stand",NoGravity:1b,Silent:1b,Tags:["crossArmorStand"]}]

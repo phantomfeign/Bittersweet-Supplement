@@ -5,7 +5,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "minecraft:chicken_spawn_egg",
+					"name": "minecraft:netherite_upgrade_smithing_template",
 					"functions": [
 						{
 							"function": "minecraft:set_components",

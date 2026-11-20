@@ -1,0 +1,670 @@
+from beet:all/utils/tiers import TIERS, TIER_LOOKUP, EQUIPMENT_PATTERNS_LOOKUP
+
+recipe bswt:equipment/crafted/bronze/gauntlet {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"pattern": [
+		"BBB",
+		"BBB",
+		"B B"
+	],
+	"key": {
+		"B": "minecraft:horse_spawn_egg"
+	},
+	"result": {
+		"id": "minecraft:iron_golem_spawn_egg",
+		"components": {
+			"minecraft:item_name": {
+				"text": "Bronze Gauntlet"
+			},
+			"!minecraft:entity_data": {},
+			"minecraft:max_damage": 2000,
+			"minecraft:damage": 0,
+			"minecraft:max_stack_size": 1,
+			"minecraft:repairable": {
+				"items": "minecraft:horse_spawn_egg"
+			},
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:attack_knockback",
+					"id": "bswt:bronze_gauntlet",
+					"amount": 1,
+					"operation": "add_value",
+					"display": {
+						"type": "hidden"
+					}
+				},
+				{
+					"type": "minecraft:attack_speed",
+					"id": "bswt:bronze_gauntlet",
+					"amount": -1,
+					"operation": "add_value",
+					"display": {
+						"type": "hidden"
+					}
+				},
+				{
+					"type": "minecraft:block_interaction_range",
+					"id": "bswt:bronze_gauntlet",
+					"amount": 1,
+					"operation": "add_value",
+					"display": {
+						"type": "hidden"
+					}
+				},
+				{
+					"type": "minecraft:entity_interaction_range",
+					"id": "bswt:bronze_gauntlet",
+					"amount": 1,
+					"operation": "add_value",
+					"display": {
+						"type": "hidden"
+					}
+				}
+			],
+			"minecraft:tool": {
+				"rules": [
+					{
+						"blocks": "#minecraft:mineable/pickaxe",
+						"correct_for_drops": true
+					},
+					{
+						"blocks": "#minecraft:mineable/axe",
+						"correct_for_drops": true
+					},
+					{
+						"blocks": "#minecraft:mineable/shovel",
+						"correct_for_drops": true
+					},
+					{
+						"blocks": "#minecraft:mineable/hoe",
+						"correct_for_drops": true
+					}
+				],
+				"default_mining_speed": 3,
+				"damage_per_block": 1,
+				"can_destroy_blocks_in_creative": true
+			},
+			"minecraft:lore": [
+				{
+					"text": "6⛏",
+					"color": "gold",
+					"italic": false
+				},
+				{
+					"text": "+1→",
+					"color": "green",
+					"italic": false
+				}
+			]
+		}
+	}
+}
+recipe bswt:equipment/crafted/copper/sickle {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"#": "minecraft:stick",
+		"X": "minecraft:copper_ingot"
+	},
+	"pattern": [
+		" X ",
+		"  X",
+		"#X "
+	],
+	"result": {
+		"id": "minecraft:copper_hoe",
+		"components": {
+			"minecraft:max_damage": TIERS[1]["durability"],
+			"minecraft:item_model": "bswt_texture:copper_sickle",
+			"minecraft:item_name": {
+				"text": "Copper Sickle",
+                "color": "white"
+			},
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:attack_speed",
+					"id": "bswt:copper_sickle",
+					"amount": -2.6,
+					"operation": "add_value",
+					"slot": "mainhand"
+				},
+				{
+					"type": "minecraft:attack_damage",
+					"id": "bswt:copper_sickle",
+					"amount": 6,
+					"operation": "add_value",
+					"slot": "mainhand"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "7🗡",
+					"color": "red",
+					"italic": false
+				},
+				{
+					"text": "1.4⌚",
+					"color": "yellow",
+					"italic": false
+				}
+			],
+			"minecraft:enchantments": {
+				"bswt:hooking": 1
+			},
+			"enchantment_glint_override": false
+		}
+	}
+}
+recipe bswt:equipment/smithed/bronze/sickle {
+    "type": "minecraft:smithing_transform",
+    "addition": "minecraft:horse_spawn_egg",
+    "base": "minecraft:copper_hoe",
+    "template": "minecraft:piglin_spawn_egg",
+	"result": {
+		"id": "minecraft:stone_hoe",
+		"components": {
+			"minecraft:max_damage": TIERS[4]["durability"],
+			"minecraft:item_model": "bswt_texture:bronze_sickle",
+			"minecraft:item_name": {
+				"text": "Bronze Sickle",
+                "color": "aqua"
+			},
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:attack_speed",
+					"id": "bswt:bronze_sickle",
+					"amount": -2.6,
+					"operation": "add_value",
+					"slot": "mainhand"
+				},
+				{
+					"type": "minecraft:attack_damage",
+					"id": "bswt:bronze_sickle",
+					"amount": 11,
+					"operation": "add_value",
+					"slot": "mainhand"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "12🗡",
+					"color": "red",
+					"italic": false
+				},
+				{
+					"text": "1.4⌚",
+					"color": "yellow",
+					"italic": false
+				}
+			],
+			"minecraft:enchantments": {
+				"bswt:hooking": 1
+			},
+			"enchantment_glint_override": false
+		}
+	}
+}
+recipe bswt:equipment/crafted/iron/halberd {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"#": "minecraft:stick",
+		"X": "minecraft:iron_ingot"
+	},
+	"pattern": [
+		"XXX",
+		"X# ",
+		"#  "
+	],
+	"result": {
+		"id": "minecraft:iron_axe",
+		"components": {
+            "minecraft:max_damage": TIERS[2]["durability"],
+			"minecraft:item_model": "bswt_texture:iron_halberd",
+			"minecraft:item_name": "Iron Halberd",
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:block_interaction_range",
+					"id": "bswt:iron_halberd",
+					"amount": 1,
+					"operation": "add_value",
+					"slot": "mainhand"
+				},
+				{
+					"type": "minecraft:entity_interaction_range",
+					"id": "bswt:iron_halberd",
+					"amount": 1,
+					"operation": "add_value",
+					"slot": "mainhand"
+				},
+				{
+					"type": "minecraft:attack_speed",
+					"id": "bswt:iron_halberd",
+					"amount": -3.2,
+					"operation": "add_value",
+					"slot": "mainhand"
+				},
+				{
+					"type": "minecraft:attack_damage",
+					"id": "bswt:iron_halberd",
+					"amount": 3,
+					"operation": "add_value",
+					"slot": "mainhand"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "5⛏",
+					"color": "gold",
+					"italic": false
+				},
+				{
+					"text": "7🗡",
+					"color": "red",
+					"italic": false
+				},
+				{
+					"text": "0.8⌚",
+					"color": "yellow",
+					"italic": false
+				},
+				{
+					"text": "2-4→",
+					"color": "green",
+					"italic": false
+				}
+			],
+			"minecraft:attack_range": {
+				"min_reach": 2,
+				"max_reach": 4,
+				"min_creative_reach": 2,
+				"max_creative_reach": 4
+			},
+			"minecraft:tool": {
+				"rules": [
+					{
+						"blocks": "#minecraft:mineable/axe",
+						"speed": 5,
+						"correct_for_drops": true
+					}
+				],
+				"default_mining_speed": 1,
+				"damage_per_block": 1
+			}
+		}
+	}
+}
+recipe bswt:equipment/smithed/bronze/halberd {
+	"type": "minecraft:crafting_shaped",
+    "type": "minecraft:smithing_transform",
+    "addition": "minecraft:horse_spawn_egg",
+    "base": "minecraft:iron_axe",
+    "template": "minecraft:piglin_spawn_egg",
+	"result": {
+		"id": "minecraft:stone_axe",
+		"components": {
+			"minecraft:max_damage": TIERS[4]["durability"],
+			"minecraft:item_model": "bswt_texture:bronze_halberd",
+			"minecraft:item_name": {
+                "text": "Bronze Halberd",
+                "color": "aqua"
+            },
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:block_interaction_range",
+					"id": "bswt:bronze_halberd",
+					"amount": 1,
+					"operation": "add_value",
+					"slot": "mainhand"
+				},
+				{
+					"type": "minecraft:entity_interaction_range",
+					"id": "bswt:bronze_halberd",
+					"amount": 1,
+					"operation": "add_value",
+					"slot": "mainhand"
+				},
+				{
+					"type": "minecraft:attack_speed",
+					"id": "bswt:bronze_halberd",
+					"amount": -3.2,
+					"operation": "add_value",
+					"slot": "mainhand"
+				},
+				{
+					"type": "minecraft:attack_damage",
+					"id": "bswt:bronze_halberd",
+					"amount": 10,
+					"operation": "add_value",
+					"slot": "mainhand"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "9⛏",
+					"color": "gold",
+					"italic": false
+				},
+				{
+					"text": "11🗡",
+					"color": "red",
+					"italic": false
+				},
+				{
+					"text": "0.8⌚",
+					"color": "yellow",
+					"italic": false
+				},
+				{
+					"text": "2-4→",
+					"color": "green",
+					"italic": false
+				}
+			],
+			"minecraft:attack_range": {
+				"min_reach": 2,
+				"max_reach": 4,
+				"min_creative_reach": 2,
+				"max_creative_reach": 4
+			},
+			"minecraft:tool": {
+				"rules": [
+					{
+						"blocks": "#minecraft:mineable/axe",
+						"speed": 9,
+						"correct_for_drops": true
+					}
+				],
+				"default_mining_speed": 1,
+				"damage_per_block": 1
+			}
+		}
+	}
+}
+recipe bswt:equipment/crafted/iron/greatsword {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"#": "minecraft:stick",
+		"X": "minecraft:iron_ingot"
+	},
+	"pattern": [
+		"  X",
+		"XX ",
+		"#X "
+	],
+	"result": {
+		"id": "minecraft:iron_sword",
+		"components": {
+            "minecraft:max_damage": TIERS[2]["durability"],
+			"minecraft:item_model": "bswt_texture:iron_greatsword",
+			"minecraft:item_name": {
+				"text": "Iron Greatsword",
+				"color": "white",
+			},
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:attack_speed",
+					"id": "bswt:iron_greatsword",
+					"amount": -2.6,
+					"operation": "add_value",
+					"slot": "mainhand"
+				},
+				{
+					"type": "minecraft:attack_damage",
+					"id": "bswt:iron_greatsword",
+					"amount": 5,
+					"operation": "add_value",
+					"slot": "mainhand"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "6🗡",
+					"color": "red",
+					"italic": false
+				},
+				{
+					"text": "1.4⌚",
+					"color": "yellow",
+					"italic": false
+				},
+				{
+					"text": "+0.5→",
+					"color": "green",
+					"italic": false
+				}
+			],
+			"minecraft:attack_range": {
+				"min_reach": 0,
+				"max_reach": 3.5,
+				"min_creative_reach": 0,
+				"max_creative_reach": 3.5
+			},
+			"minecraft:enchantments": {
+				"minecraft:sweeping_edge": 1
+			},
+			"minecraft:enchantment_glint_override": false
+		}
+	}
+}
+recipe bswt:equipment/smithed/bronze/greatsword {
+    "type": "minecraft:smithing_transform",
+    "addition": "minecraft:horse_spawn_egg",
+    "base": "minecraft:iron_sword",
+    "template": "minecraft:piglin_spawn_egg",
+	"result": {
+		"id": "minecraft:stone_sword",
+		"components": {
+			"minecraft:max_damage": TIERS[4]["durability"],
+			"minecraft:item_model": "bswt_texture:bronze_greatsword",
+			"minecraft:item_name": {
+				"text": "Bronze Greatsword",
+				"color": "aqua"
+			},
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:attack_speed",
+					"id": "bswt:bronze_greatsword",
+					"amount": -2.6,
+					"operation": "add_value",
+					"slot": "mainhand"
+				},
+				{
+					"type": "minecraft:attack_damage",
+					"id": "bswt:bronze_greatsword",
+					"amount": 7,
+					"operation": "add_value",
+					"slot": "mainhand"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "8🗡",
+					"color": "red",
+					"italic": false
+				},
+				{
+					"text": "1.4⌚",
+					"color": "yellow",
+					"italic": false
+				},
+				{
+					"text": "+0.5→",
+					"color": "green",
+					"italic": false
+				}
+			],
+			"minecraft:attack_range": {
+				"min_reach": 0,
+				"max_reach": 3.5,
+				"min_creative_reach": 0,
+				"max_creative_reach": 3.5
+			}
+		}
+	}
+}
+recipe bswt:equipment/crafted/golden/rapier {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"#": "minecraft:stick",
+		"X": "minecraft:gold_ingot"
+	},
+	"pattern": [
+		"  X",
+		" X ",
+		"#  "
+	],
+	"result": {
+		"id": "minecraft:golden_sword",
+		"components": {
+			"minecraft:max_damage": TIERS[3]["durability"],
+			"minecraft:item_model": "bswt_texture:golden_rapier",
+			"minecraft:item_name": {
+				"text": "Golden Rapier",
+				"color": "white"
+			},
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:attack_speed",
+					"id": "bswt:golden_rapier",
+					"amount": -1.4,
+					"operation": "add_value",
+					"slot": "mainhand"
+				},
+				{
+					"type": "minecraft:attack_damage",
+					"id": "bswt:golden_rapier",
+					"amount": 3,
+					"operation": "add_value",
+					"slot": "mainhand"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "4🗡",
+					"color": "red",
+					"italic": false
+				},
+				{
+					"text": "2.6⌚",
+					"color": "yellow",
+					"italic": false
+				}
+			],
+			"minecraft:attack_range": {
+				"min_reach": 0,
+				"max_reach": 3,
+				"min_creative_reach": 0,
+				"max_creative_reach": 3
+			},
+			"minecraft:piercing_weapon": {
+				"deals_knockback": true
+			},
+			"minecraft:swing_animation": {
+				"type": "stab",
+				"duration": 10
+			}
+		}
+	}
+}
+recipe bswt:equipment/crafted/bronze/rapier {
+    "type": "minecraft:smithing_transform",
+    "addition": "minecraft:horse_spawn_egg",
+    "base": "minecraft:golden_sword",
+    "template": "minecraft:piglin_spawn_egg",
+	"result": {
+		"id": "minecraft:stone_sword",
+		"components": {
+			"minecraft:max_damage": TIERS[4]["durability"],
+			"minecraft:item_model": "bswt_texture:bronze_rapier",
+			"minecraft:item_name": {
+				"text": "Bronze Rapier",
+				"color": "white"
+			},
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:attack_speed",
+					"id": "bswt:bronze_rapier",
+					"amount": -1.4,
+					"operation": "add_value",
+					"slot": "mainhand"
+				},
+				{
+					"type": "minecraft:attack_damage",
+					"id": "bswt:bronze_rapier",
+					"amount": 4,
+					"operation": "add_value",
+					"slot": "mainhand"
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "5🗡",
+					"color": "red",
+					"italic": false
+				},
+				{
+					"text": "2.6⌚",
+					"color": "yellow",
+					"italic": false
+				}
+			],
+			"minecraft:attack_range": {
+				"min_reach": 0,
+				"max_reach": 3,
+				"min_creative_reach": 0,
+				"max_creative_reach": 3
+			},
+			"minecraft:piercing_weapon": {
+				"deals_knockback": true
+			},
+			"minecraft:swing_animation": {
+				"type": "stab",
+				"duration": 10
+			}
+		}
+	}
+}
