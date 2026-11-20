@@ -22,10 +22,11 @@ function ticking_functions:tick_1t/universal:
     as @s[type=fishing_bobber,tag=bswt.grapplerBobber,tag=!bswt.grappler.hooked] at @s if predicate bswt:flag/on_ground run function main:grappler/hook
 
     as @s[type=!#bswt:cant_transfer_fire,predicate=bswt:mob_effect/is_on_fire] run function bswt:mob_effect/fire/apply
-    as @s[tag=bswt.JumpWeakness] run function bswt:mob_effect/jump_weakness/tick
-    as @s[tag=bswt.CantAttack] run function bswt:mob_effect/cant_attack/tick
+
+    as @s[tag=bswt.jumpWeakness] run function bswt:mob_effect/jump_weakness/tick
+    as @s[tag=bswt.cantAttack] run function bswt:mob_effect/cant_attack/tick
     as @s[tag=bswt.noAI] run function bswt:mob_effect/noai/tick
-    as @s[tag=bswt.Spearing] run function bswt:mob_effect/spearing/tick
+    as @s[tag=bswt.spearing] run function bswt:mob_effect/spearing/tick
 
     as @s[tag=bswt.iceStatue,nbt=!{Health:100.0f}] run function bswt:mob_effect/frostbite/ice_statue/shatter
     as @s[type=block_display,tag=bswt.vinerySpore] run function bswt:enchantment/vinery/petal/tick

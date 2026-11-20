@@ -36,7 +36,7 @@ function load:scoreboard:
     scoreboard objectives add bswt.bossAbilityTimer dummy
 
     scoreboard objectives add bswt.Math dummy
-    for num in [1,3,70,90,100,150,200]:
+    for num in [1,3,70,90,98,100,150,200]:
         scoreboard players set f"#{num}" bswt.Math (num)
     
     scoreboard objectives add bswt.goldRepair dummy
@@ -52,6 +52,7 @@ function load:scoreboard:
     scoreboard objectives add bswt.ZombieChaseTimer dummy
     scoreboard objectives add bswt.endermanPullTimer dummy
     scoreboard objectives add bswt.spawnerTimer dummy
+    scoreboard objectives add bludgeonedTimer dummy
 #———————————————————WEAPONS
 #CRYSTALLINE CANDLE
     scoreboard objectives add bswt.crystallineCandle dummy
@@ -60,19 +61,16 @@ function load:scoreboard:
     scoreboard objectives add bswt.crucifixPower dummy
 
 #———————————————————MOB EFFEC
-#FIRE
-    scoreboard objectives add bswt.fireTimer dummy
-#JUMP WEAKNESS
-    scoreboard objectives add bswt.jumpWeaknessTimer dummy
-#NoAI
-    scoreboard objectives add bswt.noAI dummy
-#cannot_attack
-    scoreboard objectives add bswt.CantAttack dummy
-#Spearing
-    scoreboard objectives add bswt.spearingTimer dummy
-#petrifgy
-    scoreboard objectives add bswt.PetrifiedTimer dummy
-
+    for timer in [
+        "fire",
+        "jumpWeakness",
+        "noAI",
+        "cantAttack",
+        "spearing",
+        "petrified"
+    ]:
+        scoreboard objectives add f"bswt.{timer}Timer" dummy
+        
 #———————————————————ENCHANTS
 #LACERATION
     scoreboard objectives add bswt.lacerationStacks dummy

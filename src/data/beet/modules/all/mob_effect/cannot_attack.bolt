@@ -1,16 +1,16 @@
 function bswt:mob_effect/cant_attack/apply:
     #function bswt:mob_effect/cant_attack/apply {duration:20}
-    $scoreboard players set @s bswt.CantAttack $(duration)
+    $scoreboard players set @s bswt.cantAttackTimer $(duration)
     attribute @s minecraft:attack_damage modifier add bswt.cant_attack -100 add_value
-    tag @s add bswt.CantAttack
+    tag @s add bswt.cantAttackTimer
 
 function bswt:mob_effect/cant_attack/tick:
-    scoreboard players remove @s bswt.CantAttack 1
-    if score @s bswt.CantAttack matches ..0:
+    scoreboard players remove @s bswt.cantAttackTimer 1
+    if score @s bswt.cantAttackTimer matches ..0:
         function bswt:mob_effect/cant_attack/clear
 
 function bswt:mob_effect/cant_attack/clear:
-    scoreboard players set @s bswt.CantAttack 0
+    scoreboard players set @s bswt.cantAttackTimer 0
     attribute @s minecraft:attack_damage modifier remove bswt.cant_attack
-    tag @s remove bswt.CantAttack
+    tag @s remove bswt.cantAttackTimer
 

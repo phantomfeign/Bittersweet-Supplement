@@ -1,0 +1,47 @@
+enchantment bswt:cleaving {
+  "description": {
+    "translate": "enchantment.bswt.cleaving",
+    "fallback": "Cleaving"
+  },
+  "effects": {
+    "minecraft:post_attack": [
+      {
+        "requirements": {
+          "condition": "minecraft:entity_properties",
+          "entity": "target_entity",
+          "predicate": {
+            "minecraft:slots": {
+              "armor.*": {
+                "items": "minecraft:air"
+              }
+            }
+          }
+        },
+        "effect": {
+          "type": "minecraft:damage_entity",
+          "damage_type": "minecraft:generic",
+          "min_damage": 3,
+          "max_damage": 3
+        },
+        "enchanted": "attacker",
+        "affected": "victim"
+      }
+    ]
+  },
+  "anvil_cost": 1,
+  "max_cost": {
+    "base": 1,
+    "per_level_above_first": 1
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 1,
+    "per_level_above_first": 1
+  },
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#minecraft:enchantable/sharp_weapon",
+  "exclusive_set": "#minecraft:exclusive_set/damage",
+  "weight": 10
+}

@@ -28,7 +28,7 @@ def build_components(_base_tier, _item_type):
         _lore = [
             {
                 "text": "Lifesteals and regenerates when you do.",
-                "color": "yellow",
+                "color": "gray",
                 "italic": false,
             }
         ]
@@ -96,7 +96,7 @@ def build_components(_base_tier, _item_type):
         ]
         _components["minecraft:lore"].extend([
             {"text": f"{_attack_damage}🗡", "color": "red", "italic": false},
-            {"text": f"{_attack_speed}⌚", "color": "yellow", "italic": false},
+            {"text": f"{_attack_speed}⌚", "color": "gray", "italic": false},
         ])
 
     # spear reach

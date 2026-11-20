@@ -1,0 +1,21 @@
+function bswt:mob_effect/bludgeoned/apply:
+    #function bswt:mob_effect/bludgeoned/apply {duration:1,severity:-0.25}
+    attribute @s minecraft:armor modifier remove bswt.bludgeoned
+    $attribute @s minecraft:armor modifier add bswt.bludgeoned $(severity) add_multiplied_total
+    $scoreboard players set @s bswt.bludgeonedTimer $(duration)
+    tag @s add bswt.bludgeoned
+
+function bswt:mob_effect/bludgeoned/apply_default:
+    function bswt:mob_effect/bludgeoned/apply {duration:1,severity:-0.25}
+
+function bswt:mob_effect/bludgeoned/tick:
+    scoreboard players remove @s bswt.bludgeonedTimer 1
+    if score @s bswt.bludgeonedTimer matches ..0:
+        attribute @s minecraft:armor modifier remove bswt.bludgeoned
+        scoreboard players set @s bswt.bludgeonedTimer 0
+        tag @s remove bswt.bludgeoned
+
+function bswt:mob_effect/bludgeoned/clear:
+    attribute @s minecraft:armor modifier remove bswt.bludgeoned
+    scoreboard players set @s bswt.bludgeonedTimer 0
+    tag @s remove bswt.bludgeoned

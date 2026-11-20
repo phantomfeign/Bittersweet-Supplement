@@ -165,7 +165,7 @@ recipe bswt:equipment/smithed/bronze/sickle {
     "type": "minecraft:smithing_transform",
     "addition": "minecraft:horse_spawn_egg",
     "base": "minecraft:copper_hoe",
-    "template": "minecraft:piglin_spawn_egg",
+    "template": "minecraft:hoglin_spawn_egg",
 	"result": {
 		"id": "minecraft:stone_hoe",
 		"components": {
@@ -315,7 +315,7 @@ recipe bswt:equipment/smithed/bronze/halberd {
     "type": "minecraft:smithing_transform",
     "addition": "minecraft:horse_spawn_egg",
     "base": "minecraft:iron_axe",
-    "template": "minecraft:piglin_spawn_egg",
+    "template": "minecraft:hoglin_spawn_egg",
 	"result": {
 		"id": "minecraft:stone_axe",
 		"components": {
@@ -478,7 +478,7 @@ recipe bswt:equipment/smithed/bronze/greatsword {
     "type": "minecraft:smithing_transform",
     "addition": "minecraft:horse_spawn_egg",
     "base": "minecraft:iron_sword",
-    "template": "minecraft:piglin_spawn_egg",
+    "template": "minecraft:hoglin_spawn_egg",
 	"result": {
 		"id": "minecraft:stone_sword",
 		"components": {
@@ -605,11 +605,80 @@ recipe bswt:equipment/crafted/golden/rapier {
 		}
 	}
 }
+recipe bswt:equipment/smithed/rose_gold/rapier {
+    "type": "minecraft:smithing_transform",
+    "addition": "minecraft:axolotl_spawn_egg",
+    "base": "minecraft:golden_sword",
+    "template": "minecraft:hoglin_spawn_egg",
+	"result": {
+		"id": "minecraft:diamond_sword",
+		"components": {
+			"minecraft:max_damage": TIERS[2]["durability"],
+			"minecraft:item_model": "bswt_texture:rose_gold_rapier",
+			"minecraft:item_name": {
+				"text": "Rose Gold Rapier",
+				"color": "white"
+			},
+			"minecraft:custom_data": {"bswt.rose_gold":true},
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:attack_speed",
+					"id": "bswt:rose_gold_rapier",
+					"amount": -1.4,
+					"operation": "add_value",
+					"slot": "mainhand"
+				},
+				{
+					"type": "minecraft:attack_damage",
+					"id": "bswt:rose_gold_rapier",
+					"amount": 3,
+					"operation": "add_value",
+					"slot": "mainhand"
+				},
+				{
+                "text": "Lifesteals and regenerates when you do.",
+                "color": "gray",
+                "italic": false,
+            	}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"minecraft:attribute_modifiers"
+				]
+			},
+			"minecraft:lore": [
+				{
+					"text": "4🗡",
+					"color": "red",
+					"italic": false
+				},
+				{
+					"text": "2.6⌚",
+					"color": "yellow",
+					"italic": false
+				}
+			],
+			"minecraft:attack_range": {
+				"min_reach": 0,
+				"max_reach": 3,
+				"min_creative_reach": 0,
+				"max_creative_reach": 3
+			},
+			"minecraft:piercing_weapon": {
+				"deals_knockback": true
+			},
+			"minecraft:swing_animation": {
+				"type": "stab",
+				"duration": 10
+			}
+		}
+	}
+}
 recipe bswt:equipment/crafted/bronze/rapier {
     "type": "minecraft:smithing_transform",
     "addition": "minecraft:horse_spawn_egg",
     "base": "minecraft:golden_sword",
-    "template": "minecraft:piglin_spawn_egg",
+    "template": "minecraft:hoglin_spawn_egg",
 	"result": {
 		"id": "minecraft:stone_sword",
 		"components": {

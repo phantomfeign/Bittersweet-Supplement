@@ -31,12 +31,12 @@ function bswt:mob_effect/petrified/clear:
     attribute @s minecraft:jump_strength modifier remove bswt.petrified
     attribute @s minecraft:knockback_resistance modifier remove bswt.petrified
 
-    scoreboard players set @s bswt.PetrifiedTimer 0
+    scoreboard players set @s bswt.petrifiedTimer 0
     tag @s remove bswt.Petrified
 
 function bswt:mob_effect/petrified/apply:
     #function bswt:mob_effect/petrified/apply {duration:60}
-    $scoreboard players set @s bswt.PetrifiedTimer $(duration)
+    $scoreboard players set @s bswt.petrifiedTimer $(duration)
 
     attribute @s minecraft:attack_damage modifier add bswt.petrified -100 add_value
     attribute @s minecraft:movement_speed modifier add bswt.petrified -100 add_value
@@ -45,6 +45,6 @@ function bswt:mob_effect/petrified/apply:
     tag @s add bswt.Petrified
 
 function bswt:mob_effect/petrified/tick:
-    scoreboard players remove @s bswt.PetrifiedTimer 1
-    if score @s bswt.PetrifiedTimer matches ..0 run function bswt:mob_effect/petrified/clear
+    scoreboard players remove @s bswt.petrifiedTimer 1
+    if score @s bswt.petrifiedTimer matches ..0 run function bswt:mob_effect/petrified/clear
 

@@ -1,87 +1,3 @@
-enchantment sharpness {
-	"description": {
-		"translate": "enchantment.minecraft.sharpness"
-	},
-	"effects": {
-		"minecraft:post_attack": [
-			{
-				"enchanted": "attacker",
-				"affected": "victim",
-				"effect": {
-					"type": "minecraft:run_function",
-					"function": "enchantment_function:laceration/apply"
-				}
-			}
-		]
-	},
-	"anvil_cost": 1,
-	"max_cost": {
-		"base": 1,
-		"per_level_above_first": 1
-	},
-	"max_level": 1,
-	"min_cost": {
-		"base": 1,
-		"per_level_above_first": 1
-	},
-	"slots": [
-		"mainhand"
-	],
-	"supported_items": "#minecraft:enchantable/sharp_weapon",
-	"exclusive_set": "#minecraft:exclusive_set/damage",
-	"weight": 10
-}
-enchantment bane_of_arthropods {
-	"description": {
-		"translate": "enchantment.minecraft.bane_of_arthropods"
-	},
-	"effects": {
-		"minecraft:tick": [
-			{
-				"effect": {
-					"type": "minecraft:run_function",
-					"function": "bswt:enchantment/desperation/tick"
-				}
-			}
-		],
-		"minecraft:post_attack": [
-			{
-				"requirements": {
-					"condition": "minecraft:inverted",
-					"term": {
-						"condition": "minecraft:entity_properties",
-						"entity": "this",
-						"predicate": {
-							"minecraft:entity_type": "#bswt:nonliving_entity"
-						}
-					}
-				},
-				"effect": {
-					"type": "minecraft:run_function",
-					"function": "bswt:enchantment/desperation/heal"
-				},
-				"enchanted": "attacker",
-				"affected": "attacker"
-			}
-		]
-	},
-	"anvil_cost": 1,
-	"max_cost": {
-		"base": 1,
-		"per_level_above_first": 1
-	},
-	"max_level": 1,
-	"min_cost": {
-		"base": 1,
-		"per_level_above_first": 1
-	},
-	"slots": [
-		"mainhand"
-	],
-	"supported_items": "#minecraft:enchantable/melee_weapon",
-	"exclusive_set": "#minecraft:exclusive_set/damage",
-	"weight": 10
-}
 enchantment smite {
 	"anvil_cost": 0,
 	"description": {
@@ -476,42 +392,42 @@ enchantment luck_of_the_sea {
 	"weight": 2
 }
 enchantment looting {
-	"anvil_cost": 0,
-	"description": {
-		"translate": "enchantment.minecraft.looting"
-	},
-	"effects": {
-		"minecraft:equipment_drops": [
-			{
-				"effect": {
-					"type": "minecraft:add",
-					"value": 0.02
-				},
-				"enchanted": "attacker",
-				"requirements": {
-					"condition": "minecraft:entity_properties",
-					"entity": "attacker",
-					"predicate": {
-						"minecraft:entity_type": "minecraft:player"
-					}
-				}
-			}
-		]
-	},
-	"max_cost": {
-		"base": 0,
-		"per_level_above_first": 0
-	},
-	"max_level": 1,
-	"min_cost": {
-		"base": 0,
-		"per_level_above_first": 9
-	},
-	"slots": [
-		"mainhand"
-	],
-	"supported_items": "#minecraft:enchantable/melee_weapon",
-	"weight": 2
+  "anvil_cost": 0,
+  "description": {
+    "translate": "enchantment.minecraft.looting"
+  },
+  "effects": {
+    "minecraft:equipment_drops": [
+      {
+        "effect": {
+          "type": "minecraft:add",
+          "value": 0.03
+        },
+        "enchanted": "attacker",
+        "requirements": {
+          "condition": "minecraft:entity_properties",
+          "entity": "attacker",
+          "predicate": {
+            "minecraft:entity_type": "minecraft:player"
+          }
+        }
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 0,
+    "per_level_above_first": 0
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 0,
+    "per_level_above_first": 9
+  },
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#minecraft:enchantable/weapon",
+  "weight": 1
 }
 enchantment fortune {
 	"anvil_cost": 0,
