@@ -57,9 +57,19 @@ enchantment bswt:verdure {
 	"weight": 1
 }
 function bswt:enchantment/verdure/tick:
-    execute if predicate bswt:chance/10 run return fail
-    execute if predicate bswt:enchantment/verdure/mainhand run function utility:damage_item/call {heal:1,dmg:0,hand_slot:SelectedItem,damaged_slot:weapon.mainhand}
-    execute if predicate bswt:enchantment/verdure/offhand run function utility:damage_item/call {heal:1,dmg:0,hand_slot:equipment.offhand,damaged_slot:weapon.offhand}
+	for i in range(36):
+		slot_name = f"container.{i}"
+		nbt_path = f"Inventory[{{Slot:{i}b}}]"
+		if items entity @s (slot_name) *[minecraft:enchantments~[{enchantments:"bswt:verdure",levels:1}]] run function utility:damage_item/call {heal:2,dmg:0,hand_slot:(nbt_path),damaged_slot:(slot_name)}
+
+    for slot_name, nbt_path in [
+		("armor.head", "Inventory[{Slot:103b}]"),
+		("armor.chest", "Inventory[{Slot:102b}]"),
+		("armor.legs", "Inventory[{Slot:101b}]"),
+		("armor.feet", "Inventory[{Slot:100b}]"),
+		("weapon.offhand", "Inventory[{Slot:-106b}]"),
+	]:
+		if items entity @s (slot_name) *[minecraft:enchantments~[{enchantments:"bswt:verdure",levels:1}]] run function utility:damage_item/call {heal:2,dmg:0,hand_slot:(nbt_path),damaged_slot:(slot_name)}
 
 predicate bswt:enchantment/verdure/light {
 	"condition": "all_of",

@@ -63,7 +63,6 @@ function main:actionbar/build/macro:
     $execute if items entity @s $(slot) *[minecraft:enchantments~[{enchantments:"bswt:frostbite",levels:1}]] \
     run function main:actionbar/item/frostbite
 
-
     $execute if items entity @s $(slot) *[minecraft:enchantments~[{enchantments:"bswt:overload",levels:1}]] \
     run function main:actionbar/item/overload
 
@@ -74,6 +73,9 @@ function main:actionbar/build/macro:
     run function main:actionbar/item/vinery
 
 #————————————————————————————————
+function main:actionbar/item/verdure:
+    if predicate bswt:enchantment/verdure/light run return run data modify storage bswt:actionbar now append value {"text":"☀","color":"green"}
+    data modify storage bswt:actionbar now append value {"text":"☀","color":"gray"}
 
 function main:actionbar/item/vinery:
     if score @s bswt.vineryStacks matches 1.. run return run data modify storage bswt:actionbar now append value \

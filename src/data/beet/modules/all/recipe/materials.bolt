@@ -38,7 +38,7 @@ recipe bswt:material/amethyst_shard_to_crystal {
 	"type": "minecraft:crafting_shaped",
 	"category": "misc",
 	"key": {
-		"#": "minecraft:axolotl_spawn_egg"
+		"#": "minecraft:parrot_spawn_egg"
 	},
 	"pattern": [
 		"###",
@@ -146,177 +146,22 @@ recipe bswt:material/bronze_ingot {
         }
     }
 }
-
-recipe bswt:material/bronze_upgrade {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "key": {
-    "R": "minecraft:glowstone_dust",
-    "#": "minecraft:magma_block",
-    "G": "minecraft:copper_block",
-    "X": "minecraft:horse_spawn_egg"
-  },
-  "pattern": [
-    "RGR",
-    "GXG",
-    "R#R"
-  ],
+recipe bswt:material/upgrade_smithing_template {
+	"type": "minecraft:crafting_shaped",
+	"key": {
+		"X": "minecraft:lapis_lazuli",
+		"#": "minecraft:lapis_block",
+		"G": "minecraft:gold_ingot"
+	},
+	"pattern": [
+		"XGX",
+		"XGX",
+		"X#X"
+	],
 	"result": {
-		"id": "minecraft:piglin_spawn_egg",
-        "count": 2,
-		"components": {
-			"!minecraft:entity_data": {},
-            "minecraft:item_name": {
-            "text": "Bronze Upgrade",
-            "color": "yellow",
-            "italic": false
-            },
-            "minecraft:lore": [
-                {
-                "text": "Smithing Template",
-                "color": "gray",
-                "italic": false
-                },
-                "",
-                {
-                "text": "Applies to:",
-                "color": "gray",
-                "italic": false
-                },
-                {
-                "text": " Gold Armor, Greatswords, Pikes,",
-                "color": "blue",
-                "italic": false
-                },
-                {
-                "text": " Sickles, Halberds, and Cutlasses",
-                "color": "blue",
-                "italic": false
-                },
-                {
-                "text": "Ingredients:",
-                "color": "gray",
-                "italic": false
-                },
-                {
-                "text": " Bronze Ingot",
-                "color": "blue",
-                "italic": false
-                }
-            ]
-		}
-	}
-}
-recipe bswt:material/diamond_upgrade {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "key": {
-    "X": "minecraft:diamond",
-    "#": "minecraft:amethyst_shard",
-    "G": "minecraft:gold_block",
-    "g": "minecraft:gold_ingot"
-  },
-  "pattern": [
-    "#g#",
-    "gXg",
-    "#G#"
-  ],
-  "result": {
-    "count": 2,
-    "id": "minecraft:chicken_spawn_egg",
-    "components": {
-        "!minecraft:entity_data": {},
-        "minecraft:item_name": {
-        "text": "Diamond Upgrade",
-        "color": "yellow",
-        "italic": false
-      },
-      "minecraft:lore": [
-        {
-          "text": "Smithing Template",
-          "color": "gray",
-          "italic": false
-        },
-        "",
-        {
-          "text": "Applies to:",
-          "color": "gray",
-          "italic": false
-        },
-        {
-          "text": " Gilded Equipment",
-          "color": "blue",
-          "italic": false
-        },
-        {
-          "text": "Ingredients:",
-          "color": "gray",
-          "italic": false
-        },
-        {
-          "text": " Diamond",
-          "color": "blue",
-          "italic": false
-        }
-      ]
+		"id": "minecraft:netherite_upgrade_smithing_template",
     } 
   }
-}
-recipe bswt:material/adamantine_upgrade {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "key": {
-    "R": "minecraft:resin_brick",
-    "G": "minecraft:gold_block",
-    "g": "minecraft:gold_ingot",
-    "N": "minecraft:netherite_ingot"
-  },
-  "pattern": [
-    "RgR",
-    "gNg",
-    "RGR"
-  ],
-  "result": {
-    "count": 2,
-    "id": "minecraft:hoglin_spawn_egg",
-    "components": {
-        "!minecraft:entity_data": {},
-        "minecraft:item_name": {
-        "text": "Adamantine Upgrade",
-        "color": "yellow",
-        "italic": false
-      },
-      "minecraft:lore": [
-        {
-          "text": "Smithing Template",
-          "color": "gray",
-          "italic": false
-        },
-        "",
-        {
-          "text": "Applies to:",
-          "color": "gray",
-          "italic": false
-        },
-        {
-          "text": " Gilded Equipment",
-          "color": "blue",
-          "italic": false
-        },
-        {
-          "text": "Ingredients:",
-          "color": "gray",
-          "italic": false
-        },
-        {
-          "text": " Adamantine Ingot",
-          "color": "blue",
-          "italic": false
-        }
-      ]
-    } 
-  }
-}
 
 recipe bswt:material/brown_dye {
 	"type": "minecraft:crafting_shapeless",
@@ -382,5 +227,65 @@ recipe bswt:material/gold_ingot_from_nuggets {
 	},
 	"result": {
 		"id": "minecraft:gold_ingot"
+	}
+}
+recipe bswt:material/rose_gold_ingot {
+	"type": "minecraft:crafting_shapeless",
+	"group": "netherite_ingot",
+	"ingredients": [
+		"minecraft:copper_ingot",
+		"minecraft:copper_ingot",
+		"minecraft:copper_ingot",
+		"minecraft:amethyst_shard",
+		"minecraft:copper_ingot",
+		"minecraft:amethyst_shard",
+		"minecraft:gold_ingot",
+		"minecraft:gold_ingot",
+		"minecraft:gold_ingot"
+	],
+	"result": {
+		"id": "minecraft:axolotl_spawn_egg"
+	}
+}
+recipe bswt:material/netherite_ingot {
+	"type": "minecraft:crafting_shapeless",
+	"group": "netherite_ingot",
+	"ingredients": [
+		"minecraft:netherite_scrap",
+		"minecraft:netherite_scrap",
+		"minecraft:netherite_scrap",
+		"minecraft:gold_ingot",
+		"minecraft:iron_ingot",
+		"minecraft:gold_ingot",
+		"minecraft:netherite_scrap",
+		"minecraft:netherite_scrap",
+		"minecraft:netherite_scrap"
+	],
+	"result": {
+		"id": "minecraft:netherite_ingot",
+		"count": 2
+	}
+}
+recipe bswt:misc_crafting/verdum_crystal {
+	"type": "minecraft:crafting_shaped",
+	"key": {
+		"L":"minecraft:jungle_leaves",
+		"#": "minecraft:moss_block",
+		"X": "minecraft:pig_spawn_egg",
+		"A": "minecraft:amethyst_shard",
+		"E": "minecraft:emerald",
+		"H": "minecraft:honeycomb"
+	},
+	"pattern": [
+		"HEH",
+		"LXL",
+		"#A#"
+	],
+	"result": {
+		"count": 3,
+		"id": "minecraft:bogged_spawn_egg",
+		"componenets": [
+			"!minecraft:entity_data"
+		]
 	}
 }

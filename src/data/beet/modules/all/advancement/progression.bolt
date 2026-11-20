@@ -502,8 +502,17 @@ TIER_ADVANCEMENTS = {
         "pieces": FULL_EQUIPMENT_PIECES,
         "icon": "minecraft:gold_ingot",
         "title": "Gold Rush",
-        "description": "\"We\"re rich! Rich and gay.\"",
+        "description": "\"We're rich! Rich and gay.\"",
         "parent": "obtain_copper",
+    },
+    "obtain_rose_gold": {
+        "tier": "rose_gold",
+        "method": "crafted",
+        "pieces": FULL_EQUIPMENT_PIECES,
+        "icon": "minecraft:gold_ingot",
+        "title": "A Single Pale Rose",
+        "description": "\"Every moment you love being yourself, that's me. Loving you and loving being you.\"",
+        "parent": "obtain_gold",
     },
     "obtain_iron": {
         "tier": "iron",

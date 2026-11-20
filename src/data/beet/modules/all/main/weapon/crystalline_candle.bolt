@@ -67,13 +67,15 @@ function main:weapon/crystalline_candle/use:
     rotated as @s as @e[type=marker, tag=bswt.crystalline_candle_proj,limit=1,sort=nearest] run rotate @s ~ ~
 
 function main:weapon/crystalline_candle/heal:
-    if items entity @s weapon.mainhand *[custom_data~{bswt.crystalline_candle:true}] run return run function utility:damage_item/call {heal:2,dmg:0,hand_slot:SelectedItem,damaged_slot:weapon.mainhand}
-    if items entity @s weapon.offhand *[custom_data~{bswt.crystalline_candle:true}] run return run function utility:damage_item/call {heal:2,dmg:0,hand_slot:equipment.offhand,damaged_slot:weapon.offhand}
-    for i in range(9):
-          slot_name = f"hotbar.{i}"
-          nbt_path = f"Inventory[{{Slot:{i}b}}]" 
-        
-          if items entity @s (slot_name) *[custom_data~{bswt.crystalline_candle:true}] run return run function utility:damage_item/call {heal:2, dmg:0, hand_slot:(nbt_path), damaged_slot:(slot_name)}
+	for i in range(36):
+		slot_name = f"container.{i}"
+		nbt_path = f"Inventory[{{Slot:{i}b}}]"
+		if items entity @s (slot_name) *[minecraft:custom_data~{bswt.crystalline_candle:true}] run function utility:damage_item/call {heal:1,dmg:0,hand_slot:(nbt_path),damaged_slot:(slot_name)}
+
+    for slot_name, nbt_path in [
+		("weapon.offhand", "Inventory[{Slot:-106b}]"),
+	]:
+		if items entity @s (slot_name) *[minecraft:custom_data~{bswt.crystalline_candle:true}] run function utility:damage_item/call {heal:1,dmg:0,hand_slot:(nbt_path),damaged_slot:(slot_name)}
 
 #———————————————————————PROJECTILE
 function main:weapon/crystalline_candle/projectile/tick:

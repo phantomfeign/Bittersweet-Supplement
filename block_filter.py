@@ -310,6 +310,10 @@ def beet_default(ctx: Context):
             },
             {
                 "namespace": "minecraft",
+                "path": "^recipe/minecraft:netherite_ingot\\.json$"
+            },
+            {
+                "namespace": "minecraft",
                 "path": "^recipe/netherite_upgrade_smithing_template\\.json$",
             },
             {

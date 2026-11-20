@@ -1,26 +1,3 @@
-recipe bswt:misc_crafting/verdum_crystal {
-	"type": "minecraft:crafting_shaped",
-	"key": {
-		"L":"minecraft:jungle_leaves",
-		"#": "minecraft:moss_block",
-		"X": "minecraft:pig_spawn_egg",
-		"A": "minecraft:amethyst_shard",
-		"E": "minecraft:emerald",
-		"H": "minecraft:honeycomb"
-	},
-	"pattern": [
-		"HEH",
-		"LXL",
-		"#A#"
-	],
-	"result": {
-		"count": 3,
-		"id": "minecraft:bogged_spawn_egg",
-		"componenets": [
-			"!minecraft:entity_data"
-		]
-	}
-}
 recipe bswt:equipment/crafted/verdum/mattock {
 	"type": "minecraft:crafting_shaped",
 	"category": "equipment",
@@ -35,7 +12,7 @@ recipe bswt:equipment/crafted/verdum/mattock {
 	},
 	"result": {
 		"count": 1,
-		"id": "minecraft:stone_hoe",
+		"id": "minecraft:stone_shovel",
 		"components": {
 			"minecraft:item_name": {
 				"text": "Verdum Mattock",
@@ -64,7 +41,7 @@ recipe bswt:equipment/crafted/verdum/mattock {
 						"correct_for_drops": true
 					},
 					{
-						"blocks": "#minecraft:mineable/hoe",
+						"blocks": "#minecraft:mineable/shovel",
 						"speed": 8,
 						"correct_for_drops": true
 					}
@@ -101,7 +78,7 @@ recipe bswt:equipment/crafted/verdum/pulaski {
 	},
 	"result": {
 		"count": 1,
-		"id": "minecraft:stone_axe",
+		"id": "minecraft:stone_hoe",
 		"components": {
 			"minecraft:item_name": {
 				"text": "Verdum Pulaski",
@@ -131,7 +108,7 @@ recipe bswt:equipment/crafted/verdum/pulaski {
 						"correct_for_drops": true
 					},
 					{
-						"blocks": "#minecraft:mineable/shovel",
+						"blocks": "#minecraft:mineable/hoe",
 						"speed": 8,
 						"correct_for_drops": true
 					}

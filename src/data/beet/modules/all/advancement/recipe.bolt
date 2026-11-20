@@ -69,6 +69,7 @@ TIERS=[
         [],
         [
             "bswt:requiem/empty",
+            "bswt:material/rose_gold_ingot",
             "bswt:equipment/crafted/ranged/gilded_crossbow"
         ]
     ),
@@ -76,9 +77,7 @@ TIERS=[
         "diamond","diamond",
         [],
         [],
-        [
-            "bswt:material/diamond_upgrade"
-        ]
+        []
     ),
     (
         "bronze","horse_spawn_egg",
@@ -93,7 +92,7 @@ TIERS=[
         [],
         [],
         [
-            "bswt:material/adamantine_upgrade",
+
             "bswt:uniques/hellish_trident"
         ]
     )
@@ -166,7 +165,10 @@ BASIC = [
     {"item": "snow_block", "recipe": "bswt:block/ice"},
     {"item": "bamboo", "recipe": "bswt:block/bamboo_planks"},
     {"item": "amethyst_shard", "recipe": "bswt:uniques/amethyst_scythe"},
+    {"item": "netherite_scrap", "recipe": "bswt:material/netherite_ingot"},
+    {"item": "lapis_lazuli", "recipe": "bswt:material/upgrade_smithing_template"},
     {"item": "arrow", "recipe": ["bswt:equipment/crafted/ranged/arrow", "bswt:equipment/crafted/ranged/bundle_arrows"]}
+
 ]
 recipe_list = []
 

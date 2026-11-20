@@ -114,9 +114,10 @@ function ticking_functions:tick_1s/players:
     function bswt:main/adrenaline/tick
     function ticking_functions:tick_1s/cooldowns
     function main:actionbar/build/call
-    function main:weapon/crystalline_candle/heal
-    function main:spawner/replace_spawners
-    if predicate bswt:enchantment/verdure/light if predicate bswt:enchantment/verdure/either_hand run function bswt:enchantment/verdure/tick
+    function main:spawner/replace_spawners 
+    if items entity @s container.* *[minecraft:custom_data~{bswt.crystalline_candle:true}] run function main:weapon/crystalline_candle/heal
+    if predicate main:player/has_regen run function main:rose_gold/tick
+    if predicate bswt:enchantment/verdure/light run function bswt:enchantment/verdure/tick
     if entity @s[tag=bswt.vineryCaster] unless entity @e[type=minecraft:block_display,tag=bswt.vinerySpore,distance=..20] run tag @s remove bswt.vineryCaster
 
 function ticking_functions:tick_1s/cooldowns:
