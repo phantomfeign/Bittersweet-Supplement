@@ -97,4 +97,9 @@ Bittersweet Supplement is a Minecraft datapack project focused on slowing down p
 * **Iron Crossbow**: Comes with Sharpshooter (power), shooting very fast, gravity-ignoring arrows.
 * **Gilded Crossbow**: Comes with Quick Charge, which has been buffed to shoot even faster.
 * **Chambered Crossbow**: Comes with Overload, loading up to 5 arrows at once.
-Use code with caution.
+
+# Inspiration
+Doctor4t
+Diansu
+Raspberry Flavored - Raspmarry
+Matcha Flavored - Klei Wright
