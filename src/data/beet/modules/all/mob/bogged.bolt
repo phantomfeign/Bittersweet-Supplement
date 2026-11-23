@@ -1,0 +1,5 @@
+function bswt:mob/bogged/spawn:
+    function utility:clear_armor
+    attribute @s minecraft:follow_range base set 256
+    attribute @s minecraft:max_health base set 16
+    data merge entity @s {Health:18.0f}

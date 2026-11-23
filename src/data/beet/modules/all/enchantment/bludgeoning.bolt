@@ -1,6 +1,6 @@
 enchantment bswt:bludgeoning {
 	"description": {
-		"translate": "enchantment.bswt.bludgeoning"
+		"translate": "enchantment.bswt.bludgeoning",
         "fallback": "Bludgeoning"
 	},
 	"effects": {

@@ -162,6 +162,21 @@ def beet_default(ctx: Context):
             },
             {
                 "namespace": "minecraft",
+                "path": "^recipe/rail\\.json$",
+            },
+            {
+                "namespace": "minecraft",
+                "path": "^recipe/powered_rail\\.json$",
+            },
+            {
+                "namespace": "minecraft",
+                "path": "^recipe/activator_rail\\.json$",
+            },
+            {
+                "namespace": "minecraft",
+                "path": "^recipe/detector_rail\\.json$",
+            },            {
+                "namespace": "minecraft",
                 "path": "^recipe/comparator\\.json$",
             },
             {

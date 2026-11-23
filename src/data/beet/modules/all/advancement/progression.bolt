@@ -239,7 +239,7 @@ advancement bswt:progression/smith_hybrid_tool {
             "id": "minecraft:emerald"
         },
         "title": "Jack of All Jades",
-        "description": "Smith two diamond or adamantine tools together with an emerald.",
+        "description": "Smith two final-tier tools together with an emerald.",
         "frame": "goal",
         "show_toast": true,
         "announce_to_chat": true,

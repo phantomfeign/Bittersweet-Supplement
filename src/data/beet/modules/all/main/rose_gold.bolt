@@ -33,13 +33,15 @@ advancement main:rose_gold/hit {
 					"minecraft:equipment": {
 						"mainhand": {
 							"components": {
-								"minecraft:custom_data": {"bswt.rose_gold":true}
+								"minecraft:custom_data": {
+									"bswt.rose_gold": true
+								}
 							}
 						}
 					}
 				},
 				"entity": {
-					"minecraft:entity_type": "bswt:hostiles"
+					"minecraft:entity_type": "#bswt:hostiles"
 				}
 			}
 		}

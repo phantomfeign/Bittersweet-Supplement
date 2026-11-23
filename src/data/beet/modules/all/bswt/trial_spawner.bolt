@@ -1,4 +1,4 @@
-trial_spawner bswt:blaze {
+trial_spawner bswt:blaze_trial_spawner {
 	"spawn_range": 4,
 	"total_mobs": 6,
 	"simultaneous_mobs": 2,

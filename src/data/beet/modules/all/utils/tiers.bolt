@@ -6,7 +6,7 @@ TIERS = [
     {"number": 5, "name": "diamond", "weapon_damage": 7, "attack_speed": 2, "mining_speed": 11, "durability": 2000},
     {"number": 6, "name": "netherite", "weapon_damage": 9, "attack_speed": 1.6, "mining_speed": 10, "durability": 4000},
     {"number": 7, "name": "chainmail", "durability": 500},
-    {"number": 8, "name": "rose_gold", "weapon_damage": 6, "attack_speed": 2, "mining_speed": 10, "durability": 500},
+    {"number": 8, "name": "rose_gold", "weapon_damage": 6, "attack_speed": 1.6, "mining_speed": 10, "durability": 500},
 ]
 
 EQUIPMENT_PATTERNS = [

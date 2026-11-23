@@ -46,5 +46,5 @@ predicate bswt:enchantment/dueling {
   ]
 }
 function bswt:enchantment/dueling/tick:
-    unless predicate bswt:enchantment/dueling run return run attribute @s remove attack_damage bswt.dueling
-    attribute @s add attack_damage bswt.dueling add_value 3
+    attribute @s minecraft:attack_damage modifier remove bswt.dueling
+    if predicate bswt:enchantment/dueling run attribute @s minecraft:attack_damage modifier add bswt.dueling 3 add_value

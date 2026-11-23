@@ -165,7 +165,7 @@ recipe bswt:equipment/smithed/bronze/sickle {
     "type": "minecraft:smithing_transform",
     "addition": "minecraft:horse_spawn_egg",
     "base": "minecraft:copper_hoe",
-    "template": "minecraft:hoglin_spawn_egg",
+    "template": "minecraft:netherite_upgrade_smithing_template",
 	"result": {
 		"id": "minecraft:stone_hoe",
 		"components": {
@@ -315,7 +315,7 @@ recipe bswt:equipment/smithed/bronze/halberd {
     "type": "minecraft:smithing_transform",
     "addition": "minecraft:horse_spawn_egg",
     "base": "minecraft:iron_axe",
-    "template": "minecraft:hoglin_spawn_egg",
+    "template": "minecraft:netherite_upgrade_smithing_template",
 	"result": {
 		"id": "minecraft:stone_axe",
 		"components": {
@@ -478,7 +478,7 @@ recipe bswt:equipment/smithed/bronze/greatsword {
     "type": "minecraft:smithing_transform",
     "addition": "minecraft:horse_spawn_egg",
     "base": "minecraft:iron_sword",
-    "template": "minecraft:hoglin_spawn_egg",
+    "template": "minecraft:netherite_upgrade_smithing_template",
 	"result": {
 		"id": "minecraft:stone_sword",
 		"components": {
@@ -548,14 +548,18 @@ recipe bswt:equipment/crafted/golden/rapier {
 		"#  "
 	],
 	"result": {
-		"id": "minecraft:golden_sword",
+		"id": "minecraft:ocelot_spawn_egg",
 		"components": {
+			"minecraft:max_stack_size": 1,
+			"minecraft:damage": 0,
 			"minecraft:max_damage": TIERS[3]["durability"],
+			"!minecraft:entity_data": {},
 			"minecraft:item_model": "bswt_texture:golden_rapier",
 			"minecraft:item_name": {
 				"text": "Golden Rapier",
 				"color": "white"
 			},
+			"minecraft:minimum_attack_charge": 1,
 			"minecraft:attribute_modifiers": [
 				{
 					"type": "minecraft:attack_speed",
@@ -606,10 +610,10 @@ recipe bswt:equipment/crafted/golden/rapier {
 	}
 }
 recipe bswt:equipment/smithed/rose_gold/rapier {
-    "type": "minecraft:smithing_transform",
-    "addition": "minecraft:axolotl_spawn_egg",
-    "base": "minecraft:golden_sword",
-    "template": "minecraft:hoglin_spawn_egg",
+	"type": "minecraft:smithing_transform",
+	"addition": "minecraft:axolotl_spawn_egg",
+	"base": "minecraft:ocelot_spawn_egg",
+	"template": "minecraft:netherite_upgrade_smithing_template",
 	"result": {
 		"id": "minecraft:diamond_sword",
 		"components": {
@@ -617,9 +621,13 @@ recipe bswt:equipment/smithed/rose_gold/rapier {
 			"minecraft:item_model": "bswt_texture:rose_gold_rapier",
 			"minecraft:item_name": {
 				"text": "Rose Gold Rapier",
-				"color": "white"
+				"color": "aqua"
 			},
-			"minecraft:custom_data": {"bswt.rose_gold":true},
+			"minecraft:custom_data": {
+				"bswt.rose_gold": true
+			},
+			"minecraft:minimum_attack_charge": 1,
+			"minecraft:damage_type": "minecraft:magic",
 			"minecraft:attribute_modifiers": [
 				{
 					"type": "minecraft:attack_speed",
@@ -634,12 +642,7 @@ recipe bswt:equipment/smithed/rose_gold/rapier {
 					"amount": 3,
 					"operation": "add_value",
 					"slot": "mainhand"
-				},
-				{
-                "text": "Lifesteals and regenerates when you do.",
-                "color": "gray",
-                "italic": false,
-            	}
+				}
 			],
 			"minecraft:tooltip_display": {
 				"hidden_components": [
@@ -649,12 +652,17 @@ recipe bswt:equipment/smithed/rose_gold/rapier {
 			"minecraft:lore": [
 				{
 					"text": "4🗡",
-					"color": "red",
+					"color": "#e69cb8",
 					"italic": false
 				},
 				{
 					"text": "2.6⌚",
 					"color": "yellow",
+					"italic": false
+				},
+				{
+					"text": "Lifesteals and regenerates when you do.",
+					"color": "gray",
 					"italic": false
 				}
 			],
@@ -677,8 +685,8 @@ recipe bswt:equipment/smithed/rose_gold/rapier {
 recipe bswt:equipment/crafted/bronze/rapier {
     "type": "minecraft:smithing_transform",
     "addition": "minecraft:horse_spawn_egg",
-    "base": "minecraft:golden_sword",
-    "template": "minecraft:hoglin_spawn_egg",
+    "base": "minecraft:ocelot_spawn_egg",
+    "template": "minecraft:netherite_upgrade_smithing_template",
 	"result": {
 		"id": "minecraft:stone_sword",
 		"components": {
@@ -688,6 +696,7 @@ recipe bswt:equipment/crafted/bronze/rapier {
 				"text": "Bronze Rapier",
 				"color": "white"
 			},
+			"minecraft:minimum_attack_charge": 1,
 			"minecraft:attribute_modifiers": [
 				{
 					"type": "minecraft:attack_speed",
@@ -699,7 +708,7 @@ recipe bswt:equipment/crafted/bronze/rapier {
 				{
 					"type": "minecraft:attack_damage",
 					"id": "bswt:bronze_rapier",
-					"amount": 4,
+					"amount": 5,
 					"operation": "add_value",
 					"slot": "mainhand"
 				}

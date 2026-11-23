@@ -190,3 +190,62 @@ recipe bswt:block/blast_furnace {
     "id": "minecraft:blast_furnace"
   }
 }
+recipe bswt:rail {
+	"type": "minecraft:crafting_shaped",
+	"key": {
+		"#": "minecraft:stick",
+		"X": "minecraft:iron_nugget"
+	},
+	"pattern": [
+		"X#X",
+		"X#X",
+		"X#X"
+	],
+	"result": {
+		"count": 32,
+		"id": "minecraft:rail"
+	}
+}
+recipe bswt:powered_rail {
+	"type": "minecraft:crafting_shaped",
+	"key": {
+		"#": "minecraft:rail",
+		"X": "minecraft:copper_ingot",
+		"R": "minecraft:redstone"
+	},
+	"pattern": [
+		"#X#",
+		"#R#",
+		"#X#"
+	],
+	"result": {
+		"count": 6,
+		"id": "minecraft:powered_rail"
+	}
+}
+recipe bswt:detector_rail {
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		"minecraft:redstone",
+		"minecraft:stone_pressure_plate",
+		"minecraft:rail",
+		"minecraft:rail"
+	],
+	"result": {
+		"count": 2,
+		"id": "minecraft:detector_rail"
+	}
+}
+recipe bswt:activator_rail {
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		"minecraft:redstone",
+		"minecraft:redstone_torch",
+		"minecraft:rail",
+		"minecraft:rail"
+	],
+	"result": {
+		"count": 2,
+		"id": "minecraft:activator_rail"
+	}
+}

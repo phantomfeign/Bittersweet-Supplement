@@ -44,7 +44,7 @@ function bswt:enchantment/hooking/pull:
     playsound minecraft:item.spear.lunge_1 player @a ~ ~ ~ 1 2
 
     ride @s dismount
-    function bswt:mob_effect/cannot_attack/apply {duration:7}
+    function bswt:mob_effect/cant_attack/apply {duration:7}
 
     as @s[type=player] run return run function bswt:enchantment/hooking/pull/player
 

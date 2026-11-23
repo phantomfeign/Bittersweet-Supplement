@@ -1,107 +1,148 @@
-item_tag enchantable/sharp_weapon {
-  "values": [
-    "#minecraft:enchantable/swords",
-    "#minecraft:enchantable/spears",
-    "#minecraft:enchantable/axes"
-  ]
+item_tag minecraft:enchantable/sharp_weapon {
+    "replace": true,
+    "values": [        
+        "#minecraft:swords",
+        "#minecraft:spears",
+        "#minecraft:axes"
+    ]
 }
-item_tag enchantable/melee_weapon {
-  "values": [
-    "#minecraft:enchantable/sharp_weapon",
-    "#minecraft:enchantable/mace"
-  ]
+
+item_tag minecraft:enchantable/melee_weapon {
+    "replace": true,
+    "values": [        
+        "#minecraft:swords",
+        "#minecraft:spears",
+        "#minecraft:axes",
+        "#minecraft:enchantable/mace"
+    ]
 }
-item_tag enchantable/weapon {
-  "values": [
-    "#minecraft:enchantable/melee_weapon",
-    "#bswt:enchantable/ranged_weapon"
-  ]
+
+item_tag minecraft:enchantable/weapon {
+    "replace": true,
+    "values": [        
+        "#minecraft:enchantable/melee_weapon",
+        "#bswt:enchantable/ranged_weapon"
+    ]
 }
+
 item_tag bswt:enchantable/knockback {
-  "values": [
-    "#minecraft:enchantable/melee_weapon",
-    "#bswt:enchantable/ranged_weapon"
-  ]
+    "replace": true,
+    "values": [        
+        "#minecraft:enchantable/melee_weapon",
+        "#bswt:enchantable/ranged_weapon"
+    ]
 }
+
 item_tag bswt:enchantable/bludgeoning {
-  "values": [
-    "#minecraft:enchantable/pickaxe",
-    "#minecraft:enchantable/mace"
-  ]
+    "replace": true,
+    "values": [        
+        "#minecraft:pickaxes",
+        "#minecraft:enchantable/mace"
+    ]
 }
+
 item_tag bswt:enchantable/ranged_weapon {
-  "values": [
-    "#minecraft:enchantable/crossbow",
-    "#minecraft:enchantable/bow"
-  ]
+    "replace": true,
+    "values": [        
+        "#minecraft:enchantable/crossbow",
+        "#minecraft:enchantable/bow"
+    ]
 }
 
 enchantment_tag bswt:exclusive_set/bounding {
-  "values": [
-    "bswt:bounding",
-    "minecraft:feather_falling"
-  ]
-}
-enchantment_tag bswt:exclusive_set/crossbow_type {
-  "values": [
-    "minecraft:power",
-    "minecraft:quick_charge",
-    "bswt:overload"
-  ]
-}
-enchantment_tag bswt:exclusive_set/knockback {
-  "values": [
-    "minecraft:knockback",
-    "minecraft:flame",
-    "bswt:hooking"
-  ]
-}
-enchantment_tag bswt:exclusive_set/multishot {
-  "values": [
-    "minecraft:multishot",
-    "minecraft:flame",
-    "bswt:overload"
-  ]
-}
-enchantment_tag bswt:exclusive_set/riptide {
-  "values": [
-    "minecraft:loyalty",
-    "minecraft:channeling",
-    "bswt:viper"
-  ]
-}
-enchantment_tag curse {
-  "values": [
-    "bswt:bow_mechanics",
-    "bswt:hefty",
-    "bswt:hooking"
+    "replace": true,
+    "values": [        
+        "bswt:bounding",
+        "minecraft:feather_falling"
     ]
 }
-enchantment_tag exclusive_set/mining {
+
+enchantment_tag bswt:exclusive_set/crossbow_type {
     "replace": true,
-    "values": [
-        "minecraft:fortune",
+    "values": [        
+        "minecraft:power",
+        "minecraft:quick_charge",
+        "bswt:overload"
+    ]
+}
+
+enchantment_tag bswt:exclusive_set/knockback {
+    "replace": true,
+    "values": [        
+        "minecraft:knockback",
+        "minecraft:flame",
+        "bswt:hooking"
+    ]
+}
+
+enchantment_tag bswt:exclusive_set/multishot {
+    "replace": true,
+    "values": [        
+        "minecraft:multishot",
+        "minecraft:flame",
+        "bswt:overload"
+    ]
+}
+
+enchantment_tag bswt:exclusive_set/riptide {
+    "replace": true,
+    "values": [       
+        "minecraft:loyalty",
+        "minecraft:channeling",
+        "bswt:viper"
+    ]
+}
+
+enchantment_tag minecraft:curse {
+    "replace": true,
+    "values": [        
+      "bswt:bow_mechanics",
+        "bswt:hefty",
+        "bswt:hooking"
+    ]
+}
+
+enchantment_tag minecraft:exclusive_set/mining {
+    "replace": true,
+    "values": [        
+      "minecraft:fortune",
         "minecraft:silk_touch",
         "minecraft:fire_aspect"
     ]
 }
-enchantment_tag exclusive_set/leg {
-  "values": [
-    "minecraft:depth_strider",
-    "minecraft:swift_sneak"
-  ]
+
+enchantment_tag minecraft:exclusive_set/leg {
+    "replace": true,
+    "values": [        
+      "minecraft:depth_strider",
+        "minecraft:swift_sneak"
+    ]
 }
-enchantment_tag exclusive_set/melee {
-  "values": [
-    "minecraft:sharpness",
-    "minecraft:smite",
-    "minecraft:bane_of_arthropods",
-    "minecraft:fire_aspect",
-    "bswt:frostbite",
-    "minecraft:density",
-    "minecraft:sweeping_edge",
-    "minecraft:breach",
-    "minecraft:fortune",
-    "minecraft:silk_touch"
-  ]
+
+enchantment_tag minecraft:exclusive_set/damage {
+    "replace": true,
+    "values": [        
+        "minecraft:sharpness",
+        "bswt:cleaving",
+        "bswt:giant_slayer",
+        "minecraft:bane_of_arthropods",
+        "minecraft:density",
+        "minecraft:sweeping_edge",
+        "bswt:dueling",
+        "bswt:skirmishing",
+        "minecraft:breach",
+        "bswt:bludgeoning",
+        "minecraft:fortune",
+        "minecraft:silk_touch"
+    ]
+}
+
+enchantment_tag bswt:exclusive_set/status {
+    "replace": true,
+    "values": [        
+        "minecraft:smite",
+        "minecraft:fire_aspect",
+        "bswt:frostbite",
+        "bswt:exposure",
+    ]
 }

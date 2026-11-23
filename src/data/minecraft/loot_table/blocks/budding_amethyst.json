@@ -6,16 +6,18 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "minecraft:amethyst_shard",
 					"functions": [
 						{
-							"function": "minecraft:set_count",
-							"count": {
-								"min": 1,
-								"max": 2
+							"function": "minecraft:set_components",
+							"components": {
+								"!minecraft:entity_data": {}
 							}
+						},
+						{
+							"function": "minecraft:explosion_decay"
 						}
-					]
+					],
+					"name": "minecraft:parrot_spawn_egg"
 				}
 			]
 		}

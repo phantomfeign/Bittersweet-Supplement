@@ -38,12 +38,12 @@ predicate bswt:flag/sprinting {
       "entity": "this",
       "predicate": {
         "minecraft:flags": {
-          "is_sprinting": false
+          "is_sprinting": true
         }
       }
     }
   ]
 }
 function bswt:enchantment/skirmishing/tick:
-    unless predicate bswt:flag/sprinting run return run attribute @s remove attack_speed bswt.skirmishing
-    attribute @s add attack_speed bswt.skirmishing add_value 0.5
+    attribute @s minecraft:attack_speed modifier remove bswt.skirmishing
+    if predicate bswt:flag/sprinting run attribute @s minecraft:attack_speed modifier add bswt.skirmishing 0.5 add_value

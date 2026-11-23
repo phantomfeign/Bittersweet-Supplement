@@ -23,18 +23,10 @@ def build_components(_base_tier, _item_type):
     _is_tool = _item_type in TOOLS
     _is_weapon = _item_type in ("axe", "sword", "spear")
     _lore = []
-
-    if _base_tier == "rose_gold":
-        _lore = [
-            {
-                "text": "Lifesteals and regenerates when you do.",
-                "color": "gray",
-                "italic": false,
-            }
-        ]
-
     _components = {
-        "minecraft:tooltip_display": {"hidden_components": ["minecraft:attribute_modifiers"]},
+        "minecraft:tooltip_display": {
+            "hidden_components": ["minecraft:attribute_modifiers"]
+        },
         "minecraft:max_damage": _tier["durability"],
         "minecraft:lore": _lore,
     }
@@ -42,22 +34,20 @@ def build_components(_base_tier, _item_type):
     # custom item model for rose gold
     if _base_tier == "rose_gold":
         _components["minecraft:item_model"] = f"bswt_texture:rose_gold_{_item_type}"
-        _components["minecraft:custom_data"] = {
-            "bswt.rose_gold":true
-        }
+        _components["minecraft:custom_data"] = {"bswt_rose_gold": True}
 
     # mining stats
     if _is_tool:
         _mining_speed = _tier["mining_speed"]
         _components["minecraft:lore"].append(
-            {"text": f"{_mining_speed}⛏", "color": "gold", "italic": false}
+            {"text": f"{_mining_speed}⛏", "color": "gold", "italic": False}
         )
         _components["minecraft:tool"] = {
             "rules": [
                 {
                     "blocks": f"#minecraft:mineable/{_item_type}",
                     "speed": _mining_speed,
-                    "correct_for_drops": true,
+                    "correct_for_drops": True,
                 }
             ],
             "default_mining_speed": 1,
@@ -94,24 +84,45 @@ def build_components(_base_tier, _item_type):
                 "slot": "mainhand",
             },
         ]
-        _components["minecraft:lore"].extend([
-            {"text": f"{_attack_damage}🗡", "color": "red", "italic": false},
-            {"text": f"{_attack_speed}⌚", "color": "gray", "italic": false},
-        ])
 
-    # spear reach
-    if _item_type == "spear":
+        if _base_tier == "rose_gold":
+            _components["minecraft:lore"].append(
+                {"text": f"{_attack_damage}🗡", "color": "#e69cb8", "italic": False}
+            )
+        else:
+            _components["minecraft:lore"].append(
+                {"text": f"{_attack_damage}🗡", "color": "red", "italic": False}
+            )
+
         _components["minecraft:lore"].append(
-            {"text": "1-4.5→", "color": "green", "italic": false}
+            {"text": f"{_attack_speed}⌚", "color": "yellow", "italic": False}
         )
-        _components["minecraft:attack_range"] = {
-            "min_reach": 1.0,
-            "max_reach": 4.5,
-            "min_creative_reach": 2.0,
-            "max_creative_reach": 6.5,
-            "hitbox_margin": 0.125,
-            "mob_factor": 0.5,
-        }
+
+        # spear reach
+        if _item_type == "spear":
+            _components["minecraft:lore"].append(
+                {"text": "1-4.5→", "color": "green", "italic": False}
+            )
+            _components["minecraft:attack_range"] = {
+                "min_reach": 1.0,
+                "max_reach": 4.5,
+                "min_creative_reach": 2.0,
+                "max_creative_reach": 6.5,
+                "hitbox_margin": 0.125,
+                "mob_factor": 0.5,
+            }
+
+        if _base_tier == "rose_gold":
+            _components["minecraft:lore"].extend(
+                [
+                    {
+                        "text": "Lifesteals, and regenerates when you do.",
+                        "color": "gray",
+                        "italic": False,
+                    }
+                ]
+            )
+            _components["minecraft:damage_type"] = "minecraft:magic"
 
     # custom item names
     if _base_tier in CUSTOM_NAMES:
@@ -124,36 +135,39 @@ def build_components(_base_tier, _item_type):
 
 
 def add_crafted_recipe(_base_tier, _material, _item_type):
-    ctx.data.recipes[f"bswt:equipment/crafted/{_base_tier}/{_item_type}"] = Recipe({
-        "type": "minecraft:crafting_shaped",
-        "category": "equipment",
-        "pattern": EQUIPMENT_PATTERNS_LOOKUP[_item_type]["pattern"],
-        "key": {
-            "#": "minecraft:stick",
-            "X": f"minecraft:{_material}",
-        },
-        "result": {
-            "id": get_result_id(_base_tier, _item_type),
-            "components": build_components(_base_tier, _item_type),
-        },
-    })
+    ctx.data.recipes[f"bswt:equipment/crafted/{_base_tier}/{_item_type}"] = Recipe(
+        {
+            "type": "minecraft:crafting_shaped",
+            "category": "equipment",
+            "pattern": EQUIPMENT_PATTERNS_LOOKUP[_item_type]["pattern"],
+            "key": {
+                "#": "minecraft:stick",
+                "X": f"minecraft:{_material}",
+            },
+            "result": {
+                "id": get_result_id(_base_tier, _item_type),
+                "components": build_components(_base_tier, _item_type),
+            },
+        }
+    )
 
 
 def add_smithed_recipe(_base_tier, _addition, _item_type):
-    ctx.data.recipes[f"bswt:equipment/smithed/{_base_tier}/{_item_type}"] = Recipe({
-        "type": "minecraft:smithing_transform",
-        "addition": f"minecraft:{_addition}",
-        "base": f"minecraft:golden_{_item_type}",
-        "template": "minecraft:netherite_upgrade_smithing_template",
-        "result": {
-            "id": get_result_id(_base_tier, _item_type),
-            "components": build_components(_base_tier, _item_type),
-        },
-    })
+    ctx.data.recipes[f"bswt:equipment/smithed/{_base_tier}/{_item_type}"] = Recipe(
+        {
+            "type": "minecraft:smithing_transform",
+            "addition": f"minecraft:{_addition}",
+            "base": f"minecraft:golden_{_item_type}",
+            "template": "minecraft:netherite_upgrade_smithing_template",
+            "result": {
+                "id": get_result_id(_base_tier, _item_type),
+                "components": build_components(_base_tier, _item_type),
+            },
+        }
+    )
 
 
-#——————————— RECIPE GEN
-
+# ——————————— RECIPE GEN
 CRAFTED_TIERS = {
     "copper": "copper_ingot",
     "iron": "iron_ingot",

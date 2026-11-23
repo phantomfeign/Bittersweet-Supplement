@@ -75,6 +75,7 @@ entity_type_tag bswt:spawn_check {
 }
 
 function bswt:mob/universal/filter:
+    data modify entity @s drop_chances set value {head:0.0f,chest:0.0f,legs:0.0f,feet:0.0f,mainhand:0.0f,offhand:0.0f} 
     as @s[tag=bswt.adjustmentBypass] run return run tag @s add bswt.spawnChecked
     as @s[tag=bswt.filterBypass] run return run function bswt:mob/universal/route
 
@@ -124,9 +125,8 @@ function bswt:mob/universal/copy_self:
         as @s[type=f"minecraft:{mob}"] run return run summon f"minecraft:{mob}" ~ ~ ~ {Tags:["bswt.extraSpawn"]}
 
 function bswt:mob/universal/route:
-    tag @s add bswt.spawnChecked
-    #prevent mobs from dropping equipment
     data modify entity @s drop_chances set value {head:0.0f,chest:0.0f,legs:0.0f,feet:0.0f,mainhand:0.0f,offhand:0.0f} 
+    tag @s add bswt.spawnChecked
     #prevent trial goons from being modified
     as @s[tag=bswt.trialChamberSpawn] run return fail
     MOBS = [

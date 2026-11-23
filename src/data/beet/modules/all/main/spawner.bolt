@@ -37,8 +37,8 @@ function main:spawner/replace_spawners:
     #blaze
     fill ~16 ~16 ~16 ~-16 ~-16 ~-16 \
     minecraft:trial_spawner[ominous=false]{\
-    normal_config:"bswt:blaze_trial",\
-    ominous_config:"bswt:blaze_trial"} \
+    normal_config:"bswt:blaze_trial_spawner",\
+    ominous_config:"bswt:blaze_trial_spawner"} \
     replace minecraft:spawner{SpawnData:{entity:{id:"minecraft:blaze"}}}
 
 function main:spawner/marker/tick:

@@ -40,7 +40,8 @@ function ticking_functions:tick_1t/universal:
     as @s[type=marker,tag=bswt.GorgonWatcher] unless entity @e[type=skeleton,tag=bswt.Gorgon] run function bswt:mob/boss/gorgon/bossbar/clear
 
     as @s[type=armor_stand,tag=bswt.GorgonRockMount] at @s run function bswt:mob/boss/gorgon/attack/throw_rock/tick
-    
+    as @s[type=#main:minecart/boost_eligible] at @s run function main:minecart/boost
+
 function ticking_functions:tick_1t/players:
     as @a[tag=bswt.holdingCrucifix]:
         scoreboard players remove @s bswt.usingCrucifix 1
@@ -105,9 +106,9 @@ function ticking_functions:tick_1s/universal:
     as @s[tag=bswt.JumpWeakness] run function bswt:mob_effect/jump_weakness/tick
     as @s[tag=bswt.Petrified] run function bswt:mob_effect/petrified/tick
     as @s[type=#bswt:spawn_check,tag=!bswt.spawnChecked] run function bswt:mob/universal/filter
-    as @s[type=zombie] run function bswt:mob/zombie/tick
+    as @s[type=zombie] if entity @a[distance=..64] run function bswt:mob/zombie/tick
     as @s[type=minecraft:marker,tag=spawner_marker] at @s run function main:spawner/marker/tick
-    as @s[type=item] at @s if items entity @s contents #bswt:equipment/gold_gear run function main:gold_repair/check_damage
+    as @s[type=item] if items entity @s contents #bswt:equipment/gold_gear at @s run function main:gold_repair/check_damage
     unless score #title bswt.bossAbilityTimer matches 1.. as @s[type=skeleton,tag=bswt.Gorgon] at @s run function bswt:mob/boss/gorgon/tick
 
 function ticking_functions:tick_1s/players:
@@ -117,7 +118,6 @@ function ticking_functions:tick_1s/players:
     function main:actionbar/build/call
     function main:spawner/replace_spawners 
     if items entity @s container.* *[minecraft:custom_data~{bswt.crystalline_candle:true}] run function main:weapon/crystalline_candle/heal
-    if predicate main:player/has_regen run function main:rose_gold/tick
     if predicate bswt:enchantment/verdure/light run function bswt:enchantment/verdure/tick
     if entity @s[tag=bswt.vineryCaster] unless entity @e[type=minecraft:block_display,tag=bswt.vinerySpore,distance=..20] run tag @s remove bswt.vineryCaster
 
@@ -135,7 +135,20 @@ function ticking_functions:tick_1s/cooldowns:
     #special
     as @s[tag=!canLunge] if score @s bswt.cd.Lunge matches ..0 run tag @s add canLunge
 
-#—————————————————— 10
+#—————————————————— 2s
+function ticking_functions:tick_2s/call:
+    schedule function ticking_functions:tick_2s/call 2s replace
+    as @e at @s:
+        function ticking_functions:tick_2s/universal
+        if entity @s[type=player] run function ticking_functions:tick_2s/players
+        
+function ticking_functions:tick_2s/universal:
+    pass
+
+function ticking_functions:tick_2s/players:
+    if predicate main:player/has_regen run function main:rose_gold/tick
+
+#—————————————————— 10s
 function ticking_functions:tick_10s/call:
     schedule function ticking_functions:tick_10s/call 10s replace
     as @e at @s:

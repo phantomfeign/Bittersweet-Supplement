@@ -34,7 +34,7 @@ SMITHED_ARMOR_TIERS = {
     "diamond": {"item": "diamond", "sound": "diamond", "major": 4, "minor": 4},
     "netherite": {"item": "netherite_ingot", "sound": "netherite", "major": 5, "minor": 5},
     "rose_gold": {"item": "axolotl_spawn_egg", "sound": "gold", "major": 4, "minor": 4},
-    "bronze": {"item": "copper_ingot", "sound": "copper", "major": 0, "minor": 0},
+    "bronze": {"item": "horse_spawn_egg", "base": "copper", "sound": "copper", "major": 0, "minor": 0},
 }
 
 
@@ -124,7 +124,7 @@ def build_armor_components(_base_tier, _armor_type, _slot, _config):
         _components["minecraft:equippable"] = {
             "slot": _slot,
             "equip_sound": "minecraft:item.armor.equip_gold",
-            "asset_id": "bswt_texture:rose_gold"
+            "asset_id": "minecraft:rose_gold"
         }
         _components["minecraft:custom_data"] = {
             "bswt.rose_gold":true
@@ -154,12 +154,19 @@ def build_armor_components(_base_tier, _armor_type, _slot, _config):
 
     # golden set bonus lore
     if _base_tier == "golden":
+        _components["minecraft:attribute_modifiers"].append({
+            "type": "minecraft:burning_time",
+            "id": f"bswt:golden_{_armor_type}_burn_time",
+            "amount": -0.125,
+            "operation": "add_multiplied_base",
+            "slot": _slot,
+        })
         _components["minecraft:lore"].append({
             "text": "🔥⛨",
             "color": "gray",
-            "italic": false,
+            "italic": False,
         })
-
+        
     # diamond speed bonus
     if _base_tier == "diamond":
         _components["minecraft:attribute_modifiers"].append({
@@ -223,10 +230,11 @@ def add_crafted_armor(_base_tier, _config, _armor_type, _slot):
 
 
 def add_smithed_armor(_base_tier, _config, _armor_type, _slot):
+    _base_material = _config.get("base", "golden")
     ctx.data.recipes[f"bswt:equipment/smithed/{_base_tier}/{_armor_type}"] = Recipe({
         "type": "minecraft:smithing_transform",
         "addition": f"minecraft:{_config['item']}",
-        "base": f"minecraft:golden_{_armor_type}",
+        "base": f"minecraft:{_base_material}_{_armor_type}",
         "template": "minecraft:netherite_upgrade_smithing_template",
         "result": {
             "id": get_armor_result_id(_base_tier, _armor_type),

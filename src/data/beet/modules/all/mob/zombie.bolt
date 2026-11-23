@@ -1,4 +1,5 @@
 function bswt:mob/zombie/spawn:
+    function utility:clear_armor
     attribute @s minecraft:attack_damage base set 3
     attribute @s minecraft:knockback_resistance base set 0.5
     attribute @s minecraft:follow_range base set 25

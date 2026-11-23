@@ -27,7 +27,7 @@ enchantment smite {
 			}
 		]
 	},
-	"exclusive_set": "#minecraft:exclusive_set/damage",
+	"exclusive_set": "#bswt:exclusive_set/status",
 	"max_cost": {
 		"base": 0,
 		"per_level_above_first": 0
@@ -109,7 +109,7 @@ enchantment fire_aspect {
 		"mainhand"
 	],
 	"supported_items": "#minecraft:enchantable/fire_aspect",
-	"exclusive_set": "#minecraft:exclusive_set/damage",
+	"exclusive_set": "#bswt:exclusive_set/status",
 	"weight": 2
 }
 enchantment aqua_affinity {

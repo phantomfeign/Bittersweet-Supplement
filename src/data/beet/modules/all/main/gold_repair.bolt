@@ -1,6 +1,6 @@
 function main:gold_repair/check_damage:
     # Filter out regular diamond gear that does not have the rose_gold custom data
-    if items entity @s contents #bswt:equipment/diamond_gear unless items entity @s contents *[minecraft:custom_data~{"bswt.rose_gold":true}] run return 0
+    if items entity @s contents #bswt:equipment/rose_gold_gear unless items entity @s contents *[minecraft:custom_data~{"bswt.rose_gold":true}] run return 0
 
     tag @s add this
     function utility:round_position
@@ -35,13 +35,14 @@ function main:gold_repair/repair:
     if score #gold_count bswt.goldRepair matches 1.. run store result entity @s Item.count int 1 run scoreboard players get #gold_count bswt.goldRepair
     if score #gold_count bswt.goldRepair matches 0 run kill @s
 
-item_tag bswt:equipment/diamond_gear {
+item_tag bswt:equipment/rose_gold_gear {
     "values": [
         "minecraft:diamond_helmet",
         "minecraft:diamond_chestplate",
         "minecraft:diamond_leggings",
         "minecraft:diamond_boots",
         "minecraft:diamond_sword",
+        "minecraft:ocelot_spawn_egg",
         "minecraft:diamond_pickaxe",
         "minecraft:diamond_axe",
         "minecraft:diamond_shovel",
@@ -60,6 +61,6 @@ item_tag bswt:equipment/gold_gear {
         "minecraft:golden_axe",
         "minecraft:golden_shovel",
         "minecraft:golden_hoe",
-        "#bswt:equipment/diamond_gear"
+        "#bswt:equipment/rose_gold_gear"
     ]
 }

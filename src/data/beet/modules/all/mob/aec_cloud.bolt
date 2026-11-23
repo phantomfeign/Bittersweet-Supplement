@@ -35,8 +35,6 @@ function bswt:mob/area_effect_cloud/creeper_explosion:
     particle minecraft:geyser_base{water_blocks:4,burst_impulse_base:1.5} ~ ~ ~ 0 0 0 0 1 normal
     particle minecraft:explosion_emitter ~ ~-0.5 ~
 
-    #gunpowda
-    summon item ~ ~ ~ {Item:{id:"minecraft:gunpowder",count:1}}
     kill @s
 
 entity_type_tag bswt:zombie_variant {

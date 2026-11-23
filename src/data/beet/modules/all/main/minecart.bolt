@@ -1,0 +1,17 @@
+entity_type_tag main:minecart/boost_eligible {
+    "values": [
+        "minecraft:minecart",
+        "minecraft:chest_minecart",
+        "minecraft:hopper_minecart",
+        "minecraft:tnt_minecart",
+        "minecraft:furnace_minecart",
+        "minecraft:command_block_minecart",
+        "minecraft:spawner_minecart"
+    ]
+}
+function main:minecart/boost:
+    store result score #minecartX bswt.Math run data get entity @s Motion[0] 10000
+    store result score #minecartZ bswt.Math run data get entity @s Motion[2] 10000
+
+    store result entity @s Motion[0] double 0.0002 run scoreboard players get #minecartX bswt.Math
+    store result entity @s Motion[2] double 0.0002 run scoreboard players get #minecartZ bswt.Math
