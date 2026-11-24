@@ -39,4 +39,4 @@ For being an amazing inspiration and a great content creator.
 For creating [Raspberry Flavoured](https://www.curseforge.com/minecraft/modpacks/raspberry-flavoured), my largest inspiration.
 
 **Klei Wright**  
-For showing me that it could be done. Check out [M0atcha Flavored](https://modrinth.com/datapack/matcha-flavoured)!
+For showing me that it could be done. Check out [Matcha Flavored](https://modrinth.com/datapack/matcha-flavoured)!
