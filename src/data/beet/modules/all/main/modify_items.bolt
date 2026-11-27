@@ -30,7 +30,7 @@ function main:modify_items/process/replace:
             loot give @s loot (replacement)
             clear @s (item) 1
     #retrigger
-    if items entity @s container.* #main:modify_items/replace_list run function main:modify_items/process/replace
+    if items entity @s container.* #main:modify_items/replace_list[!custom_data={adjusted_item:1b}] run function main:modify_items/process/replace
 
 advancement main:modify_items/check {
     "parent": "temp:root",
@@ -47,13 +47,18 @@ advancement main:modify_items/check {
 
 function main:modify_items/check:
     advancement revoke @s only main:modify_items/check
-    if items entity @s container.* #main:modify_items/replace_list run function main:modify_items/process/replace
+    execute if entity @s[tag=bswt.modifyingItems] run return fail
+    tag @s add bswt.modifyingItems
+
+    if items entity @s container.* #main:modify_items/replace_list[!custom_data={adjusted_item:1b}] run function main:modify_items/process/replace
 
     if items entity @s container.* #main:modify_items/stack_list run function main:modify_items/process/stack
 
     if items entity @s container.* minecraft:potion[potion_contents={potion:"minecraft:water"},!max_stack_size=64] run function main:modify_items/process/water
 
     if items entity @s container.* minecraft:arrow[minecraft:equippable={slot:"saddle"}] run function main:modify_items/process/arrow
+
+    tag @s remove bswt.modifyingItems
 
 function main:modify_items/process/water:
     #water
@@ -79,6 +84,7 @@ loot_table bswt:misc/blaze_rod {
 						{
 							"function": "minecraft:set_components",
 							"components": {
+                                "minecraft:custom_data":{"adjusted_item":true},
 								"minecraft:enchantments": {
                                     "minecraft:fire_aspect":1 
                                 },
@@ -105,9 +111,7 @@ loot_table bswt:misc/breeze_rod {
                             "function": "minecraft:set_components",
                             "components": {
                                 "minecraft:max_stack_size": 64,
-                                "custom_data": {
-                                    "adjusted_item":true
-                                },
+                                "minecraft:custom_data":{"adjusted_item":true},
                                 "lore": [
                                     {
                                         "text": "Creates a strong gust of wind.",
@@ -153,9 +157,7 @@ loot_table bswt:misc/fire_charge {
                                 "minecraft:max_stack_size": 64,
                                 "item_name": "Fireball",
                                 "minecraft:item_model": "minecraft:fire_charge",
-                                "custom_data": {
-                                    "adjusted_item":true
-                                },
+                                "minecraft:custom_data":{"adjusted_item":true},
                                 "consumable": {
                                     "consume_seconds": 0,
                                     "animation": "none",

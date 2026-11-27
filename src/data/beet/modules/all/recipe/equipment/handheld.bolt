@@ -2,7 +2,6 @@ from beet import Recipe
 from beet:all/utils/tiers import TIERS, TIER_LOOKUP, EQUIPMENT_PATTERNS_LOOKUP
 
 TOOLS = ("pickaxe", "axe", "shovel", "hoe")
-SMITHED_TOOLS = ("pickaxe", "shovel", "hoe")
 WEAPONS = ("sword", "spear")
 
 CUSTOM_NAMES = {
@@ -21,7 +20,7 @@ def get_result_id(_base_tier, _item_type):
 def build_components(_base_tier, _item_type):
     _tier = TIER_LOOKUP[_base_tier]
     _is_tool = _item_type in TOOLS
-    _is_weapon = _item_type in ("axe", "sword", "spear")
+    _is_weapon = _item_type in TOOLS + WEAPONS
     _lore = []
     _components = {
         "minecraft:tooltip_display": {
@@ -40,7 +39,7 @@ def build_components(_base_tier, _item_type):
     if _is_tool:
         _mining_speed = _tier["mining_speed"]
         _components["minecraft:lore"].append(
-            {"text": f"{_mining_speed}⛏", "color": "gold", "italic": False}
+            {"text": f"{_mining_speed}⛏", "color": "gold", "italic": false}
         )
         _components["minecraft:tool"] = {
             "rules": [
@@ -56,17 +55,24 @@ def build_components(_base_tier, _item_type):
 
     # combat stats
     if _is_weapon:
-        _attack_damage = 0
-        _attack_speed = 0
-        if _item_type == "axe":
-            _attack_damage = int(_tier["weapon_damage"] * 1.5)
-            _attack_speed = _tier["attack_speed"] / 2
-        elif _item_type == "spear":
-            _attack_damage = int(_tier["weapon_damage"] * 0.7)
-            _attack_speed = int(_tier["attack_speed"] * 75) / 100
-        else:
+        if _item_type == "sword":
             _attack_damage = _tier["weapon_damage"]
             _attack_speed = _tier["attack_speed"]
+        elif _item_type == "axe":
+            _attack_damage = int(_tier["weapon_damage"] * 1.5)
+            _attack_speed = round(_tier["attack_speed"] / 2, 1)
+        elif _item_type == "spear":
+            _attack_damage = int(_tier["weapon_damage"] * 0.7)
+            _attack_speed = round(_tier["attack_speed"] * 0.75, 1)
+        elif _item_type == "hoe":
+            _attack_damage = int(_tier["weapon_damage"] * 0.5)
+            _attack_speed = round(_tier["attack_speed"] * 2.0, 1)
+        elif _item_type == "shovel":
+            _attack_damage = int(_tier["weapon_damage"] * 1.2)
+            _attack_speed = round(_tier["attack_speed"] * 0.8, 1)
+        elif _item_type == "pickaxe":
+            _attack_damage = int(_tier["weapon_damage"] * 0.7)
+            _attack_speed = round(_tier["attack_speed"] * 0.7, 1)
 
         _components["minecraft:attribute_modifiers"] = [
             {
@@ -79,7 +85,7 @@ def build_components(_base_tier, _item_type):
             {
                 "type": "minecraft:attack_speed",
                 "id": f"bswt:{_base_tier}_{_item_type}",
-                "amount": -(4 - _attack_speed),
+                "amount": round(-(4 - _attack_speed), 1),
                 "operation": "add_value",
                 "slot": "mainhand",
             },
@@ -87,21 +93,30 @@ def build_components(_base_tier, _item_type):
 
         if _base_tier == "rose_gold":
             _components["minecraft:lore"].append(
-                {"text": f"{_attack_damage}🗡", "color": "#e69cb8", "italic": False}
+                {"text": f"{_attack_damage}🗡", "color": "#e69cb8", "italic": false}
             )
         else:
             _components["minecraft:lore"].append(
-                {"text": f"{_attack_damage}🗡", "color": "red", "italic": False}
+                {"text": f"{_attack_damage}🗡", "color": "red", "italic": false}
             )
 
         _components["minecraft:lore"].append(
-            {"text": f"{_attack_speed}⌚", "color": "yellow", "italic": False}
+            {"text": f"{_attack_speed}⌚", "color": "yellow", "italic": false}
         )
+
+        # pickaxe shield disable
+        if _item_type == "pickaxe":
+            _components["minecraft:lore"].append(
+                {"text": "Disables shields (2⌚)", "color": "gray", "italic": false}
+            )
+            _components["minecraft:weapon"] = {
+                "disable_blocking_for_seconds": 2.0
+            }
 
         # spear reach
         if _item_type == "spear":
             _components["minecraft:lore"].append(
-                {"text": "1-4.5→", "color": "green", "italic": False}
+                {"text": "1-4.5→", "color": "green", "italic": false}
             )
             _components["minecraft:attack_range"] = {
                 "min_reach": 1.0,
@@ -118,7 +133,7 @@ def build_components(_base_tier, _item_type):
                     {
                         "text": "Lifesteals, and regenerates when you do.",
                         "color": "gray",
-                        "italic": False,
+                        "italic": false,
                     }
                 ]
             )
@@ -185,5 +200,5 @@ for _tier_name, _material in CRAFTED_TIERS.items():
         add_crafted_recipe(_tier_name, _material, _equip_type)
 
 for _tier_name, _addition in SMITHED_TIERS.items():
-    for _equip_type in SMITHED_TOOLS + WEAPONS:
+    for _equip_type in TOOLS + WEAPONS:
         add_smithed_recipe(_tier_name, _addition, _equip_type)

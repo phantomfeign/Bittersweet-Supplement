@@ -1,0 +1,73 @@
+advancement main:used_totem {
+	"parent": "temp:root",
+	"criteria": {
+		"used_totem": {
+			"conditions": {
+				"item": {
+					"items": "minecraft:totem_of_undying"
+				}
+			},
+			"trigger": "minecraft:used_totem"
+		}
+	},
+	"requirements": [
+		[
+			"used_totem"
+		]
+	],
+	"rewards": {
+		"function": "main:used_totem/message"
+	}
+}
+
+def write_messages(_messages, _selector_color="#bdffae"):
+    execute store result score #totem_message bswt.Math run random value f"1..{len(_messages)}"
+    for _i, _msg in enumerate(_messages, start=1):
+        _before, _after = _msg.split("PLAYER", 1)
+        if _before:
+            execute if score #totem_message bswt.Math matches _i run tellraw @a [
+                {"text": _before, "color": "#c6b3c8"},
+                {"selector": "@s", "color": _selector_color},
+                {"text": _after, "color": "#c6b3c8"}
+            ]
+        else:
+            execute if score #totem_message bswt.Math matches _i run tellraw @a [
+                {"selector": "@s", "color": _selector_color},
+                {"text": _after, "color": "#c6b3c8"}
+            ]
+
+function main:used_totem/message:
+    advancement revoke @s only main:used_totem
+    execute if predicate bswt:chance/5 run return run function main:used_totem/easter_eggs
+    write_messages([
+        "PLAYER has cheated death for now",
+        "PLAYER is only delaying the inevitable",
+        "PLAYER slithered away from the grasp of Thanatos",
+        "PLAYER narrowly escaped the River Styx",
+        "PLAYER borrowed a little more time"
+    ])
+
+function main:used_totem/easter_eggs:
+    write_messages([
+        "PLAYER purchased a microtransaction.",
+        "PLAYER claims it was the lag.",
+        "PLAYER wants ibuprofen.",
+        "PLAYER dodge-rolled.",
+        
+        "But PLAYER refused.",
+        "PLAYER rolled a natural 20.",
+        "PLAYER feigned death with a Dead Ringer.",
+        "PLAYER popped a Max Revive.",
+        "PLAYER ate a Senzu Bean.",
+        "PLAYER triggered Death Defiance.",
+
+        "PLAYER finally understood Reverse Cursed Technique.",
+        "PLAYER survived using a binding vow.",
+        "PLAYER is demanding a retrial.",
+        "In other words, in the 4 seconds and 11 ticks following a totem, PLAYER is effectively immortal*.",
+
+        "PLAYER had a 1-UP.",
+        "PLAYER had a Fairy in a Bottle.",
+        "PLAYER had a Lizard Tail.",
+        "PLAYER had a Totem of Undyi—wait a minute."
+    ], "#fffcb8")

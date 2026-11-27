@@ -26,7 +26,6 @@ item_tag minecraft:enchantable/weapon {
 }
 
 item_tag bswt:enchantable/knockback {
-    "replace": true,
     "values": [        
         "#minecraft:enchantable/melee_weapon",
         "#bswt:enchantable/ranged_weapon"
@@ -34,7 +33,6 @@ item_tag bswt:enchantable/knockback {
 }
 
 item_tag bswt:enchantable/bludgeoning {
-    "replace": true,
     "values": [        
         "#minecraft:pickaxes",
         "#minecraft:enchantable/mace"
@@ -42,7 +40,6 @@ item_tag bswt:enchantable/bludgeoning {
 }
 
 item_tag bswt:enchantable/ranged_weapon {
-    "replace": true,
     "values": [        
         "#minecraft:enchantable/crossbow",
         "#minecraft:enchantable/bow"
@@ -50,7 +47,6 @@ item_tag bswt:enchantable/ranged_weapon {
 }
 
 enchantment_tag bswt:exclusive_set/bounding {
-    "replace": true,
     "values": [        
         "bswt:bounding",
         "minecraft:feather_falling"
@@ -58,7 +54,6 @@ enchantment_tag bswt:exclusive_set/bounding {
 }
 
 enchantment_tag bswt:exclusive_set/crossbow_type {
-    "replace": true,
     "values": [        
         "minecraft:power",
         "minecraft:quick_charge",
@@ -67,7 +62,6 @@ enchantment_tag bswt:exclusive_set/crossbow_type {
 }
 
 enchantment_tag bswt:exclusive_set/knockback {
-    "replace": true,
     "values": [        
         "minecraft:knockback",
         "minecraft:flame",
@@ -76,7 +70,6 @@ enchantment_tag bswt:exclusive_set/knockback {
 }
 
 enchantment_tag bswt:exclusive_set/multishot {
-    "replace": true,
     "values": [        
         "minecraft:multishot",
         "minecraft:flame",
@@ -85,8 +78,7 @@ enchantment_tag bswt:exclusive_set/multishot {
 }
 
 enchantment_tag bswt:exclusive_set/riptide {
-    "replace": true,
-    "values": [       
+    "values": [
         "minecraft:loyalty",
         "minecraft:channeling",
         "bswt:viper"

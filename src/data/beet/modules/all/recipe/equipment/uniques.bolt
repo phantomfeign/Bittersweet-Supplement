@@ -198,6 +198,9 @@ recipe bswt:uniques/wind_mace {
 				"text": "Wind Mace",
 				"color": "light_purple"
 			},
+			"minecraft:enchantments": {
+                "bswt:crashing": 1
+            },
 			"minecraft:repairable": {
 				"items": [
 					"minecraft:iron_block"
@@ -224,6 +227,15 @@ recipe bswt:uniques/wind_mace {
 				"default_mining_speed": 1,
 				"damage_per_block": 0
 			},
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:attack_damage",
+					"id": "bswt:wind_mace",
+					"amount": 8,
+					"operation": "add_value",
+					"slot": "mainhand"
+				}
+			],
 			"minecraft:tooltip_display": {
 				"hidden_components": [
 					"minecraft:attribute_modifiers"
@@ -236,7 +248,7 @@ recipe bswt:uniques/wind_mace {
 					"italic": false
 				},
 				{
-					"text": "6+🗡",
+					"text": "9+🗡",
 					"color": "red",
 					"italic": false
 				},

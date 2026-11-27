@@ -1,0 +1,68 @@
+enchantment bswt:shadowbolt {
+	"anvil_cost": 0,
+	"description": {
+		"translate": "enchantment.bswt.shadowbolt",
+		"fallback": "Shadowbolt"
+	},
+	"effects": {
+		"minecraft:projectile_spawned": [
+			{
+				"requirements": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"minecraft:entity_type": "#minecraft:arrows",
+							"nbt": "{crit:1b}",
+							"minecraft:location": {
+								"light": {
+									"light": {
+										"max": 7
+									}
+								}
+							}
+						}
+					}
+				],
+				"effect": {
+					"type": "minecraft:run_function",
+					"function": "bswt:enchantment/shadowbolt/call"
+				}
+			}
+		]
+	},
+	"max_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"max_level": 1,
+	"min_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"slots": [
+		"hand"
+	],
+	"supported_items": "#bswt:enchantable/ranged_weapon",
+	"weight": 1
+}
+
+
+function bswt:enchantment/shadowbolt/call:
+    on origin run tag @s add bswt.shadowbolt_shooter
+    tag @s add bswt.shadowbolt
+    on origin at @s positioned ~ ~1.5 ~ as @e[limit=1,sort=nearest,tag=bswt.shadowbolt]:
+        for i in range(30):
+            positioned ^ ^ f"^{i}" run function bswt:enchantment/shadowbolt/single
+    on origin run tag @s remove bswt.shadowbolt_shooter
+    tag @s remove bswt.shadowbolt
+    kill @s
+
+function bswt:enchantment/shadowbolt/single:
+    unless block ~ ~ ~ #bswt:nonsolid on origin run tag @s remove bswt.shadowbolt_shooter
+    unless block ~ ~ ~ #bswt:nonsolid run return run kill @s
+    as @e[tag=!bswt.shadowbolt_shooter,distance=..1] run damage @s 4 magic
+    effect give @e[tag=!bswt.shadowbolt_shooter,distance=..1] minecraft:blindness 5
+    particle minecraft:dust{color:[0,0,0],scale:1.0}
+    for volume in range(1,4):
+        playsound minecraft:block.sculk.charge player @a ~ ~ ~ 1 (volume/2)

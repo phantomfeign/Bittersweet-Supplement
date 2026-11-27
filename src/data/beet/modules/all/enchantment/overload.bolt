@@ -107,7 +107,7 @@ function bswt:enchantment/overload/load_detection/schedule:
     as @a[advancements={temp:enchantment/overload/use=true}] run function bswt:enchantment/overload/load_detection/revoke
 
 function bswt:enchantment/overload/load_detection/tick:
-    schedule function bswt:enchantment/overload/load_detection/schedule 1t
+    schedule function bswt:enchantment/overload/load_detection/schedule 1t replace
 
 function bswt:enchantment/overload/load_crossbow/call:
     item modify entity @s weapon.mainhand bswt:enchantment/overload/loaded/true

@@ -25,22 +25,33 @@ enchantment bswt:bow_mechanics {
 			{
 				"effect": {
 					"type": "minecraft:run_function",
-					"function": "bswt:enchantment/flint_ignite"
+					"function": "bswt:enchantment/bow_mechanics/ignite"
 				}
 			}
 		]
 	}
 }
 
-function bswt:enchantment/flint_ignite:
+block_tag bswt:flammable_torches {
+  "values": [
+    "minecraft:torch",
+    "minecraft:wall_torch",
+    "minecraft:copper_torch",
+    "minecraft:copper_wall_torch",
+    "minecraft:soul_torch",
+    "minecraft:soul_wall_torch",
+  ]
+}
+
+function bswt:enchantment/bow_mechanics/ignite:
     tag @s add FlintArrow
-    execute on origin unless items entity @s weapon.offhand minecraft:flint_and_steel run return fail
-    execute on origin:
+    on origin:
+		unless items entity @s weapon.offhand minecraft:flint_and_steel unless block ~ ~ ~ #bswt:flammable_torches unless block ~ ~1 ~ #bswt:flammable_torches run return fail
         function utility:damage_item/call {heal:0,dmg:1,hand_slot:SelectedItem,damaged_slot:weapon.mainhand}
         playsound minecraft:item.flintandsteel.use player @a
-    execute as @s run data modify entity @s Fire set value 1000
+    as @s run data modify entity @s Fire set value 1000
     particle minecraft:flame ^ ^ ^ 0 0 0 0.2 3
     particle minecraft:item{item:{id:"minecraft:flint"}} ~ ~ ~ 0 0 0 0.1 3
-    execute on origin if items entity @s weapon.offhand minecraft:flint_and_steel[custom_data={firestarter:true}]: 
+    on origin if items entity @s weapon.offhand minecraft:flint_and_steel[custom_data={firestarter:true}]: 
         playsound minecraft:entity.item.break player @a
         item replace entity @s weapon.offhand with air

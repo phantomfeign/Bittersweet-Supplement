@@ -167,7 +167,8 @@ BASIC = [
     {"item": "amethyst_shard", "recipe": "bswt:uniques/amethyst_scythe"},
     {"item": "netherite_scrap", "recipe": "bswt:material/netherite_ingot"},
     {"item": "lapis_lazuli", "recipe": "bswt:material/upgrade_smithing_template"},
-    {"item": "arrow", "recipe": ["bswt:equipment/crafted/ranged/arrow", "bswt:equipment/crafted/ranged/bundle_arrows"]}
+    {"item": "arrow", "recipe": ["bswt:equipment/crafted/ranged/arrow", "bswt:equipment/crafted/ranged/bundle_arrows"]},
+    {"item": "phantom_membrane" ,"recipe": "bswt:misc_equipment/elytra"}
 
 ]
 recipe_list = []

@@ -686,7 +686,7 @@ enchantment thorns {
 	"supported_items": "#minecraft:enchantable/armor",
 	"weight": 1
 }
-enchantment feather_falling {
+enchantment feather_falling{
 	"anvil_cost": 0,
 	"description": {
 		"translate": "enchantment.minecraft.feather_falling"
@@ -720,6 +720,12 @@ enchantment feather_falling {
 				"attribute": "minecraft:safe_fall_distance",
 				"id": "bswt:feather_falling",
 				"amount": 2,
+				"operation": "add_value"
+			},
+			{
+				"attribute": "minecraft:gravity",
+				"id": "bswt:feather_falling",
+				"amount": -0.01,
 				"operation": "add_value"
 			}
 		]

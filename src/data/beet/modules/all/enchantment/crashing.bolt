@@ -1,0 +1,31 @@
+enchantment bswt:crashing {
+	"anvil_cost": 0,
+	"description": {
+		"translate": "enchantment.bswt.crashing",
+		"fallback": "Crashing"
+	},
+	"effects": {
+		"minecraft:smash_damage_per_fallen_block": [
+			{
+				"effect": {
+					"type": "minecraft:add",
+					"value": -1.5
+				}
+			}
+		]
+	},
+	"max_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"max_level": 1,
+	"min_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"slots": [
+		"mainhand"
+	],
+	"supported_items": "#minecraft:enchantable/melee_weapon",
+	"weight": 1
+}

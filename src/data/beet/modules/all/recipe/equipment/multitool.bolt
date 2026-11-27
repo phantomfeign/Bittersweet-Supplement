@@ -20,6 +20,8 @@ TOOL_CONFIGS = {
             "# X"
         ],
         "tags": ["#minecraft:mineable/pickaxe", "#minecraft:mineable/shovel"],
+        "dmg_mult": 0.6,
+        "spd_mult": 0.8
     },
     "pulaski": {
         "result_base": "hoe",
@@ -30,6 +32,8 @@ TOOL_CONFIGS = {
             " # "
         ],
         "tags": ["#minecraft:mineable/axe", "#minecraft:mineable/hoe"],
+        "dmg_mult": 0.8,
+        "spd_mult": 0.6
     },
 }
 
@@ -42,45 +46,78 @@ CUSTOM_NAMES = {
 
 def make_result(tier, tool_name, cfg):
     stats = TIER_LOOKUP[tier]
-    speed = stats["mining_speed"]
+    attack_damage = int(stats["weapon_damage"] * cfg["dmg_mult"])
+    attack_speed = round(stats["attack_speed"] * cfg["spd_mult"], 1)
 
     rules = []
     for t in cfg["tags"]:
         rules.append({
             "blocks": t,
-            "speed": speed,
-            "correct_for_drops": true
+            "speed": stats["mining_speed"],
+            "correct_for_drops": True
         })
- 
+
     if tier == "rose_gold":
         result_id = f"minecraft:diamond_{cfg['result_base']}"
-    else: 
+    else:
         result_id = f"minecraft:{tier}_{cfg['result_base']}"
 
     custom_data = {"bswt:multitool": tool_name}
     if tier == "rose_gold":
-        custom_data["bswt_rose_gold"] = true
+        custom_data["bswt_rose_gold"] = True
 
     if tier in CUSTOM_NAMES:
-        item_name = {"text": f"{CUSTOM_NAMES[tier]} {tool_name.capitalize()}", "color": "aqua", "italic": false}
+        item_name = {"text": f"{CUSTOM_NAMES[tier]} {tool_name.capitalize()}", "color": "aqua"}
     else:
         item_name = {"translate": f"item.bswt.{tier}_{tool_name}", "italic": false}
+    if tier == "rose_gold":
+        dmg_color = "#e69cb8"  
+    else:
+        dmg_color = "red"
+    lore = [
+        {"text": f"{stats['mining_speed']}⛏", "color": "gold", "italic": false},
+        {"text": f"{attack_damage}🗡", "color": dmg_color, "italic": false},
+        {"text": f"{attack_speed}⌚", "color": "yellow", "italic": false},
+    ]
+
+    components = {
+        "minecraft:item_name": item_name,
+        "minecraft:item_model": f"bswt_texture:{tier}_{tool_name}",
+        "minecraft:custom_data": custom_data,
+        "minecraft:tooltip_display": {"hidden_components": ["minecraft:attribute_modifiers"]},
+        "minecraft:lore": lore,
+        "minecraft:max_damage": int(stats["durability"] * 1.5),
+        "minecraft:tool": {
+            "rules": rules,
+            "default_mining_speed": 1,
+            "damage_per_block": 1,
+        },
+        "minecraft:attribute_modifiers": [
+            {
+                "type": "minecraft:attack_damage",
+                "id": f"bswt:{tier}_{tool_name}",
+                "amount": attack_damage - 1,
+                "operation": "add_value",
+                "slot": "mainhand",
+            },
+            {
+                "type": "minecraft:attack_speed",
+                "id": f"bswt:{tier}_{tool_name}",
+                "amount": round(-(4 - attack_speed), 1),
+                "operation": "add_value",
+                "slot": "mainhand",
+            },
+        ],
+    }
+    if tier == "rose_gold":
+        lore.append(
+            {"text": "Lifesteals, and regenerates when you do.", "color": "gray", "italic": false}
+        )
+        components["minecraft:damage_type"] = "minecraft:magic"
 
     return {
         "id": result_id,
-        "components": {
-            "minecraft:item_name": item_name,
-            "minecraft:item_model": f"bswt_texture:{tier}_{tool_name}",
-            "minecraft:custom_data": custom_data,
-            "minecraft:tooltip_display": {"hidden_components": ["minecraft:attribute_modifiers"]},
-            "minecraft:lore": [{"text": f"{speed}⛏", "color": "gold", "italic": false}],
-            "minecraft:max_damage": int(stats["durability"] * 1.5),
-            "minecraft:tool": {
-                "rules": rules,
-                "default_mining_speed": 1,
-                "damage_per_block": 1,
-            },
-        },
+        "components": components,
     }
 
 

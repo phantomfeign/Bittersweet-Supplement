@@ -25,7 +25,7 @@ NETHERITE_IMMUNITIES = {
 CRAFTED_ARMOR_TIERS = {
     "leather": {"item": "leather", "sound": "leather", "major": 3, "minor": 2},
     "copper": {"item": "copper_ingot", "sound": "copper", "major": 4, "minor": 3},
-    "chainmail": {"item": "iron_chain", "sound": "chain", "major": 2, "minor": 2},
+    "chainmail": {"item": "iron_chain", "sound": "chain", "major": 1, "minor": 1},
     "iron": {"item": "iron_ingot", "sound": "iron", "major": 5, "minor": 4},
     "golden": {"item": "gold_ingot", "sound": "gold", "major": 4, "minor": 3},
 }
@@ -58,8 +58,7 @@ def build_armor_components(_base_tier, _armor_type, _slot, _config):
             "minecraft:tooltip_display": {"hidden_components": ["minecraft:attribute_modifiers"]},
             "minecraft:equippable": {
                 "slot": _slot,
-                "equip_sound": "minecraft:item.armor.equip_copper",
-                "asset_id": "minecraft:bronze",
+                "equip_sound": f"minecraft:item.armor.equip_{_config['sound']}",
             },
             "minecraft:attribute_modifiers": [
                 {
@@ -90,6 +89,8 @@ def build_armor_components(_base_tier, _armor_type, _slot, _config):
                 },
             ],
         }
+        if _armor_type != "helmet":
+            _components["minecraft:equippable"]["asset_id"] = "minecraft:bronze"
         return _components
 
     _tier = TIER_LOOKUP[_base_tier]
@@ -123,11 +124,11 @@ def build_armor_components(_base_tier, _armor_type, _slot, _config):
         _components["minecraft:item_model"] = f"bswt_texture:rose_gold_{_armor_type}"
         _components["minecraft:equippable"] = {
             "slot": _slot,
-            "equip_sound": "minecraft:item.armor.equip_gold",
+            "equip_sound": f"minecraft:item.armor.equip_{_config['sound']}",
             "asset_id": "minecraft:rose_gold"
         }
         _components["minecraft:custom_data"] = {
-            "bswt.rose_gold":true
+            "bswt.rose_gold": true
         }
         _components["minecraft:lore"].extend([
             {
@@ -137,13 +138,12 @@ def build_armor_components(_base_tier, _armor_type, _slot, _config):
             }
         ])
 
-    # equippable sound override for helmets
+    # equippable override for all helmets (no asset_id, only slot and equip_sound)
     if _armor_type == "helmet":
-        if _base_tier in ("copper", "golden", "diamond", "netherite"):
-            _components["minecraft:equippable"] = {
-                "slot": "head",
-                "equip_sound": f"minecraft:item.armor.equip_{_config['sound']}",
-            }
+        _components["minecraft:equippable"] = {
+            "slot": "head",
+            "equip_sound": f"minecraft:item.armor.equip_{_config['sound']}",
+        }
 
     # chainmail perks
     if _base_tier == "chainmail":
@@ -164,9 +164,177 @@ def build_armor_components(_base_tier, _armor_type, _slot, _config):
         _components["minecraft:lore"].append({
             "text": "🔥⛨",
             "color": "gray",
-            "italic": False,
+            "italic": false,
         })
-        
+
+    # diamond speed bonus
+    if _base_tier == "diamond":
+        _components["minecraft:attribute_modifiers"].append({
+            "type": "minecraft:movement_speed",
+            "id": f"bswt:diamond_{_armor_type}",
+            "amount": 0.003,
+            "operation": "add_value",
+            "slot": _slot,
+        })
+        _components["minecraft:lore"].append({
+            "text": "+3% Movespeed",
+            "color": "gray",
+            "italic": false,
+        })
+
+    # netherite speed penalty and potion immunities
+    if _base_tier == "netherite":
+        _components["minecraft:attribute_modifiers"].append({
+            "type": "minecraft:movement_speed",
+            "id": f"bswt:netherite_{_armor_type}_slow",
+            "amount": -0.005,
+            "operation": "add_value",
+            "slot": _slot,
+        })
+        _components["minecraft:lore"].extend([
+            {
+                "text": "-5% Movespeed",
+                "color": "gray",
+                "italic": false,
+            },
+            {
+                "text": NETHERITE_IMMUNITIES[_armor_type],
+                "color": "gray",
+                "italic": false,
+            },
+        ])
+
+    # custom item names
+    if _base_tier in CUSTOM_NAMES:
+        _components["minecraft:item_name"] = {
+            "text": f"{CUSTOM_NAMES[_base_tier]} {_armor_type.capitalize()}",
+            "color": "aqua",
+        }
+
+    return _components
+def build_armor_components(_base_tier, _armor_type, _slot, _config):
+    _components = {}
+
+    if _base_tier == "bronze":
+        _components = {
+            "minecraft:item_name": {
+                "text": f"{CUSTOM_NAMES[_base_tier]} {_armor_type.capitalize()}",
+                "color": "aqua",
+            },
+            "minecraft:item_model": f"bswt_texture:bronze_{_armor_type}",
+            "minecraft:max_damage": TIERS[4]["durability"],
+            "minecraft:tooltip_display": {"hidden_components": ["minecraft:attribute_modifiers"]},
+            "minecraft:equippable": {
+                "slot": _slot,
+                "equip_sound": f"minecraft:item.armor.equip_{_config['sound']}",
+            },
+            "minecraft:attribute_modifiers": [
+                {
+                    "type": "minecraft:attack_damage",
+                    "id": f"bswt:bronze_{_armor_type}",
+                    "amount": 2,
+                    "operation": "add_value",
+                    "slot": _slot,
+                },
+                {
+                    "type": "minecraft:max_health",
+                    "id": f"bswt:bronze_{_armor_type}",
+                    "amount": -2,
+                    "operation": "add_value",
+                    "slot": _slot,
+                },
+            ],
+            "minecraft:lore": [
+                {
+                    "text": "+2🗡",
+                    "color": "red",
+                    "italic": false,
+                },
+                {
+                    "text": "-1❤",
+                    "color": "dark_red",
+                    "italic": false,
+                },
+            ],
+        }
+        if _armor_type != "helmet":
+            _components["minecraft:equippable"]["asset_id"] = "minecraft:bronze"
+        return _components
+
+    _tier = TIER_LOOKUP[_base_tier]
+    _armor_points = _config["major"]
+    if _armor_type in ("helmet", "boots"):
+        _armor_points = _config["minor"]
+
+    _components = {
+        "minecraft:max_damage": _tier["durability"],
+        "minecraft:tooltip_display": {"hidden_components": ["minecraft:attribute_modifiers"]},
+        "minecraft:attribute_modifiers": [
+            {
+                "type": "minecraft:armor",
+                "id": f"bswt:{_base_tier}_{_armor_type}",
+                "amount": _armor_points,
+                "operation": "add_value",
+                "slot": _slot,
+            }
+        ],
+        "minecraft:lore": [
+            {
+                "text": f"{_armor_points}⛨",
+                "color": "blue",
+                "italic": false,
+            }
+        ],
+    }
+
+    # custom model and worn texture for rose gold
+    if _base_tier == "rose_gold":
+        _components["minecraft:item_model"] = f"bswt_texture:rose_gold_{_armor_type}"
+        _components["minecraft:equippable"] = {
+            "slot": _slot,
+            "equip_sound": f"minecraft:item.armor.equip_{_config['sound']}",
+            "asset_id": "minecraft:rose_gold"
+        }
+        _components["minecraft:custom_data"] = {
+            "bswt.rose_gold": true
+        }
+        _components["minecraft:lore"].extend([
+            {
+                "text": "Regenerates when you do.",
+                "color": "gray",
+                "italic": false,
+            }
+        ])
+
+    # equippable override for all helmets (no asset_id, only slot and equip_sound)
+    if _armor_type == "helmet":
+        _components["minecraft:equippable"] = {
+            "slot": "head",
+            "equip_sound": f"minecraft:item.armor.equip_{_config['sound']}",
+        }
+
+    # chainmail perks
+    if _base_tier == "chainmail":
+        _components["minecraft:enchantment_glint_override"] = false
+        _components["minecraft:enchantments"] = {
+            "minecraft:protection": 1,
+        }
+
+    # golden set bonus lore
+    if _base_tier == "golden":
+        _components["minecraft:attribute_modifiers"].append({
+            "type": "minecraft:burning_time",
+            "id": f"bswt:golden_{_armor_type}_burn_time",
+            "amount": -0.125,
+            "operation": "add_multiplied_base",
+            "slot": _slot,
+        })
+        _components["minecraft:lore"].append({
+            "text": "🔥⛨",
+            "color": "gray",
+            "italic": false,
+        })
+
     # diamond speed bonus
     if _base_tier == "diamond":
         _components["minecraft:attribute_modifiers"].append({

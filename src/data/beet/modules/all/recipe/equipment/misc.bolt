@@ -1,5 +1,29 @@
 from beet:all/utils/tiers import TIERS, TIER_LOOKUP, EQUIPMENT_PATTERNS_LOOKUP
 
+recipe bswt:misc_equipment/elytra {
+	"type": "minecraft:crafting_shaped",
+	"key": {
+		"X": "minecraft:honeycomb",
+		"S": "minecraft:string",
+		"#": "minecraft:phantom_membrane"
+	},
+	"pattern": [
+		"#S#",
+		"X X",
+		"X X"
+	],
+	"result": {
+		"id": "minecraft:elytra",
+		"components": {
+			"minecraft:repairable": {
+				"items": [
+					"minecraft:honeycomb",
+					"minecraft:phantom_membrane"
+				]
+			}
+		}
+	}
+}
 recipe bswt:misc_equipment/bucket {
 	"type": "minecraft:crafting_shaped",
 	"category": "equipment",
@@ -37,25 +61,6 @@ recipe bswt:misc_equipment/copper_shears {
 			"minecraft:max_damage":TIERS[1]["durability"]
 		}
 	}
-}
-recipe bswt:misc_equipment/bundle {
-  "type": "minecraft:crafting_shaped",
-  "category": "equipment",
-  "key": {
-    "#": "minecraft:leather",
-    "X": [
-      "minecraft:string",
-      "minecraft:zombie_spawn_egg"
-    ]
-  },
-  "pattern": [
-    " X ",
-    "# #",
-    "###"
-  ],
-  "result": {
-    "id": "minecraft:bundle"
-  }
 }
 recipe bswt:misc_equipment/turtle_helmet {
 	"type": "minecraft:crafting_shaped",
@@ -273,3 +278,68 @@ recipe bswt:misc_equipment/iron_shield {
 		}
 	}
 }
+
+recipe bswt:misc_equipment/bundle {
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "minecraft:leather",
+    "X": [
+      "minecraft:string",
+      "minecraft:zombie_spawn_egg"
+    ]
+  },
+  "pattern": [
+    " X ",
+    "# #",
+    "###"
+  ],
+  "result": {
+		"id": "minecraft:bundle",
+		"components": {
+			"minecraft:equippable": {
+				"slot": "chest",
+				"asset_id": "minecraft:leather_bundle",
+				"equip_sound": "minecraft:item.armor.equip_leather",
+				"damage_on_hurt": false
+			},
+			"minecraft:lore": [
+				{
+					"text": "Equippable",
+					"color": "gray"
+				}
+			]
+		}
+	}
+}
+
+for color in [
+    "white", "orange", "magenta", "light_blue",
+    "yellow", "lime", "pink", "gray",
+    "light_gray", "cyan", "purple", "blue",
+    "brown", "green", "red", "black"
+]:
+    recipe f"bswt:misc_equipment/{color}_bundle" {
+        "type": "minecraft:crafting_transmute",
+        "category": "equipment",
+        "group": "bundle_dye",
+        "input": "#minecraft:bundles",
+        "material": f"minecraft:{color}_dye",
+        "result": {
+            "id": f"minecraft:{color}_bundle",
+            "components": {
+                "minecraft:equippable": {
+                    "slot": "chest",
+                    "asset_id": f"minecraft:{color}_bundle",
+                    "equip_sound": "minecraft:item.armor.equip_leather",
+                    "damage_on_hurt": false
+                },
+				"minecraft:lore": [
+					{
+						"text": "Equippable",
+						"color": "gray"
+					}
+				]
+            }
+        }
+    }

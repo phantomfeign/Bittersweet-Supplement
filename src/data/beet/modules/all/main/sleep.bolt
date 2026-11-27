@@ -5,7 +5,7 @@ function utility:time_monitor:
         weather thunder
     if score #time Time matches 39000 run function main:sleep/night_start
     if score #time Time matches 2999 run function main:sleep/day_start
-    schedule function utility:time_monitor 1t
+    schedule function utility:time_monitor 1t replace
 
 function main:sleep/advance_time:
     unless entity @a[tag=!bswt.sleeping]:

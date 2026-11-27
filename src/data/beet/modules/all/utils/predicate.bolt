@@ -210,3 +210,15 @@ predicate bswt:mob/has_target {
 		}
 	}
 }
+predicate bswt:flag/arrow_in_ground {
+  "condition": "minecraft:entity_properties",
+  "entity": "this",
+  "predicate": {
+    "movement": {
+      "speed": {
+        "max": 0.05
+      }
+    }
+  }
+}
+
