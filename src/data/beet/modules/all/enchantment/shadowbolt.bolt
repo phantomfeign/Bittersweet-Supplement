@@ -1,3 +1,4 @@
+import math
 enchantment bswt:shadowbolt {
 	"anvil_cost": 0,
 	"description": {
@@ -47,22 +48,76 @@ enchantment bswt:shadowbolt {
 	"weight": 1
 }
 
+predicate bswt:intangible_arrow {
+  "condition": "minecraft:entity_properties",
+  "entity": "this",
+  "predicate": {
+    "minecraft:entity_type": "#minecraft:arrows",
+    "minecraft:nbt": "{pickup:2b}"
+  }
+}
+predicate bswt:multishot_arrow {
+  "condition": "minecraft:entity_properties",
+  "entity": "this",
+  "predicate": {
+    "minecraft:entity_type": "#minecraft:arrows",
+    "minecraft:nbt": "{weapon:{components:{\"minecraft:enchantments\":{\"minecraft:multishot\":1}}}}"
+  }
+}
+
+import math
 
 function bswt:enchantment/shadowbolt/call:
     on origin run tag @s add bswt.shadowbolt_shooter
     tag @s add bswt.shadowbolt
+    if predicate bswt:multishot_arrow:
+        if predicate bswt:intangible_arrow run return run kill @s
+        return run function bswt:enchantment/shadowbolt/multishot
+    function bswt:enchantment/shadowbolt/normal
+
+function bswt:enchantment/shadowbolt/sfx:
+    for volume in range(1,4):
+		playsound minecraft:block.sculk.charge player @a ~ ~ ~ 10 (volume/2)
+		playsound minecraft:entity.phantom.ambient player @a ~ ~ ~ 10 (volume/2)
+
+function bswt:enchantment/shadowbolt/normal:
+    function bswt:enchantment/shadowbolt/sfx
     on origin at @s positioned ~ ~1.5 ~ as @e[limit=1,sort=nearest,tag=bswt.shadowbolt]:
-        for i in range(30):
-            positioned ^ ^ f"^{i}" run function bswt:enchantment/shadowbolt/single
+        function bswt:enchantment/shadowbolt/ray_30
+
     on origin run tag @s remove bswt.shadowbolt_shooter
     tag @s remove bswt.shadowbolt
     kill @s
 
+function bswt:enchantment/shadowbolt/multishot:
+    function bswt:enchantment/shadowbolt/sfx
+    on origin at @s positioned ~ ~1.5 ~ as @e[limit=1,sort=nearest,tag=bswt.shadowbolt]:
+        function bswt:enchantment/shadowbolt/ray_10
+        for ray in range(8):
+            angle = ray * (2 * math.pi / 8)
+            yaw_offset = round(math.cos(angle) * 10, 2)
+            pitch_offset = round(math.sin(angle) * 10, 2)
+
+            rotated ~f"{yaw_offset}" ~f"{pitch_offset}" run function bswt:enchantment/shadowbolt/ray_10 
+
+    on origin run tag @s remove bswt.shadowbolt_shooter
+    tag @s remove bswt.shadowbolt
+    kill @s
+
+function bswt:enchantment/shadowbolt/ray_30:
+    for i in range(30 * 4):
+        dist = round(i * 0.25, 2)
+        unless block ^ ^ f"^{dist}" #bswt:nonsolid run return 0
+        positioned ^ ^ f"^{dist}" run function bswt:enchantment/shadowbolt/single {damage: 4, blindness: 5}
+
+function bswt:enchantment/shadowbolt/ray_10:
+    for i in range(10 * 4):
+        dist = round(i * 0.25, 2)
+        unless block ^ ^ f"^{dist}" #bswt:nonsolid run return 0
+        positioned ^ ^ f"^{dist}" run function bswt:enchantment/shadowbolt/single {damage: 2, blindness: 2}
+        positioned ^ ^ f"^{dist}" positioned ~-0.05 ~-0.05 ~-0.05 if entity @e[type=#bswt:living_creature,tag=!bswt.shadowbolt_shooter,dx=0.1,dy=0.1,dz=0.1] run return 0
+
 function bswt:enchantment/shadowbolt/single:
-    unless block ~ ~ ~ #bswt:nonsolid on origin run tag @s remove bswt.shadowbolt_shooter
-    unless block ~ ~ ~ #bswt:nonsolid run return run kill @s
-    as @e[tag=!bswt.shadowbolt_shooter,distance=..1] run damage @s 4 magic
-    effect give @e[tag=!bswt.shadowbolt_shooter,distance=..1] minecraft:blindness 5
+    $execute positioned ~-0.05 ~-0.05 ~-0.05 as @e[type=#bswt:living_creature,tag=!bswt.shadowbolt_shooter,dx=0.1,dy=0.1,dz=0.1] run damage @s $(damage) bswt:shadowbolt
+    $execute positioned ~-0.05 ~-0.05 ~-0.05 run effect give @e[type=#bswt:living_creature,tag=!bswt.shadowbolt_shooter,dx=0.1,dy=0.1,dz=0.1] minecraft:blindness $(blindness)
     particle minecraft:dust{color:[0,0,0],scale:1.0}
-    for volume in range(1,4):
-        playsound minecraft:block.sculk.charge player @a ~ ~ ~ 1 (volume/2)

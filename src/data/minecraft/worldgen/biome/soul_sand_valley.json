@@ -1,0 +1,144 @@
+{
+  "attributes": {
+    "minecraft:audio/ambient_sounds": {
+      "additions": [
+        {
+          "sound": "minecraft:ambient.soul_sand_valley.additions",
+          "tick_chance": 0.01
+        },
+        {
+          "sound": "minecraft:ambient.underwater.loop.additions.ultra_rare",
+          "tick_chance": 0.0001
+        }
+      ],
+      "loop": "minecraft:ambient.soul_sand_valley.loop",
+      "mood": {
+        "block_search_extent": 8,
+        "offset": 3,
+        "sound": "minecraft:ambient.soul_sand_valley.mood",
+        "tick_delay": 6000
+      }
+    },
+    "minecraft:audio/background_music": {
+      "default": {
+        "max_delay": 24000,
+        "min_delay": 12000,
+        "sound": "minecraft:music.nether.soul_sand_valley"
+      }
+    },
+    "minecraft:visual/ambient_particles": [
+      {
+        "particle": {
+          "type": "minecraft:ash"
+        },
+        "probability": 0.005
+      },
+      {
+        "particle": {
+          "type": "minecraft:white_ash"
+        },
+        "probability": 0.001
+      },
+      {
+        "particle": {
+          "type": "minecraft:falling_dust",
+          "block_state": "minecraft:soul_sand"
+        },
+        "probability": 0.001
+      }
+    ],
+    "minecraft:visual/fog_color": 1973792,
+    "minecraft:visual/ambient_light_color": 1315862,
+    "minecraft:visual/block_light_tint": 2236964,
+    "minecraft:visual/night_vision_color": 986895
+  },
+  "spawns_by_category": {},
+  "carvers": "minecraft:nether_cave",
+  "downfall": 0,
+  "effects": {
+    "water_color": "#000000",
+    "grass_color": 3289652,
+    "foliage_color": 3289652,
+    "dry_foliage_color": 3289652
+  },
+  "features": [
+    [],
+    [],
+    [
+      "minecraft:basalt_pillar"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [
+      "minecraft:ore_magma",
+      "minecraft:spring_closed",
+      "minecraft:ore_soul_sand",
+      "minecraft:ore_gravel_nether",
+      "minecraft:ore_blackstone",
+      "minecraft:ore_gold_nether",
+      "minecraft:ore_quartz_nether",
+      "minecraft:ore_ancient_debris_large",
+      "minecraft:ore_debris_small"
+    ],
+    [],
+    []
+  ],
+  "has_precipitation": false,
+  "spawn_costs": {
+    "minecraft:enderman": {
+      "charge": 0.7,
+      "energy_budget": 0.15
+    },
+    "minecraft:ghast": {
+      "charge": 0.7,
+      "energy_budget": 0.15
+    },
+    "minecraft:skeleton": {
+      "charge": 0.7,
+      "energy_budget": 0.15
+    },
+    "minecraft:strider": {
+      "charge": 0.7,
+      "energy_budget": 0.15
+    }
+  },
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [
+      {
+        "type": "minecraft:strider",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 60
+      }
+    ],
+    "misc": [],
+    "monster": [
+      {
+        "type": "minecraft:skeleton",
+        "maxCount": 5,
+        "minCount": 5,
+        "weight": 20
+      },
+      {
+        "type": "minecraft:ghast",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 50
+      },
+      {
+        "type": "minecraft:enderman",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 1
+      }
+    ],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 2
+}

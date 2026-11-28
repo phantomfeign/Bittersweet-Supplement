@@ -141,7 +141,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"value": "bswt:misc/fireball",
+					"value": "bswt:misc/fire_charge",
 					"weight": 40
 				},
 				{

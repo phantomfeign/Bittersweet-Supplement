@@ -1,4 +1,4 @@
-enchantment main:grappler {
+enchantment bswt:grappler {
 	"description": {
 		"translate": "enchantment.bswt.grappler"
 	},

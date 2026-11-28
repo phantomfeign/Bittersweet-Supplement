@@ -1,0 +1,38 @@
+enchantment bswt:bracing {
+	"anvil_cost": 0,
+	"description": {
+		"translate": "enchantment.bswt.bracing",
+		"fallback": "Bracing"
+	},
+	"effects": {
+		"minecraft:post_attack": [
+			{
+				"effect": {
+					"type": "minecraft:apply_mob_effect",
+					"to_apply": "minecraft:resistance",
+					"min_duration": 1,
+					"max_duration": 1,
+					"min_amplifier": 0,
+					"max_amplifier": 0
+				},
+				"enchanted": "victim",
+				"affected": "victim"
+			}
+		]
+	},
+	"max_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"max_level": 1,
+	"min_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"slots": [
+		"armor"
+	],
+	"supported_items": "#minecraft:enchantable/armor",
+	"exclusive_set": "#minecraft:exclusive_set/armor",
+	"weight": 1
+}

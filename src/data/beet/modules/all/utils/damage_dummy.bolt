@@ -1,0 +1,114 @@
+function utility:dummy/kill:
+    kill @e[type=minecraft:skeleton,tag=bswt.damageDummy]
+
+function utility:dummy/spawn_dmg:
+    summon minecraft:skeleton ~ ~ ~ {
+        Health: 1000f,
+        NoAI: true,
+        Silent: true,
+        CustomName: "DMG Dummy",
+        DeathLootTable: "bswt:empty",
+        Tags: ["bswt.damageDummy","bswt.dmgDummy","bswt.newDummy","bswt.adjustmentBypass"],
+        attributes: [
+            {id: "minecraft:max_health", base: 1000.0},
+            {id: "minecraft:movement_speed", base: 0.0}
+        ],
+        equipment: {
+            head: {id: "minecraft:carved_pumpkin"}
+        }
+    }
+    as @e[type=minecraft:skeleton,tag=bswt.newDummy] at @s:
+        function utility:round_position
+        effect give @s minecraft:glowing infinite 0 true
+        scoreboard players set @s bswt.healthDummy 10000
+        tag @s remove bswt.newDummy
+
+function utility:dummy/spawn_dps:
+    summon minecraft:skeleton ~ ~ ~ {
+        Health: 1000f,
+        NoAI: true,
+        Silent: true,
+        CustomName: "DPS Dummy",
+        DeathLootTable: "bswt:empty",
+        Tags: ["bswt.damageDummy","bswt.dpsDummy","bswt.newDummy","bswt.adjustmentBypass"],
+        attributes: [
+            {id: "minecraft:max_health", base: 1000.0},
+            {id: "minecraft:movement_speed", base: 0.0}
+        ],
+        equipment: {
+            head: {id: "minecraft:carved_pumpkin"}
+        }
+    }
+    as @e[type=minecraft:skeleton,tag=bswt.newDummy] at @s:
+        function utility:round_position
+        effect give @s minecraft:glowing infinite 0 true
+        scoreboard players set @s bswt.healthDummy 10000
+        scoreboard players set @s bswt.totalDamage 0
+        scoreboard players set @s bswt.combatTicks 0
+        scoreboard players set @s bswt.idleTicks 0
+        tag @s remove bswt.newDummy
+
+function utility:dummy/tick:
+    #tick timers for DPS dummies
+    if entity @s[tag=bswt.dpsDummy] if score @s bswt.idleTicks matches 1..:
+        scoreboard players add @s bswt.combatTicks 1
+        scoreboard players add @s bswt.idleTicks 1
+
+    store result score @s bswt.damageIndicator run data get entity @s Health 10
+
+    #detect incoming damage
+    if score @s bswt.damageIndicator < @s bswt.healthDummy:
+        if entity @s[tag=bswt.dmgDummy]:
+            function utility:dummy/calc_dmg
+        if entity @s[tag=bswt.dpsDummy]:
+            function utility:dummy/record_dps_hit
+
+    #reset DPS after 3 seconds (60 ticks) of no hits
+    if entity @s[tag=bswt.dpsDummy] if score @s bswt.idleTicks matches 61..:
+        scoreboard players set @s bswt.combatTicks 0
+        scoreboard players set @s bswt.totalDamage 0
+        scoreboard players set @s bswt.idleTicks 0
+        tellraw @a [{"text": "DPS Reset ", "color": "yellow"}]
+
+function utility:dummy/calc_dmg:
+    scoreboard players operation #damage_taken bswt.damageIndicator = @s bswt.healthDummy
+    scoreboard players operation #damage_taken bswt.damageIndicator -= @s bswt.damageIndicator
+
+    scoreboard players set #10 bswt.Math 10
+    scoreboard players operation #dmg_whole bswt.damageIndicator = #damage_taken bswt.damageIndicator
+    scoreboard players operation #dmg_whole bswt.damageIndicator /= #10 bswt.Math
+    scoreboard players operation #dmg_dec bswt.damageIndicator = #damage_taken bswt.damageIndicator
+    scoreboard players operation #dmg_dec bswt.damageIndicator %= #10 bswt.Math
+
+    data modify entity @s Health set value 1000f
+    tellraw @a [
+        {"text": "DMG: ", "color": "gray"},
+        {"score": {"name": "#dmg_whole", "objective": "bswt.damageIndicator"}, "color": "red"},
+        {"text": ".", "color": "red"},
+        {"score": {"name": "#dmg_dec", "objective": "bswt.damageIndicator"}, "color": "red"}
+    ]
+
+function utility:dummy/record_dps_hit:
+    scoreboard players operation #damage_taken bswt.damageIndicator = @s bswt.healthDummy
+    scoreboard players operation #damage_taken bswt.damageIndicator -= @s bswt.damageIndicator
+    scoreboard players operation @s bswt.totalDamage += #damage_taken bswt.damageIndicator
+    scoreboard players set @s bswt.idleTicks 1
+    data modify entity @s Health set value 1000f
+
+function utility:dummy/report_dps:
+    scoreboard players operation #dps bswt.damageIndicator = @s bswt.totalDamage
+    scoreboard players operation #dps bswt.damageIndicator *= #20 bswt.Math
+    scoreboard players operation #dps bswt.damageIndicator /= @s bswt.combatTicks
+
+    scoreboard players set #10 bswt.Math 10
+    scoreboard players operation #dps_whole bswt.damageIndicator = #dps bswt.damageIndicator
+    scoreboard players operation #dps_whole bswt.damageIndicator /= #10 bswt.Math
+    scoreboard players operation #dps_dec bswt.damageIndicator = #dps bswt.damageIndicator
+    scoreboard players operation #dps_dec bswt.damageIndicator %= #10 bswt.Math
+
+    tellraw @a [
+        {"text": "DPS: ", "color": "gray"},
+        {"score": {"name": "#dps_whole", "objective": "bswt.damageIndicator"}, "color": "yellow"},
+        {"text": ".", "color": "yellow"},
+        {"score": {"name": "#dps_dec", "objective": "bswt.damageIndicator"}, "color": "yellow"}
+    ]

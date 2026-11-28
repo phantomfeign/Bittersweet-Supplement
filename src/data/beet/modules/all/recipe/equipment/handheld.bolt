@@ -137,7 +137,7 @@ def build_components(_base_tier, _item_type):
                     }
                 ]
             )
-            _components["minecraft:damage_type"] = "minecraft:magic"
+            _components["minecraft:damage_type"] = "bswt:rose_gold"
 
     # custom item names
     if _base_tier in CUSTOM_NAMES:

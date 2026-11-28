@@ -113,7 +113,7 @@ def make_result(tier, tool_name, cfg):
         lore.append(
             {"text": "Lifesteals, and regenerates when you do.", "color": "gray", "italic": false}
         )
-        components["minecraft:damage_type"] = "minecraft:magic"
+        components["minecraft:damage_type"] = "bswt:rose_gold"
 
     return {
         "id": result_id,

@@ -14,13 +14,14 @@ function ticking_functions:tick_1t/call:
     as @a at @s run function ticking_functions:tick_1t/players
 
 function ticking_functions:tick_1t/universal:
+    as @e[type=minecraft:skeleton,tag=bswt.damageDummy] run function utility:dummy/tick
     as @e[type=minecraft:arrow,tag=bswt.FastArrow] run function bswt:enchantment/sharpshooter/arrow_tick
     as @e[type=minecraft:arrow] at @s if block ~ ~ ~ minecraft:pointed_dripstone[vertical_direction=down] if predicate bswt:flag/arrow_in_ground run setblock ~ ~ ~ air destroy
     
     as @e[type=fishing_bobber,tag=bswt.grapplerBobber,tag=!bswt.grappler.init] at @s positioned ~ ~-1.62 ~ run function main:grappler/uuid/bobber
     as @e[type=fishing_bobber,tag=bswt.grapplerBobber,tag=!bswt.grappler.hooked] at @s if predicate bswt:flag/on_ground run function main:grappler/hook
 
-    as @e[type=#bswt:living_mobs,predicate=bswt:mob_effect/is_on_fire] run function bswt:mob_effect/fire/apply
+    as @e[type=#bswt:living_creature,predicate=bswt:mob_effect/is_on_fire] run function bswt:mob_effect/fire/apply
 
     as @e[type=#bswt:hostiles, tag=bswt.jumpWeakness] run function bswt:mob_effect/jump_weakness/tick
     as @e[type=#bswt:hostiles, tag=bswt.cantAttack] run function bswt:mob_effect/cant_attack/tick
@@ -82,7 +83,7 @@ function ticking_functions:tick_0.5s/call:
     as @a at @s run function ticking_functions:tick_0.5s/players
         
 function ticking_functions:tick_0.5s/universal:
-    as @e[type=#bswt:living_mobs,tag=bswt.frostbitten] run function bswt:mob_effect/frostbite/tick
+    as @e[type=#bswt:living_creature,tag=bswt.frostbitten] run function bswt:mob_effect/frostbite/tick
     as @e[type=#bswt:hostiles, tag=bswt.iceStatue,nbt=!{Health:100.0f}] run function bswt:mob_effect/frostbite/ice_statue/shatter
     as @e[type=enderman] at @s run function bswt:mob/enderman/tick
 
@@ -97,10 +98,11 @@ function ticking_functions:tick_1s/call:
     as @a at @s run function ticking_functions:tick_1s/players
         
 function ticking_functions:tick_1s/universal:
-    as @e[type=#bswt:living_mobs,tag=bswt.lacerated] run function bswt:enchantment/laceration/tick
+    as @e[type=minecraft:skeleton,tag=bswt.dpsDummy] if score @s bswt.combatTicks matches 1.. run function utility:dummy/report_dps
+    as @e[type=#bswt:living_creature,tag=bswt.lacerated] run function bswt:enchantment/laceration/tick
     as @e[type=#minecraft:impact_projectiles,tag=bswt.timed_projectile] run function utility:projectile_tick
-    as @e[type=#bswt:living_mobs,tag=bswt.OnFire] run function bswt:mob_effect/fire/tick
-    as @e[type=#bswt:living_mobs,tag=bswt.Petrified] run function bswt:mob_effect/petrified/tick
+    as @e[type=#bswt:living_creature,tag=bswt.OnFire] run function bswt:mob_effect/fire/tick
+    as @e[type=#bswt:living_creature,tag=bswt.Petrified] run function bswt:mob_effect/petrified/tick
     as @e[type=#bswt:spawn_check,tag=!bswt.spawnChecked] run function bswt:mob/universal/filter
     as @e[type=zombie] if predicate bswt:mob/has_target if entity @a[distance=..64] run function bswt:mob/zombie/tick
     as @e[type=minecraft:marker,tag=spawner_marker] at @s run function main:spawner/marker/tick

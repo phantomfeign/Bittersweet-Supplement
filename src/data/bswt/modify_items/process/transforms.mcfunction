@@ -1,5 +1,5 @@
 #fireball
-execute if items entity @s container.* minecraft:fire_charge[!custom_data={adjusted_item:1b}] run loot give @s loot bswt:misc/fireball
+execute if items entity @s container.* minecraft:fire_charge[!custom_data={adjusted_item:1b}] run loot give @s loot bswt:misc/fire_charge
 
 execute if items entity @s container.* minecraft:fire_charge[!custom_data={adjusted_item:1b}] run clear @s minecraft:fire_charge[!custom_data={adjusted_item:1b}] 1
 

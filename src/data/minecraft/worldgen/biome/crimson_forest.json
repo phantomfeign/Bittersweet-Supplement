@@ -1,0 +1,121 @@
+{
+  "attributes": {
+    "minecraft:audio/ambient_sounds": {
+      "additions": [
+        {
+          "sound": "minecraft:ambient.crimson_forest.additions",
+          "tick_chance": 0.01
+        },
+        {
+          "sound": "minecraft:ambient.underwater.loop.additions.ultra_rare",
+          "tick_chance": 0.0001
+        }
+      ],
+      "loop": "minecraft:ambient.crimson_forest.loop",
+      "mood": {
+        "block_search_extent": 8,
+        "offset": 3,
+        "sound": "minecraft:ambient.crimson_forest.mood",
+        "tick_delay": 6000
+      }
+    },
+    "minecraft:audio/background_music": {
+      "default": {
+        "max_delay": 24000,
+        "min_delay": 12000,
+        "sound": "minecraft:music.nether.crimson_forest"
+      }
+    },
+    "minecraft:visual/ambient_particles": [
+      {
+        "particle": {
+          "type": "minecraft:crimson_spore"
+        },
+        "probability": 0.01
+      },
+      {
+        "particle": {
+          "type": "minecraft:firefly"
+        },
+        "probability": 0.0001
+      }
+    ],
+    "minecraft:visual/fog_color": 1310720,
+    "minecraft:visual/ambient_light_color": 655872,
+    "minecraft:visual/block_light_tint": 16716980,
+    "minecraft:visual/night_vision_color": 3933440
+  },
+  "spawns_by_category": {},
+  "carvers": "minecraft:nether_cave",
+  "downfall": 0,
+  "effects": {
+    "water_color": "#000000",
+    "grass_color": 10164505,
+    "foliage_color": 10164505,
+    "dry_foliage_color": 10164505
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "minecraft:ore_magma",
+      "minecraft:spring_closed",
+      "minecraft:ore_gravel_nether",
+      "minecraft:ore_blackstone",
+      "minecraft:ore_gold_nether",
+      "minecraft:ore_quartz_nether",
+      "minecraft:ore_ancient_debris_large",
+      "minecraft:ore_debris_small"
+    ],
+    [],
+    [
+      "minecraft:brown_mushroom_normal",
+      "minecraft:red_mushroom_normal",
+      "minecraft:weeping_vines"
+    ]
+  ],
+  "has_precipitation": false,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [
+      {
+        "type": "minecraft:strider",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 60
+      }
+    ],
+    "misc": [],
+    "monster": [
+      {
+        "type": "minecraft:zombified_piglin",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 1
+      },
+      {
+        "type": "minecraft:hoglin",
+        "maxCount": 4,
+        "minCount": 3,
+        "weight": 9
+      },
+      {
+        "type": "minecraft:piglin",
+        "maxCount": 4,
+        "minCount": 3,
+        "weight": 5
+      }
+    ],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 2
+}

@@ -21,7 +21,12 @@ function load:scoreboard:
     execute as @a store result score @s bswt.maxHealth run attribute @s minecraft:max_health get 1.0
     scoreboard objectives add bswt.playerHealth health
     scoreboard objectives add bswt.healthDummy dummy
-
+    
+    scoreboard objectives add bswt.damageIndicator dummy
+    scoreboard objectives add bswt.totalDamage dummy
+    scoreboard objectives add bswt.combatTicks dummy
+    scoreboard objectives add bswt.idleTicks dummy
+    
     scoreboard objectives add Day dummy
     scoreboard objectives add Time dummy
     scoreboard objectives add SleepAttempt dummy
@@ -36,7 +41,7 @@ function load:scoreboard:
     scoreboard objectives add bswt.bossAbilityTimer dummy
 
     scoreboard objectives add bswt.Math dummy
-    for num in [1,3,70,90,98,100,150,200]:
+    for num in [1,3,10,20,70,90,98,100,150,200]:
         scoreboard players set f"#{num}" bswt.Math (num)
     
     scoreboard objectives add bswt.goldRepair dummy

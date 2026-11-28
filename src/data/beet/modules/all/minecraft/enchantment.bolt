@@ -429,6 +429,42 @@ enchantment looting {
   "supported_items": "#minecraft:enchantable/weapon",
   "weight": 1
 }
+enchantment efficiency {
+	"anvil_cost": 1,
+	"description": {
+		"translate": "enchantment.minecraft.efficiency"
+	},
+	"effects": {
+		"minecraft:attributes": [
+			{
+				"amount": 1.5,
+				"attribute": "minecraft:mining_efficiency",
+				"id": "minecraft:enchantment.efficiency.multiplier",
+				"operation": "add_multiplied_base"
+			},
+			{
+				"amount": 5,
+				"attribute": "minecraft:mining_efficiency",
+				"id": "minecraft:enchantment.efficiency.flat",
+				"operation": "add_value"
+			}
+		]
+	},
+	"max_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"max_level": 1,
+	"min_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"slots": [
+		"mainhand"
+	],
+	"supported_items": "#minecraft:enchantable/mining",
+	"weight": 10
+}
 enchantment fortune {
 	"anvil_cost": 0,
 	"description": {
@@ -686,7 +722,227 @@ enchantment thorns {
 	"supported_items": "#minecraft:enchantable/armor",
 	"weight": 1
 }
-enchantment feather_falling{
+enchantment frost_walker {
+	"anvil_cost": 0,
+	"description": {
+		"translate": "enchantment.minecraft.frost_walker"
+	},
+	"effects": {
+		"minecraft:damage_immunity": [
+			{
+				"effect": {},
+				"requirements": {
+					"condition": "minecraft:damage_source_properties",
+					"predicate": {
+						"tags": [
+							{
+								"expected": true,
+								"id": "minecraft:burn_from_stepping"
+							},
+							{
+								"expected": false,
+								"id": "minecraft:bypasses_invulnerability"
+							}
+						]
+					}
+				}
+			}
+		],
+		"minecraft:location_changed": [
+			{
+				"effect": {
+					"type": "minecraft:replace_disk",
+					"block_state": {
+						"type": "minecraft:simple_state_provider",
+						"state": {
+							"Name": "minecraft:frosted_ice",
+							"Properties": {
+								"age": "0"
+							}
+						}
+					},
+					"height": 1,
+					"offset": [
+						0,
+						-1,
+						0
+					],
+					"predicate": {
+						"type": "minecraft:all_of",
+						"predicates": [
+							{
+								"type": "minecraft:matching_block_tag",
+								"offset": [
+									0,
+									1,
+									0
+								],
+								"tag": "minecraft:air"
+							},
+							{
+								"type": "minecraft:matching_blocks",
+								"blocks": "minecraft:water"
+							},
+							{
+								"type": "minecraft:matching_fluids",
+								"fluids": "minecraft:water"
+							},
+							{
+								"type": "minecraft:unobstructed"
+							}
+						]
+					},
+					"radius": 6,
+					"trigger_game_event": "minecraft:block_place"
+				},
+				"requirements": {
+					"condition": "minecraft:all_of",
+					"terms": [
+						{
+							"condition": "minecraft:entity_properties",
+							"entity": "this",
+							"predicate": {
+								"flags": {
+									"is_on_ground": true
+								}
+							}
+						},
+						{
+							"condition": "minecraft:inverted",
+							"term": {
+								"condition": "minecraft:entity_properties",
+								"entity": "this",
+								"predicate": {
+									"vehicle": {}
+								}
+							}
+						}
+					]
+				}
+			}
+		]
+	},
+	"exclusive_set": "#minecraft:exclusive_set/boots",
+	"max_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"anvil_cost": 0,
+	"description": {
+		"translate": "enchantment.minecraft.frost_walker"
+	},
+	"effects": {
+		"minecraft:damage_immunity": [
+			{
+				"effect": {},
+				"requirements": {
+					"condition": "minecraft:damage_source_properties",
+					"predicate": {
+						"tags": [
+							{
+								"expected": true,
+								"id": "minecraft:burn_from_stepping"
+							},
+							{
+								"expected": false,
+								"id": "minecraft:bypasses_invulnerability"
+							}
+						]
+					}
+				}
+			}
+		],
+		"minecraft:location_changed": [
+			{
+				"effect": {
+					"type": "minecraft:replace_disk",
+					"block_state": {
+						"type": "minecraft:simple_state_provider",
+						"state": {
+							"Name": "minecraft:frosted_ice",
+							"Properties": {
+								"age": "0"
+							}
+						}
+					},
+					"height": 1,
+					"offset": [
+						0,
+						-1,
+						0
+					],
+					"predicate": {
+						"type": "minecraft:all_of",
+						"predicates": [
+							{
+								"type": "minecraft:matching_block_tag",
+								"offset": [
+									0,
+									1,
+									0
+								],
+								"tag": "minecraft:air"
+							},
+							{
+								"type": "minecraft:matching_blocks",
+								"blocks": "minecraft:water"
+							},
+							{
+								"type": "minecraft:matching_fluids",
+								"fluids": "minecraft:water"
+							},
+							{
+								"type": "minecraft:unobstructed"
+							}
+						]
+					},
+					"radius": 6,
+					"trigger_game_event": "minecraft:block_place"
+				},
+				"requirements": {
+					"condition": "minecraft:all_of",
+					"terms": [
+						{
+							"condition": "minecraft:entity_properties",
+							"entity": "this",
+							"predicate": {
+								"flags": {
+									"is_on_ground": true
+								}
+							}
+						},
+						{
+							"condition": "minecraft:inverted",
+							"term": {
+								"condition": "minecraft:entity_properties",
+								"entity": "this",
+								"predicate": {
+									"vehicle": {}
+								}
+							}
+						}
+					]
+				}
+			}
+		]
+	},
+	"exclusive_set": "#minecraft:exclusive_set/boots",
+	"max_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"max_level": 1,
+	"min_cost": {
+		"base": 0,
+		"per_level_above_first": 0
+	},
+	"slots": [
+		"feet"
+	],
+	"supported_items": "#minecraft:enchantable/foot_armor",
+	"weight": 2
+}
+enchantment feather_falling {
 	"anvil_cost": 0,
 	"description": {
 		"translate": "enchantment.minecraft.feather_falling"

@@ -12,9 +12,21 @@ item_tag bswt:no_sweeping {
         "minecraft:trident"
     ]
 }
+damage_type bswt:rose_gold {
+  "message_id": "rose_gold",
+  "scaling": "when_caused_by_living_non_player",
+  "exhaustion": 0
+}
+damage_type bswt:shadowbolt {
+  "message_id": "shadowbolt",
+  "scaling": "when_caused_by_living_non_player",
+  "exhaustion": 0
+}
 damage_type_tag bypasses_cooldown {
     "values": [
-        "minecraft:arrow"
+        "minecraft:arrow",
+        "bswt:rose_gold",
+        "bswt:shadowbolt"
     ]
 }
 damage_type_tag bswt:is_melee {
@@ -43,6 +55,56 @@ entity_type_tag bswt:hostiles {
         "minecraft:zombie_villager",
         "minecraft:silverfish",
         "minecraft:phantom"
+    ]
+}
+entity_type_tag bswt:passive_mobs {
+    "values": [
+        "minecraft:allay",
+        "minecraft:armadillo",
+        "minecraft:bat",
+        "minecraft:camel",
+        "minecraft:cat",
+        "minecraft:chicken",
+        "minecraft:cod",
+        "minecraft:cow",
+        "minecraft:donkey",
+        "minecraft:fox",
+        "minecraft:frog",
+        "minecraft:glow_squid",
+        "minecraft:goat",
+        "minecraft:horse",
+        "minecraft:mule",
+        "minecraft:mooshroom",
+        "minecraft:ocelot",
+        "minecraft:parrot",
+        "minecraft:pig",
+        "minecraft:rabbit",
+        "minecraft:salmon",
+        "minecraft:sheep",
+        "minecraft:skeleton_horse",
+        "minecraft:sniffer",
+        "minecraft:snow_golem",
+        "minecraft:squid",
+        "minecraft:strider",
+        "minecraft:tadpole",
+        "minecraft:trader_llama",
+        "minecraft:tropical_fish",
+        "minecraft:turtle",
+        "minecraft:villager",
+        "minecraft:wandering_trader",
+        "minecraft:zombie_horse"
+    ]
+}
+entity_type_tag bswt:is_passive {
+    "values": [
+        "#bswt:nonliving_entity",
+        "#bswt:passive_mobs"
+    ]
+}
+entity_type_tag bswt:living_creature {
+    "values": [
+        "#bswt:hostiles",
+        "#bswt:passive_mobs"
     ]
 }
 entity_type_tag bswt:nonliving_entity {
@@ -93,56 +155,6 @@ entity_type_tag bswt:nonliving_entity {
         "minecraft:text_display"
     ]
 }
-entity_type_tag bswt:passive_mobs {
-    "values": [
-        "minecraft:allay",
-        "minecraft:armadillo",
-        "minecraft:bat",
-        "minecraft:camel",
-        "minecraft:cat",
-        "minecraft:chicken",
-        "minecraft:cod",
-        "minecraft:cow",
-        "minecraft:donkey",
-        "minecraft:fox",
-        "minecraft:frog",
-        "minecraft:glow_squid",
-        "minecraft:goat",
-        "minecraft:horse",
-        "minecraft:mule",
-        "minecraft:mooshroom",
-        "minecraft:ocelot",
-        "minecraft:parrot",
-        "minecraft:pig",
-        "minecraft:rabbit",
-        "minecraft:salmon",
-        "minecraft:sheep",
-        "minecraft:skeleton_horse",
-        "minecraft:sniffer",
-        "minecraft:snow_golem",
-        "minecraft:squid",
-        "minecraft:strider",
-        "minecraft:tadpole",
-        "minecraft:trader_llama",
-        "minecraft:tropical_fish",
-        "minecraft:turtle",
-        "minecraft:villager",
-        "minecraft:wandering_trader",
-        "minecraft:zombie_horse"
-    ]
-}
-entity_type_tag bswt:is_passive {
-    "values": [
-        "#bswt:nonliving_entity",
-        "#bswt:passive_mobs"
-    ]
-}
-entity_type_tag bswt:living_mobs {
-    "values": [
-        "#bswt:hostiles",
-        "#bswt:passive_mobs"
-    ]
-}
 entity_type_tag bswt:cant_ice_statue {
     "values": [
         "minecraft:player",
@@ -159,49 +171,113 @@ entity_type_tag bswt:cant_transfer_fire {
         "minecraft:fireball"
     ]
 }
-block_tag bswt:nonsolid {
-    "values": [
-        "minecraft:air",
-        "minecraft:void_air",
-        "minecraft:cave_air",
-        "minecraft:water",
-        "minecraft:lava",
-        "minecraft:short_grass",
-        "#minecraft:small_flowers",
-        "minecraft:fern",
-        "minecraft:fire",
-        "minecraft:tall_grass",
-        "minecraft:large_fern",
-        "minecraft:vine",
-        "minecraft:twisting_vines",
-        "minecraft:twisting_vines_plant",
-        "minecraft:weeping_vines",
-        "minecraft:weeping_vines_plant",
-        "#minecraft:crops",
-        "#minecraft:saplings",
-        "#minecraft:signs",
-        "minecraft:snow",
-        "minecraft:attached_melon_stem",
-        "minecraft:attached_pumpkin_stem",
-        "minecraft:nether_wart",
-        "minecraft:sweet_berry_bush",
-        "minecraft:cocoa",
-        "minecraft:sugar_cane",
-        "minecraft:seagrass",
-        "minecraft:tall_seagrass",
-        "minecraft:redstone_wire",
-        "minecraft:rail",
-        "minecraft:powered_rail",
-        "minecraft:activator_rail",
-        "minecraft:detector_rail",
-        "minecraft:torch",
-        "minecraft:soul_torch",
-        "minecraft:redstone_torch",
-        "minecraft:glow_lichen",
-        "#minecraft:air",
-        "#minecraft:cave_vines",
-        "minecraft:wall_torch",
-        "minecraft:tripwire",
-        "minecraft:tripwire_hook"
-    ]
+block_tag bswt:tall_flowers {
+  "values": [
+    "minecraft:sunflower",
+    "minecraft:lilac",
+    "minecraft:rose_bush",
+    "minecraft:peony",
+    "minecraft:pitcher_plant"
+  ]
 }
+
+block_tag bswt:nonsolid {
+  "values": [
+    "#minecraft:air",
+    "minecraft:water",
+    "minecraft:lava",
+    "minecraft:bubble_column",
+    "minecraft:fire",
+    "minecraft:soul_fire",
+    "#minecraft:small_flowers",
+    "#bswt:tall_flowers",
+    "#minecraft:saplings",
+    "#minecraft:crops",
+    "#minecraft:cave_vines",
+    "#minecraft:corals",
+    "#minecraft:wall_corals",
+    "#minecraft:signs",
+    "#minecraft:banners",
+    "#minecraft:buttons",
+    "#minecraft:pressure_plates",
+    "#minecraft:rails",
+    "minecraft:short_grass",
+    "minecraft:tall_grass",
+    "minecraft:short_dry_grass",
+    "minecraft:tall_dry_grass",
+    "minecraft:fern",
+    "minecraft:large_fern",
+    "minecraft:bush",
+    "minecraft:firefly_bush",
+    "minecraft:dead_bush",
+    "minecraft:sweet_berry_bush",
+    "minecraft:pink_petals",
+    "minecraft:wildflowers",
+    "minecraft:leaf_litter",
+    "minecraft:spore_blossom",
+    "minecraft:big_dripleaf_stem",
+    "minecraft:small_dripleaf",
+    "minecraft:hanging_roots",
+    "minecraft:pale_hanging_moss",
+    "minecraft:vine",
+    "minecraft:glow_lichen",
+    "minecraft:sculk_vein",
+    "minecraft:resin_clump",
+    "minecraft:twisting_vines",
+    "minecraft:twisting_vines_plant",
+    "minecraft:weeping_vines",
+    "minecraft:weeping_vines_plant",
+    "minecraft:crimson_roots",
+    "minecraft:warped_roots",
+    "minecraft:nether_sprouts",
+    "minecraft:crimson_fungus",
+    "minecraft:warped_fungus",
+    "minecraft:brown_mushroom",
+    "minecraft:red_mushroom",
+    "minecraft:nether_wart",
+    "minecraft:sugar_cane",
+    "minecraft:bamboo_sapling",
+    "minecraft:attached_melon_stem",
+    "minecraft:attached_pumpkin_stem",
+    "minecraft:cocoa",
+    "minecraft:seagrass",
+    "minecraft:tall_seagrass",
+    "minecraft:kelp",
+    "minecraft:kelp_plant",
+    "minecraft:dead_tube_coral",
+    "minecraft:dead_brain_coral",
+    "minecraft:dead_bubble_coral",
+    "minecraft:dead_fire_coral",
+    "minecraft:dead_horn_coral",
+    "minecraft:dead_tube_coral_fan",
+    "minecraft:dead_brain_coral_fan",
+    "minecraft:dead_bubble_coral_fan",
+    "minecraft:dead_fire_coral_fan",
+    "minecraft:dead_horn_coral_fan",
+    "minecraft:dead_tube_coral_wall_fan",
+    "minecraft:dead_brain_coral_wall_fan",
+    "minecraft:dead_bubble_coral_fan",
+    "minecraft:dead_fire_coral_wall_fan",
+    "minecraft:dead_horn_coral_wall_fan",
+    "minecraft:frogspawn",
+    "minecraft:cobweb",
+    "minecraft:redstone_wire",
+    "minecraft:lever",
+    "minecraft:tripwire",
+    "minecraft:tripwire_hook",
+    "minecraft:torch",
+    "minecraft:wall_torch",
+    "minecraft:soul_torch",
+    "minecraft:soul_wall_torch",
+    "minecraft:redstone_torch",
+    "minecraft:redstone_wall_torch",
+    "minecraft:copper_torch",
+    "minecraft:copper_wall_torch",
+    "minecraft:nether_portal",
+    "minecraft:end_portal",
+    "minecraft:end_gateway",
+    "minecraft:light",
+    "minecraft:structure_void"
+  ]
+}
+

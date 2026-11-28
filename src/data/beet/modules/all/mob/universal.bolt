@@ -128,7 +128,7 @@ function bswt:mob/universal/route:
     data modify entity @s drop_chances set value {head:0.0f,chest:0.0f,legs:0.0f,feet:0.0f,mainhand:0.0f,offhand:0.0f} 
     tag @s add bswt.spawnChecked
     #prevent trial goons from being modified
-    as @s[tag=bswt.trialChamberSpawn] run return fail
+    as @s[tag=bswt.trialChamberSpawn] run return run effect give @s minecraft:glowing 2 0 true
     MOBS = [
         "zombie",
         "husk",

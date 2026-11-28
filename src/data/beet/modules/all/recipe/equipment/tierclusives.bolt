@@ -132,7 +132,7 @@ recipe bswt:equipment/crafted/copper/sickle {
 				{
 					"type": "minecraft:attack_damage",
 					"id": "bswt:copper_sickle",
-					"amount": 6,
+					"amount": 5,
 					"operation": "add_value",
 					"slot": "mainhand"
 				}
@@ -144,7 +144,7 @@ recipe bswt:equipment/crafted/copper/sickle {
 			},
 			"minecraft:lore": [
 				{
-					"text": "7🗡",
+					"text": "6🗡",
 					"color": "red",
 					"italic": false
 				},
@@ -186,7 +186,7 @@ recipe bswt:equipment/smithed/bronze/sickle {
 				{
 					"type": "minecraft:attack_damage",
 					"id": "bswt:bronze_sickle",
-					"amount": 11,
+					"amount": 7,
 					"operation": "add_value",
 					"slot": "mainhand"
 				}
@@ -198,7 +198,7 @@ recipe bswt:equipment/smithed/bronze/sickle {
 			},
 			"minecraft:lore": [
 				{
-					"text": "12🗡",
+					"text": "8🗡",
 					"color": "red",
 					"italic": false
 				},
@@ -627,7 +627,7 @@ recipe bswt:equipment/smithed/rose_gold/rapier {
 				"bswt.rose_gold": true
 			},
 			"minecraft:minimum_attack_charge": 1,
-			"minecraft:damage_type": "minecraft:magic",
+			"minecraft:damage_type": "bswt:rose_gold",
 			"minecraft:attribute_modifiers": [
 				{
 					"type": "minecraft:attack_speed",

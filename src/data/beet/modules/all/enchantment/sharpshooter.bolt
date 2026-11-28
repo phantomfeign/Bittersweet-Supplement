@@ -2,6 +2,10 @@ function bswt:enchantment/sharpshooter/call:
     data merge entity @s {NoGravity:1b}
     tag @s add bswt.FastArrow
     tag @s add bswt.timed_projectile
+    on origin:
+        scoreboard players set $strength player_motion.api.launch -2000
+        at @s run function player_motion:api/launch_looking
+
     scoreboard players add @s bswt.projectileLifeSpan 15
     # get initial velocity
     execute store result score #projectileX bswt.Math run data get entity @s Motion[0] 1000

@@ -77,14 +77,8 @@ function utility:get_motion_towards/target:
       store result score #target_y bswt.Math run data get entity @s Pos[1] 1000
       store result score #target_z bswt.Math run data get entity @s Pos[2] 1000
 
-
-function utility:spawn_damage_dummy:
-    summon minecraft:skeleton ~ ~ ~ {Health:100f,Tags:["bswt.damageDummy","bswt.adjustmentBypass"],attributes:[{id:"minecraft:max_health",base:100.0},{id:"minecraft:movement_speed",base:0.0}],equipment:{head:{id:"minecraft:carved_pumpkin"}},NoAI:true}
-    execute as @e[type=minecraft:skeleton,tag=bswt.damageDummy] at @s:
-        function utility:round_position
-
 function utility:round_position:
-    execute align xz run tp @s ~0.5 ~ ~0.5
+    align xz run tp @s ~0.5 ~ ~0.5
 
 function utility:round_dir:
     if entity @s[y_rotation=-45..45] run rotate @s 0 0
